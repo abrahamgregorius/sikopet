@@ -5,7 +5,7 @@ import { Avatar } from "../../../components/ui";
 
 export default function TopNav({ onMobileMenuToggle, onNotifToggle, onProfileToggle, isNotifOpen, isProfileOpen, profileRef }) {
 	return (
-		<header className="sticky top-0 z-30 glass border-b border-[#D8E4EA]">
+		<header className="sticky top-0 z-30 bg-white/95 backdrop-blur-md border-b border-[#D8E4EA]">
 			<div className="h-[72px] flex items-center gap-3 px-4 sm:px-6">
 				<button onClick={onMobileMenuToggle} className="focus-ring lg:hidden p-2 -ml-2 text-[#0F172A]" aria-label="Buka menu">
 					<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><path d="M3 6h18M3 12h18M3 18h18" strokeLinecap="round" /></svg>

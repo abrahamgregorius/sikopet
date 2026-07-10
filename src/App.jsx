@@ -8,6 +8,7 @@ import Home from "./page/Home";
 import ModuleManagerPage from "./page/dashboard/ModuleManagerPage";
 import KaryawanPage from "./page/dashboard/KaryawanPage";
 import GenericModulePage from "./page/dashboard/GenericModulePage";
+import InventarisPage from "./page/dashboard/InventarisPage";
 import KeanggotaanPage from "./page/keanggotaan";
 import SimpananPage from "./page/simpanan";
 import PinjamanPage from "./page/pinjaman";
@@ -48,8 +49,16 @@ const routes = [
         path: "/dashboard/keuangan",
     },
     {
+        element: <KaryawanPage />,
+        path: "/dashboard/karyawan",
+    },
+    {
         element: <KasirPage />,
         path: "/dashboard/kasir",
+    },
+    {
+        element: <InventarisPage />,
+        path: "/dashboard/inventaris",
     },
     {
         element: <GenericModulePage />,
