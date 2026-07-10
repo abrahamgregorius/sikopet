@@ -445,7 +445,6 @@ export const MODULE_REGISTRY = [
         route: "/dashboard/pengadaan",
         category: MODULE_CATEGORIES.OPERASIONAL,
         order: 8,
-        comingSoon: true,
     },
     {
         key: "sales",
@@ -455,7 +454,6 @@ export const MODULE_REGISTRY = [
         route: "/dashboard/penjualan",
         category: MODULE_CATEGORIES.OPERASIONAL,
         order: 9,
-        comingSoon: true,
     },
     {
         key: "warehouse",
@@ -465,7 +463,6 @@ export const MODULE_REGISTRY = [
         route: "/dashboard/gudang",
         category: MODULE_CATEGORIES.OPERASIONAL,
         order: 10,
-        comingSoon: true,
     },
     {
         key: "suppliers",
@@ -475,7 +472,6 @@ export const MODULE_REGISTRY = [
         route: "/dashboard/pemasok",
         category: MODULE_CATEGORIES.OPERASIONAL,
         order: 11,
-        comingSoon: true,
     },
     {
         key: "customers",
@@ -485,7 +481,6 @@ export const MODULE_REGISTRY = [
         route: "/dashboard/pelanggan",
         category: MODULE_CATEGORIES.OPERASIONAL,
         order: 12,
-        comingSoon: true,
     },
     {
         key: "employees",

@@ -14,6 +14,11 @@ import SimpananPage from "./page/simpanan";
 import PinjamanPage from "./page/pinjaman";
 import KeuanganPage from "./page/keuangan";
 import KasirPage from "./page/kasir";
+import PengadaanPage from "./page/pengadaan";
+import PenjualanPage from "./page/penjualan";
+import GudangPage from "./page/gudang";
+import PemasokPage from "./page/pemasok";
+import PelangganPage from "./page/pelanggan";
 
 const routes = [
     {
@@ -55,6 +60,26 @@ const routes = [
     {
         element: <KasirPage />,
         path: "/dashboard/kasir",
+    },
+    {
+        element: <PengadaanPage />,
+        path: "/dashboard/pengadaan",
+    },
+    {
+        element: <PenjualanPage />,
+        path: "/dashboard/penjualan",
+    },
+    {
+        element: <GudangPage />,
+        path: "/dashboard/gudang",
+    },
+    {
+        element: <PemasokPage />,
+        path: "/dashboard/pemasok",
+    },
+    {
+        element: <PelangganPage />,
+        path: "/dashboard/pelanggan",
     },
     {
         element: <InventarisPage />,
