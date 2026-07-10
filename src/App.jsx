@@ -6,6 +6,7 @@ import Login from "./page/auth/Login";
 import Dashboard from "./page/dashboard";
 import Home from "./page/Home";
 import ModuleManagerPage from "./page/dashboard/ModuleManagerPage";
+import KaryawanPage from "./page/dashboard/KaryawanPage";
 import GenericModulePage from "./page/dashboard/GenericModulePage";
 
 const routes = [
@@ -24,6 +25,10 @@ const routes = [
     {
         element: <ModuleManagerPage />,
         path: "/dashboard/modules",
+    },
+    {
+        element: <KaryawanPage />,
+        path: "/dashboard/karyawan",
     },
     {
         element: <GenericModulePage />,
