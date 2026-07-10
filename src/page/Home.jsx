@@ -1,69 +1,37 @@
 /** @format */
 
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
-const StatCounter = ({ end, decimals = 0, suffix = "" }) => {
-	const [count, setCount] = useState(0);
-	const ref = useRef(null);
+import { Link } from "react-router-dom";
 
-	useEffect(() => {
-		const el = ref.current;
-		if (!el) return;
-
-		const io = new IntersectionObserver(
-			(entries) => {
-				if (entries[0].isIntersecting) {
-					const duration = 1400;
-					const start = performance.now();
-
-					const tick = (now) => {
-						const progress = Math.min((now - start) / duration, 1);
-						const eased = 1 - Math.pow(1 - progress, 3);
-						setCount(end * eased);
-						if (progress < 1) requestAnimationFrame(tick);
-					};
-					requestAnimationFrame(tick);
-					io.unobserve(el);
-				}
-			},
-			{ threshold: 0.4 },
-		);
-
-		io.observe(el);
-		return () => io.disconnect();
-	}, [end]);
-
-	const displayValue = decimals
-		? count.toFixed(decimals)
-		: Math.round(count).toLocaleString("id-ID");
-
-	return (
-		<span ref={ref}>
-			{displayValue}
-			{suffix}
-		</span>
-	);
-};
+import {
+	CheckList,
+	Logo,
+	SectionHeader,
+	SharedStyles,
+	SkipLink,
+	StatCounter,
+} from "../components/Home";
 
 const faqs = [
 	{
-		q: "Bagaimana KOPET bekerja saat tidak ada internet sama sekali?",
+		q: "Bagaimana sikopet bekerja saat tidak ada internet sama sekali?",
 		a: "Semua data transaksi tersimpan langsung di perangkat menggunakan basis data lokal Dexie di atas IndexedDB. Aplikasi tetap berfungsi penuh untuk POS, simpan pinjam, gudang, dan logistik — begitu koneksi tersedia kembali, data tersinkron otomatis ke server.",
 	},
 	{
-		q: "Apakah KOPET bisa menggantikan SIMKOPDES?",
-		a: "Ya. KOPET dirancang sebagai pengganti SIMKOPDES untuk KDMP — mengintegrasikan profil legal, dokumen, potensi desa, dan permohonan pembiayaan, ditambah unit usaha operasional (POS, simpan pinjam, gudang, logistik) yang tidak ada di SIMKOPDES.",
+		q: "Apakah sikopet bisa menggantikan SIMKOPDES?",
+		a: "Ya. sikopet dirancang sebagai pengganti SIMKOPDES untuk KDMP — mengintegrasikan profil legal, dokumen, potensi desa, dan permohonan pembiayaan, ditambah unit usaha operasional (POS, simpan pinjam, gudang, logistik) yang tidak ada di SIMKOPDES.",
 	},
 	{
 		q: "Bagaimana dengan integrasi ke sistem pemerintah seperti Dukcapil dan Kemenkumham?",
-		a: "KOPET terintegrasi langsung ke API Dukcapil, Kemenkumham/AHU, DJP, Agrinas, dan Bank Himbara — verifikasi NIK, NPAK, NPWP, dan lahan bisa dilakukan dari satu platform tanpa berpindah sistem.",
+		a: "sikopet terintegrasi langsung ke API Dukcapil, Kemenkumham/AHU, DJP, Agrinas, dan Bank Himbara — verifikasi NIK, NPAK, NPWP, dan lahan bisa dilakukan dari satu platform tanpa berpindah sistem.",
 	},
 	{
-		q: "Apakah data dari sistem lama bisa dipindahkan ke KOPET?",
-		a: "Bisa. Tim implementasi KOPET membantu migrasi data anggota, legalitas, dan riwayat transaksi dari SIMKOPDES maupun spreadsheet tanpa biaya tambahan pada paket tahunan.",
+		q: "Apakah data dari sistem lama bisa dipindahkan ke sikopet?",
+		a: "Bisa. Tim implementasi sikopet membantu migrasi data anggota, legalitas, dan riwayat transaksi dari SIMKOPDES maupun spreadsheet tanpa biaya tambahan pada paket tahunan.",
 	},
 	{
-		q: "Berapa lama proses implementasi hingga koperasi bisa mulai memakai KOPET?",
+		q: "Berapa lama proses implementasi hingga koperasi bisa mulai memakai sikopet?",
 		a: "Rata-rata koperasi dapat mulai beroperasi penuh dalam 1–2 minggu, termasuk pelatihan pengurus, migrasi data awal, dan verifikasi legalitas ke sistem pemerintah.",
 	},
 ];
@@ -104,72 +72,9 @@ export default function KOPETApp() {
 
 	return (
 		<div className="font-['Inter',sans-serif] text-[#0F172A] antialiased bg-[#F7FAFC] overflow-x-hidden">
-			<style>{`
-                html { scroll-behavior: smooth; }
-                .font-display { font-family: "Hanken Grotesk", sans-serif; }
-                
-                .glass-nav {
-                    background: rgba(247, 250, 252, 0.72);
-                    backdrop-filter: blur(14px) saturate(160%);
-                    -webkit-backdrop-filter: blur(14px) saturate(160%);
-                    border-bottom: 1px solid rgba(216, 228, 234, 0.6);
-                }
-                .glass-card {
-                    background: rgba(255, 255, 255, 0.62);
-                    backdrop-filter: blur(16px) saturate(160%);
-                    -webkit-backdrop-filter: blur(16px) saturate(160%);
-                    border: 1px solid rgba(255, 255, 255, 0.5);
-                }
+			<SharedStyles />
 
-                .shadow-soft { box-shadow: 0 1px 2px rgba(15,23,42,0.04), 0 8px 24px -8px rgba(15,23,42,0.08); }
-                .shadow-lift { box-shadow: 0 4px 10px rgba(15,23,42,0.05), 0 20px 40px -16px rgba(15,23,42,0.16); }
-                .shadow-glow { box-shadow: 0 0 0 1px rgba(57,142,179,0.10), 0 12px 32px -8px rgba(57,142,179,0.28); }
-                .hover\\:shadow-lift:hover { box-shadow: 0 4px 10px rgba(15,23,42,0.05), 0 20px 40px -16px rgba(15,23,42,0.16); }
-                .hover\\:shadow-soft:hover { box-shadow: 0 1px 2px rgba(15,23,42,0.04), 0 8px 24px -8px rgba(15,23,42,0.08); }
-                .focus-ring:focus-visible { outline: 2px solid #398eb3; outline-offset: 3px; border-radius: 8px; }
-
-                .reveal {
-                    opacity: 0;
-                    transform: translateY(18px);
-                    transition: opacity 0.7s cubic-bezier(0.22, 0.61, 0.36, 1), transform 0.7s cubic-bezier(0.22, 0.61, 0.36, 1);
-                }
-                .reveal[data-revealed] { opacity: 1; transform: translateY(0); }
-                .reveal-delay-1 { transition-delay: 0.08s; }
-                .reveal-delay-2 { transition-delay: 0.16s; }
-                .reveal-delay-3 { transition-delay: 0.24s; }
-
-                .blob { filter: blur(70px); }
-                
-                .node-pulse { animation: nodePulse 2.6s ease-out infinite; }
-                @keyframes nodePulse { 0% { transform: scale(0.6); opacity: 0.85; } 70% { transform: scale(2.6); opacity: 0; } 100% { transform: scale(2.6); opacity: 0; } }
-                .node-pulse.d1 { animation-delay: 0.3s; }
-                .node-pulse.d2 { animation-delay: 0.9s; }
-                .node-pulse.d3 { animation-delay: 1.5s; }
-                .node-pulse.d4 { animation-delay: 0.6s; }
-
-                .float-y { animation: floatY 6s ease-in-out infinite; }
-                .float-y.slow { animation-duration: 8s; }
-                .float-y.rev { animation-direction: reverse; }
-                @keyframes floatY { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
-
-                .dash { stroke-dasharray: 6 6; animation: dashMove 3.5s linear infinite; }
-                @keyframes dashMove { to { stroke-dashoffset: -60; } }
-
-                .faq-panel { max-height: 0; overflow: hidden; transition: max-height 0.45s ease, padding 0.3s ease; }
-                .faq-item.open .faq-panel { max-height: 320px; }
-                .faq-item .chev { transition: transform 0.3s ease; }
-                .faq-item.open .chev { transform: rotate(180deg); }
-                
-                ::selection { background: #67b2d4; color: #fff; }
-            `}</style>
-
-			{}
-			<a
-				href="#hero-heading"
-				className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:bg-white focus:px-4 focus:py-2 focus:rounded-lg shadow-lift"
-			>
-				Lompat ke konten utama
-			</a>
+			<SkipLink href="#hero-heading" label="Lompat ke konten utama" />
 
 			<header
 				id="site-nav"
@@ -179,47 +84,7 @@ export default function KOPETApp() {
 			>
 				<nav className="glass-nav" aria-label="Navigasi utama">
 					<div className="max-w-[1280px] mx-auto px-6 lg:px-10 h-[72px] flex items-center justify-between">
-						<a
-							href="#hero-heading"
-							className="flex items-center gap-2.5 focus-ring"
-							aria-label="KOPET — Beranda"
-						>
-							<span className="relative w-9 h-9 rounded-xl bg-gradient-to-br from-[#398eb3] to-[#4CC9B0] grid place-items-center shadow-soft">
-								<svg
-									width="18"
-									height="18"
-									viewBox="0 0 24 24"
-									fill="none"
-									aria-hidden="true"
-								>
-									<circle cx="5" cy="12" r="2.2" fill="white" />
-									<circle
-										cx="12"
-										cy="6"
-										r="2.2"
-										fill="white"
-										fillOpacity="0.85"
-									/>
-									<circle cx="19" cy="12" r="2.2" fill="white" />
-									<circle
-										cx="12"
-										cy="18"
-										r="2.2"
-										fill="white"
-										fillOpacity="0.85"
-									/>
-									<path
-										d="M5 12L12 6M12 6L19 12M19 12L12 18M12 18L5 12"
-										stroke="white"
-										strokeWidth="1.3"
-										strokeOpacity="0.6"
-									/>
-								</svg>
-							</span>
-							<span className="font-display font-extrabold text-[19px] tracking-tight text-[#0F172A]">
-								KOPET
-							</span>
-						</a>
+						<Logo name="KOPET" href="#hero-heading" />
 
 						<ul className="hidden lg:flex items-center gap-8 font-medium text-[14.5px] text-[#475569]">
 							<li>
@@ -265,12 +130,12 @@ export default function KOPETApp() {
 						</ul>
 
 						<div className="hidden md:flex items-center gap-2">
-							<a
-								href="#"
+							<Link
+								to="/login"
 								className="focus-ring px-4 py-2.5 text-[14.5px] font-semibold text-[#475569] hover:text-[#0F172A] transition-colors"
 							>
 								Masuk
-							</a>
+							</Link>
 							<a
 								href="#cta-akhir"
 								className="focus-ring px-5 py-2.5 rounded-full bg-[#0F172A] text-white text-[14.5px] font-semibold shadow-soft hover:shadow-lift hover:-translate-y-0.5 transition-all duration-300"
@@ -404,9 +269,9 @@ export default function KOPETApp() {
 							</h1>
 
 							<p className="text-[#475569] text-[17px] lg:text-[18px] leading-relaxed mt-6 max-w-[540px]">
-								KOPET mengintegrasikan POS toko sembako, simpan pinjam,
-								gudang, logistik, dan legalitas koperasi dalam satu sistem
-								yang tetap berfungsi penuh tanpa internet — siap menggantikan
+								sikopet mengintegrasikan POS toko sembako, simpan pinjam,
+								gudang, logistik, dan legalitas koperasi dalam satu sistem yang
+								tetap berfungsi penuh tanpa internet — siap menggantikan
 								SIMKOPDES untuk KDMP di seluruh Indonesia.
 							</p>
 
@@ -452,11 +317,11 @@ export default function KOPETApp() {
 										1K+
 									</span>
 								</div>
-							<p className="text-[13.5px] text-[#94A3B8] leading-snug">
-								Dirancang untuk8.494 Koperasi Desa
-								<br className="hidden sm:block" />
-								Kelurahan Merah Putih se-Indonesia
-							</p>
+								<p className="text-[13.5px] text-[#94A3B8] leading-snug">
+									Dirancang untuk8.494 Koperasi Desa
+									<br className="hidden sm:block" />
+									Kelurahan Merah Putih se-Indonesia
+								</p>
 							</div>
 						</div>
 
@@ -575,7 +440,7 @@ export default function KOPETApp() {
 								</div>
 							</div>
 
-								<div className="float-y absolute -left-6 -bottom-8 sm:-left-10 glass-card rounded-2xl shadow-lift px-4 py-3.5 hidden sm:block">
+							<div className="float-y absolute -left-6 -bottom-8 sm:-left-10 glass-card rounded-2xl shadow-lift px-4 py-3.5 hidden sm:block">
 								<div className="flex items-center gap-2.5">
 									<span className="w-8 h-8 rounded-full bg-[#4CC9B0]/15 grid place-items-center">
 										<svg
@@ -636,7 +501,7 @@ export default function KOPETApp() {
 				{}
 				<section
 					className="relative -mt-2 lg:-mt-6 pb-6"
-					aria-label="Statistik penggunaan KOPET"
+					aria-label="Statistik penggunaan sikopet"
 				>
 					<div className="max-w-[1280px] mx-auto px-6 lg:px-10">
 						<div className="reveal rounded-[1.75rem] bg-[#0F172A] px-6 sm:px-10 py-9 sm:py-11 grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6 shadow-lift">
@@ -681,18 +546,12 @@ export default function KOPETApp() {
 					id="fitur"
 					className="max-w-[1280px] mx-auto px-6 lg:px-10 py-24 lg:py-32"
 				>
-					<div className="reveal max-w-[620px] mx-auto text-center mb-16 lg:mb-20">
-						<span className="text-[13px] font-bold text-[#2F7698] uppercase tracking-wider">
-							Modul Inti
-						</span>
-						<h2 className="font-display font-extrabold text-[30px] sm:text-[38px] text-[#0F172A] tracking-tight mt-3 leading-tight">
-							Seluruh operasional koperasi dalam satu ekosistem
-						</h2>
-						<p className="text-[#475569] text-[16px] leading-relaxed mt-4">
-							Dari kasir toko sembako hingga pengiriman logistik — KOPET
-							mengintegrasikan setiap unit usaha dalam satu platform yang
-							saling terhubung dan tetap berfungsi tanpa internet.
-						</p>
+					<div className="reveal">
+						<SectionHeader
+							eyebrow="Modul Inti"
+							title="Seluruh operasional koperasi dalam satu ekosistem"
+							description="Dari kasir toko sembako hingga pengiriman logistik — sikopet mengintegrasikan setiap unit usaha dalam satu platform yang saling terhubung dan tetap berfungsi tanpa internet."
+						/>
 					</div>
 
 					{/* Feature 1 */}
@@ -759,39 +618,18 @@ export default function KOPETApp() {
 								Toko Sembako (POS + Inventaris)
 							</h3>
 							<p className="text-[#475569] leading-relaxed mt-3.5">
-								Transaksi jual-beli harian di outlet koperasi berfungsi
-								penuh tanpa internet — kasir scan barcode, cetak struk,
-								dan pantau stok secara real-time dari perangkat Android.
+								Transaksi jual-beli harian di outlet koperasi berfungsi penuh
+								tanpa internet — kasir scan barcode, cetak struk, dan pantau
+								stok secara real-time dari perangkat Android.
 							</p>
-							<ul className="mt-5 space-y-2.5">
-								{[
+							<CheckList
+								items={[
 									"Transaksi offline penuh — struk tetap tercetak",
 									"Barcode scan & input manual barang",
 									"Alert stok menipis dari aturan lokal",
-								].map((text, i) => (
-									<li
-										key={i}
-										className="flex items-center gap-2.5 text-[14.5px] text-[#475569]"
-									>
-										<svg
-											width="16"
-											height="16"
-											viewBox="0 0 24 24"
-											fill="none"
-											stroke="#4CC9B0"
-											strokeWidth="2.5"
-											className="shrink-0"
-										>
-											<path
-												d="M5 13l4 4L19 7"
-												strokeLinecap="round"
-												strokeLinejoin="round"
-											/>
-										</svg>
-										{text}
-									</li>
-								))}
-							</ul>
+								]}
+								className="mt-5"
+							/>
 						</div>
 					</div>
 
@@ -822,35 +660,14 @@ export default function KOPETApp() {
 								dengan skema bunga fleksibel — petugas lapangan bisa mencatat
 								setoran langsung di lokasi anggota tanpa sinyal.
 							</p>
-							<ul className="mt-5 space-y-2.5">
-								{[
+							<CheckList
+								items={[
 									"Catat mutasi simpanan offline di lokasi anggota",
 									"Simulasi & pengajuan pinjaman draft offline",
 									"Notifikasi jatuh tempo dari aturan lokal",
-								].map((text, i) => (
-									<li
-										key={i}
-										className="flex items-center gap-2.5 text-[14.5px] text-[#475569]"
-									>
-										<svg
-											width="16"
-											height="16"
-											viewBox="0 0 24 24"
-											fill="none"
-											stroke="#4CC9B0"
-											strokeWidth="2.5"
-											className="shrink-0"
-										>
-											<path
-												d="M5 13l4 4L19 7"
-												strokeLinecap="round"
-												strokeLinejoin="round"
-											/>
-										</svg>
-										{text}
-									</li>
-								))}
-							</ul>
+								]}
+								className="mt-5"
+							/>
 						</div>
 
 						<div className="rounded-[1.75rem] bg-[#F1F5F9] border border-[#D8E4EA] p-6 lg:p-8">
@@ -917,9 +734,7 @@ export default function KOPETApp() {
 									</div>
 									<div className="flex justify-between text-[13.5px] py-1.5">
 										<span className="text-[#475569]">Gula Pasir 1kg</span>
-										<span className="font-semibold text-[#0F172A]">
-											320 kg
-										</span>
+										<span className="font-semibold text-[#0F172A]">320 kg</span>
 									</div>
 								</div>
 								<div className="flex justify-between items-center mt-3 pt-3 border-t border-[#D8E4EA]">
@@ -954,38 +769,17 @@ export default function KOPETApp() {
 							</h3>
 							<p className="text-[#475569] leading-relaxed mt-3.5">
 								Kelola penerimaan barang dari petani/produsen, transfer stok
-								antar gudang dan toko, serta stok opname — semua dengan foto
-								QC dan pencatatan ledger yang tidak bisa di-overwrite.
+								antar gudang dan toko, serta stok opname — semua dengan foto QC
+								dan pencatatan ledger yang tidak bisa di-overwrite.
 							</p>
-							<ul className="mt-5 space-y-2.5">
-								{[
+							<CheckList
+								items={[
 									"Penerimaan barang + foto QC tanpa sinyal",
 									"Transfer stok antar gudang & toko",
 									"Stok opname dengan approval otomatis",
-								].map((text, i) => (
-									<li
-										key={i}
-										className="flex items-center gap-2.5 text-[14.5px] text-[#475569]"
-									>
-										<svg
-											width="16"
-											height="16"
-											viewBox="0 0 24 24"
-											fill="none"
-											stroke="#4CC9B0"
-											strokeWidth="2.5"
-											className="shrink-0"
-										>
-											<path
-												d="M5 13l4 4L19 7"
-												strokeLinecap="round"
-												strokeLinejoin="round"
-											/>
-										</svg>
-										{text}
-									</li>
-								))}
-							</ul>
+								]}
+								className="mt-5"
+							/>
 						</div>
 					</div>
 
@@ -1017,35 +811,14 @@ export default function KOPETApp() {
 								appointment dengan tujuan — semuanya bisa diakses sepanjang hari
 								meski tidak ada sinyal di jalan.
 							</p>
-							<ul className="mt-5 space-y-2.5">
-								{[
+							<CheckList
+								items={[
 									"Jadwal & appointment terlihat tanpa internet",
 									"Bukti terima tanda tangan & foto di lokasi",
 									"Deteksi konflik alokasi kendaraan saat sync",
-								].map((text, i) => (
-									<li
-										key={i}
-										className="flex items-center gap-2.5 text-[14.5px] text-[#475569]"
-									>
-										<svg
-											width="16"
-											height="16"
-											viewBox="0 0 24 24"
-											fill="none"
-											stroke="#4CC9B0"
-											strokeWidth="2.5"
-											className="shrink-0"
-										>
-											<path
-												d="M5 13l4 4L19 7"
-												strokeLinecap="round"
-												strokeLinejoin="round"
-											/>
-										</svg>
-										{text}
-									</li>
-								))}
-							</ul>
+								]}
+								className="mt-5"
+							/>
 						</div>
 
 						<div className="rounded-[1.75rem] bg-[#F1F5F9] border border-[#D8E4EA] p-6 lg:p-8">
@@ -1130,8 +903,8 @@ export default function KOPETApp() {
 								Legalitas & Integrasi
 							</h4>
 							<p className="text-[13.5px] text-[#475569] leading-relaxed mt-2">
-								Verifikasi NIK, NPAK, NPWP ke Dukcapil, Kemenkumham, DJP
-								dari satu platform — pengganti SIMKOPDES.
+								Verifikasi NIK, NPAK, NPWP ke Dukcapil, Kemenkumham, DJP dari
+								satu platform — pengganti SIMKOPDES.
 							</p>
 						</div>
 						<div className="reveal reveal-delay-1 rounded-2xl bg-white border border-[#D8E4EA] p-6 hover:shadow-lift hover:-translate-y-1 transition-all duration-300">
@@ -1219,14 +992,12 @@ export default function KOPETApp() {
 				>
 					<div className="absolute inset-0 -z-10 bg-gradient-to-b from-[#F7FAFC] via-[#EAF6FB]/60 to-[#F7FAFC]"></div>
 					<div className="max-w-[1280px] mx-auto px-6 lg:px-10">
-					<div className="reveal max-w-[620px] mx-auto text-center mb-14">
-						<span className="text-[13px] font-bold text-[#2F7698] uppercase tracking-wider">
-							Dashboard Bertingkat
-						</span>
-						<h2 className="font-display font-extrabold text-[30px] sm:text-[38px] text-[#0F172A] tracking-tight mt-3 leading-tight">
-							Visibilitas sesuai peran — dari lapangan hingga pusat
-						</h2>
-					</div>
+						<div className="reveal">
+							<SectionHeader
+								eyebrow="Dashboard Bertingkat"
+								title="Visibilitas sesuai peran — dari lapangan hingga pusat"
+							/>
+						</div>
 
 						<div className="reveal relative max-w-[980px] mx-auto">
 							<div className="rounded-[2.25rem] bg-white border border-[#D8E4EA] shadow-lift p-3 sm:p-4">
@@ -1236,7 +1007,7 @@ export default function KOPETApp() {
 										<span className="w-2.5 h-2.5 rounded-full bg-[#F59E0B]/70"></span>
 										<span className="w-2.5 h-2.5 rounded-full bg-[#22C55E]/70"></span>
 										<span className="ml-4 text-[12px] text-[#94A3B8] font-medium">
-											app.nusara.id/dasbor
+											app.sikopet.id/dasbor
 										</span>
 									</div>
 									<div className="grid lg:grid-cols-[220px_1fr] min-h-[340px]">
@@ -1339,18 +1110,12 @@ export default function KOPETApp() {
 				>
 					<div className="grid lg:grid-cols-[0.9fr_1.1fr] gap-14 items-center">
 						<div className="reveal">
-							<span className="text-[13px] font-bold text-[#2F7698] uppercase tracking-wider">
-								Arsitektur Offline-First
-							</span>
-							<h2 className="font-display font-extrabold text-[30px] sm:text-[36px] text-[#0F172A] tracking-tight mt-3 leading-tight">
-								Dibangun untuk koperasi di area blankspot
-							</h2>
-							<p className="text-[#475569] leading-relaxed mt-4">
-								SIMKOPDES tidak bisa diakses tanpa internet — KOPET dirancang
-								untuk wilayah di mana konektivitas terbatas. Data tersimpan
-								langsung di perangkat, lalu tersinkron otomatis begitu koneksi
-								kembali, tanpa ada transaksi yang hilang.
-							</p>
+							<SectionHeader
+								eyebrow="Arsitektur Offline-First"
+								title="Dibangun untuk koperasi di area blankspot"
+								description="SIMKOPDES tidak bisa diakses tanpa internet — sikopet dirancang untuk wilayah di mana konektivitas terbatas. Data tersimpan langsung di perangkat, lalu tersinkron otomatis begitu koneksi kembali, tanpa ada transaksi yang hilang."
+								centered={false}
+							/>
 
 							<div className="mt-7 space-y-4">
 								<div className="flex gap-3.5">
@@ -1534,7 +1299,7 @@ export default function KOPETApp() {
 										/>
 									</svg>
 									<span className="text-white font-semibold text-[14px]">
-										Server Pusat KOPET
+										Server Pusat sikopet
 									</span>
 								</div>
 							</div>
@@ -1545,71 +1310,66 @@ export default function KOPETApp() {
 				{}
 				<section id="peran" className="py-24 lg:py-32 bg-[#F1F5F9]">
 					<div className="max-w-[1280px] mx-auto px-6 lg:px-10">
-					<div className="reveal max-w-[620px] mx-auto text-center mb-14">
-						<span className="text-[13px] font-bold text-[#2F7698] uppercase tracking-wider">
-							Untuk Seluruh Ekosistem
-						</span>
-						<h2 className="font-display font-extrabold text-[30px] sm:text-[38px] text-[#0F172A] tracking-tight mt-3 leading-tight">
-							Satu platform, setiap peran terhubung
-						</h2>
-						<p className="text-[#475569] text-[16px] leading-relaxed mt-4">
-							Dari kasir di lapangan hingga Dinas Kementerian di pusat — hak
-							akses disesuaikan otomatis sesuai tugas masing-masing.
-						</p>
-					</div>
+						<div className="reveal">
+							<SectionHeader
+								eyebrow="Untuk Seluruh Ekosistem"
+								title="Satu platform, setiap peran terhubung"
+								description="Dari kasir di lapangan hingga Dinas Kementerian di pusat — hak akses disesuaikan otomatis sesuai tugas masing-masing."
+							/>
+						</div>
 
-					<div className="grid grid-cols-2 sm:grid-cols-4 gap-5">
-						{[
-							{
-								l: "K",
-								title: "Kasir",
-								desc: "Transaksi POS harian",
-								g: "from-[#4CC9B0] to-[#398eb3]",
-							},
-							{
-								l: "P",
-								title: "Petugas Lapangan",
-								desc: "Simpan pinjam offline",
-								g: "from-[#398eb3] to-[#2F7698]",
-							},
-							{
-								l: "G",
-								title: "Petugas Gudang",
-								desc: "Stok & penerimaan",
-								g: "from-[#67B2D4] to-[#398eb3]",
-							},
-							{
-								l: "S",
-								title: "Sopir & Koordinator",
-								desc: "Logistik & pengiriman",
-								g: "from-[#398eb3] to-[#4CC9B0]",
-							},
-							{
-								l: "P",
-								title: "Pengurus",
-								desc: "Profil & legalitas",
-								g: "from-[#2F7698] to-[#0F172A]",
-							},
-							{
-								l: "A",
-								title: "Anggota",
-								desc: "Simpanan & pinjaman",
-								g: "from-[#EAF6FB] to-[#67B2D4]",
-								tc: "text-[#2F7698]",
-							},
-							{
-								l: "B",
-								title: "Business Assistant",
-								desc: "Approval & monitoring",
-								g: "from-[#F59E0B] to-[#2F7698]",
-							},
-							{
-								l: "M",
-								title: "PMO & Dinas",
-								desc: "Agregasi lintas-koperasi",
-								g: "from-[#4CC9B0] to-[#0F172A]",
-							},
-						].map((role, i) => (
+						<div className="grid grid-cols-2 sm:grid-cols-4 gap-5">
+							{[
+								{
+									l: "K",
+									title: "Kasir",
+									desc: "Transaksi POS harian",
+									g: "from-[#4CC9B0] to-[#398eb3]",
+								},
+								{
+									l: "P",
+									title: "Petugas Lapangan",
+									desc: "Simpan pinjam offline",
+									g: "from-[#398eb3] to-[#2F7698]",
+								},
+								{
+									l: "G",
+									title: "Petugas Gudang",
+									desc: "Stok & penerimaan",
+									g: "from-[#67B2D4] to-[#398eb3]",
+								},
+								{
+									l: "S",
+									title: "Sopir & Koordinator",
+									desc: "Logistik & pengiriman",
+									g: "from-[#398eb3] to-[#4CC9B0]",
+								},
+								{
+									l: "P",
+									title: "Pengurus",
+									desc: "Profil & legalitas",
+									g: "from-[#2F7698] to-[#0F172A]",
+								},
+								{
+									l: "A",
+									title: "Anggota",
+									desc: "Simpanan & pinjaman",
+									g: "from-[#EAF6FB] to-[#67B2D4]",
+									tc: "text-[#2F7698]",
+								},
+								{
+									l: "B",
+									title: "Business Assistant",
+									desc: "Approval & monitoring",
+									g: "from-[#F59E0B] to-[#2F7698]",
+								},
+								{
+									l: "M",
+									title: "PMO & Dinas",
+									desc: "Agregasi lintas-koperasi",
+									g: "from-[#4CC9B0] to-[#0F172A]",
+								},
+							].map((role, i) => (
 								<div
 									key={i}
 									className={`reveal reveal-delay-${i % 4} rounded-2xl bg-white border border-[#D8E4EA] p-5 text-center hover:-translate-y-1 hover:shadow-soft transition-all duration-300`}
@@ -1633,20 +1393,18 @@ export default function KOPETApp() {
 
 				{}
 				<section className="max-w-[1280px] mx-auto px-6 lg:px-10 py-24 lg:py-32">
-					<div className="reveal max-w-[620px] mx-auto text-center mb-14">
-						<span className="text-[13px] font-bold text-[#2F7698] uppercase tracking-wider">
-							Sebelum & Sesudah
-						</span>
-						<h2 className="font-display font-extrabold text-[30px] sm:text-[38px] text-[#0F172A] tracking-tight mt-3 leading-tight">
-							Dari keterbatasan SIMKOPDES, ke solusi yang bekerja untuk Anda
-						</h2>
+					<div className="reveal">
+						<SectionHeader
+							eyebrow="Sebelum & Sesudah"
+							title="Dari keterbatasan SIMKOPDES, ke solusi yang bekerja untuk Anda"
+						/>
 					</div>
 
 					<div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
 						{[
 							{
 								old: "SIMKOPDES tidak bisa diakses di area blankspot — 216 koperasi di Jatim gagal update data.",
-								new: "KOPET berfungsi penuh tanpa internet, data tersinkron otomatis saat kembali online.",
+								new: "sikopet berfungsi penuh tanpa internet, data tersinkron otomatis saat kembali online.",
 							},
 							{
 								old: "POS dan simpan pinjam masih dicatat manual di kertas/Excel, rawan selisih.",
@@ -1675,7 +1433,7 @@ export default function KOPETApp() {
 								</div>
 								<div className="p-6 bg-white border-t border-[#D8E4EA]">
 									<p className="text-[11px] font-bold text-[#2F7698] uppercase tracking-wide mb-2">
-										Dengan KOPET
+										Dengan sikopet
 									</p>
 									<p className="text-[14.5px] text-[#0F172A] font-medium leading-relaxed">
 										{item.new}
@@ -1693,14 +1451,12 @@ export default function KOPETApp() {
 				>
 					<div className="absolute inset-0 -z-10 bg-gradient-to-b from-[#EAF6FB]/70 via-[#F7FAFC] to-[#F7FAFC]"></div>
 					<div className="max-w-[1280px] mx-auto px-6 lg:px-10">
-						<div className="reveal max-w-[620px] mx-auto text-center mb-14">
-						<span className="text-[13px] font-bold text-[#2F7698] uppercase tracking-wider">
-							Kata Pengurus Koperasi Desa
-						</span>
-						<h2 className="font-display font-extrabold text-[30px] sm:text-[38px] text-[#0F172A] tracking-tight mt-3 leading-tight">
-							Dipercaya pengurus KDMP dari Sabang sampai Merauke
-						</h2>
-					</div>
+						<div className="reveal">
+							<SectionHeader
+								eyebrow="Kata Pengurus Koperasi Desa"
+								title="Dipercaya pengurus KDMP dari Sabang sampai Merauke"
+							/>
+						</div>
 
 						<div className="grid lg:grid-cols-3 gap-6">
 							<blockquote className="reveal glass-card rounded-[1.75rem] p-7 shadow-soft">
@@ -1714,7 +1470,7 @@ export default function KOPETApp() {
 									<path d="M0 20V11.5C0 4.5 4 0 10.5 0v4.5C7 5 5 7 5 11.5H10V20H0zM15.5 20V11.5C15.5 4.5 19.5 0 26 0v4.5c-3.5.5-5.5 2.5-5.5 7H26V20h-10.5z" />
 								</svg>
 								<p className="text-[#475569] leading-relaxed text-[15px]">
-									Sejak pakai KOPET, tutup buku bulanan yang dulu makan waktu
+									Sejak pakai sikopet, tutup buku bulanan yang dulu makan waktu
 									seminggu sekarang selesai dalam sehari. Pengurus jadi bisa
 									fokus melayani anggota.
 								</p>
@@ -1742,7 +1498,7 @@ export default function KOPETApp() {
 									<path d="M0 20V11.5C0 4.5 4 0 10.5 0v4.5C7 5 5 7 5 11.5H10V20H0zM15.5 20V11.5C15.5 4.5 19.5 0 26 0v4.5c-3.5.5-5.5 2.5-5.5 7H26V20h-10.5z" />
 								</svg>
 								<p className="text-[#475569] leading-relaxed text-[15px]">
-									Lokasi kami sering mati sinyal. Justru fitur offline KOPET
+									Lokasi kami sering mati sinyal. Justru fitur offline sikopet
 									yang membuat kasir tetap jalan tanpa gangguan — transaksi
 									tidak pernah hilang.
 								</p>
@@ -1796,12 +1552,10 @@ export default function KOPETApp() {
 					className="max-w-[820px] mx-auto px-6 lg:px-10 py-24 lg:py-32"
 				>
 					<div className="reveal text-center mb-14">
-						<span className="text-[13px] font-bold text-[#2F7698] uppercase tracking-wider">
-							Pertanyaan Umum
-						</span>
-						<h2 className="font-display font-extrabold text-[30px] sm:text-[36px] text-[#0F172A] tracking-tight mt-3">
-							Yang sering ditanyakan
-						</h2>
+						<SectionHeader
+							eyebrow="Pertanyaan Umum"
+							title="Yang sering ditanyakan"
+						/>
 					</div>
 
 					<div className="space-y-3.5" id="faq-list">
@@ -1857,8 +1611,8 @@ export default function KOPETApp() {
 								Siap bawa Koperasi Desa Anda ke era digital?
 							</h2>
 							<p className="text-white/75 text-[16px] leading-relaxed mt-4">
-								Coba KOPET gratis selama 30 hari — tanpa kartu kredit,
-								siap menggantikan SIMKOPDES untuk koperasi Anda.
+								Coba sikopet gratis selama 30 hari — tanpa kartu kredit, siap
+								menggantikan SIMKOPDES untuk koperasi Anda.
 							</p>
 							<div className="flex flex-wrap justify-center gap-3.5 mt-9">
 								<a
@@ -1884,34 +1638,7 @@ export default function KOPETApp() {
 				<div className="max-w-[1280px] mx-auto px-6 lg:px-10 py-16">
 					<div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-10">
 						<div className="lg:col-span-1 sm:col-span-2">
-							<a
-								href="#hero-heading"
-								className="flex items-center gap-2.5 focus-ring"
-							>
-								<span className="w-9 h-9 rounded-xl bg-gradient-to-br from-[#398eb3] to-[#4CC9B0] grid place-items-center">
-									<svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-										<circle cx="5" cy="12" r="2.2" fill="white" />
-										<circle
-											cx="12"
-											cy="6"
-											r="2.2"
-											fill="white"
-											fillOpacity="0.85"
-										/>
-										<circle cx="19" cy="12" r="2.2" fill="white" />
-										<circle
-											cx="12"
-											cy="18"
-											r="2.2"
-											fill="white"
-											fillOpacity="0.85"
-										/>
-									</svg>
-								</span>
-								<span className="font-display font-extrabold text-[18px] text-[#0F172A]">
-									KOPET
-								</span>
-							</a>
+							<Logo name="sikopet" href="#hero-heading" />
 							<p className="text-[13.5px] text-[#94A3B8] leading-relaxed mt-4 max-w-[240px]">
 								Platform ERP offline-first untuk Koperasi Desa/Kelurahan Merah
 								Putih — bekerja di area blankspot sekalipun.
@@ -2073,7 +1800,7 @@ export default function KOPETApp() {
 
 					<div className="flex flex-col sm:flex-row items-center justify-between gap-4 mt-14 pt-8 border-t border-[#E8EEF2]">
 						<p className="text-[13px] text-[#94A3B8]">
-							&copy; 2026 KOPET. Dibuat untuk Koperasi Desa/Kelurahan Merah
+							&copy; 2026 sikopet. Dibuat untuk Koperasi Desa/Kelurahan Merah
 							Putih di seluruh Indonesia.
 						</p>
 						<div className="flex items-center gap-3">

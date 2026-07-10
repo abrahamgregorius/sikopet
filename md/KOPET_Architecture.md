@@ -1,8 +1,8 @@
 <!-- @format -->
 
-# KOPET — AI Implementation Blueprint
+# sikopet — AI Implementation Blueprint
 
-**Role:** Lead Software Architect deliverable, derived from `KOPET_PRD_new.md`
+**Role:** Lead Software Architect deliverable, derived from `sikopet_PRD_new.md`
 **Purpose:** Translate the PRD into an implementation-ready blueprint that an AI coding agent (Claude Code / Cursor / Windsurf / Copilot) can execute phase-by-phase with minimal ambiguity.
 **Stack locked in from PRD:** Client = Offline-first PWA (React + Dexie/IndexedDB + Zustand + TanStack Query). Server = Laravel modular monolith (Sanctum auth, Queue, `spatie/laravel-permission`). Sync = generic `entity_type/operation_type/payload` batch contract.
 
@@ -62,7 +62,7 @@
 ## 2. Folder Structure
 
 ```
-kopet/
+sikopet/
 ├── apps/
 │   ├── client/                          # React PWA
 │   │   ├── public/
@@ -122,8 +122,8 @@ kopet/
 ├── packages/
 │   └── shared-types/                    # OpenAPI/JSON-schema → generated TS types, single source of truth
 └── docs/
-    ├── KOPET_PRD_new.md
-    └── KOPET_Implementation_Blueprint.md
+    ├── sikopet_PRD_new.md
+    └── sikopet_Implementation_Blueprint.md
 ```
 
 ---
@@ -778,9 +778,9 @@ This order means every commit leaves the branch in a compilable, testable state 
 Use one prompt per task from §16, scoped to one feature branch. Template:
 
 ```
-Context: KOPET is an offline-first cooperative ERP. Client = React PWA + Dexie + Zustand + TanStack Query.
+Context: sikopet is an offline-first cooperative ERP. Client = React PWA + Dexie + Zustand + TanStack Query.
 Server = Laravel modular monolith, Sanctum auth, spatie/laravel-permission RBAC.
-Read docs/KOPET_PRD_new.md section [X] and docs/KOPET_Implementation_Blueprint.md section [Y] before starting.
+Read docs/sikopet_PRD_new.md section [X] and docs/sikopet_Implementation_Blueprint.md section [Y] before starting.
 
 Task: [one task from §16, e.g. "Implement MutasiSimpanan append-only ledger + no_kuitansi
 server-side uniqueness validation (VR-004)"]

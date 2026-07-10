@@ -2,7 +2,7 @@
 
 # Product Requirements Document (PRD)
 
-# KOPET — Koperasi Terintegrasi
+# sikopet — Koperasi Terintegrasi
 
 **Versi:** 1.0
 **Status:** Draft untuk kompetisi
@@ -12,7 +12,7 @@
 
 ## 1. Ringkasan Eksekutif
 
-KOPET adalah platform ERP digital **hybrid offline-first** untuk KDKMP yang dirancang sebagai **replacement bagi SIMKOPDES** — Sistem Informasi Koperasi Desa yang saat ini digunakan 92,69% Koperasi Merah Putih namun sepenuhnya bergantung pada koneksi internet (cloud/web-based). KOPET mengintegrasikan seluruh cakupan fungsi SIMKOPDES (profil & legalitas koperasi, dokumen, potensi desa, permohonan pembiayaan/kemitraan, integrasi data pemerintah) **ditambah** lima unit usaha operasional yang lebih dalam — toko sembako, simpan pinjam, gudang, dan logistik — dalam satu ekosistem data yang tetap berfungsi penuh tanpa internet.
+sikopet adalah platform ERP digital **hybrid offline-first** untuk KDKMP yang dirancang sebagai **replacement bagi SIMKOPDES** — Sistem Informasi Koperasi Desa yang saat ini digunakan 92,69% Koperasi Merah Putih namun sepenuhnya bergantung pada koneksi internet (cloud/web-based). sikopet mengintegrasikan seluruh cakupan fungsi SIMKOPDES (profil & legalitas koperasi, dokumen, potensi desa, permohonan pembiayaan/kemitraan, integrasi data pemerintah) **ditambah** lima unit usaha operasional yang lebih dalam — toko sembako, simpan pinjam, gudang, dan logistik — dalam satu ekosistem data yang tetap berfungsi penuh tanpa internet.
 
 Sebagian besar aktivitas operasional harian berjalan penuh di perangkat (browser/PWA) tanpa bergantung pada koneksi internet, sementara keputusan bernilai tinggi, governance, atau yang memerlukan verifikasi sistem pemerintah eksternal (approval pinjaman besar, verifikasi legalitas, integrasi Dukcapil/Kemenkumham) tetap memerlukan koneksi ke server sebagai otoritas terpusat. Pembagian ini dijelaskan secara eksplisit di **Bagian 6**.
 
@@ -31,7 +31,7 @@ Sebagian besar aktivitas operasional harian berjalan penuh di perangkat (browser
 | Meningkatkan transparansi ke BA/PMO                                 | Waktu rata-rata data sampai ke dashboard pusat setelah online                            |
 | Mendukung pengambilan keputusan berbasis data                       | Jumlah insight/alert yang ditindaklanjuti BA per bulan                                   |
 | Menggantikan SIMKOPDES tanpa memutus akses program pemerintah       | % koperasi bermigrasi dari SIMKOPDES tanpa kehilangan status verifikasi/akses pembiayaan |
-| Menjangkau koperasi di area blankspot yang gagal diadopsi SIMKOPDES | % koperasi di area blankspot yang berhasil aktif menggunakan KOPET                       |
+| Menjangkau koperasi di area blankspot yang gagal diadopsi SIMKOPDES | % koperasi di area blankspot yang berhasil aktif menggunakan sikopet                     |
 
 ---
 
@@ -55,7 +55,7 @@ Sebagian besar aktivitas operasional harian berjalan penuh di perangkat (browser
 - Village Potential Aggregator lintas-desa
 - Live GPS tracking real-time (hanya batch position update)
 - Integrasi pembayaran digital pihak ketiga (fase selanjutnya)
-- Proses pendirian badan hukum koperasi baru dari nol (akta & pengesahan Kemenkumham) — KOPET menangani profil koperasi yang **sudah berbadan hukum**; pendirian baru tetap melalui jalur notaris/AHU yang berlaku
+- Proses pendirian badan hukum koperasi baru dari nol (akta & pengesahan Kemenkumham) — sikopet menangani profil koperasi yang **sudah berbadan hukum**; pendirian baru tetap melalui jalur notaris/AHU yang berlaku
 
 ---
 
@@ -342,7 +342,7 @@ _Legenda: 🟢 Offline-First (berfungsi penuh tanpa internet) · 🔵 Online-Req
 
 ### 6.1 Klasifikasi Fitur: Offline-First vs Online-Required
 
-Tidak semua fitur KOPET dirancang offline-first. Pemaksaan seluruh fitur menjadi offline-first justru menambah kompleksitas rekayasa (setiap fitur butuh strategi conflict resolution & testing sendiri) dan risiko keamanan (data sensitif ter-cache di device yang berpotensi hilang/dicuri), tanpa manfaat sepadan untuk fitur yang jarang terjadi atau berisiko tinggi bila salah. Klasifikasi dasarnya:
+Tidak semua fitur sikopet dirancang offline-first. Pemaksaan seluruh fitur menjadi offline-first justru menambah kompleksitas rekayasa (setiap fitur butuh strategi conflict resolution & testing sendiri) dan risiko keamanan (data sensitif ter-cache di device yang berpotensi hilang/dicuri), tanpa manfaat sepadan untuk fitur yang jarang terjadi atau berisiko tinggi bila salah. Klasifikasi dasarnya:
 
 | Kriteria                          | Offline-First 🟢                                    | Online-Required 🔵                                   |
 | --------------------------------- | --------------------------------------------------- | ---------------------------------------------------- |
@@ -441,7 +441,7 @@ Client (Dexie + AI Cache)
 | ------------------------------------------ | ------------------------- | -------------------------------------------------------------------------------------------- |
 | Identifikasi potensi ekonomi belum optimal | Kuat                      | Data transaksi/stok/produksi real-time (walau offline) jadi basis analitik performa koperasi |
 | Efisiensi operasional & produktivitas      | Kuat (core value)         | Offline-first menghilangkan bottleneck pencatatan manual/Excel                               |
-| Cocokkan potensi desa dengan pasar         | Gap — direncanakan fase 2 | Perlu modul Business Matching di atas data KOPET                                             |
+| Cocokkan potensi desa dengan pasar         | Gap — direncanakan fase 2 | Perlu modul Business Matching di atas data sikopet                                           |
 | Pertemukan koperasi dengan buyer/offtaker  | Gap — direncanakan fase 2 | Sama seperti di atas                                                                         |
 | Nilai tambah produk desa                   | Parsial                   | Data biaya & histori jual jadi basis rekomendasi AI                                          |
 
@@ -454,9 +454,9 @@ Client (Dexie + AI Cache)
 | Pertemukan koperasi dengan buyer/offtaker | Gap     | Belum dalam scope saat ini                                                                               |
 | Nilai tambah produk lokal                 | Parsial | Sama seperti Tema 1                                                                                      |
 
-**Posisi strategis:** KOPET adalah **fondasi data (data layer)** yang menjadi prasyarat sebelum fitur matching/AI recommendation lintas-desa bisa akurat — tanpa data transaksi, stok, dan produksi yang bersih dan real-time, sistem matching buyer-desa akan bekerja di atas data yang buruk.
+**Posisi strategis:** sikopet adalah **fondasi data (data layer)** yang menjadi prasyarat sebelum fitur matching/AI recommendation lintas-desa bisa akurat — tanpa data transaksi, stok, dan produksi yang bersih dan real-time, sistem matching buyer-desa akan bekerja di atas data yang buruk.
 
-**Diferensiasi terhadap SIMKOPDES (sistem yang digantikan):** SIMKOPDES saat ini sudah diadopsi 92,69% Koperasi Merah Putih namun sepenuhnya cloud/web-based, sehingga gagal optimal di area blankspot — sebagaimana terjadi di Jawa Timur, di mana 216 dari 8.494 KDMP berada di area blankspot dan baru 10 koperasi yang berhasil memperbarui data microsite akibat keterbatasan jaringan dan SDM. KOPET dirancang menggantikan SIMKOPDES dengan mempertahankan seluruh cakupan fungsinya (Bagian 5.5) sekaligus menambahkan kemampuan offline-first dan modul operasional yang lebih dalam (POS, gudang, logistik) yang belum tercakup pada menu SIMKOPDES saat ini.
+**Diferensiasi terhadap SIMKOPDES (sistem yang digantikan):** SIMKOPDES saat ini sudah diadopsi 92,69% Koperasi Merah Putih namun sepenuhnya cloud/web-based, sehingga gagal optimal di area blankspot — sebagaimana terjadi di Jawa Timur, di mana 216 dari 8.494 KDMP berada di area blankspot dan baru 10 koperasi yang berhasil memperbarui data microsite akibat keterbatasan jaringan dan SDM. sikopet dirancang menggantikan SIMKOPDES dengan mempertahankan seluruh cakupan fungsinya (Bagian 5.5) sekaligus menambahkan kemampuan offline-first dan modul operasional yang lebih dalam (POS, gudang, logistik) yang belum tercakup pada menu SIMKOPDES saat ini.
 
 ---
 
@@ -470,7 +470,7 @@ Client (Dexie + AI Cache)
 | **Fase 4**                       | Village Potential Aggregator (agregasi nasional lintas-KDKMP)                                                                                                                                                                                                                                  |
 | **Fase 5**                       | Integrasi pembayaran digital, live GPS tracking (jika infrastruktur memungkinkan)                                                                                                                                                                                                              |
 
-**Catatan strategi migrasi:** karena SIMKOPDES sudah menjadi mandat wajib (Inpres No. 9 Tahun 2025 & Inpres No. 17 Tahun 2025) dengan basis pengguna besar, migrasi KOPET perlu pendekatan bertahap: (1) impor data eksisting via API/ekspor resmi, bukan re-entry manual; (2) periode paralel-run di mana koperasi tetap terverifikasi di kedua sistem; (3) mendapatkan dukungan/persetujuan resmi Kemenkop sebagai prasyarat legalitas penggantian sistem nasional.
+**Catatan strategi migrasi:** karena SIMKOPDES sudah menjadi mandat wajib (Inpres No. 9 Tahun 2025 & Inpres No. 17 Tahun 2025) dengan basis pengguna besar, migrasi sikopet perlu pendekatan bertahap: (1) impor data eksisting via API/ekspor resmi, bukan re-entry manual; (2) periode paralel-run di mana koperasi tetap terverifikasi di kedua sistem; (3) mendapatkan dukungan/persetujuan resmi Kemenkop sebagai prasyarat legalitas penggantian sistem nasional.
 
 ---
 
