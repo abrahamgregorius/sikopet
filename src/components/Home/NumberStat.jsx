@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 
-export default function StatCounter({ end, decimals = 0, suffix = "" }) {
+export default function NumberStat({ end, decimals = 0, suffix = "" }) {
 	const [count, setCount] = useState(0);
 	const ref = useRef(null);
 

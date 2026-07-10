@@ -10,7 +10,7 @@ import {
 	SectionHeader,
 	SharedStyles,
 	SkipLink,
-	StatCounter,
+	NumberStat,
 } from "../components/Home";
 
 const faqs = [
@@ -507,7 +507,7 @@ export default function KOPETApp() {
 						<div className="reveal rounded-[1.75rem] bg-[#0F172A] px-6 sm:px-10 py-9 sm:py-11 grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6 shadow-lift">
 							<div className="text-center lg:text-left lg:border-r lg:border-white/10 lg:pr-6">
 								<p className="font-display font-extrabold text-white text-[30px] sm:text-[36px] tracking-tight">
-									<StatCounter end={8494} suffix="" />
+									<NumberStat end={8494} suffix="" />
 								</p>
 								<p className="text-[13px] text-white/60 font-medium mt-1">
 									KDMP Target Nasional
@@ -515,7 +515,7 @@ export default function KOPETApp() {
 							</div>
 							<div className="text-center lg:text-left lg:border-r lg:border-white/10 lg:pr-6">
 								<p className="font-display font-extrabold text-white text-[30px] sm:text-[36px] tracking-tight">
-									<StatCounter end={216} suffix="" />
+									<NumberStat end={216} suffix="" />
 								</p>
 								<p className="text-[13px] text-white/60 font-medium mt-1">
 									Koperasi Blankspot Jatim
@@ -523,7 +523,7 @@ export default function KOPETApp() {
 							</div>
 							<div className="text-center lg:text-left lg:border-r lg:border-white/10 lg:pr-6">
 								<p className="font-display font-extrabold text-white text-[30px] sm:text-[36px] tracking-tight">
-									<StatCounter end={5} suffix="" />
+									<NumberStat end={5} suffix="" />
 								</p>
 								<p className="text-[13px] text-white/60 font-medium mt-1">
 									Modul Operasional Inti
@@ -531,7 +531,7 @@ export default function KOPETApp() {
 							</div>
 							<div className="text-center lg:text-left">
 								<p className="font-display font-extrabold text-white text-[30px] sm:text-[36px] tracking-tight">
-									<StatCounter end={99.8} decimals={1} suffix="%" />
+									<NumberStat end={99.8} decimals={1} suffix="%" />
 								</p>
 								<p className="text-[13px] text-white/60 font-medium mt-1">
 									Sinkronisasi Offline Berhasil
