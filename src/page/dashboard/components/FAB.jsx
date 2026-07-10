@@ -1,6 +1,6 @@
 /** @format */
 
-export default function FAB({ isOpen, onToggle, onNewTransaction, onNewTask, onNewMember }) {
+export default function FAB({ isOpen, onToggle, onNewTransaction, onNewTask, onNewMember, onNewUser }) {
 	return (
 		<div className="fixed bottom-6 right-6 z-40">
 			{isOpen && (
@@ -16,6 +16,10 @@ export default function FAB({ isOpen, onToggle, onNewTransaction, onNewTask, onN
 					<button onClick={onNewMember} className="focus-ring w-full flex items-center gap-2.5 px-3.5 py-2.5 rounded-xl text-[13.5px] font-medium text-[#475569] hover:bg-[#F1F5F9] transition-colors">
 						<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><path d="M17 20v-1a4 4 0 00-4-4H7a4 4 0 00-4 4v1M10 11a4 4 0 100-8 4 4 0 000 8z" strokeLinecap="round" strokeLinejoin="round" /></svg>
 						Anggota Baru
+					</button>
+					<button onClick={onNewUser} className="focus-ring w-full flex items-center gap-2.5 px-3.5 py-2.5 rounded-xl text-[13.5px] font-medium text-[#475569] hover:bg-[#F1F5F9] transition-colors">
+						<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><circle cx="12" cy="12" r="9" /><path d="M12 8v8M8 12h8" strokeLinecap="round" /></svg>
+						User Baru
 					</button>
 				</div>
 			)}

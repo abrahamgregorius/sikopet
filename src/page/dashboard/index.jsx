@@ -22,6 +22,8 @@ import FAB from "./components/FAB";
 import ContextMenu from "./components/ContextMenu";
 import TaskModal from "./components/TaskModal";
 import NotificationDrawer from "./components/NotificationDrawer";
+import UserModal from "./components/UserModal";
+import ModuleManager from "./components/ModuleManager";
 
 export default function Dashboard() {
 	const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
@@ -30,6 +32,8 @@ export default function Dashboard() {
 	const [isFabMenuOpen, setIsFabMenuOpen] = useState(false);
 	const [isNotifOpen, setIsNotifOpen] = useState(false);
 	const [isTaskModalOpen, setIsTaskModalOpen] = useState(false);
+	const [isUserModalOpen, setIsUserModalOpen] = useState(false);
+	const [activePage, setActivePage] = useState('dashboard');
 	const [refreshTrigger, setRefreshTrigger] = useState(0);
 	const [ctxMenu, setCtxMenu] = useState({ isOpen: false, x: 0, y: 0 });
 
@@ -141,8 +145,8 @@ export default function Dashboard() {
 			<a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[200] focus:bg-white focus:px-4 focus:py-2 focus:rounded-lg shadow-lift">Lompat ke konten</a>
 
 			<div className="flex min-h-screen">
-				<Sidebar collapsed={isSidebarCollapsed} onToggleCollapse={() => setIsSidebarCollapsed(!isSidebarCollapsed)} />
-				<MobileSidebar isOpen={isMobileSidebarOpen} onClose={() => setIsMobileSidebarOpen(false)} />
+				<Sidebar collapsed={isSidebarCollapsed} onToggleCollapse={() => setIsSidebarCollapsed(!isSidebarCollapsed)} onOpenModuleManager={() => setActivePage('modules')} />
+				<MobileSidebar isOpen={isMobileSidebarOpen} onClose={() => setIsMobileSidebarOpen(false)} onOpenModuleManager={() => setActivePage('modules')} />
 
 				<div id="app-shell" className="flex-1 min-w-0 flex flex-col">
 					<TopNav
@@ -155,6 +159,20 @@ export default function Dashboard() {
 					/>
 
 					<div className="flex-1 flex">
+						{activePage === 'modules' ? (
+							<main id="main-content" className="flex-1 min-w-0 px-4 sm:px-6 lg:px-8 py-7">
+								<button
+									onClick={() => setActivePage('dashboard')}
+									className="focus-ring mb-6 inline-flex items-center gap-2 text-[13.5px] font-medium text-[#475569] hover:text-[#0F172A] transition-colors"
+								>
+									<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+										<path d="M19 12H5M12 19l-7-7 7-7" strokeLinecap="round" strokeLinejoin="round" />
+									</svg>
+									Kembali ke Dasbor
+								</button>
+								<ModuleManager />
+							</main>
+						) : (
 						<main id="main-content" className="flex-1 min-w-0 px-4 sm:px-6 lg:px-8 py-7 space-y-7">
 							<HeroHeader onOpenTaskModal={() => setIsTaskModalOpen(true)} />
 							<QuickActions onOpenTaskModal={() => setIsTaskModalOpen(true)} />
@@ -177,8 +195,9 @@ export default function Dashboard() {
 							</section>
 							<AnggotaPanel />
 						</main>
+						)}
 
-						<RightPanel />
+						{activePage === 'dashboard' && <RightPanel />}
 					</div>
 				</div>
 			</div>
@@ -189,6 +208,7 @@ export default function Dashboard() {
 				onNewTransaction={() => setIsFabMenuOpen(false)}
 				onNewTask={() => { setIsFabMenuOpen(false); setIsTaskModalOpen(true); }}
 				onNewMember={() => setIsFabMenuOpen(false)}
+				onNewUser={() => { setIsFabMenuOpen(false); setIsUserModalOpen(true); }}
 			/>
 
 			<NotificationDrawer isOpen={isNotifOpen} onClose={() => setIsNotifOpen(false)} />
@@ -198,6 +218,8 @@ export default function Dashboard() {
 			)}
 
 			<TaskModal isOpen={isTaskModalOpen} onClose={() => setIsTaskModalOpen(false)} />
+
+			<UserModal isOpen={isUserModalOpen} onClose={() => setIsUserModalOpen(false)} />
 		</div>
 	);
 }
