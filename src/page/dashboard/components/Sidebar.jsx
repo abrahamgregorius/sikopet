@@ -1,17 +1,21 @@
 /** @format */
 
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { moduleService, SIDEBAR_ICONS, getCategoryLabel } from "../../../modules/index.js";
 
 const CATEGORY_ORDER = ["utama", "operasional", "tim", "lainnya"];
 
-export default function Sidebar({ collapsed, onToggleCollapse, onOpenModuleManager }) {
+export default function Sidebar({ collapsed, onToggleCollapse }) {
 	const [openNested, setOpenNested] = useState(null);
 	const [modules, setModules] = useState([]);
 	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
 		loadSidebarModules();
+		const handleModulesUpdated = () => loadSidebarModules();
+		window.addEventListener('modules-updated', handleModulesUpdated);
+		return () => window.removeEventListener('modules-updated', handleModulesUpdated);
 	}, []);
 
 	async function loadSidebarModules() {
@@ -42,14 +46,6 @@ export default function Sidebar({ collapsed, onToggleCollapse, onOpenModuleManag
 			setLoading(false);
 		}
 	}
-
-function handleModuleClick(key, e) {
-    if (key === "moduleManager") {
-      e.preventDefault();
-      if (onOpenModuleManager) onOpenModuleManager();
-      return;
-    }
-  }
 
 	function groupByCategory(mods) {
 		const grouped = {};
@@ -125,9 +121,9 @@ function handleModuleClick(key, e) {
 												)}
 											</button>
 										) : item.key === "moduleManager" ? (
-											<button
-												onClick={(e) => handleModuleClick(item.key, e)}
-												className={`nav-item relative w-full flex items-center gap-3 px-3 py-2.5 rounded-xl font-medium text-[14px] focus-ring transition-colors text-[#475569] hover:bg-[#F1F5F9] ${collapsed ? "justify-center" : ""}`}
+											<Link
+												to="/dashboard/modules"
+												className={`nav-item relative flex items-center gap-3 px-3 py-2.5 rounded-xl font-medium text-[14px] focus-ring transition-colors text-[#475569] hover:bg-[#F1F5F9] ${collapsed ? "justify-center" : ""}`}
 												data-tip={collapsed ? item.name : ""}
 											>
 												{!collapsed && <span className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-5 rounded-full bg-[#398eb3]"></span>}
@@ -137,10 +133,10 @@ function handleModuleClick(key, e) {
 													</svg>
 												</span>
 												{!collapsed && <span>{item.name}</span>}
-											</button>
+											</Link>
 										) : (
-											<a
-												href={item.route}
+											<Link
+												to={item.route}
 												className={`nav-item relative flex items-center gap-3 px-3 py-2.5 rounded-xl font-medium text-[14px] focus-ring transition-colors text-[#475569] hover:bg-[#F1F5F9] ${collapsed ? "justify-center" : ""}`}
 												data-tip={collapsed ? item.name : ""}
 											>
@@ -150,16 +146,16 @@ function handleModuleClick(key, e) {
 													</svg>
 												</span>
 												{!collapsed && <span>{item.name}</span>}
-											</a>
+											</Link>
 										)}
 										{item.nested && !collapsed && (
 											<div className="nested-panel pl-[42px]">
 												<ul className="space-y-0.5 py-1.5 border-l border-[#D8E4EA] ml-[3px]">
 													{item.nested.map((sub) => (
 														<li key={sub.key}>
-															<a href={sub.route} className="block px-3 py-2 text-[13.5px] text-[#475569] hover:text-[#2F7698] transition-colors focus-ring">
+															<Link to={sub.route} className="block px-3 py-2 text-[13.5px] text-[#475569] hover:text-[#2F7698] transition-colors focus-ring">
 																{sub.label}
-															</a>
+															</Link>
 														</li>
 													))}
 												</ul>

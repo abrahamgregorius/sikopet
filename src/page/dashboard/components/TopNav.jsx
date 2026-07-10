@@ -11,16 +11,6 @@ export default function TopNav({ onMobileMenuToggle, onNotifToggle, onProfileTog
 					<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><path d="M3 6h18M3 12h18M3 18h18" strokeLinecap="round" /></svg>
 				</button>
 
-				<div className="hidden sm:block text-[13px] text-[#94A3B8]" aria-label="Breadcrumb">
-					<ol className="flex items-center gap-1.5">
-						<li>SIKOPET</li>
-						<li aria-hidden="true">/</li>
-						<li className="text-[#0F172A] font-medium">Dasbor</li>
-						<li aria-hidden="true">/</li>
-						<li>Ringkasan</li>
-					</ol>
-				</div>
-
 				<div className="flex-1 flex justify-center px-2">
 					<label className="relative w-full max-w-[420px]">
 						<span className="sr-only">Cari</span>

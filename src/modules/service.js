@@ -34,7 +34,8 @@ export const moduleService = {
   },
 
   async getAllModules() {
-    return db.modules.orderBy('order').toArray();
+    const all = await db.modules.toArray();
+    return all.sort((a, b) => a.order - b.order);
   },
 
   async getEnabledModules() {
@@ -54,14 +55,6 @@ export const moduleService = {
     const mod = await db.modules.where('key').equals(key).first();
     if (!mod) throw new Error(`Module ${key} not found`);
 
-    const dependencies = getModuleByKey(key)?.dependencies || [];
-    for (const depKey of dependencies) {
-      const dep = await db.modules.where('key').equals(depKey).first();
-      if (dep && !dep.enabled) {
-        await this.enableModule(depKey);
-      }
-    }
-
     await db.modules.update(mod.id, { enabled: true, updatedAt: new Date() });
     return true;
   },
@@ -69,14 +62,6 @@ export const moduleService = {
   async disableModule(key) {
     const mod = await db.modules.where('key').equals(key).first();
     if (!mod) throw new Error(`Module ${key} not found`);
-
-    const dependentModules = MODULE_REGISTRY.filter(m => m.dependencies?.includes(key));
-    for (const depMod of dependentModules) {
-      const dep = await db.modules.where('key').equals(depMod.key).first();
-      if (dep && dep.enabled) {
-        await this.disableModule(depMod.key);
-      }
-    }
 
     await db.modules.update(mod.id, { enabled: false, updatedAt: new Date() });
     return true;

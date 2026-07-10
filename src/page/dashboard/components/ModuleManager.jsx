@@ -29,6 +29,9 @@ export default function ModuleManager() {
 
   useEffect(() => {
     loadModules();
+    const handleModulesUpdated = () => loadModules();
+    window.addEventListener('modules-updated', handleModulesUpdated);
+    return () => window.removeEventListener('modules-updated', handleModulesUpdated);
   }, []);
 
   async function loadModules() {
@@ -51,11 +54,13 @@ export default function ModuleManager() {
   async function handleToggle(key) {
     setToggling(key);
     try {
+      const modBefore = modules.find(m => m.key === key);
+      const wasEnabled = modBefore?.enabled;
       await moduleService.toggleModule(key);
       await loadModules();
-      const mod = modules.find(m => m.key === key);
+      window.dispatchEvent(new CustomEvent('modules-updated'));
       showToast(
-        `${mod?.name} ${mod?.enabled ? "dinonaktifkan" : "diaktifkan"}`,
+        `${modBefore?.name} ${wasEnabled ? "dinonaktifkan" : "diaktifkan"}`,
         "success"
       );
     } catch (err) {
@@ -253,7 +258,7 @@ export default function ModuleManager() {
                     <p className="text-[12px] text-[#6B7280] leading-relaxed mb-4">
                       {mod.description}
                     </p>
-                    {!mod.comingSoon && (
+                    {!mod.comingSoon && mod.key !== "moduleManager" && (
                       <button
                         onClick={() => handleToggle(mod.key)}
                         disabled={toggling === mod.key}

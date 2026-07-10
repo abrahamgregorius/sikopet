@@ -21,6 +21,10 @@ class SikopetDatabase extends Dexie {
 
         this.version(2).stores({
             modules: "++id, &key, category, enabled, order",
+        }).upgrade(tx => {
+            return tx.table("modules").toCollection().modify(mod => {
+                if (mod.enabled === undefined) mod.enabled = true;
+            });
         });
 
         this.users = this.table("users");

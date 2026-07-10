@@ -1,11 +1,12 @@
 /** @format */
 
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { moduleService, getCategoryLabel } from "../../../modules/index.js";
 
 const CATEGORY_ORDER = ["utama", "operasional", "tim", "lainnya"];
 
-export default function MobileSidebar({ isOpen, onClose, onOpenModuleManager }) {
+export default function MobileSidebar({ isOpen, onClose }) {
   const [modules, setModules] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -29,15 +30,6 @@ export default function MobileSidebar({ isOpen, onClose, onOpenModuleManager }) 
       console.error("[MobileSidebar] Failed to load modules:", err);
     } finally {
       setLoading(false);
-    }
-  }
-
-  function handleModuleClick(key, href, e) {
-    if (key === "moduleManager") {
-      e.preventDefault();
-      onClose();
-      if (onOpenModuleManager) onOpenModuleManager();
-      return;
     }
   }
 
@@ -85,16 +77,16 @@ export default function MobileSidebar({ isOpen, onClose, onOpenModuleManager }) 
                   <p className="px-3 text-[11px] font-bold text-[#94A3B8] uppercase tracking-wider mb-1">
                     {getCategoryLabel(category)}
                   </p>
-                  <div className="space-y-0.5">
+                    <div className="space-y-0.5">
                     {items.map((item) => (
-                      <a
+                      <Link
                         key={item.key}
-                        href={item.route}
-                        onClick={(e) => handleModuleClick(item.key, item.route, e)}
+                        to={item.key === "moduleManager" ? "/dashboard/modules" : item.route}
+                        onClick={onClose}
                         className="block px-3 py-2.5 rounded-xl hover:bg-[#F1F5F9] transition-colors"
                       >
                         {item.name}
-                      </a>
+                      </Link>
                     ))}
                   </div>
                 </div>
