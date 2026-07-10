@@ -8,6 +8,7 @@ export default function Input({
 	type = "text",
 	placeholder,
 	value,
+	defaultValue,
 	onChange,
 	error,
 	required,
@@ -35,7 +36,7 @@ export default function Input({
 					id={id}
 					type={inputType}
 					placeholder={placeholder}
-					value={value}
+					defaultValue={defaultValue ?? value}
 					onChange={onChange}
 					required={required}
 					autoComplete={autoComplete}

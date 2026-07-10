@@ -1,4 +1,4 @@
-export { db, clearAllData, getDatabaseInfo } from './db.js';
+export { db, clearAllData, getDatabaseInfo, getSetting, setSetting } from './db.js';
 export { seedDatabase, resetDatabase } from './seed.js';
 export { runMigrations } from './migrations.js';
 export {

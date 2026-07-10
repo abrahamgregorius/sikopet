@@ -136,12 +136,12 @@ export default function KOPETApp() {
 							>
 								Masuk
 							</Link>
-							<a
-								href="#cta-akhir"
+							<Link
+								to="/login"
 								className="focus-ring px-5 py-2.5 rounded-full bg-[#0F172A] text-white text-[14.5px] font-semibold shadow-soft hover:shadow-lift hover:-translate-y-0.5 transition-all duration-300"
 							>
 								Coba Gratis
-							</a>
+							</Link>
 						</div>
 
 						<button
@@ -217,18 +217,18 @@ export default function KOPETApp() {
 							</li>
 						</ul>
 						<div className="flex gap-3 mt-5">
-							<a
-								href="#"
+							<Link
+								to="/login"
 								className="focus-ring flex-1 text-center px-4 py-2.5 rounded-full border border-[#D8E4EA] text-[14.5px] font-semibold text-[#0F172A]"
 							>
 								Masuk
-							</a>
-							<a
-								href="#cta-akhir"
+							</Link>
+							<Link
+								to="/login"
 								className="focus-ring flex-1 text-center px-4 py-2.5 rounded-full bg-[#0F172A] text-white text-[14.5px] font-semibold"
 							>
 								Coba Gratis
-							</a>
+							</Link>
 						</div>
 					</div>
 				</nav>
@@ -276,8 +276,8 @@ export default function KOPETApp() {
 							</p>
 
 							<div className="flex flex-wrap gap-3.5 mt-9">
-								<a
-									href="#cta-akhir"
+								<Link
+									to="/login"
 									className="focus-ring group inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-[#398eb3] text-white font-semibold text-[15px] shadow-glow hover:bg-[#2F7698] hover:-translate-y-0.5 transition-all duration-300"
 								>
 									Mulai Uji Coba Gratis
@@ -296,7 +296,7 @@ export default function KOPETApp() {
 											strokeLinejoin="round"
 										/>
 									</svg>
-								</a>
+								</Link>
 								<a
 									href="#dasbor"
 									className="focus-ring inline-flex items-center gap-2 px-6 py-3.5 rounded-full border border-[#D8E4EA] bg-white/70 text-[#0F172A] font-semibold text-[15px] hover:bg-white hover:shadow-soft transition-all duration-300"
