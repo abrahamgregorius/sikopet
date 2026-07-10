@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import Home from "./page/Home";
 import Login from "./page/auth/Login";
+import Dashboard from "./page/dashboard/Home";
 
 const routes = [
   {
@@ -10,6 +11,10 @@ const routes = [
   {
     element: <Login></Login>,
     path: "/login",
+  },
+  {
+    element: <Dashboard></Dashboard>,
+    path: "/dashboard",
   }
 ]
 
