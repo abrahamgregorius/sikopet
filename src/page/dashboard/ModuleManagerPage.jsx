@@ -1,12 +1,12 @@
 /** @format */
 
-import { Link } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
 import Sidebar from "./components/Sidebar";
 import MobileSidebar from "./components/MobileSidebar";
 import TopNav from "./components/TopNav";
 import ModuleManager from "./components/ModuleManager";
 import Breadcrumb from "./components/Breadcrumb";
+import NotificationDrawer from "./components/NotificationDrawer";
 
 export default function ModuleManagerPage() {
     const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
@@ -62,6 +62,8 @@ export default function ModuleManagerPage() {
                     </main>
                 </div>
             </div>
+
+            <NotificationDrawer isOpen={isNotifOpen} onClose={() => setIsNotifOpen(false)} />
         </div>
     );
 }

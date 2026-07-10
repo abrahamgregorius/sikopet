@@ -1,11 +1,12 @@
 /** @format */
 
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
 import Sidebar from "./components/Sidebar";
 import MobileSidebar from "./components/MobileSidebar";
 import TopNav from "./components/TopNav";
 import Breadcrumb from "./components/Breadcrumb";
+import NotificationDrawer from "./components/NotificationDrawer";
 
 export default function GenericModulePage() {
     const params = useParams();
@@ -77,6 +78,8 @@ export default function GenericModulePage() {
                     </main>
                 </div>
             </div>
+
+            <NotificationDrawer isOpen={isNotifOpen} onClose={() => setIsNotifOpen(false)} />
         </div>
     );
 }
