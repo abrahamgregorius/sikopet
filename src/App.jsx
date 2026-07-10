@@ -17,7 +17,7 @@ const routes = [
 export default function App() {
   return (
     <Routes>
-      {routes.map((r, i) => {
+      {routes.map((r) => {
         return (
           <Route element={r.element} path={r.path}></Route>
         )

@@ -13,15 +13,8 @@ const variants = {
 		"px-6 py-3.5 rounded-full bg-[#EF4444] text-white font-semibold text-[15px] hover:bg-[#DC2626] hover:-translate-y-0.5 transition-all duration-300",
 };
 
-const sizes = {
-	sm: "px-4 py-2 text-[13.5px]",
-	md: "px-6 py-3.5 text-[15px]",
-	lg: "px-7 py-3.5 text-[15px]",
-};
-
 export default function Button({
 	variant = "primary",
-	size = "md",
 	className = "",
 	children,
 	...props

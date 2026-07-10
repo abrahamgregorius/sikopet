@@ -1,4 +1,6 @@
-# SIKOPET / KOPET Design System
+<!-- @format -->
+
+# sikopet / sikopet Design System
 
 > Codified from `md/style-guide.md`, `src/page/Home.jsx`, `src/page/auth/Login.jsx`, and `src/App.jsx`.
 > Every component in this project MUST follow these conventions.
@@ -18,15 +20,15 @@
 
 ## 2. Tech Stack
 
-| Layer | Technology |
-|-------|-----------|
-| UI Library | React 19 (JSX) |
-| Build Tool | Vite 8 |
-| CSS | Tailwind CSS 4 (utility-first, no custom CSS file) |
-| Local DB | Dexie (IndexedDB) |
-| PWA | vite-plugin-pwa (Workbox) |
-| Linting | ESLint 10 |
-| Routing | react-router-dom |
+| Layer      | Technology                                         |
+| ---------- | -------------------------------------------------- |
+| UI Library | React 19 (JSX)                                     |
+| Build Tool | Vite 8                                             |
+| CSS        | Tailwind CSS 4 (utility-first, no custom CSS file) |
+| Local DB   | Dexie (IndexedDB)                                  |
+| PWA        | vite-plugin-pwa (Workbox)                          |
+| Linting    | ESLint 10                                          |
+| Routing    | react-router-dom                                   |
 
 ---
 
@@ -34,63 +36,63 @@
 
 ### 3.1 Brand / Primary
 
-| Token | Hex | Tailwind Usage | Use |
-|-------|-----|----------------|-----|
-| Primary | `#398EB3` | `bg-[#398EB3]` `stroke="#398eb3"` | Buttons, links, icons, accents |
-| Primary Hover | `#2F7A9A` | `hover:bg-[#2F7A9A]` | Button/link hover states |
-| Primary Active | `#286783` | — | Active/pressed states |
-| Primary Dark | `#2F7698` | `text-[#2F7698]` | Headings, secondary brand |
-| Primary Light | `#EAF6FB` | `bg-[#EAF6FB]` | Icon containers, tag bg |
-| Primary Soft | `#D8EDF6` | — | Lighter tints |
+| Token          | Hex       | Tailwind Usage                    | Use                            |
+| -------------- | --------- | --------------------------------- | ------------------------------ |
+| Primary        | `#398EB3` | `bg-[#398EB3]` `stroke="#398eb3"` | Buttons, links, icons, accents |
+| Primary Hover  | `#2F7A9A` | `hover:bg-[#2F7A9A]`              | Button/link hover states       |
+| Primary Active | `#286783` | —                                 | Active/pressed states          |
+| Primary Dark   | `#2F7698` | `text-[#2F7698]`                  | Headings, secondary brand      |
+| Primary Light  | `#EAF6FB` | `bg-[#EAF6FB]`                    | Icon containers, tag bg        |
+| Primary Soft   | `#D8EDF6` | —                                 | Lighter tints                  |
 
 ### 3.2 Accent / Secondary
 
-| Token | Hex | Tailwind Usage | Use |
-|-------|-----|----------------|-----|
-| Teal | `#4CC9B0` | `bg-[#4CC9B0]` | Gradients, checkmarks, highlights |
-| Sky | `#67B2D4` | `bg-[#67B2D4]` `stroke="#67B2D4"` | Decorative blobs, selection bg, decorative accents |
+| Token | Hex       | Tailwind Usage                    | Use                                                |
+| ----- | --------- | --------------------------------- | -------------------------------------------------- |
+| Teal  | `#4CC9B0` | `bg-[#4CC9B0]`                    | Gradients, checkmarks, highlights                  |
+| Sky   | `#67B2D4` | `bg-[#67B2D4]` `stroke="#67B2D4"` | Decorative blobs, selection bg, decorative accents |
 
 ### 3.3 Gradient Pairs
 
-| Name | Tailwind | Use |
-|------|----------|-----|
-| Brand Gradient | `from-[#398eb3] to-[#4CC9B0]` | Logo bg, progress bars, hero accents |
-| Dark Gradient | `from-[#2F7698] to-[#0F172A]` | Dark cards, role badges |
-| CTA Gradient | `from-[#398eb3] via-[#2F7698] to-[#0F172A]` | CTA banner background |
+| Name           | Tailwind                                    | Use                                  |
+| -------------- | ------------------------------------------- | ------------------------------------ |
+| Brand Gradient | `from-[#398eb3] to-[#4CC9B0]`               | Logo bg, progress bars, hero accents |
+| Dark Gradient  | `from-[#2F7698] to-[#0F172A]`               | Dark cards, role badges              |
+| CTA Gradient   | `from-[#398eb3] via-[#2F7698] to-[#0F172A]` | CTA banner background                |
 
 ### 3.4 Neutral / Background
 
-| Token | Hex | Tailwind Usage | Use |
-|-------|-----|----------------|-----|
-| Background | `#F7F9FB` / `#F7FAFC` | `bg-[#F7F9FB]` `bg-[#F7FAFC]` | Page background |
-| Surface | `#FFFFFF` | `bg-white` | Cards, panels |
-| Surface Secondary | `#F1F5F9` | `bg-[#F1F5F9]` | Nested cards, sidebar bg, muted sections |
-| Border | `#E5E7EB` | `border-[#E5E7EB]` | Input borders |
-| Border Soft | `#D8E4EA` | `border-[#D8E4EA]` | Card borders, dividers |
-| Divider | `#E8EEF2` | `border-[#E8EEF2]` | Table row borders, subtle dividers |
+| Token             | Hex                   | Tailwind Usage                | Use                                      |
+| ----------------- | --------------------- | ----------------------------- | ---------------------------------------- |
+| Background        | `#F7F9FB` / `#F7FAFC` | `bg-[#F7F9FB]` `bg-[#F7FAFC]` | Page background                          |
+| Surface           | `#FFFFFF`             | `bg-white`                    | Cards, panels                            |
+| Surface Secondary | `#F1F5F9`             | `bg-[#F1F5F9]`                | Nested cards, sidebar bg, muted sections |
+| Border            | `#E5E7EB`             | `border-[#E5E7EB]`            | Input borders                            |
+| Border Soft       | `#D8E4EA`             | `border-[#D8E4EA]`            | Card borders, dividers                   |
+| Divider           | `#E8EEF2`             | `border-[#E8EEF2]`            | Table row borders, subtle dividers       |
 
 ### 3.5 Text
 
-| Token | Hex | Tailwind Usage | Use |
-|-------|-----|----------------|-----|
-| Primary Text | `#0F172A` | `text-[#0F172A]` | Headings, bold text, primary content |
-| Body Dark | `#1F2937` | `text-[#1F2937]` | Alt primary text |
-| Body Medium | `#374151` | `text-[#374151]` | Form labels |
-| Secondary Text | `#475569` | `text-[#475569]` | Body paragraphs, descriptions |
-| Tertiary Text | `#6B7280` | `text-[#6B7280]` | Subtitles, helper text |
-| Muted Text | `#94A3B8` | `text-[#94A3B8]` | Captions, timestamps, small labels |
-| Placeholder | `#9CA3AF` | `placeholder-[#9CA3AF]` | Input placeholders |
-| Disabled | `#D1D5DB` | `text-[#D1D5DB]` | Disabled state |
+| Token          | Hex       | Tailwind Usage          | Use                                  |
+| -------------- | --------- | ----------------------- | ------------------------------------ |
+| Primary Text   | `#0F172A` | `text-[#0F172A]`        | Headings, bold text, primary content |
+| Body Dark      | `#1F2937` | `text-[#1F2937]`        | Alt primary text                     |
+| Body Medium    | `#374151` | `text-[#374151]`        | Form labels                          |
+| Secondary Text | `#475569` | `text-[#475569]`        | Body paragraphs, descriptions        |
+| Tertiary Text  | `#6B7280` | `text-[#6B7280]`        | Subtitles, helper text               |
+| Muted Text     | `#94A3B8` | `text-[#94A3B8]`        | Captions, timestamps, small labels   |
+| Placeholder    | `#9CA3AF` | `placeholder-[#9CA3AF]` | Input placeholders                   |
+| Disabled       | `#D1D5DB` | `text-[#D1D5DB]`        | Disabled state                       |
 
 ### 3.6 Status
 
-| Status | Solid | Light / bg | Tailwind Pattern |
-|--------|-------|-----------|-----------------|
-| Success | `#22C55E` | `#DCFCE7` | `text-[#22C55E] bg-[#22C55E]/10` + dot `bg-[#22C55E]` |
-| Warning | `#F59E0B` | `#FEF3C7` | `text-[#F59E0B] bg-[#F59E0B]/10` |
-| Danger | `#EF4444` | `#FEE2E2` | `text-[#EF4444] bg-[#EF4444]/10` |
-| Info | `#3B82F6` | `#DBEAFE` | `text-[#3B82F6] bg-[#3B82F6]/10` |
-| Neutral | `#94A3B8` | `#F1F5F9` | `text-[#94A3B8] bg-[#F1F5F9]` |
+| Status  | Solid     | Light / bg | Tailwind Pattern                                      |
+| ------- | --------- | ---------- | ----------------------------------------------------- |
+| Success | `#22C55E` | `#DCFCE7`  | `text-[#22C55E] bg-[#22C55E]/10` + dot `bg-[#22C55E]` |
+| Warning | `#F59E0B` | `#FEF3C7`  | `text-[#F59E0B] bg-[#F59E0B]/10`                      |
+| Danger  | `#EF4444` | `#FEE2E2`  | `text-[#EF4444] bg-[#EF4444]/10`                      |
+| Info    | `#3B82F6` | `#DBEAFE`  | `text-[#3B82F6] bg-[#3B82F6]/10`                      |
+| Neutral | `#94A3B8` | `#F1F5F9`  | `text-[#94A3B8] bg-[#F1F5F9]`                         |
 
 ---
 
@@ -100,34 +102,36 @@
 
 ```css
 /* Body (default) */
-font-family: 'Inter', 'Segoe UI', Roboto, sans-serif;
+font-family: "Inter", "Segoe UI", Roboto, sans-serif;
 
 /* Display / Headings */
 font-family: "Hanken Grotesk", sans-serif;
 ```
 
 **Tailwind usage:**
+
 - Body text: no extra class needed (applied at root `div`)
 - Headings: add `font-display` class
 
 ### 4.2 Type Scale
 
-| Level | Size (Mobile) | Size (Desktop) | Weight | Tailwind Pattern |
-|-------|--------------|----------------|--------|-----------------|
-| H1 | `38px` | `46px → 56px` | extrabold (800) | `font-display font-extrabold text-[38px] sm:text-[46px] lg:text-[56px] tracking-tight` |
-| H2 | `30px` | `38px` | extrabold (800) | `font-display font-extrabold text-[30px] sm:text-[38px] tracking-tight` |
-| H3 | `24px` | — | bold (700) | `font-display font-bold text-[24px] tracking-tight` |
-| H4 | `16px` | — | bold (700) | `font-display font-bold text-[16px]` |
-| Section Title | `30px` | `36px → 38px` | extrabold (800) | `font-display font-extrabold text-[30px] sm:text-[36px] sm:text-[38px] tracking-tight` |
-| Body Large | `17px` | `18px` | — | `text-[17px] lg:text-[18px] leading-relaxed` |
-| Body Regular | `15px` | `16px` | — | `text-[15px]` or `text-[14.5px]` |
-| Body Small | `14px` | `14.5px` | — | `text-[14px]` or `text-[14.5px]` |
-| Caption | `12px` | `13px` | medium | `text-[12px] font-medium` or `text-[13px] font-medium` |
-| Micro | `10px` | `11px` | medium | `text-[10px]` or `text-[11px] font-medium` |
+| Level         | Size (Mobile) | Size (Desktop) | Weight          | Tailwind Pattern                                                                       |
+| ------------- | ------------- | -------------- | --------------- | -------------------------------------------------------------------------------------- |
+| H1            | `38px`        | `46px → 56px`  | extrabold (800) | `font-display font-extrabold text-[38px] sm:text-[46px] lg:text-[56px] tracking-tight` |
+| H2            | `30px`        | `38px`         | extrabold (800) | `font-display font-extrabold text-[30px] sm:text-[38px] tracking-tight`                |
+| H3            | `24px`        | —              | bold (700)      | `font-display font-bold text-[24px] tracking-tight`                                    |
+| H4            | `16px`        | —              | bold (700)      | `font-display font-bold text-[16px]`                                                   |
+| Section Title | `30px`        | `36px → 38px`  | extrabold (800) | `font-display font-extrabold text-[30px] sm:text-[36px] sm:text-[38px] tracking-tight` |
+| Body Large    | `17px`        | `18px`         | —               | `text-[17px] lg:text-[18px] leading-relaxed`                                           |
+| Body Regular  | `15px`        | `16px`         | —               | `text-[15px]` or `text-[14.5px]`                                                       |
+| Body Small    | `14px`        | `14.5px`       | —               | `text-[14px]` or `text-[14.5px]`                                                       |
+| Caption       | `12px`        | `13px`         | medium          | `text-[12px] font-medium` or `text-[13px] font-medium`                                 |
+| Micro         | `10px`        | `11px`         | medium          | `text-[10px]` or `text-[11px] font-medium`                                             |
 
 ### 4.3 Section Label (Eyebrow)
 
 Pattern used above section headings:
+
 ```
 text-[13px] font-bold text-[#2F7698] uppercase tracking-wider
 ```
@@ -138,19 +142,19 @@ text-[13px] font-bold text-[#2F7698] uppercase tracking-wider
 
 All spacing values used in the project:
 
-| Value | Tailwind | Common Use |
-|-------|----------|-----------|
-| 4px | `p-1`, `gap-1`, `m-1` | Tight internal spacing |
-| 8px | `p-2`, `gap-2`, `m-2` | Small internal spacing |
-| 12px | `p-3`, `gap-3`, `m-3`, `py-1.5` | Form field gaps, list items |
-| 16px | `p-4`, `gap-4`, `m-4` | Card padding small, section gaps |
-| 20px | `p-5`, `gap-5` | Card padding, grid gaps |
-| 24px | `p-6`, `gap-6`, `mt-6` | Card padding standard, section margins |
-| 32px | `p-8`, `gap-8`, `mt-8` | Large card padding, section gaps |
-| 40px | `gap-10`, `mt-10` | Feature section gaps |
-| 48px | `gap-12`, `py-12` | Section vertical padding |
-| 64px | `py-20`, `py-24`, `py-28` | Major section vertical spacing |
-| 80px | `py-32` | Largest section spacing |
+| Value | Tailwind                        | Common Use                             |
+| ----- | ------------------------------- | -------------------------------------- |
+| 4px   | `p-1`, `gap-1`, `m-1`           | Tight internal spacing                 |
+| 8px   | `p-2`, `gap-2`, `m-2`           | Small internal spacing                 |
+| 12px  | `p-3`, `gap-3`, `m-3`, `py-1.5` | Form field gaps, list items            |
+| 16px  | `p-4`, `gap-4`, `m-4`           | Card padding small, section gaps       |
+| 20px  | `p-5`, `gap-5`                  | Card padding, grid gaps                |
+| 24px  | `p-6`, `gap-6`, `mt-6`          | Card padding standard, section margins |
+| 32px  | `p-8`, `gap-8`, `mt-8`          | Large card padding, section gaps       |
+| 40px  | `gap-10`, `mt-10`               | Feature section gaps                   |
+| 48px  | `gap-12`, `py-12`               | Section vertical padding               |
+| 64px  | `py-20`, `py-24`, `py-28`       | Major section vertical spacing         |
+| 80px  | `py-32`                         | Largest section spacing                |
 
 ### Common Spacing Patterns
 
@@ -168,20 +172,20 @@ Tight grid gap:        gap-3 or gap-3.5
 
 ## 6. Border Radius
 
-| Component | Radius | Tailwind |
-|-----------|--------|----------|
-| Card (standard) | 16px | `rounded-2xl` |
-| Card (large) | 28px | `rounded-[1.75rem]` |
-| Card (hero) | 36px | `rounded-[2.25rem]` |
-| Modal / Auth card | 24px | `rounded-[24px]` |
-| Button | 12px or full | `rounded-[12px]` or `rounded-full` |
-| Input | 12px | `rounded-[12px]` |
-| Badge / Pill | full | `rounded-full` |
-| Table container | 16px | `rounded-2xl` |
-| Dropdown | 16px | `rounded-2xl` |
-| Icon container (sm) | 8px | `rounded-lg` |
-| Icon container (md) | 12px | `rounded-xl` |
-| Icon container (lg) | 16px | `rounded-2xl` |
+| Component           | Radius       | Tailwind                           |
+| ------------------- | ------------ | ---------------------------------- |
+| Card (standard)     | 16px         | `rounded-2xl`                      |
+| Card (large)        | 28px         | `rounded-[1.75rem]`                |
+| Card (hero)         | 36px         | `rounded-[2.25rem]`                |
+| Modal / Auth card   | 24px         | `rounded-[24px]`                   |
+| Button              | 12px or full | `rounded-[12px]` or `rounded-full` |
+| Input               | 12px         | `rounded-[12px]`                   |
+| Badge / Pill        | full         | `rounded-full`                     |
+| Table container     | 16px         | `rounded-2xl`                      |
+| Dropdown            | 16px         | `rounded-2xl`                      |
+| Icon container (sm) | 8px          | `rounded-lg`                       |
+| Icon container (md) | 12px         | `rounded-xl`                       |
+| Icon container (lg) | 16px         | `rounded-2xl`                      |
 
 ---
 
@@ -191,34 +195,41 @@ Defined as custom CSS classes in `<style>` blocks:
 
 ```css
 .shadow-soft {
-  box-shadow: 0 1px 2px rgba(15,23,42,0.04),
-              0 8px 24px -8px rgba(15,23,42,0.08);
+	box-shadow:
+		0 1px 2px rgba(15, 23, 42, 0.04),
+		0 8px 24px -8px rgba(15, 23, 42, 0.08);
 }
 
 .shadow-lift {
-  box-shadow: 0 4px 10px rgba(15,23,42,0.05),
-              0 20px 40px -16px rgba(15,23,42,0.16);
+	box-shadow:
+		0 4px 10px rgba(15, 23, 42, 0.05),
+		0 20px 40px -16px rgba(15, 23, 42, 0.16);
 }
 
 .shadow-glow {
-  box-shadow: 0 0 0 1px rgba(57,142,179,0.10),
-              0 12px 32px -8px rgba(57,142,179,0.28);
+	box-shadow:
+		0 0 0 1px rgba(57, 142, 179, 0.1),
+		0 12px 32px -8px rgba(57, 142, 179, 0.28);
 }
 ```
 
 ### Shadow Usage
 
-| Class | Use |
-|-------|-----|
+| Class         | Use                                              |
+| ------------- | ------------------------------------------------ |
 | `shadow-soft` | Default card elevation, logo icon, nav on scroll |
-| `shadow-lift` | Hero cards, hover state, dashboard preview, CTA |
-| `shadow-glow` | Primary CTA buttons (adds blue glow ring) |
+| `shadow-lift` | Hero cards, hover state, dashboard preview, CTA  |
+| `shadow-glow` | Primary CTA buttons (adds blue glow ring)        |
 
 ### Hover Shadows (CSS pseudo-class)
 
 ```css
-.hover\:shadow-lift:hover { /* same as shadow-lift */ }
-.hover\:shadow-soft:hover { /* same as shadow-soft */ }
+.hover\:shadow-lift:hover {
+	/* same as shadow-lift */
+}
+.hover\:shadow-soft:hover {
+	/* same as shadow-soft */
+}
 ```
 
 ---
@@ -227,23 +238,23 @@ Defined as custom CSS classes in `<style>` blocks:
 
 ```css
 .glass-nav {
-  background: rgba(247, 250, 252, 0.72);
-  backdrop-filter: blur(14px) saturate(160%);
-  -webkit-backdrop-filter: blur(14px) saturate(160%);
-  border-bottom: 1px solid rgba(216, 228, 234, 0.6);
+	background: rgba(247, 250, 252, 0.72);
+	backdrop-filter: blur(14px) saturate(160%);
+	-webkit-backdrop-filter: blur(14px) saturate(160%);
+	border-bottom: 1px solid rgba(216, 228, 234, 0.6);
 }
 
 .glass-card {
-  background: rgba(255, 255, 255, 0.62);
-  backdrop-filter: blur(16px) saturate(160%);
-  -webkit-backdrop-filter: blur(16px) saturate(160%);
-  border: 1px solid rgba(255, 255, 255, 0.5);
+	background: rgba(255, 255, 255, 0.62);
+	backdrop-filter: blur(16px) saturate(160%);
+	-webkit-backdrop-filter: blur(16px) saturate(160%);
+	border: 1px solid rgba(255, 255, 255, 0.5);
 }
 ```
 
-| Class | Use |
-|-------|-----|
-| `glass-nav` | Fixed top navigation bar |
+| Class        | Use                                               |
+| ------------ | ------------------------------------------------- |
+| `glass-nav`  | Fixed top navigation bar                          |
 | `glass-card` | Floating info cards, sidebar nav items on dark bg |
 
 ---
@@ -258,11 +269,11 @@ max-w-[1280px] mx-auto px-6 lg:px-10
 
 ### 9.2 Responsive Breakpoints
 
-| Name | Width | Tailwind |
-|------|-------|----------|
-| Mobile | < 768px | base (no prefix) |
-| Tablet | 768–1199px | `sm:` / `md:` |
-| Desktop | ≥ 1200px | `lg:` |
+| Name    | Width      | Tailwind         |
+| ------- | ---------- | ---------------- |
+| Mobile  | < 768px    | base (no prefix) |
+| Tablet  | 768–1199px | `sm:` / `md:`    |
+| Desktop | ≥ 1200px   | `lg:`            |
 
 ### 9.3 App Layout (Dashboard)
 
@@ -288,14 +299,17 @@ Section max-width:   max-w-[1280px] (full), max-w-[820px] (FAQ), max-w-[620px] (
 ### 10.1 Buttons
 
 #### Primary Button
+
 ```
 px-6 py-3.5 rounded-full bg-[#398eb3] text-white font-semibold text-[15px]
 shadow-glow hover:bg-[#2F7698] hover:-translate-y-0.5
 transition-all duration-300
 ```
+
 Variant (icon + text): add `inline-flex items-center gap-2` and a group-hover arrow.
 
 #### Secondary Button
+
 ```
 px-6 py-3.5 rounded-full border border-[#D8E4EA] bg-white/70 text-[#0F172A]
 font-semibold text-[15px] hover:bg-white hover:shadow-soft
@@ -303,12 +317,14 @@ transition-all duration-300
 ```
 
 #### Ghost / Text Link Button
+
 ```
 px-4 py-2.5 text-[14.5px] font-semibold text-[#475569]
 hover:text-[#0F172A] transition-colors
 ```
 
 #### Dark CTA (Navbar)
+
 ```
 px-5 py-2.5 rounded-full bg-[#0F172A] text-white text-[14.5px] font-semibold
 shadow-soft hover:shadow-lift hover:-translate-y-0.5
@@ -316,6 +332,7 @@ transition-all duration-300
 ```
 
 #### Form Submit Button (Login)
+
 ```
 w-full h-[48px] rounded-[12px] bg-[#398EB3] text-white font-semibold text-[15px]
 shadow-glow hover:bg-[#2F7A9A] hover:-translate-y-0.5 active:scale-[0.98]
@@ -323,6 +340,7 @@ transition-all duration-200
 ```
 
 #### Mobile Menu Button
+
 ```
 p-2 -mr-2 lg:hidden focus-ring
 ```
@@ -337,6 +355,7 @@ hover:border-[#D1D5DB] focus:border-[#398EB3] focus:outline-none
 ```
 
 Label pattern:
+
 ```
 block text-[13.5px] font-medium text-[#374151] mb-1.5
 ```
@@ -344,42 +363,50 @@ block text-[13.5px] font-medium text-[#374151] mb-1.5
 ### 10.3 Cards
 
 #### Standard Card
+
 ```
 rounded-2xl bg-white border border-[#D8E4EA] p-6 shadow-soft
 ```
 
 #### Feature Card (with hover)
+
 ```
 rounded-2xl bg-white border border-[#D8E4EA] p-6
 hover:shadow-lift hover:-translate-y-1 transition-all duration-300
 ```
 
 #### Hero Card (large)
+
 ```
 rounded-[2.25rem] bg-white shadow-lift border border-[#D8E4EA] p-6 sm:p-8
 ```
 
 #### Nested Card (inside feature section)
+
 ```
 rounded-2xl bg-white border border-[#D8E4EA] shadow-soft p-5
 ```
 
 #### Section Container Card
+
 ```
 rounded-[1.75rem] bg-[#F1F5F9] border border-[#D8E4EA] p-6 lg:p-8
 ```
 
 #### Dark Card
+
 ```
 rounded-[1.75rem] bg-[#0F172A] px-6 sm:px-10 py-9 sm:py-11 shadow-lift
 ```
 
 #### Glass Card (floating)
+
 ```
 glass-card rounded-2xl shadow-lift px-4 py-3.5
 ```
 
 #### Auth Card (Login)
+
 ```
 rounded-[24px] bg-white border border-[#D8E4EA] shadow-lift p-8 sm:p-10
 ```
@@ -387,23 +414,28 @@ rounded-[24px] bg-white border border-[#D8E4EA] shadow-lift p-8 sm:p-10
 ### 10.4 Status Badges
 
 #### Success
+
 ```
 inline-flex items-center gap-1.5 text-[12px] font-semibold
 text-[#22C55E] bg-[#22C55E]/10 px-2.5 py-1 rounded-full
 ```
+
 With dot: `w-1.5 h-1.5 rounded-full bg-[#22C55E]`
 
 #### Info
+
 ```
 text-[11px] font-semibold text-[#2F7698] bg-[#EAF6FB] px-2 py-0.5 rounded-full
 ```
 
 #### Neutral / Muted
+
 ```
 text-[11px] font-semibold text-[#94A3B8] bg-[#F1F5F9] px-2 py-0.5 rounded-full
 ```
 
 #### Warning
+
 ```
 text-[11px] font-semibold text-[#F59E0B] bg-[#F59E0B]/10 px-2 py-0.5 rounded-full
 ```
@@ -411,6 +443,7 @@ text-[11px] font-semibold text-[#F59E0B] bg-[#F59E0B]/10 px-2 py-0.5 rounded-ful
 ### 10.5 KPI / Stat Cards
 
 #### Dark Stats Bar
+
 ```
 rounded-[1.75rem] bg-[#0F172A] px-6 sm:px-10 py-9 sm:py-11
 grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6 shadow-lift
@@ -420,6 +453,7 @@ Stat number: `font-display font-extrabold text-white text-[30px] sm:text-[36px] 
 Stat label: `text-[13px] text-white/60 font-medium mt-1`
 
 #### Light KPI Card
+
 ```
 rounded-2xl bg-white border border-[#D8E4EA] p-5 shadow-soft
 ```
@@ -431,22 +465,26 @@ KPI change: `text-[12px] text-[#22C55E] font-semibold mt-1`
 ### 10.6 Navigation
 
 #### Desktop Nav Link
+
 ```
 font-medium text-[14.5px] text-[#475569]
 hover:text-[#0F172A] transition-colors focus-ring
 ```
 
 #### Mobile Nav Link
+
 ```
 font-medium text-[#475569] focus-ring
 ```
 
 #### Sidebar Active Item
+
 ```
 px-3 py-2 rounded-lg bg-[#EAF6FB] text-[#2F7698] text-[13px] font-semibold
 ```
 
 #### Sidebar Inactive Item
+
 ```
 px-3 py-2 rounded-lg text-[#475569] text-[13px] font-medium
 ```
@@ -454,16 +492,19 @@ px-3 py-2 rounded-lg text-[#475569] text-[13px] font-medium
 ### 10.7 Icon Containers
 
 #### Small (32px)
+
 ```
 w-8 h-8 rounded-full bg-[color]/15 grid place-items-center
 ```
 
 #### Medium (40px)
+
 ```
 w-10 h-10 rounded-xl bg-[#EAF6FB] grid place-items-center
 ```
 
 #### Large (48px)
+
 ```
 w-12 h-12 rounded-2xl bg-[#EAF6FB] grid place-items-center
 ```
@@ -473,12 +514,14 @@ SVG icon inside: `width="18" height="18"` (small), `width="22" height="22"` (lar
 ### 10.8 Avatar / Logo
 
 #### Logo Icon
+
 ```
 w-9 h-9 rounded-xl bg-gradient-to-br from-[#398eb3] to-[#4CC9B0]
 grid place-items-center shadow-soft
 ```
 
 #### Avatar (small, stacked)
+
 ```
 w-9 h-9 rounded-full bg-[color] border-2 border-white
 ```
@@ -494,16 +537,19 @@ Checkmark icon: SVG `width="16" height="16"`, stroke `#4CC9B0`, strokeWidth `2.5
 ### 10.10 FAQ Accordion
 
 #### Trigger Button
+
 ```
 w-full flex items-center justify-between gap-4 px-6 py-5 text-left focus-ring
 ```
 
 #### Panel
+
 ```
 px-6 — content has max-height: 0 by default, max-height: 320px when open
 ```
 
 #### Chevron
+
 Rotates 180deg when `.faq-item.open`.
 
 ### 10.11 Table Row Pattern
@@ -551,14 +597,15 @@ Class: `.blob { filter: blur(70px); }`
 
 ```css
 .reveal {
-  opacity: 0;
-  transform: translateY(18px);
-  transition: opacity 0.7s cubic-bezier(0.22, 0.61, 0.36, 1),
-              transform 0.7s cubic-bezier(0.22, 0.61, 0.36, 1);
+	opacity: 0;
+	transform: translateY(18px);
+	transition:
+		opacity 0.7s cubic-bezier(0.22, 0.61, 0.36, 1),
+		transform 0.7s cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 .reveal[data-revealed] {
-  opacity: 1;
-  transform: translateY(0);
+	opacity: 1;
+	transform: translateY(0);
 }
 ```
 
@@ -569,22 +616,41 @@ Delays: `.reveal-delay-1` (0.08s), `.reveal-delay-2` (0.16s), `.reveal-delay-3` 
 ### 11.2 Float Animation
 
 ```css
-.float-y { animation: floatY 6s ease-in-out infinite; }
-.float-y.slow { animation-duration: 8s; }
-.float-y.rev { animation-direction: reverse; }
-@keyframes floatY { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+.float-y {
+	animation: floatY 6s ease-in-out infinite;
+}
+.float-y.slow {
+	animation-duration: 8s;
+}
+.float-y.rev {
+	animation-direction: reverse;
+}
+@keyframes floatY {
+	0%,
+	100% {
+		transform: translateY(0);
+	}
+	50% {
+		transform: translateY(-10px);
+	}
+}
 ```
 
 ### 11.3 Node Pulse (SVG)
 
 ```css
-.node-pulse { animation: nodePulse 2.6s ease-out infinite; }
+.node-pulse {
+	animation: nodePulse 2.6s ease-out infinite;
+}
 ```
 
 ### 11.4 Dash Move (SVG paths)
 
 ```css
-.dash { stroke-dasharray: 6 6; animation: dashMove 3.5s linear infinite; }
+.dash {
+	stroke-dasharray: 6 6;
+	animation: dashMove 3.5s linear infinite;
+}
 ```
 
 ### 11.5 Hover Transitions
@@ -601,10 +667,22 @@ Active press: `active:scale-[0.98]`
 ### 11.6 FAQ Accordion
 
 ```css
-.faq-panel { max-height: 0; overflow: hidden; transition: max-height 0.45s ease, padding 0.3s ease; }
-.faq-item.open .faq-panel { max-height: 320px; }
-.faq-item .chev { transition: transform 0.3s ease; }
-.faq-item.open .chev { transform: rotate(180deg); }
+.faq-panel {
+	max-height: 0;
+	overflow: hidden;
+	transition:
+		max-height 0.45s ease,
+		padding 0.3s ease;
+}
+.faq-item.open .faq-panel {
+	max-height: 320px;
+}
+.faq-item .chev {
+	transition: transform 0.3s ease;
+}
+.faq-item.open .chev {
+	transform: rotate(180deg);
+}
 ```
 
 ---
@@ -615,9 +693,9 @@ Active press: `active:scale-[0.98]`
 
 ```css
 .focus-ring:focus-visible {
-  outline: 2px solid #398eb3;
-  outline-offset: 3px;
-  border-radius: 8px;
+	outline: 2px solid #398eb3;
+	outline-offset: 3px;
+	border-radius: 8px;
 }
 ```
 
@@ -643,7 +721,10 @@ focus:left-3 focus:z-[100] focus:bg-white focus:px-4 focus:py-2 focus:rounded-lg
 ### 12.4 Selection Color
 
 ```css
-::selection { background: #67b2d4; color: #fff; }
+::selection {
+	background: #67b2d4;
+	color: #fff;
+}
 ```
 
 ---

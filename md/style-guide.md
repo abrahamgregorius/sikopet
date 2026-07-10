@@ -1,4 +1,6 @@
-# KOPET ERP Design System (UI Kit)
+<!-- @format -->
+
+# sikopet ERP Design System (UI Kit)
 
 > Design Style: Modern, Minimal, Enterprise Dashboard, Soft UI
 
@@ -41,36 +43,36 @@ Meaning
 
 ## Primary
 
-| Name | Color |
-|-------|---------|
-| Primary | #398EB3 |
-| Primary Hover | #2F7A9A |
+| Name           | Color   |
+| -------------- | ------- |
+| Primary        | #398EB3 |
+| Primary Hover  | #2F7A9A |
 | Primary Active | #286783 |
-| Primary Light | #EAF5FA |
-| Primary Soft | #D8EDF6 |
+| Primary Light  | #EAF5FA |
+| Primary Soft   | #D8EDF6 |
 
 ---
 
 ## Neutral
 
-| Name | Color |
-|-------|---------|
-| Background | #F7F9FB |
-| Surface | #FFFFFF |
+| Name              | Color   |
+| ----------------- | ------- |
+| Background        | #F7F9FB |
+| Surface           | #FFFFFF |
 | Surface Secondary | #F1F5F9 |
-| Border | #E5E7EB |
-| Divider | #EDF2F7 |
+| Border            | #E5E7EB |
+| Divider           | #EDF2F7 |
 
 ---
 
 ## Text
 
-| Name | Color |
-|-------|---------|
-| Primary Text | #1F2937 |
+| Name           | Color   |
+| -------------- | ------- |
+| Primary Text   | #1F2937 |
 | Secondary Text | #6B7280 |
-| Muted Text | #9CA3AF |
-| Disabled | #D1D5DB |
+| Muted Text     | #9CA3AF |
+| Disabled       | #D1D5DB |
 
 ---
 
@@ -206,13 +208,13 @@ Regular
 # Border Radius
 
 | Component | Radius |
-|-----------|---------|
-| Card | 20px |
-| Button | 12px |
-| Input | 12px |
-| Modal | 24px |
-| Badge | Full |
-| Avatar | Full |
+| --------- | ------ |
+| Card      | 20px   |
+| Button    | 12px   |
+| Input     | 12px   |
+| Modal     | 24px   |
+| Badge     | Full   |
+| Avatar    | Full   |
 
 ---
 

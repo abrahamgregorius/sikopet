@@ -1,6 +1,6 @@
 <!-- @format -->
 
-# KOPET — Koperasi Terintegrasi
+# sikopet — Koperasi Terintegrasi
 
 ## AI-Ready Product Requirement Document
 
@@ -13,9 +13,9 @@
 
 # 1. Executive Summary
 
-KOPET adalah platform ERP digital **offline-first** untuk Koperasi Desa/Kelurahan Merah Putih (KDKMP), dirancang sebagai pengganti SIMKOPDES — sistem yang sudah dipakai 92,69% KDKMP tapi sepenuhnya bergantung pada koneksi internet sehingga gagal optimal di wilayah blankspot (contoh: 216 dari 8.494 KDMP di Jawa Timur berada di blankspot, baru 10 koperasi berhasil update microsite).
+sikopet adalah platform ERP digital **offline-first** untuk Koperasi Desa/Kelurahan Merah Putih (KDKMP), dirancang sebagai pengganti SIMKOPDES — sistem yang sudah dipakai 92,69% KDKMP tapi sepenuhnya bergantung pada koneksi internet sehingga gagal optimal di wilayah blankspot (contoh: 216 dari 8.494 KDMP di Jawa Timur berada di blankspot, baru 10 koperasi berhasil update microsite).
 
-KOPET mengintegrasikan seluruh fungsi SIMKOPDES (profil & legalitas koperasi, dokumen, potensi desa, permohonan pembiayaan, integrasi data pemerintah) ditambah empat unit usaha operasional yang lebih dalam: toko sembako (POS), simpan pinjam, gudang, dan logistik — dalam satu ekosistem data yang tetap berfungsi penuh tanpa internet untuk aktivitas harian.
+sikopet mengintegrasikan seluruh fungsi SIMKOPDES (profil & legalitas koperasi, dokumen, potensi desa, permohonan pembiayaan, integrasi data pemerintah) ditambah empat unit usaha operasional yang lebih dalam: toko sembako (POS), simpan pinjam, gudang, dan logistik — dalam satu ekosistem data yang tetap berfungsi penuh tanpa internet untuk aktivitas harian.
 
 Arsitekturnya membagi fitur secara eksplisit menjadi offline-first (transaksi harian bervolume tinggi), online-required (keputusan bernilai tinggi/governance/verifikasi pemerintah eksternal), dan hybrid. Sinkronisasi menggunakan strategi berbeda per sensitivitas data (ledger append-only untuk data finansial, last-write-wins untuk data master, deteksi konflik manual untuk data yang butuh satu pemenang pasti). AI/analitik dijalankan di server dan di-cache ke client sebagai rule set ringan, bukan inferensi live.
 
@@ -60,9 +60,9 @@ Arsitekturnya membagi fitur secara eksplisit menjadi offline-first (transaksi ha
 
 # 3. Product Vision
 
-KOPET memposisikan diri sebagai **fondasi data (data layer)** bagi ekosistem digital koperasi desa di Indonesia: satu sumber kebenaran (single source of truth) yang tetap dapat dioperasikan sepenuhnya offline untuk kebutuhan harian, namun tetap terhubung dan patuh terhadap ekosistem integrasi pemerintah yang sudah dibangun SIMKOPDES (Dukcapil, Kemenkumham/AHU, DJP, Agrinas, Bank Himbara).
+sikopet memposisikan diri sebagai **fondasi data (data layer)** bagi ekosistem digital koperasi desa di Indonesia: satu sumber kebenaran (single source of truth) yang tetap dapat dioperasikan sepenuhnya offline untuk kebutuhan harian, namun tetap terhubung dan patuh terhadap ekosistem integrasi pemerintah yang sudah dibangun SIMKOPDES (Dukcapil, Kemenkumham/AHU, DJP, Agrinas, Bank Himbara).
 
-Visi jangka panjang (di luar MVP, lihat Bagian 30 Roadmap Fase 3–5): KOPET menjadi prasyarat data bersih dan real-time yang memungkinkan fitur AI business matching (mempertemukan koperasi dengan buyer/offtaker) dan agregasi potensi desa nasional bekerja secara akurat — sesuatu yang tidak mungkin dilakukan di atas data yang buruk/terfragmentasi seperti kondisi saat ini.
+Visi jangka panjang (di luar MVP, lihat Bagian 30 Roadmap Fase 3–5): sikopet menjadi prasyarat data bersih dan real-time yang memungkinkan fitur AI business matching (mempertemukan koperasi dengan buyer/offtaker) dan agregasi potensi desa nasional bekerja secara akurat — sesuatu yang tidak mungkin dilakukan di atas data yang buruk/terfragmentasi seperti kondisi saat ini.
 
 ---
 
@@ -77,7 +77,7 @@ Goals terukur (measurable), diturunkan dari Bagian 2 PRD asli:
 | G-03 | Meningkatkan transparansi ke BA/PMO                                 | Waktu rata-rata data sampai ke dashboard pusat setelah online             | `ASSUMPTION:` ≤5 menit setelah device online & sync berhasil                                 |
 | G-04 | Mendukung pengambilan keputusan berbasis data                       | Jumlah insight/alert yang ditindaklanjuti BA per bulan                    | `ASSUMPTION:` baseline diukur di bulan 1, target peningkatan ditentukan setelah baseline ada |
 | G-05 | Menggantikan SIMKOPDES tanpa memutus akses program pemerintah       | % koperasi bermigrasi tanpa kehilangan status verifikasi/akses pembiayaan | 100% (non-negotiable — kegagalan berarti risiko legal/bisnis bagi koperasi)                  |
-| G-06 | Menjangkau koperasi di area blankspot yang gagal diadopsi SIMKOPDES | % koperasi blankspot yang aktif memakai KOPET                             | `ASSUMPTION:` target pilot 216 koperasi blankspot Jatim sebagai proof-of-concept (Bagian 11) |
+| G-06 | Menjangkau koperasi di area blankspot yang gagal diadopsi SIMKOPDES | % koperasi blankspot yang aktif memakai sikopet                           | `ASSUMPTION:` target pilot 216 koperasi blankspot Jatim sebagai proof-of-concept (Bagian 11) |
 
 ## OPEN QUESTIONS — Goals
 
@@ -93,7 +93,7 @@ Berdasarkan Bagian 3.2 PRD asli — hal-hal yang **secara eksplisit tidak termas
 - **Village Potential Aggregator** lintas-desa (agregasi nasional) — direncanakan Fase 4.
 - **Live GPS tracking real-time** — hanya batch position update berkala (mis. tiap 5 menit); bukan live tracking konstan.
 - **Integrasi pembayaran digital pihak ketiga** — direncanakan Fase 5.
-- **Proses pendirian badan hukum koperasi baru dari nol** (akta & pengesahan Kemenkumham) — KOPET hanya menangani profil koperasi yang **sudah berbadan hukum**. Pendirian baru tetap melalui jalur notaris/AHU eksternal yang berlaku, di luar sistem KOPET.
+- **Proses pendirian badan hukum koperasi baru dari nol** (akta & pengesahan Kemenkumham) — sikopet hanya menangani profil koperasi yang **sudah berbadan hukum**. Pendirian baru tetap melalui jalur notaris/AHU eksternal yang berlaku, di luar sistem sikopet.
 
 ---
 
@@ -623,7 +623,7 @@ Setiap modul mengikuti struktur: Purpose, Inputs, Outputs, Business Rules, Valid
 
 **Inputs:** Data ekspor resmi/API SIMKOPDES (format `ASSUMPTION:` belum ditentukan — kemungkinan CSV/JSON/API resmi Kemenkop, perlu konfirmasi format).
 
-**Outputs:** Data terisi otomatis ke entitas KOPET yang relevan (`ProfilKoperasi`, `DokumenLegal`, dll.), dengan periode paralel-run di mana koperasi tetap terverifikasi di kedua sistem.
+**Outputs:** Data terisi otomatis ke entitas sikopet yang relevan (`ProfilKoperasi`, `DokumenLegal`, dll.), dengan periode paralel-run di mana koperasi tetap terverifikasi di kedua sistem.
 
 **Priority:** P1 (Fase 2, bukan bagian MVP kompetisi Fase 1, tapi arsitektur data harus disiapkan agar migrasi tidak butuh re-desain skema).
 
@@ -816,7 +816,7 @@ flowchart TD
 
 ## OPEN QUESTIONS — User Flow
 
-- Apakah ada alur onboarding pertama kali (registrasi koperasi baru ke KOPET) yang berbeda dari alur harian di atas? PRD asli tidak eksplisit menjelaskan proses onboarding koperasi baru ke sistem KOPET itu sendiri (di luar migrasi dari SIMKOPDES).
+- Apakah ada alur onboarding pertama kali (registrasi koperasi baru ke sikopet) yang berbeda dari alur harian di atas? PRD asli tidak eksplisit menjelaskan proses onboarding koperasi baru ke sistem sikopet itu sendiri (di luar migrasi dari SIMKOPDES).
 
 ---
 
@@ -1470,7 +1470,7 @@ Seluruh entitas di bawah diturunkan dari tabel "Entitas Data" tiap modul di PRD 
 ## OPEN QUESTIONS — API Requirements
 
 - Skema autentikasi (JWT vs session vs OAuth) belum ditentukan eksplisit di PRD asli.
-- Kontrak API resmi untuk integrasi Dukcapil/Kemenkumham-AHU/DJP/Agrinas/Bank Himbara belum tersedia (dependency eksternal, di luar kendali tim KOPET) — endpoint 14.6 adalah wrapper `ASSUMPTION` yang perlu disesuaikan begitu spesifikasi resmi pemerintah tersedia.
+- Kontrak API resmi untuk integrasi Dukcapil/Kemenkumham-AHU/DJP/Agrinas/Bank Himbara belum tersedia (dependency eksternal, di luar kendali tim sikopet) — endpoint 14.6 adalah wrapper `ASSUMPTION` yang perlu disesuaikan begitu spesifikasi resmi pemerintah tersedia.
 
 ---
 
@@ -1853,12 +1853,12 @@ Diambil dan diperjelas dari Bagian 10 PRD asli.
 
 # 31. AI Coding Notes
 
-Panduan implementasi untuk AI coding agent (Cursor/Claude Code/Windsurf/Copilot) yang mengerjakan KOPET.
+Panduan implementasi untuk AI coding agent (Cursor/Claude Code/Windsurf/Copilot) yang mengerjakan sikopet.
 
 ## Folder Structure (`ASSUMPTION`, mengikuti konvensi Laravel + React PWA monorepo)
 
 ```
-kopet/
+sikopet/
 ├── apps/
 │   ├── web/                     # React PWA (client)
 │   │   ├── src/
@@ -1969,6 +1969,6 @@ Rekap seluruh hal yang masih perlu klarifikasi dari product owner sebelum implem
 15. **UX/Desain:** Belum ada wireframe/mockup resmi — seluruh Screen Specifications (Bagian 11) adalah asumsi minimum yang perlu divalidasi tim UX.
 16. **Bahasa & Aksesibilitas:** Apakah dibutuhkan dukungan bahasa daerah selain Bahasa Indonesia, dan target level WCAG resmi.
 17. **Parameter teknis Sync Engine:** Interval retry backoff, jumlah maksimum retry sebelum eskalasi manual.
-18. **Kontrak API eksternal:** Spesifikasi resmi integrasi Dukcapil/Kemenkumham-AHU/DJP/Agrinas/Bank Himbara belum tersedia (dependency di luar kendali tim KOPET, tapi wajib diperoleh sebelum Fase 2).
-19. **Onboarding koperasi baru:** Alur registrasi koperasi baru ke sistem KOPET (di luar migrasi dari SIMKOPDES) belum dijelaskan di PRD asli.
+18. **Kontrak API eksternal:** Spesifikasi resmi integrasi Dukcapil/Kemenkumham-AHU/DJP/Agrinas/Bank Himbara belum tersedia (dependency di luar kendali tim sikopet, tapi wajib diperoleh sebelum Fase 2).
+19. **Onboarding koperasi baru:** Alur registrasi koperasi baru ke sistem sikopet (di luar migrasi dari SIMKOPDES) belum dijelaskan di PRD asli.
 20. **Soft delete policy:** Apakah berlaku universal ke semua entitas atau ada pengecualian (mis. `TrackingPosisi`).
