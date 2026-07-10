@@ -1,10 +1,15 @@
 import { Route, Routes } from "react-router-dom";
 import Home from "./page/Home";
+import Login from "./page/auth/Login";
 
 const routes = [
   {
     element: <Home></Home>,
     path: "/",
+  },
+  {
+    element: <Login></Login>,
+    path: "/login",
   }
 ]
 

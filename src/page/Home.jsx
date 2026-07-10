@@ -47,28 +47,28 @@ const StatCounter = ({ end, decimals = 0, suffix = "" }) => {
 
 const faqs = [
 	{
-		q: "Bagaimana Nusara bekerja saat tidak ada internet sama sekali?",
-		a: "Semua data transaksi tersimpan langsung di perangkat menggunakan basis data lokal. Aplikasi tetap berfungsi penuh, dan begitu koneksi tersedia kembali, data tersinkron otomatis ke server pusat.",
+		q: "Bagaimana KOPET bekerja saat tidak ada internet sama sekali?",
+		a: "Semua data transaksi tersimpan langsung di perangkat menggunakan basis data lokal Dexie di atas IndexedDB. Aplikasi tetap berfungsi penuh untuk POS, simpan pinjam, gudang, dan logistik — begitu koneksi tersedia kembali, data tersinkron otomatis ke server.",
 	},
 	{
-		q: "Apakah data dari koperasi kami bisa dipindahkan dari sistem lama?",
-		a: "Bisa. Tim implementasi Nusara membantu migrasi data anggota, simpanan, dan riwayat transaksi dari spreadsheet maupun aplikasi lama tanpa biaya tambahan pada paket tahunan.",
+		q: "Apakah KOPET bisa menggantikan SIMKOPDES?",
+		a: "Ya. KOPET dirancang sebagai pengganti SIMKOPDES untuk KDMP — mengintegrasikan profil legal, dokumen, potensi desa, dan permohonan pembiayaan, ditambah unit usaha operasional (POS, simpan pinjam, gudang, logistik) yang tidak ada di SIMKOPDES.",
 	},
 	{
-		q: "Seberapa aman data keuangan dan anggota koperasi kami?",
-		a: "Data dienkripsi baik saat tersimpan di perangkat maupun saat dikirim ke server. Setiap peran memiliki akses terbatas sesuai kebutuhan, dan setiap perubahan tercatat dalam jejak audit.",
+		q: "Bagaimana dengan integrasi ke sistem pemerintah seperti Dukcapil dan Kemenkumham?",
+		a: "KOPET terintegrasi langsung ke API Dukcapil, Kemenkumham/AHU, DJP, Agrinas, dan Bank Himbara — verifikasi NIK, NPAK, NPWP, dan lahan bisa dilakukan dari satu platform tanpa berpindah sistem.",
 	},
 	{
-		q: "Berapa lama proses implementasi hingga koperasi bisa mulai memakai Nusara?",
-		a: "Rata-rata koperasi dapat mulai beroperasi penuh dalam 1–2 minggu, termasuk pelatihan pengurus dan migrasi data awal.",
+		q: "Apakah data dari sistem lama bisa dipindahkan ke KOPET?",
+		a: "Bisa. Tim implementasi KOPET membantu migrasi data anggota, legalitas, dan riwayat transaksi dari SIMKOPDES maupun spreadsheet tanpa biaya tambahan pada paket tahunan.",
 	},
 	{
-		q: "Apakah tersedia dukungan pelanggan berbahasa Indonesia?",
-		a: "Ya. Tim dukungan kami tersedia melalui WhatsApp dan telepon dalam Bahasa Indonesia setiap hari kerja, dengan waktu respons rata-rata di bawah satu jam.",
+		q: "Berapa lama proses implementasi hingga koperasi bisa mulai memakai KOPET?",
+		a: "Rata-rata koperasi dapat mulai beroperasi penuh dalam 1–2 minggu, termasuk pelatihan pengurus, migrasi data awal, dan verifikasi legalitas ke sistem pemerintah.",
 	},
 ];
 
-export default function NusaraApp() {
+export default function KOPETApp() {
 	const [isScrolled, setIsScrolled] = useState(false);
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 	const [openFaqIndex, setOpenFaqIndex] = useState(null);
@@ -86,7 +86,7 @@ export default function NusaraApp() {
 			(entries) => {
 				entries.forEach((entry) => {
 					if (entry.isIntersecting) {
-						entry.target.classList.add("in");
+						entry.target.setAttribute("data-revealed", "");
 						io.unobserve(entry.target);
 					}
 				});
@@ -133,7 +133,7 @@ export default function NusaraApp() {
                     transform: translateY(18px);
                     transition: opacity 0.7s cubic-bezier(0.22, 0.61, 0.36, 1), transform 0.7s cubic-bezier(0.22, 0.61, 0.36, 1);
                 }
-                .reveal.in { opacity: 1; transform: translateY(0); }
+                .reveal[data-revealed] { opacity: 1; transform: translateY(0); }
                 .reveal-delay-1 { transition-delay: 0.08s; }
                 .reveal-delay-2 { transition-delay: 0.16s; }
                 .reveal-delay-3 { transition-delay: 0.24s; }
@@ -182,7 +182,7 @@ export default function NusaraApp() {
 						<a
 							href="#hero-heading"
 							className="flex items-center gap-2.5 focus-ring"
-							aria-label="Nusara — Beranda"
+							aria-label="KOPET — Beranda"
 						>
 							<span className="relative w-9 h-9 rounded-xl bg-gradient-to-br from-[#398eb3] to-[#4CC9B0] grid place-items-center shadow-soft">
 								<svg
@@ -217,7 +217,7 @@ export default function NusaraApp() {
 								</svg>
 							</span>
 							<span className="font-display font-extrabold text-[19px] tracking-tight text-[#0F172A]">
-								Nusara
+								KOPET
 							</span>
 						</a>
 
@@ -227,7 +227,7 @@ export default function NusaraApp() {
 									className="hover:text-[#0F172A] transition-colors focus-ring"
 									href="#fitur"
 								>
-									Produk
+									Modul
 								</a>
 							</li>
 							<li>
@@ -243,7 +243,7 @@ export default function NusaraApp() {
 									className="hover:text-[#0F172A] transition-colors focus-ring"
 									href="#peran"
 								>
-									Untuk Tim Anda
+									Ekosistem
 								</a>
 							</li>
 							<li>
@@ -311,7 +311,7 @@ export default function NusaraApp() {
 									className="focus-ring"
 									onClick={() => setIsMenuOpen(false)}
 								>
-									Produk
+									Modul
 								</a>
 							</li>
 							<li>
@@ -329,7 +329,7 @@ export default function NusaraApp() {
 									className="focus-ring"
 									onClick={() => setIsMenuOpen(false)}
 								>
-									Untuk Tim Anda
+									Ekosistem
 								</a>
 							</li>
 							<li>
@@ -382,9 +382,9 @@ export default function NusaraApp() {
 								id="hero-heading"
 								className="font-display font-extrabold text-[38px] leading-[1.12] sm:text-[46px] lg:text-[56px] tracking-tight text-[#0F172A] mt-6"
 							>
-								Satu sistem, untuk setiap koperasi di{" "}
+								Platform ERP offline-first untuk{" "}
 								<span className="relative inline-block text-[#2F7698]">
-									Nusantara.
+									Koperasi Desa.
 									<svg
 										className="absolute left-0 -bottom-1 w-full"
 										height="10"
@@ -404,9 +404,10 @@ export default function NusaraApp() {
 							</h1>
 
 							<p className="text-[#475569] text-[17px] lg:text-[18px] leading-relaxed mt-6 max-w-[540px]">
-								Nusara menyatukan keanggotaan, akuntansi, kasir, dan simpan
-								pinjam koperasi Anda dalam satu platform ringan — yang tetap
-								bekerja penuh walau koneksi internet terputus.
+								KOPET mengintegrasikan POS toko sembako, simpan pinjam,
+								gudang, logistik, dan legalitas koperasi dalam satu sistem
+								yang tetap berfungsi penuh tanpa internet — siap menggantikan
+								SIMKOPDES untuk KDMP di seluruh Indonesia.
 							</p>
 
 							<div className="flex flex-wrap gap-3.5 mt-9">
@@ -451,11 +452,11 @@ export default function NusaraApp() {
 										1K+
 									</span>
 								</div>
-								<p className="text-[13.5px] text-[#94A3B8] leading-snug">
-									Dipercaya pengurus koperasi
-									<br className="hidden sm:block" />
-									di 34 provinsi
-								</p>
+							<p className="text-[13.5px] text-[#94A3B8] leading-snug">
+								Dirancang untuk8.494 Koperasi Desa
+								<br className="hidden sm:block" />
+								Kelurahan Merah Putih se-Indonesia
+							</p>
 							</div>
 						</div>
 
@@ -467,7 +468,7 @@ export default function NusaraApp() {
 											Status Sinkronisasi
 										</p>
 										<p className="font-display font-bold text-[#0F172A] text-[16px] mt-0.5">
-											Jaringan Koperasi Nusara
+											Monitoring Blankspot KDP
 										</p>
 									</div>
 									<span className="inline-flex items-center gap-1.5 text-[12px] font-semibold text-[#22C55E] bg-[#22C55E]/10 px-2.5 py-1 rounded-full">
@@ -557,15 +558,15 @@ export default function NusaraApp() {
 								<div className="grid grid-cols-2 gap-3 mt-5">
 									<div className="rounded-2xl bg-[#F1F5F9] px-4 py-3">
 										<p className="text-[11.5px] text-[#94A3B8] font-medium">
-											Simpanan Anggota Hari Ini
+											Koperasi Blankspot Terlayani
 										</p>
 										<p className="font-display font-bold text-[#0F172A] text-[18px] mt-0.5">
-											Rp 86,4 Jt
+											216 KDP
 										</p>
 									</div>
 									<div className="rounded-2xl bg-[#F1F5F9] px-4 py-3">
 										<p className="text-[11.5px] text-[#94A3B8] font-medium">
-											Transaksi Tersinkron
+											Sinkronisasi Offline
 										</p>
 										<p className="font-display font-bold text-[#0F172A] text-[18px] mt-0.5">
 											99.8%
@@ -574,7 +575,7 @@ export default function NusaraApp() {
 								</div>
 							</div>
 
-							<div className="float-y absolute -left-6 -bottom-8 sm:-left-10 glass-card rounded-2xl shadow-lift px-4 py-3.5 hidden sm:block">
+								<div className="float-y absolute -left-6 -bottom-8 sm:-left-10 glass-card rounded-2xl shadow-lift px-4 py-3.5 hidden sm:block">
 								<div className="flex items-center gap-2.5">
 									<span className="w-8 h-8 rounded-full bg-[#4CC9B0]/15 grid place-items-center">
 										<svg
@@ -594,10 +595,10 @@ export default function NusaraApp() {
 									</span>
 									<div>
 										<p className="text-[11px] text-[#94A3B8] font-medium">
-											Tutup Buku Otomatis
+											Sync Otomatis
 										</p>
 										<p className="text-[13.5px] font-bold text-[#0F172A]">
-											Selesai 06:00 WIB
+											Saat Kembali Online
 										</p>
 									</div>
 								</div>
@@ -635,32 +636,32 @@ export default function NusaraApp() {
 				{}
 				<section
 					className="relative -mt-2 lg:-mt-6 pb-6"
-					aria-label="Statistik penggunaan Nusara"
+					aria-label="Statistik penggunaan KOPET"
 				>
 					<div className="max-w-[1280px] mx-auto px-6 lg:px-10">
 						<div className="reveal rounded-[1.75rem] bg-[#0F172A] px-6 sm:px-10 py-9 sm:py-11 grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6 shadow-lift">
 							<div className="text-center lg:text-left lg:border-r lg:border-white/10 lg:pr-6">
 								<p className="font-display font-extrabold text-white text-[30px] sm:text-[36px] tracking-tight">
-									<StatCounter end={1240} suffix="+" />
+									<StatCounter end={8494} suffix="" />
 								</p>
 								<p className="text-[13px] text-white/60 font-medium mt-1">
-									Koperasi Terlayani
+									KDMP Target Nasional
 								</p>
 							</div>
 							<div className="text-center lg:text-left lg:border-r lg:border-white/10 lg:pr-6">
 								<p className="font-display font-extrabold text-white text-[30px] sm:text-[36px] tracking-tight">
-									<StatCounter end={34} />
+									<StatCounter end={216} suffix="" />
 								</p>
 								<p className="text-[13px] text-white/60 font-medium mt-1">
-									Provinsi Terjangkau
+									Koperasi Blankspot Jatim
 								</p>
 							</div>
 							<div className="text-center lg:text-left lg:border-r lg:border-white/10 lg:pr-6">
 								<p className="font-display font-extrabold text-white text-[30px] sm:text-[36px] tracking-tight">
-									<StatCounter end={18} suffix="Jt+" />
+									<StatCounter end={5} suffix="" />
 								</p>
 								<p className="text-[13px] text-white/60 font-medium mt-1">
-									Transaksi / Bulan
+									Modul Operasional Inti
 								</p>
 							</div>
 							<div className="text-center lg:text-left">
@@ -685,11 +686,12 @@ export default function NusaraApp() {
 							Modul Inti
 						</span>
 						<h2 className="font-display font-extrabold text-[30px] sm:text-[38px] text-[#0F172A] tracking-tight mt-3 leading-tight">
-							Setiap bagian koperasi, dalam satu ruang kerja
+							Seluruh operasional koperasi dalam satu ekosistem
 						</h2>
 						<p className="text-[#475569] text-[16px] leading-relaxed mt-4">
-							Dari buku anggota sampai neraca akhir tahun — modul Nusara
-							dirancang untuk saling terhubung, bukan berdiri sendiri-sendiri.
+							Dari kasir toko sembako hingga pengiriman logistik — KOPET
+							mengintegrasikan setiap unit usaha dalam satu platform yang
+							saling terhubung dan tetap berfungsi tanpa internet.
 						</p>
 					</div>
 
@@ -699,206 +701,9 @@ export default function NusaraApp() {
 							<div className="rounded-2xl bg-white border border-[#D8E4EA] shadow-soft p-5">
 								<div className="flex items-center justify-between mb-4">
 									<p className="font-display font-bold text-[#0F172A] text-[14.5px]">
-										Buku Anggota
+										Toko Sembako — POS
 									</p>
 									<span className="text-[11px] font-semibold text-[#22C55E] bg-[#22C55E]/10 px-2 py-0.5 rounded-full">
-										2.318 aktif
-									</span>
-								</div>
-								<div className="space-y-2.5">
-									<div className="flex items-center gap-3 rounded-xl bg-[#F1F5F9] px-3 py-2.5">
-										<span className="w-8 h-8 rounded-full bg-[#67B2D4] shrink-0"></span>
-										<div className="flex-1">
-											<div className="h-2 rounded bg-[#D8E4EA] w-2/3"></div>
-										</div>
-										<span className="text-[11px] text-[#94A3B8] font-medium">
-											Anggota
-										</span>
-									</div>
-									<div className="flex items-center gap-3 rounded-xl bg-[#F1F5F9] px-3 py-2.5">
-										<span className="w-8 h-8 rounded-full bg-[#4CC9B0] shrink-0"></span>
-										<div className="flex-1">
-											<div className="h-2 rounded bg-[#D8E4EA] w-1/2"></div>
-										</div>
-										<span className="text-[11px] text-[#94A3B8] font-medium">
-											Pengurus
-										</span>
-									</div>
-									<div className="flex items-center gap-3 rounded-xl bg-[#F1F5F9] px-3 py-2.5">
-										<span className="w-8 h-8 rounded-full bg-[#2F7698] shrink-0"></span>
-										<div className="flex-1">
-											<div className="h-2 rounded bg-[#D8E4EA] w-3/5"></div>
-										</div>
-										<span className="text-[11px] text-[#94A3B8] font-medium">
-											Calon Anggota
-										</span>
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<div className="order-1 lg:order-2">
-							<span className="w-12 h-12 rounded-2xl bg-[#EAF6FB] grid place-items-center mb-5">
-								<svg
-									width="22"
-									height="22"
-									viewBox="0 0 24 24"
-									fill="none"
-									stroke="#398eb3"
-									strokeWidth="1.8"
-								>
-									<path
-										d="M17 20v-1a4 4 0 00-4-4H7a4 4 0 00-4 4v1M10 11a4 4 0 100-8 4 4 0 000 8zM22 20v-1a4 4 0 00-3-3.87M15 3.13a4 4 0 010 7.75"
-										strokeLinecap="round"
-										strokeLinejoin="round"
-									/>
-								</svg>
-							</span>
-							<h3 className="font-display font-bold text-[24px] text-[#0F172A] tracking-tight">
-								Manajemen Keanggotaan
-							</h3>
-							<p className="text-[#475569] leading-relaxed mt-3.5">
-								Catat pendaftaran, simpanan pokok, dan riwayat keaktifan setiap
-								anggota secara digital. Kartu anggota, mutasi, dan RAT tahunan
-								terekam otomatis tanpa arsip kertas.
-							</p>
-							<ul className="mt-5 space-y-2.5">
-								{[
-									"Pendaftaran & verifikasi anggota baru",
-									"Kartu anggota digital & cetak",
-									"Rekap otomatis untuk RAT tahunan",
-								].map((text, i) => (
-									<li
-										key={i}
-										className="flex items-center gap-2.5 text-[14.5px] text-[#475569]"
-									>
-										<svg
-											width="16"
-											height="16"
-											viewBox="0 0 24 24"
-											fill="none"
-											stroke="#4CC9B0"
-											strokeWidth="2.5"
-											className="shrink-0"
-										>
-											<path
-												d="M5 13l4 4L19 7"
-												strokeLinecap="round"
-												strokeLinejoin="round"
-											/>
-										</svg>
-										{text}
-									</li>
-								))}
-							</ul>
-						</div>
-					</div>
-
-					{/* Feature 2 */}
-					<div className="reveal grid lg:grid-cols-2 gap-10 lg:gap-16 items-center py-10 lg:py-14">
-						<div>
-							<span className="w-12 h-12 rounded-2xl bg-[#EAF6FB] grid place-items-center mb-5">
-								<svg
-									width="22"
-									height="22"
-									viewBox="0 0 24 24"
-									fill="none"
-									stroke="#398eb3"
-									strokeWidth="1.8"
-								>
-									<path
-										d="M3 3v18h18M7 15l4-6 3 4 4-7"
-										strokeLinecap="round"
-										strokeLinejoin="round"
-									/>
-								</svg>
-							</span>
-							<h3 className="font-display font-bold text-[24px] text-[#0F172A] tracking-tight">
-								Akuntansi Keuangan
-							</h3>
-							<p className="text-[#475569] leading-relaxed mt-3.5">
-								Jurnal umum, buku besar, dan laporan SHU tersusun otomatis
-								sesuai standar akuntansi koperasi. Tak perlu lagi rekonsiliasi
-								manual di akhir bulan.
-							</p>
-							<ul className="mt-5 space-y-2.5">
-								{[
-									"Jurnal & buku besar otomatis",
-									"Perhitungan SHU per anggota",
-									"Neraca & laba rugi real-time",
-								].map((text, i) => (
-									<li
-										key={i}
-										className="flex items-center gap-2.5 text-[14.5px] text-[#475569]"
-									>
-										<svg
-											width="16"
-											height="16"
-											viewBox="0 0 24 24"
-											fill="none"
-											stroke="#4CC9B0"
-											strokeWidth="2.5"
-											className="shrink-0"
-										>
-											<path
-												d="M5 13l4 4L19 7"
-												strokeLinecap="round"
-												strokeLinejoin="round"
-											/>
-										</svg>
-										{text}
-									</li>
-								))}
-							</ul>
-						</div>
-
-						<div className="rounded-[1.75rem] bg-[#F1F5F9] border border-[#D8E4EA] p-6 lg:p-8">
-							<div className="rounded-2xl bg-white border border-[#D8E4EA] shadow-soft p-5">
-								<p className="font-display font-bold text-[#0F172A] text-[14.5px] mb-4">
-									Ringkasan SHU 2025
-								</p>
-								<div className="flex items-end gap-2 h-32">
-									<div
-										className="flex-1 rounded-t-lg bg-[#EAF6FB]"
-										style={{ height: "45%" }}
-									></div>
-									<div
-										className="flex-1 rounded-t-lg bg-[#67B2D4]"
-										style={{ height: "65%" }}
-									></div>
-									<div
-										className="flex-1 rounded-t-lg bg-[#398eb3]"
-										style={{ height: "55%" }}
-									></div>
-									<div
-										className="flex-1 rounded-t-lg bg-[#4CC9B0]"
-										style={{ height: "85%" }}
-									></div>
-									<div
-										className="flex-1 rounded-t-lg bg-[#2F7698]"
-										style={{ height: "70%" }}
-									></div>
-								</div>
-								<div className="flex justify-between mt-2 text-[10.5px] text-[#94A3B8] font-medium">
-									<span>Q1</span>
-									<span>Q2</span>
-									<span>Q3</span>
-									<span>Q4</span>
-									<span>SHU</span>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					{/* Feature 3 */}
-					<div className="reveal grid lg:grid-cols-2 gap-10 lg:gap-16 items-center py-10 lg:py-14">
-						<div className="order-2 lg:order-1 rounded-[1.75rem] bg-[#F1F5F9] border border-[#D8E4EA] p-6 lg:p-8">
-							<div className="rounded-2xl bg-white border border-[#D8E4EA] shadow-soft p-5">
-								<div className="flex justify-between items-center mb-4">
-									<p className="font-display font-bold text-[#0F172A] text-[14.5px]">
-										Transaksi Kasir
-									</p>
-									<span className="text-[11px] font-semibold text-[#2F7698] bg-[#EAF6FB] px-2 py-0.5 rounded-full">
 										Offline OK
 									</span>
 								</div>
@@ -951,18 +756,18 @@ export default function NusaraApp() {
 								</svg>
 							</span>
 							<h3 className="font-display font-bold text-[24px] text-[#0F172A] tracking-tight">
-								Kasir (POS) Koperasi
+								Toko Sembako (POS + Inventaris)
 							</h3>
 							<p className="text-[#475569] leading-relaxed mt-3.5">
-								Layani transaksi toko dan unit usaha koperasi secepat kasir
-								modern — tetap berjalan mulus saat listrik atau internet di
-								lokasi tidak stabil.
+								Transaksi jual-beli harian di outlet koperasi berfungsi
+								penuh tanpa internet — kasir scan barcode, cetak struk,
+								dan pantau stok secara real-time dari perangkat Android.
 							</p>
 							<ul className="mt-5 space-y-2.5">
 								{[
-									"Cetak & kirim struk digital",
-									"Pemindai barcode bawaan",
-									"Transaksi tetap tersimpan saat offline",
+									"Transaksi offline penuh — struk tetap tercetak",
+									"Barcode scan & input manual barang",
+									"Alert stok menipis dari aturan lokal",
 								].map((text, i) => (
 									<li
 										key={i}
@@ -990,7 +795,7 @@ export default function NusaraApp() {
 						</div>
 					</div>
 
-					{/* Feature 4 */}
+					{/* Feature 2 */}
 					<div className="reveal grid lg:grid-cols-2 gap-10 lg:gap-16 items-center py-10 lg:py-14">
 						<div>
 							<span className="w-12 h-12 rounded-2xl bg-[#EAF6FB] grid place-items-center mb-5">
@@ -1014,14 +819,14 @@ export default function NusaraApp() {
 							</h3>
 							<p className="text-[#475569] leading-relaxed mt-3.5">
 								Kelola simpanan wajib, sukarela, dan pengajuan pinjaman anggota
-								dengan skema bunga fleksibel serta jadwal angsuran yang terlacak
-								otomatis.
+								dengan skema bunga fleksibel — petugas lapangan bisa mencatat
+								setoran langsung di lokasi anggota tanpa sinyal.
 							</p>
 							<ul className="mt-5 space-y-2.5">
 								{[
-									"Simulasi & pengajuan pinjaman",
-									"Notifikasi jatuh tempo angsuran",
-									"Riwayat simpanan per anggota",
+									"Catat mutasi simpanan offline di lokasi anggota",
+									"Simulasi & pengajuan pinjaman draft offline",
+									"Notifikasi jatuh tempo dari aturan lokal",
 								].map((text, i) => (
 									<li
 										key={i}
@@ -1085,6 +890,223 @@ export default function NusaraApp() {
 						</div>
 					</div>
 
+					{/* Feature 3 */}
+					<div className="reveal grid lg:grid-cols-2 gap-10 lg:gap-16 items-center py-10 lg:py-14">
+						<div className="order-2 lg:order-1 rounded-[1.75rem] bg-[#F1F5F9] border border-[#D8E4EA] p-6 lg:p-8">
+							<div className="rounded-2xl bg-white border border-[#D8E4EA] shadow-soft p-5">
+								<div className="flex justify-between items-center mb-4">
+									<p className="font-display font-bold text-[#0F172A] text-[14.5px]">
+										Stok Gudang
+									</p>
+									<span className="text-[11px] font-semibold text-[#2F7698] bg-[#EAF6FB] px-2 py-0.5 rounded-full">
+										Real-time
+									</span>
+								</div>
+								<div className="space-y-2">
+									<div className="flex justify-between text-[13.5px] py-1.5 border-b border-[#E8EEF2]">
+										<span className="text-[#475569]">Beras Premium 5kg</span>
+										<span className="font-semibold text-[#0F172A]">
+											1.200 kg
+										</span>
+									</div>
+									<div className="flex justify-between text-[13.5px] py-1.5 border-b border-[#E8EEF2]">
+										<span className="text-[#475569]">Minyak Goreng 1L</span>
+										<span className="font-semibold text-[#0F172A]">
+											480 liter
+										</span>
+									</div>
+									<div className="flex justify-between text-[13.5px] py-1.5">
+										<span className="text-[#475569]">Gula Pasir 1kg</span>
+										<span className="font-semibold text-[#0F172A]">
+											320 kg
+										</span>
+									</div>
+								</div>
+								<div className="flex justify-between items-center mt-3 pt-3 border-t border-[#D8E4EA]">
+									<span className="font-display font-bold text-[#0F172A] text-[15px]">
+										Total Item
+									</span>
+									<span className="font-display font-bold text-[#2F7698] text-[17px]">
+										24 Produk
+									</span>
+								</div>
+							</div>
+						</div>
+
+						<div className="order-1 lg:order-2">
+							<span className="w-12 h-12 rounded-2xl bg-[#EAF6FB] grid place-items-center mb-5">
+								<svg
+									width="22"
+									height="22"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="#398eb3"
+									strokeWidth="1.8"
+								>
+									<path
+										d="M20 7h-3V5a2 2 0 00-2-2H9a2 2 0 00-2 2v2H4a1 1 0 00-1 1v11a1 1 0 001 1h16a1 1 0 001-1V8a1 1 0 00-1-1zM9 5h6v2H9V5z"
+										strokeLinejoin="round"
+									/>
+								</svg>
+							</span>
+							<h3 className="font-display font-bold text-[24px] text-[#0F172A] tracking-tight">
+								Gudang & Inventaris
+							</h3>
+							<p className="text-[#475569] leading-relaxed mt-3.5">
+								Kelola penerimaan barang dari petani/produsen, transfer stok
+								antar gudang dan toko, serta stok opname — semua dengan foto
+								QC dan pencatatan ledger yang tidak bisa di-overwrite.
+							</p>
+							<ul className="mt-5 space-y-2.5">
+								{[
+									"Penerimaan barang + foto QC tanpa sinyal",
+									"Transfer stok antar gudang & toko",
+									"Stok opname dengan approval otomatis",
+								].map((text, i) => (
+									<li
+										key={i}
+										className="flex items-center gap-2.5 text-[14.5px] text-[#475569]"
+									>
+										<svg
+											width="16"
+											height="16"
+											viewBox="0 0 24 24"
+											fill="none"
+											stroke="#4CC9B0"
+											strokeWidth="2.5"
+											className="shrink-0"
+										>
+											<path
+												d="M5 13l4 4L19 7"
+												strokeLinecap="round"
+												strokeLinejoin="round"
+											/>
+										</svg>
+										{text}
+									</li>
+								))}
+							</ul>
+						</div>
+					</div>
+
+					{/* Feature 4 */}
+					<div className="reveal grid lg:grid-cols-2 gap-10 lg:gap-16 items-center py-10 lg:py-14">
+						<div>
+							<span className="w-12 h-12 rounded-2xl bg-[#EAF6FB] grid place-items-center mb-5">
+								<svg
+									width="22"
+									height="22"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="#398eb3"
+									strokeWidth="1.8"
+								>
+									<path
+										d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"
+										strokeLinecap="round"
+										strokeLinejoin="round"
+									/>
+									<circle cx="12" cy="12" r="3" />
+								</svg>
+							</span>
+							<h3 className="font-display font-bold text-[24px] text-[#0F172A] tracking-tight">
+								Logistik & Pengiriman
+							</h3>
+							<p className="text-[#475569] leading-relaxed mt-3.5">
+								Atur jadwal pengiriman, penugasan sopir dan kendaraan, serta
+								appointment dengan tujuan — semuanya bisa diakses sepanjang hari
+								meski tidak ada sinyal di jalan.
+							</p>
+							<ul className="mt-5 space-y-2.5">
+								{[
+									"Jadwal & appointment terlihat tanpa internet",
+									"Bukti terima tanda tangan & foto di lokasi",
+									"Deteksi konflik alokasi kendaraan saat sync",
+								].map((text, i) => (
+									<li
+										key={i}
+										className="flex items-center gap-2.5 text-[14.5px] text-[#475569]"
+									>
+										<svg
+											width="16"
+											height="16"
+											viewBox="0 0 24 24"
+											fill="none"
+											stroke="#4CC9B0"
+											strokeWidth="2.5"
+											className="shrink-0"
+										>
+											<path
+												d="M5 13l4 4L19 7"
+												strokeLinecap="round"
+												strokeLinejoin="round"
+											/>
+										</svg>
+										{text}
+									</li>
+								))}
+							</ul>
+						</div>
+
+						<div className="rounded-[1.75rem] bg-[#F1F5F9] border border-[#D8E4EA] p-6 lg:p-8">
+							<div className="rounded-2xl bg-white border border-[#D8E4EA] shadow-soft p-5">
+								<p className="font-display font-bold text-[#0F172A] text-[14.5px] mb-3">
+									Jadwal Pengiriman Hari Ini
+								</p>
+								<div className="space-y-2.5">
+									<div className="flex items-center gap-3 rounded-xl bg-[#F1F5F9] px-3 py-2.5">
+										<span className="w-8 h-8 rounded-full bg-[#4CC9B0] grid place-items-center text-white text-[11px] font-bold shrink-0">
+											1
+										</span>
+										<div className="flex-1">
+											<p className="text-[13px] font-semibold text-[#0F172A]">
+												Toko Maju Jaya
+											</p>
+											<p className="text-[11px] text-[#94A3B8]">
+												08:00 — B 1234 CD
+											</p>
+										</div>
+										<span className="text-[11px] font-semibold text-[#22C55E] bg-[#22C55E]/10 px-2 py-0.5 rounded-full">
+											Selesai
+										</span>
+									</div>
+									<div className="flex items-center gap-3 rounded-xl bg-[#F1F5F9] px-3 py-2.5">
+										<span className="w-8 h-8 rounded-full bg-[#398eb3] grid place-items-center text-white text-[11px] font-bold shrink-0">
+											2
+										</span>
+										<div className="flex-1">
+											<p className="text-[13px] font-semibold text-[#0F172A]">
+												Gudang Pusat
+											</p>
+											<p className="text-[11px] text-[#94A3B8]">
+												11:00 — B 5678 EF
+											</p>
+										</div>
+										<span className="text-[11px] font-semibold text-[#F59E0B] bg-[#F59E0B]/10 px-2 py-0.5 rounded-full">
+											Dalam Perjalanan
+										</span>
+									</div>
+									<div className="flex items-center gap-3 rounded-xl bg-[#F1F5F9] px-3 py-2.5">
+										<span className="w-8 h-8 rounded-full bg-[#67B2D4] grid place-items-center text-white text-[11px] font-bold shrink-0">
+											3
+										</span>
+										<div className="flex-1">
+											<p className="text-[13px] font-semibold text-[#0F172A]">
+												Toko Barokah
+											</p>
+											<p className="text-[11px] text-[#94A3B8]">
+												14:00 — B 9012 GH
+											</p>
+										</div>
+										<span className="text-[11px] font-semibold text-[#94A3B8] bg-[#F1F5F9] px-2 py-0.5 rounded-full">
+											Terjadwal
+										</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
 					{}
 					<div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-8">
 						<div className="reveal rounded-2xl bg-white border border-[#D8E4EA] p-6 hover:shadow-lift hover:-translate-y-1 transition-all duration-300">
@@ -1098,17 +1120,18 @@ export default function NusaraApp() {
 									strokeWidth="1.8"
 								>
 									<path
-										d="M20 7h-3V5a2 2 0 00-2-2H9a2 2 0 00-2 2v2H4a1 1 0 00-1 1v11a1 1 0 001 1h16a1 1 0 001-1V8a1 1 0 00-1-1zM9 5h6v2H9V5z"
+										d="M9 12h6M12 9v6M3 7h18v14H3z"
+										strokeLinecap="round"
 										strokeLinejoin="round"
 									/>
 								</svg>
 							</span>
 							<h4 className="font-display font-bold text-[#0F172A] text-[16px]">
-								Inventaris
+								Legalitas & Integrasi
 							</h4>
 							<p className="text-[13.5px] text-[#475569] leading-relaxed mt-2">
-								Stok unit usaha terpantau real-time dengan peringatan otomatis
-								saat menipis.
+								Verifikasi NIK, NPAK, NPWP ke Dukcapil, Kemenkumham, DJP
+								dari satu platform — pengganti SIMKOPDES.
 							</p>
 						</div>
 						<div className="reveal reveal-delay-1 rounded-2xl bg-white border border-[#D8E4EA] p-6 hover:shadow-lift hover:-translate-y-1 transition-all duration-300">
@@ -1122,18 +1145,18 @@ export default function NusaraApp() {
 									strokeWidth="1.8"
 								>
 									<path
-										d="M3 7l4-4 4 4M3 17l4 4 4-4M13 5h8M13 12h8M13 19h8"
+										d="M4 12a8 8 0 0114-5.3M20 12a8 8 0 01-14 5.3M4 4v5h5M20 20v-5h-5"
 										strokeLinecap="round"
 										strokeLinejoin="round"
 									/>
 								</svg>
 							</span>
 							<h4 className="font-display font-bold text-[#0F172A] text-[16px]">
-								Logistik
+								Sync Engine Batch
 							</h4>
 							<p className="text-[13.5px] text-[#475569] leading-relaxed mt-2">
-								Atur distribusi barang antar unit usaha dan cabang koperasi
-								dengan mudah.
+								Seluruh mutasi lokal tersinkron otomatis ke server dengan
+								idempotency key & resolusi konflik.
 							</p>
 						</div>
 						<div className="reveal reveal-delay-2 rounded-2xl bg-white border border-[#D8E4EA] p-6 hover:shadow-lift hover:-translate-y-1 transition-all duration-300">
@@ -1154,11 +1177,11 @@ export default function NusaraApp() {
 								</svg>
 							</span>
 							<h4 className="font-display font-bold text-[#0F172A] text-[16px]">
-								Laporan & Analitik
+								Dashboard Bertingkat
 							</h4>
 							<p className="text-[13.5px] text-[#475569] leading-relaxed mt-2">
-								Dasbor siap pakai untuk RAT, audit internal, dan pelaporan ke
-								dinas koperasi.
+								Visibilitas berjenjang untuk Pengurus, BA, PMO, hingga
+								Dinas/Kementerian — sesuai peran masing-masing.
 							</p>
 						</div>
 						<div className="reveal reveal-delay-3 rounded-2xl bg-white border border-[#D8E4EA] p-6 hover:shadow-lift hover:-translate-y-1 transition-all duration-300">
@@ -1172,18 +1195,18 @@ export default function NusaraApp() {
 									strokeWidth="1.8"
 								>
 									<path
-										d="M4 12a8 8 0 0114-5.3M20 12a8 8 0 01-14 5.3M4 4v5h5M20 20v-5h-5"
+										d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.56 5.82 22 7 14.14l-5-4.87 6.91-1.01L12 2z"
 										strokeLinecap="round"
 										strokeLinejoin="round"
 									/>
 								</svg>
 							</span>
 							<h4 className="font-display font-bold text-[#0F172A] text-[16px]">
-								Sinkronisasi Offline
+								AI Cache & Rules
 							</h4>
 							<p className="text-[13.5px] text-[#475569] leading-relaxed mt-2">
-								Semua modul tetap dapat dipakai tanpa internet dan tersinkron
-								otomatis.
+								Alert stok, rekomendasi restock, dan deteksi tren tunggakan
+								berjalan lokal tanpa perlu inferensi server.
 							</p>
 						</div>
 					</div>
@@ -1196,14 +1219,14 @@ export default function NusaraApp() {
 				>
 					<div className="absolute inset-0 -z-10 bg-gradient-to-b from-[#F7FAFC] via-[#EAF6FB]/60 to-[#F7FAFC]"></div>
 					<div className="max-w-[1280px] mx-auto px-6 lg:px-10">
-						<div className="reveal max-w-[620px] mx-auto text-center mb-14">
-							<span className="text-[13px] font-bold text-[#2F7698] uppercase tracking-wider">
-								Ruang Kerja Pengurus
-							</span>
-							<h2 className="font-display font-extrabold text-[30px] sm:text-[38px] text-[#0F172A] tracking-tight mt-3 leading-tight">
-								Semua yang perlu dipantau, dalam satu layar
-							</h2>
-						</div>
+					<div className="reveal max-w-[620px] mx-auto text-center mb-14">
+						<span className="text-[13px] font-bold text-[#2F7698] uppercase tracking-wider">
+							Dashboard Bertingkat
+						</span>
+						<h2 className="font-display font-extrabold text-[30px] sm:text-[38px] text-[#0F172A] tracking-tight mt-3 leading-tight">
+							Visibilitas sesuai peran — dari lapangan hingga pusat
+						</h2>
+					</div>
 
 						<div className="reveal relative max-w-[980px] mx-auto">
 							<div className="rounded-[2.25rem] bg-white border border-[#D8E4EA] shadow-lift p-3 sm:p-4">
@@ -1222,50 +1245,53 @@ export default function NusaraApp() {
 												Ringkasan
 											</div>
 											<div className="px-3 py-2 rounded-lg text-[#475569] text-[13px] font-medium">
-												Keanggotaan
-											</div>
-											<div className="px-3 py-2 rounded-lg text-[#475569] text-[13px] font-medium">
-												Keuangan
+												Toko Sembako
 											</div>
 											<div className="px-3 py-2 rounded-lg text-[#475569] text-[13px] font-medium">
 												Simpan Pinjam
 											</div>
 											<div className="px-3 py-2 rounded-lg text-[#475569] text-[13px] font-medium">
-												Inventaris
+												Gudang
+											</div>
+											<div className="px-3 py-2 rounded-lg text-[#475569] text-[13px] font-medium">
+												Logistik
+											</div>
+											<div className="px-3 py-2 rounded-lg text-[#475569] text-[13px] font-medium">
+												Legalitas
 											</div>
 										</div>
 										<div className="p-5 sm:p-7 grid sm:grid-cols-2 gap-4">
 											<div className="rounded-2xl bg-white border border-[#D8E4EA] p-5 shadow-soft">
 												<p className="text-[12px] text-[#94A3B8] font-medium">
-													Pendapatan Hari Ini
+													Total Anggota
 												</p>
 												<p className="font-display font-bold text-[#0F172A] text-[22px] mt-1">
-													Rp 42.500.000
+													2.318
 												</p>
 												<p className="text-[12px] text-[#22C55E] font-semibold mt-1">
-													+12.4% dari kemarin
+													+48 minggu ini
 												</p>
 											</div>
 											<div className="rounded-2xl bg-white border border-[#D8E4EA] p-5 shadow-soft">
 												<p className="text-[12px] text-[#94A3B8] font-medium">
-													Persetujuan Tertunda
+													Pengajuan Pending
 												</p>
 												<p className="font-display font-bold text-[#0F172A] text-[22px] mt-1">
-													12
+													12 Pinjaman
 												</p>
 												<p className="text-[12px] text-[#F59E0B] font-semibold mt-1">
-													Perlu tinjauan pengurus
+													Butuh approval BA
 												</p>
 											</div>
 											<div className="rounded-2xl bg-white border border-[#D8E4EA] p-5 shadow-soft">
 												<p className="text-[12px] text-[#94A3B8] font-medium">
-													Peringatan Stok
+													Item Pending Sync
 												</p>
 												<p className="font-display font-bold text-[#0F172A] text-[22px] mt-1">
-													3 Produk
+													34 Item
 												</p>
 												<p className="text-[12px] text-[#EF4444] font-semibold mt-1">
-													Segera restock
+													Butuh koneksi stabil
 												</p>
 											</div>
 											<div className="rounded-2xl bg-white border border-[#D8E4EA] p-5 shadow-soft">
@@ -1317,13 +1343,13 @@ export default function NusaraApp() {
 								Arsitektur Offline-First
 							</span>
 							<h2 className="font-display font-extrabold text-[30px] sm:text-[36px] text-[#0F172A] tracking-tight mt-3 leading-tight">
-								Dibangun untuk koneksi yang naik-turun
+								Dibangun untuk koperasi di area blankspot
 							</h2>
 							<p className="text-[#475569] leading-relaxed mt-4">
-								Banyak wilayah koperasi di Indonesia belum punya internet
-								stabil. Nusara menyimpan data langsung di perangkat pengguna,
-								lalu menyinkronkannya begitu koneksi tersedia — tanpa transaksi
-								yang hilang.
+								SIMKOPDES tidak bisa diakses tanpa internet — KOPET dirancang
+								untuk wilayah di mana konektivitas terbatas. Data tersimpan
+								langsung di perangkat, lalu tersinkron otomatis begitu koneksi
+								kembali, tanpa ada transaksi yang hilang.
 							</p>
 
 							<div className="mt-7 space-y-4">
@@ -1508,7 +1534,7 @@ export default function NusaraApp() {
 										/>
 									</svg>
 									<span className="text-white font-semibold text-[14px]">
-										Server Pusat Nusara
+										Server Pusat KOPET
 									</span>
 								</div>
 							</div>
@@ -1519,71 +1545,71 @@ export default function NusaraApp() {
 				{}
 				<section id="peran" className="py-24 lg:py-32 bg-[#F1F5F9]">
 					<div className="max-w-[1280px] mx-auto px-6 lg:px-10">
-						<div className="reveal max-w-[620px] mx-auto text-center mb-14">
-							<span className="text-[13px] font-bold text-[#2F7698] uppercase tracking-wider">
-								Untuk Seluruh Tim
-							</span>
-							<h2 className="font-display font-extrabold text-[30px] sm:text-[38px] text-[#0F172A] tracking-tight mt-3 leading-tight">
-								Satu akses untuk setiap peran di koperasi
-							</h2>
-							<p className="text-[#475569] text-[16px] leading-relaxed mt-4">
-								Hak akses disesuaikan otomatis — setiap orang melihat hanya yang
-								relevan dengan tugasnya.
-							</p>
-						</div>
+					<div className="reveal max-w-[620px] mx-auto text-center mb-14">
+						<span className="text-[13px] font-bold text-[#2F7698] uppercase tracking-wider">
+							Untuk Seluruh Ekosistem
+						</span>
+						<h2 className="font-display font-extrabold text-[30px] sm:text-[38px] text-[#0F172A] tracking-tight mt-3 leading-tight">
+							Satu platform, setiap peran terhubung
+						</h2>
+						<p className="text-[#475569] text-[16px] leading-relaxed mt-4">
+							Dari kasir di lapangan hingga Dinas Kementerian di pusat — hak
+							akses disesuaikan otomatis sesuai tugas masing-masing.
+						</p>
+					</div>
 
-						<div className="grid grid-cols-2 sm:grid-cols-4 gap-5">
-							{[
-								{
-									l: "M",
-									title: "Manajer",
-									desc: "Pengawasan penuh",
-									g: "from-[#398eb3] to-[#2F7698]",
-								},
-								{
-									l: "K",
-									title: "Kasir",
-									desc: "Transaksi harian",
-									g: "from-[#4CC9B0] to-[#398eb3]",
-								},
-								{
-									l: "G",
-									title: "Petugas Gudang",
-									desc: "Kelola stok",
-									g: "from-[#67B2D4] to-[#398eb3]",
-								},
-								{
-									l: "A",
-									title: "Administrator",
-									desc: "Konfigurasi sistem",
-									g: "from-[#2F7698] to-[#0F172A]",
-								},
-								{
-									l: "S",
-									title: "Supervisor",
-									desc: "Tinjau persetujuan",
-									g: "from-[#398eb3] to-[#4CC9B0]",
-								},
-								{
-									l: "A",
-									title: "Anggota",
-									desc: "Lihat simpanan",
-									g: "from-[#EAF6FB] to-[#67B2D4]",
-									tc: "text-[#2F7698]",
-								},
-								{
-									l: "A",
-									title: "Auditor",
-									desc: "Jejak audit lengkap",
-									g: "from-[#F59E0B] to-[#2F7698]",
-								},
-								{
-									l: "P",
-									title: "Pengemudi",
-									desc: "Distribusi barang",
-									g: "from-[#4CC9B0] to-[#0F172A]",
-								},
-							].map((role, i) => (
+					<div className="grid grid-cols-2 sm:grid-cols-4 gap-5">
+						{[
+							{
+								l: "K",
+								title: "Kasir",
+								desc: "Transaksi POS harian",
+								g: "from-[#4CC9B0] to-[#398eb3]",
+							},
+							{
+								l: "P",
+								title: "Petugas Lapangan",
+								desc: "Simpan pinjam offline",
+								g: "from-[#398eb3] to-[#2F7698]",
+							},
+							{
+								l: "G",
+								title: "Petugas Gudang",
+								desc: "Stok & penerimaan",
+								g: "from-[#67B2D4] to-[#398eb3]",
+							},
+							{
+								l: "S",
+								title: "Sopir & Koordinator",
+								desc: "Logistik & pengiriman",
+								g: "from-[#398eb3] to-[#4CC9B0]",
+							},
+							{
+								l: "P",
+								title: "Pengurus",
+								desc: "Profil & legalitas",
+								g: "from-[#2F7698] to-[#0F172A]",
+							},
+							{
+								l: "A",
+								title: "Anggota",
+								desc: "Simpanan & pinjaman",
+								g: "from-[#EAF6FB] to-[#67B2D4]",
+								tc: "text-[#2F7698]",
+							},
+							{
+								l: "B",
+								title: "Business Assistant",
+								desc: "Approval & monitoring",
+								g: "from-[#F59E0B] to-[#2F7698]",
+							},
+							{
+								l: "M",
+								title: "PMO & Dinas",
+								desc: "Agregasi lintas-koperasi",
+								g: "from-[#4CC9B0] to-[#0F172A]",
+							},
+						].map((role, i) => (
 								<div
 									key={i}
 									className={`reveal reveal-delay-${i % 4} rounded-2xl bg-white border border-[#D8E4EA] p-5 text-center hover:-translate-y-1 hover:shadow-soft transition-all duration-300`}
@@ -1612,27 +1638,27 @@ export default function NusaraApp() {
 							Sebelum & Sesudah
 						</span>
 						<h2 className="font-display font-extrabold text-[30px] sm:text-[38px] text-[#0F172A] tracking-tight mt-3 leading-tight">
-							Dari pencatatan manual, ke sistem yang bekerja untuk Anda
+							Dari keterbatasan SIMKOPDES, ke solusi yang bekerja untuk Anda
 						</h2>
 					</div>
 
 					<div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
 						{[
 							{
-								old: "Pencatatan buku manual, rawan salah hitung dan hilang.",
-								new: "Pencatatan otomatis & real-time di setiap transaksi.",
+								old: "SIMKOPDES tidak bisa diakses di area blankspot — 216 koperasi di Jatim gagal update data.",
+								new: "KOPET berfungsi penuh tanpa internet, data tersinkron otomatis saat kembali online.",
 							},
 							{
-								old: "Berhenti total ketika internet di lokasi mati.",
-								new: "Tetap beroperasi penuh tanpa koneksi internet.",
+								old: "POS dan simpan pinjam masih dicatat manual di kertas/Excel, rawan selisih.",
+								new: "Seluruh unit usaha tercatat digital real-time dari satu platform.",
 							},
 							{
-								old: "Laporan RAT disusun manual, butuh berminggu-minggu.",
-								new: "Laporan RAT siap cetak hanya dalam hitungan menit.",
+								old: "Data keuangan tersebar di banyak buku dan file, sulit direkonsiliasi.",
+								new: "Semua data teragregasi dalam satu sistem dengan jejak audit lengkap.",
 							},
 							{
-								old: "Data tersebar di banyak buku dan file terpisah.",
-								new: "Semua data tersimpan dalam satu sistem terpadu.",
+								old: "Verifikasi legalitas harus dilakukan terpisah di berbagai sistem pemerintah.",
+								new: "Integrasi Dukcapil, Kemenkumham, DJP, dan Bank Himbara dari satu platform.",
 							},
 						].map((item, i) => (
 							<div
@@ -1641,7 +1667,7 @@ export default function NusaraApp() {
 							>
 								<div className="p-6 bg-[#F1F5F9]">
 									<p className="text-[11px] font-bold text-[#94A3B8] uppercase tracking-wide mb-2">
-										Sistem Lama
+										SIMKOPDES / Manual
 									</p>
 									<p className="text-[14.5px] text-[#475569] leading-relaxed">
 										{item.old}
@@ -1649,7 +1675,7 @@ export default function NusaraApp() {
 								</div>
 								<div className="p-6 bg-white border-t border-[#D8E4EA]">
 									<p className="text-[11px] font-bold text-[#2F7698] uppercase tracking-wide mb-2">
-										Dengan Nusara
+										Dengan KOPET
 									</p>
 									<p className="text-[14.5px] text-[#0F172A] font-medium leading-relaxed">
 										{item.new}
@@ -1668,13 +1694,13 @@ export default function NusaraApp() {
 					<div className="absolute inset-0 -z-10 bg-gradient-to-b from-[#EAF6FB]/70 via-[#F7FAFC] to-[#F7FAFC]"></div>
 					<div className="max-w-[1280px] mx-auto px-6 lg:px-10">
 						<div className="reveal max-w-[620px] mx-auto text-center mb-14">
-							<span className="text-[13px] font-bold text-[#2F7698] uppercase tracking-wider">
-								Kata Pengurus Koperasi
-							</span>
-							<h2 className="font-display font-extrabold text-[30px] sm:text-[38px] text-[#0F172A] tracking-tight mt-3 leading-tight">
-								Dipercaya pengurus dari Sabang sampai Merauke
-							</h2>
-						</div>
+						<span className="text-[13px] font-bold text-[#2F7698] uppercase tracking-wider">
+							Kata Pengurus Koperasi Desa
+						</span>
+						<h2 className="font-display font-extrabold text-[30px] sm:text-[38px] text-[#0F172A] tracking-tight mt-3 leading-tight">
+							Dipercaya pengurus KDMP dari Sabang sampai Merauke
+						</h2>
+					</div>
 
 						<div className="grid lg:grid-cols-3 gap-6">
 							<blockquote className="reveal glass-card rounded-[1.75rem] p-7 shadow-soft">
@@ -1688,7 +1714,7 @@ export default function NusaraApp() {
 									<path d="M0 20V11.5C0 4.5 4 0 10.5 0v4.5C7 5 5 7 5 11.5H10V20H0zM15.5 20V11.5C15.5 4.5 19.5 0 26 0v4.5c-3.5.5-5.5 2.5-5.5 7H26V20h-10.5z" />
 								</svg>
 								<p className="text-[#475569] leading-relaxed text-[15px]">
-									Sejak pakai Nusara, tutup buku bulanan yang dulu makan waktu
+									Sejak pakai KOPET, tutup buku bulanan yang dulu makan waktu
 									seminggu sekarang selesai dalam sehari. Pengurus jadi bisa
 									fokus melayani anggota.
 								</p>
@@ -1716,7 +1742,7 @@ export default function NusaraApp() {
 									<path d="M0 20V11.5C0 4.5 4 0 10.5 0v4.5C7 5 5 7 5 11.5H10V20H0zM15.5 20V11.5C15.5 4.5 19.5 0 26 0v4.5c-3.5.5-5.5 2.5-5.5 7H26V20h-10.5z" />
 								</svg>
 								<p className="text-[#475569] leading-relaxed text-[15px]">
-									Lokasi kami sering mati sinyal. Justru fitur offline Nusara
+									Lokasi kami sering mati sinyal. Justru fitur offline KOPET
 									yang membuat kasir tetap jalan tanpa gangguan — transaksi
 									tidak pernah hilang.
 								</p>
@@ -1828,11 +1854,11 @@ export default function NusaraApp() {
 						<div className="blob absolute -bottom-24 -right-10 w-80 h-80 rounded-full bg-[#4CC9B0]/20"></div>
 						<div className="relative max-w-[640px] mx-auto">
 							<h2 className="font-display font-extrabold text-white text-[30px] sm:text-[40px] tracking-tight leading-tight">
-								Siap membawa koperasi Anda ke era digital?
+								Siap bawa Koperasi Desa Anda ke era digital?
 							</h2>
 							<p className="text-white/75 text-[16px] leading-relaxed mt-4">
-								Coba Nusara gratis selama 30 hari — tanpa kartu kredit, tanpa
-								instalasi rumit.
+								Coba KOPET gratis selama 30 hari — tanpa kartu kredit,
+								siap menggantikan SIMKOPDES untuk koperasi Anda.
 							</p>
 							<div className="flex flex-wrap justify-center gap-3.5 mt-9">
 								<a
@@ -1883,18 +1909,18 @@ export default function NusaraApp() {
 									</svg>
 								</span>
 								<span className="font-display font-extrabold text-[18px] text-[#0F172A]">
-									Nusara
+									KOPET
 								</span>
 							</a>
 							<p className="text-[13.5px] text-[#94A3B8] leading-relaxed mt-4 max-w-[240px]">
-								Platform ERP koperasi yang bekerja di manapun koperasi Anda
-								berada — online maupun offline.
+								Platform ERP offline-first untuk Koperasi Desa/Kelurahan Merah
+								Putih — bekerja di area blankspot sekalipun.
 							</p>
 						</div>
 
 						<div>
 							<h5 className="font-display font-bold text-[#0F172A] text-[13.5px] uppercase tracking-wide mb-4">
-								Produk
+								Modul
 							</h5>
 							<ul className="space-y-2.5 text-[14px] text-[#475569]">
 								<li>
@@ -1902,23 +1928,7 @@ export default function NusaraApp() {
 										className="hover:text-[#2F7698] transition-colors focus-ring"
 										href="#fitur"
 									>
-										Keanggotaan
-									</a>
-								</li>
-								<li>
-									<a
-										className="hover:text-[#2F7698] transition-colors focus-ring"
-										href="#fitur"
-									>
-										Akuntansi
-									</a>
-								</li>
-								<li>
-									<a
-										className="hover:text-[#2F7698] transition-colors focus-ring"
-										href="#fitur"
-									>
-										Kasir (POS)
+										Toko Sembako (POS)
 									</a>
 								</li>
 								<li>
@@ -1927,6 +1937,22 @@ export default function NusaraApp() {
 										href="#fitur"
 									>
 										Simpan Pinjam
+									</a>
+								</li>
+								<li>
+									<a
+										className="hover:text-[#2F7698] transition-colors focus-ring"
+										href="#fitur"
+									>
+										Gudang & Inventaris
+									</a>
+								</li>
+								<li>
+									<a
+										className="hover:text-[#2F7698] transition-colors focus-ring"
+										href="#fitur"
+									>
+										Logistik & Pengiriman
 									</a>
 								</li>
 							</ul>
@@ -1982,7 +2008,7 @@ export default function NusaraApp() {
 										className="hover:text-[#2F7698] transition-colors focus-ring"
 										href="#offline-first"
 									>
-										Panduan Offline-First
+										Arsitektur Offline-First
 									</a>
 								</li>
 								<li>
@@ -2047,7 +2073,8 @@ export default function NusaraApp() {
 
 					<div className="flex flex-col sm:flex-row items-center justify-between gap-4 mt-14 pt-8 border-t border-[#E8EEF2]">
 						<p className="text-[13px] text-[#94A3B8]">
-							&copy; 2026 Nusara. Dibuat untuk koperasi di seluruh Indonesia.
+							&copy; 2026 KOPET. Dibuat untuk Koperasi Desa/Kelurahan Merah
+							Putih di seluruh Indonesia.
 						</p>
 						<div className="flex items-center gap-3">
 							<a
