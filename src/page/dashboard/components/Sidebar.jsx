@@ -7,14 +7,30 @@ import {
 	SIDEBAR_ICONS,
 	getCategoryLabel,
 } from "../../../modules/index.js";
+import { isOnline } from "../../../lib/offline.js";
+import { getLastGlobalSync } from "../../../lib/syncService.js";
 import Logo from "../../../components/Home/Logo.jsx";
 
 const CATEGORY_ORDER = ["utama", "operasional", "tim", "lainnya"];
+
+function formatTimeAgo(isoString) {
+	if (!isoString) return "Belum pernah";
+	const diff = Date.now() - new Date(isoString).getTime();
+	const minutes = Math.floor(diff / 60000);
+	if (minutes < 1) return "Baru saja";
+	if (minutes < 60) return `${minutes} menit lalu`;
+	const hours = Math.floor(minutes / 60);
+	if (hours < 24) return `${hours} jam lalu`;
+	const days = Math.floor(hours / 24);
+	return `${days} hari lalu`;
+}
 
 export default function Sidebar({ collapsed, onToggleCollapse }) {
 	const [openNested, setOpenNested] = useState(null);
 	const [modules, setModules] = useState([]);
 	const [loading, setLoading] = useState(true);
+	const [online, setOnline] = useState(navigator.onLine);
+	const [lastSync, setLastSync] = useState(null);
 
 	useEffect(() => {
 		loadSidebarModules();
@@ -22,6 +38,31 @@ export default function Sidebar({ collapsed, onToggleCollapse }) {
 		window.addEventListener("modules-updated", handleModulesUpdated);
 		return () =>
 			window.removeEventListener("modules-updated", handleModulesUpdated);
+	}, []);
+
+	useEffect(() => {
+		const handleOnline = () => setOnline(true);
+		const handleOffline = () => setOnline(false);
+		window.addEventListener("online", handleOnline);
+		window.addEventListener("offline", handleOffline);
+		return () => {
+			window.removeEventListener("online", handleOnline);
+			window.removeEventListener("offline", handleOffline);
+		};
+	}, []);
+
+	useEffect(() => {
+		let mounted = true;
+		async function loadLastSync() {
+			const ts = await getLastGlobalSync();
+			if (mounted) setLastSync(ts);
+		}
+		loadLastSync();
+		const interval = setInterval(loadLastSync, 30000);
+		return () => {
+			mounted = false;
+			clearInterval(interval);
+		};
 	}, []);
 
 	async function loadSidebarModules() {
@@ -236,15 +277,21 @@ export default function Sidebar({ collapsed, onToggleCollapse }) {
 				{!collapsed && (
 					<div className="flex items-center gap-2.5 rounded-lg bg-[#EAF6FB] px-3.5 py-3 mb-3">
 						<span className="relative w-2.5 h-2.5 shrink-0">
-							<span className="absolute inset-0 rounded-lg bg-[#22C55E]"></span>
-							<span className="absolute inset-0 rounded-lg bg-[#22C55E] animate-ping opacity-60"></span>
+							<span
+								className={`absolute inset-0 rounded-full ${online ? "bg-[#22C55E]" : "bg-[#EAB308]"}`}
+							></span>
+							{online && (
+								<span className="absolute inset-0 rounded-full bg-[#22C55E] animate-ping opacity-60"></span>
+							)}
 						</span>
 						<div className="min-w-0">
 							<p className="text-[12px] font-semibold text-[#2F7698]">
-								Sinkron Aktif
+								{online ? "Sinkron Aktif" : "Offline"}
 							</p>
 							<p className="text-[10.5px] text-[#2F7698]/70">
-								Terakhir 2 menit lalu
+								{online
+									? `Terakhir ${formatTimeAgo(lastSync)}`
+									: "Tidak tersinkron"}
 							</p>
 						</div>
 					</div>

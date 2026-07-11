@@ -1,7 +1,7 @@
 /** @format */
 
 import { Route, Routes } from "react-router-dom";
-import ProtectedRoute from "./components/ProtectedRoute";
+import ProtectedRoute, { GuestRoute } from "./components/ProtectedRoute";
 import Login from "./page/auth/Login";
 import Dashboard from "./page/dashboard";
 import Home from "./page/Home";
@@ -22,7 +22,7 @@ import PelangganPage from "./page/pelanggan";
 
 const publicRoutes = [
   { element: <Home />, path: "/" },
-  { element: <Login />, path: "/login" },
+  { element: <GuestRoute><Login /></GuestRoute>, path: "/login" },
 ];
 
 const protectedRoutes = [

@@ -3,51 +3,78 @@
 import { useEffect } from "react";
 import { Navigate, useLocation } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
-import { getAccessToken, isSessionValid } from "../lib/auth";
+import { getAccessToken, isSessionValid, getSession } from "../lib/auth";
 import { isOnline } from "../lib/offline";
-import {
-	pullAllModules,
-	startAutoSync,
-	stopAutoSync,
-} from "../lib/syncService";
+import { pullAllModules, startAutoSync, stopAutoSync } from "../lib/syncService";
+
+function authMiddleware() {
+  const session = getSession();
+  const user = session?.user;
+  if (!session?.accessToken || !user) return false;
+  if (!isSessionValid()) return false;
+  return true;
+}
+
+export function GuestRoute({ children }) {
+  const { loading } = useAuth();
+  const location = useLocation();
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-[#F7FAFC]">
+        <div className="flex flex-col items-center gap-3">
+          <div className="w-10 h-10 border-3 border-[#398EB3] border-t-transparent rounded-full animate-spin" />
+          <p className="text-[14px] text-[#94A3B8]">Memuat...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (authMiddleware()) {
+    const from = location.state?.from?.pathname || "/dashboard";
+    return <Navigate to={from} replace />;
+  }
+
+  return children;
+}
 
 export default function ProtectedRoute({ children }) {
-	const { isAuthenticated, loading, online } = useAuth();
-	const location = useLocation();
+  const { isAuthenticated, loading, online } = useAuth();
+  const location = useLocation();
 
-	useEffect(() => {
-		if (!isAuthenticated || !online) return;
-		if (!isSessionValid()) return;
-		const token = getAccessToken();
-		if (!token) return;
-		startAutoSync(30000);
-		pullAllModules(token).catch((e) =>
-			console.warn("[ProtectedRoute] Initial sync failed:", e.message),
-		);
-	}, [isAuthenticated, online]);
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-[#F7FAFC]">
+        <div className="flex flex-col items-center gap-3">
+          <div className="w-10 h-10 border-3 border-[#398EB3] border-t-transparent rounded-full animate-spin" />
+          <p className="text-[14px] text-[#94A3B8]">Memuat...</p>
+        </div>
+      </div>
+    );
+  }
 
-	useEffect(() => {
-		if (!online && isAuthenticated) {
-			stopAutoSync();
-		} else if (online && isAuthenticated) {
-			startAutoSync(30000);
-		}
-	}, [online, isAuthenticated]);
+  if (!authMiddleware()) {
+    return <Navigate to="/login" state={{ from: location }} replace />;
+  }
 
-	if (loading) {
-		return (
-			<div className="min-h-screen flex items-center justify-center bg-[#F7FAFC]">
-				<div className="flex flex-col items-center gap-3">
-					<div className="w-10 h-10 border-3 border-[#398EB3] border-t-transparent rounded-lg animate-spin" />
-					<p className="text-[14px] text-[#94A3B8]">Memuat...</p>
-				</div>
-			</div>
-		);
-	}
+  useEffect(() => {
+    if (!online) return;
+    if (!isSessionValid()) return;
+    const token = getAccessToken();
+    if (!token) return;
+    startAutoSync(30000);
+    pullAllModules(token).catch((e) =>
+      console.warn("[ProtectedRoute] Initial sync failed:", e.message)
+    );
+  }, [online]);
 
-	if (!isAuthenticated) {
-		return <Navigate to="/login" state={{ from: location }} replace />;
-	}
+  useEffect(() => {
+    if (!online && isAuthenticated) {
+      stopAutoSync();
+    } else if (online && isAuthenticated) {
+      startAutoSync(30000);
+    }
+  }, [online, isAuthenticated]);
 
 	if (!online) {
 		return (
