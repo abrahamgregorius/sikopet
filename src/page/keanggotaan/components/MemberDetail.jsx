@@ -1,5 +1,7 @@
 /** @format */
 
+import CreditScoreCard from "../../dashboard/components/CreditScoreCard";
+
 export default function MemberDetail({ member, onClose, onEdit }) {
 	if (!member) return null;
 
@@ -100,6 +102,13 @@ export default function MemberDetail({ member, onClose, onEdit }) {
 							</div>
 						))}
 					</div>
+				</div>
+
+				<div className="space-y-3">
+					<h4 className="text-[12px] font-bold text-[#94A3B8] uppercase tracking-wider">
+						Skor Kredit
+					</h4>
+					<CreditScoreCard memberId={member.id} />
 				</div>
 			</div>
 

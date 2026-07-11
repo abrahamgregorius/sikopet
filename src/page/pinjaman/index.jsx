@@ -165,12 +165,11 @@ export default function PinjamanPage() {
 				</div>
 			</div>
 
-			{showForm && (
-				<LoanApplicationForm
-					onClose={() => setShowForm(false)}
-					onSubmit={handleAddLoan}
-				/>
-			)}
+			<LoanApplicationForm
+				open={showForm}
+				onClose={() => setShowForm(false)}
+				onSubmit={handleAddLoan}
+			/>
 		</DashboardLayout>
 	);
 }

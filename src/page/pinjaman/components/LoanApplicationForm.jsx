@@ -2,8 +2,10 @@
 
 import { useState, useEffect } from "react";
 import { db } from "../../../database/db";
+import Modal from "../../../components/ui/Modal";
+import CreditScoreCard from "../../dashboard/components/CreditScoreCard";
 
-export default function LoanApplicationForm({ onClose, onSubmit }) {
+export default function LoanApplicationForm({ open, onClose, onSubmit }) {
 	const [members, setMembers] = useState([]);
 	const [form, setForm] = useState({
 		memberId: "",
@@ -37,31 +39,22 @@ export default function LoanApplicationForm({ onClose, onSubmit }) {
 		});
 	};
 
-	return (
-		<div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm">
-			<div
-				className="w-full max-w-md rounded-[24px] bg-white overflow-hidden"
-				role="dialog"
-				aria-modal="true"
-			>
-				<div className="flex items-center justify-between px-6 py-5 border-b border-[#E8EEF2]">
-					<h2 className="font-display font-bold text-[18px] text-[#0F172A]">
-						Pengajuan Pinjaman Baru
-					</h2>
-					<button
-						onClick={onClose}
-						className="focus-ring p-1.5 rounded-lg text-[#94A3B8] hover:bg-[#F1F5F9] transition-colors"
-						aria-label="Tutup"
-					>
-						<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-							<path d="M18 6L6 18M6 6l12 12" strokeLinecap="round" />
-						</svg>
-					</button>
-				</div>
+	const showCreditScore = form.memberId && Number(form.principal) > 0;
 
-				<form onSubmit={handleSubmit} className="p-6 space-y-4">
+	return (
+		<Modal
+			open={open}
+			onClose={onClose}
+			title="Pengajuan Pinjaman Baru"
+			className="max-w-5xl!"
+		>
+			<div className="grid lg:grid-cols-[1fr_340px] gap-6">
+				<form onSubmit={handleSubmit} className="space-y-4">
 					<div>
-						<label htmlFor="memberId" className="block text-[13.5px] font-medium text-[#374151] mb-1.5">
+						<label
+							htmlFor="memberId"
+							className="block text-[13.5px] font-medium text-[#374151] mb-1.5"
+						>
 							Anggota <span className="text-[#EF4444]">*</span>
 						</label>
 						<select
@@ -88,7 +81,10 @@ export default function LoanApplicationForm({ onClose, onSubmit }) {
 					</div>
 
 					<div>
-						<label htmlFor="principal" className="block text-[13.5px] font-medium text-[#374151] mb-1.5">
+						<label
+							htmlFor="principal"
+							className="block text-[13.5px] font-medium text-[#374151] mb-1.5"
+						>
 							Jumlah Pinjaman (Rp) <span className="text-[#EF4444]">*</span>
 						</label>
 						<input
@@ -106,7 +102,10 @@ export default function LoanApplicationForm({ onClose, onSubmit }) {
 
 					<div className="grid grid-cols-2 gap-3">
 						<div>
-							<label htmlFor="interestRate" className="block text-[13.5px] font-medium text-[#374151] mb-1.5">
+							<label
+								htmlFor="interestRate"
+								className="block text-[13.5px] font-medium text-[#374151] mb-1.5"
+							>
 								Bunga (%/bulan)
 							</label>
 							<input
@@ -121,7 +120,10 @@ export default function LoanApplicationForm({ onClose, onSubmit }) {
 							/>
 						</div>
 						<div>
-							<label htmlFor="tenorMonths" className="block text-[13.5px] font-medium text-[#374151] mb-1.5">
+							<label
+								htmlFor="tenorMonths"
+								className="block text-[13.5px] font-medium text-[#374151] mb-1.5"
+							>
 								Tenor (bulan)
 							</label>
 							<input
@@ -152,7 +154,22 @@ export default function LoanApplicationForm({ onClose, onSubmit }) {
 						</button>
 					</div>
 				</form>
+
+				<div className="hidden lg:block">
+					{showCreditScore ? (
+						<CreditScoreCard
+							memberId={Number(form.memberId)}
+							requestedLoanAmount={Number(form.principal)}
+						/>
+					) : (
+						<div className="rounded-lg bg-[#F1F5F9] border border-[#E5E7EB] p-6 flex items-center justify-center h-full min-h-[300px]">
+							<p className="text-[13px] text-[#94A3B8] text-center">
+								Pilih anggota dan isi jumlah pinjaman untuk melihat skor kredit
+							</p>
+						</div>
+					)}
+				</div>
 			</div>
-		</div>
+		</Modal>
 	);
 }
