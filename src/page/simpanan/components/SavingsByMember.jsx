@@ -36,14 +36,14 @@ export default function SavingsByMember({ transactions }) {
 									{item.name}
 								</span>
 								<span className="text-[13px] font-semibold text-[#0F172A] ml-2">
-									Rp {(item.balance / 1000).toFixed(0)}K
+									Rp {Math.max(0, item.balance / 1000).toFixed(0)}K
 								</span>
 							</div>
 							<div className="h-1.5 rounded-lg bg-[#F1F5F9] overflow-hidden">
 								<div
 									className="h-full rounded-lg bg-gradient-to-r from-[#398eb3] to-[#4CC9B0]"
 									style={{
-										width: `${Math.min((item.balance / sorted[0].balance) * 100, 100)}%`,
+										width: `${Math.min((Math.max(0, item.balance) / Math.max(0, sorted[0].balance)) * 100, 100)}%`,
 									}}
 								></div>
 							</div>

@@ -1,137 +1,96 @@
 /** @format */
 
 import { useState } from "react";
+import { useLiveQuery } from "dexie-react-hooks";
+import { db } from "../../database/index.js";
+import { pushToOutbox } from "../../lib/syncService";
+import { useAuth } from "../../contexts/AuthContext";
 import ModuleLayout from "../modules/ModuleLayout";
 import MemberList from "./components/MemberList";
 import MemberStats from "./components/MemberStats";
 import MemberForm from "./components/MemberForm";
 import MemberDetail from "./components/MemberDetail";
 
-const MOCK_MEMBERS = [
-	{
-		id: 1,
-		nik: "3571024806910001",
-		name: "Rina Wulandari",
-		bornDate: "1986-07-15",
-		address: "Jl. Melati No. 12, Surabaya",
-		phone: "081234567890",
-		joinDate: "2023-01-15",
-		status: "active",
-		savings: 5500000,
-		loans: 2000000,
-	},
-	{
-		id: 2,
-		nik: "3571025505920002",
-		name: "Bambang Sutrisno",
-		bornDate: "1992-05-25",
-		address: "Jl. Anggrek No. 8, Surabaya",
-		phone: "081234567891",
-		joinDate: "2023-03-22",
-		status: "active",
-		savings: 8200000,
-		loans: 5000000,
-	},
-	{
-		id: 3,
-		nik: "3571030101930003",
-		name: "Made Ayu Kartika",
-		bornDate: "1993-01-01",
-		address: "Jl. Kenanga No. 5, Surabaya",
-		phone: "081234567892",
-		joinDate: "2023-06-10",
-		status: "active",
-		savings: 3200000,
-		loans: 0,
-	},
-	{
-		id: 4,
-		nik: "3571031510940004",
-		name: "Ahmad Hidayat",
-		bornDate: "1994-10-15",
-		address: "Jl. Mawar No. 3, Sidoarjo",
-		phone: "081234567893",
-		joinDate: "2024-02-28",
-		status: "active",
-		savings: 1500000,
-		loans: 3000000,
-	},
-	{
-		id: 5,
-		nik: "3571042010950005",
-		name: "Siti Aminah",
-		bornDate: "1995-10-20",
-		address: "Jl. Dahlia No. 17, Surabaya",
-		phone: "081234567894",
-		joinDate: "2024-05-12",
-		status: "inactive",
-		savings: 0,
-		loans: 0,
-	},
-	{
-		id: 6,
-		nik: "3571053011960006",
-		name: "Dewi Lestari",
-		bornDate: "1996-11-30",
-		address: "Jl. Anggrek No. 22, Gresik",
-		phone: "081234567895",
-		joinDate: "2024-08-03",
-		status: "active",
-		savings: 4500000,
-		loans: 1000000,
-	},
-	{
-		id: 7,
-		nik: "3571061012970007",
-		name: "Joko Pramono",
-		bornDate: "1997-12-10",
-		address: "Jl. Jasmin No. 9, Surabaya",
-		phone: "081234567896",
-		joinDate: "2025-01-18",
-		status: "pending",
-		savings: 500000,
-		loans: 0,
-	},
-	{
-		id: 8,
-		nik: "3571071510980008",
-		name: "Nur Hasanah",
-		bornDate: "1998-10-15",
-		address: "Jl. Flamboyan No. 11, Surabaya",
-		phone: "081234567897",
-		joinDate: "2025-03-25",
-		status: "active",
-		savings: 2100000,
-		loans: 1500000,
-	},
-];
-
 export default function KeanggotaanPage() {
-	const [members, setMembers] = useState(MOCK_MEMBERS);
+	const { user } = useAuth();
 	const [selectedMember, setSelectedMember] = useState(null);
 	const [showForm, setShowForm] = useState(false);
+	const [editingMember, setEditingMember] = useState(null);
 	const [search, setSearch] = useState("");
 	const [statusFilter, setStatusFilter] = useState("all");
 
-	const filtered = members.filter((m) => {
+	const members = useLiveQuery(
+		() =>
+			db.members
+				.orderBy("name")
+				.toArray(),
+		[]
+	);
+
+	const filtered = (members || []).filter((m) => {
 		const matchSearch =
-			m.name.toLowerCase().includes(search.toLowerCase()) ||
-			m.nik.includes(search) ||
-			m.phone.includes(search);
+			(m.name || "").toLowerCase().includes(search.toLowerCase()) ||
+			(m.nik || "").includes(search) ||
+			(m.phone || "").includes(search);
 		const matchStatus = statusFilter === "all" || m.status === statusFilter;
 		return matchSearch && matchStatus;
 	});
 
-	const handleAddMember = (data) => {
-		const newMember = {
-			id: members.length + 1,
-			...data,
-			status: "pending",
-			savings: 0,
-			loans: 0,
-		};
-		setMembers((prev) => [newMember, ...prev]);
+	const nextMemberNumber = (() => {
+		if (!members) return "KSP-0001";
+		const nums = members
+			.map((m) => {
+				const match = (m.memberNumber || "").match(/KSP-(\d+)/);
+				return match ? parseInt(match[1], 10) : 0;
+			})
+			.filter((n) => n > 0);
+		const max = nums.length > 0 ? Math.max(...nums) : 0;
+		return "KSP-" + String(max + 1).padStart(4, "0");
+	})();
+
+	const handleAddMember = async (data) => {
+		if (!user) return;
+		const cooperativeId = user.cooperativeId || 1;
+
+		if (editingMember) {
+			const updated = {
+				...editingMember,
+				nik: data.nik,
+				name: data.name,
+				bornDate: data.bornDate,
+				address: data.address || "",
+				phone: data.phone,
+			};
+			await db.members.update(editingMember.id, updated);
+			await pushToOutbox({
+				entityType: "members",
+				operationType: "update",
+				payload: updated,
+				localId: editingMember.id,
+			});
+		} else {
+			const newMember = {
+				cooperativeId,
+				memberNumber: data.memberNumber,
+				nik: data.nik,
+				name: data.name,
+				bornDate: data.bornDate,
+				address: data.address || "",
+				phone: data.phone,
+				status: "pending",
+				joinDate: new Date().toISOString().split("T")[0],
+				cloudId: null,
+				syncedAt: null,
+			};
+			const id = await db.members.add(newMember);
+			await pushToOutbox({
+				entityType: "members",
+				operationType: "create",
+				payload: { ...newMember, id },
+			});
+		}
 		setShowForm(false);
+		setEditingMember(null);
 	};
 
 	return (
@@ -164,7 +123,7 @@ export default function KeanggotaanPage() {
 					</button>
 				</div>
 
-				<MemberStats members={members} />
+				<MemberStats members={members || []} />
 
 				<div className="grid lg:grid-cols-[1fr_360px] gap-6">
 					<MemberList
@@ -181,6 +140,10 @@ export default function KeanggotaanPage() {
 						<MemberDetail
 							member={selectedMember}
 							onClose={() => setSelectedMember(null)}
+							onEdit={() => {
+								setEditingMember(selectedMember);
+								setShowForm(true);
+							}}
 						/>
 					) : (
 						<div className="rounded-lg bg-white border border-[#D8E4EA] shadow-soft p-8 flex flex-col items-center justify-center text-center">
@@ -206,8 +169,13 @@ export default function KeanggotaanPage() {
 
 			{showForm && (
 				<MemberForm
-					onClose={() => setShowForm(false)}
+					onClose={() => {
+						setShowForm(false);
+						setEditingMember(null);
+					}}
 					onSubmit={handleAddMember}
+					nextMemberNumber={nextMemberNumber}
+					member={editingMember}
 				/>
 			)}
 		</ModuleLayout>

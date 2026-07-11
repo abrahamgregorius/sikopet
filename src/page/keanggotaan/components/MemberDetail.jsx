@@ -1,9 +1,9 @@
 /** @format */
 
-export default function MemberDetail({ member, onClose }) {
+export default function MemberDetail({ member, onClose, onEdit }) {
 	if (!member) return null;
 
-	const formatCurrency = (n) => `Rp ${n.toLocaleString("id-ID")}`;
+	const formatCurrency = (n) => `Rp ${(n ?? 0).toLocaleString("id-ID")}`;
 
 	return (
 		<div className="rounded-lg bg-white border border-[#D8E4EA] shadow-soft overflow-hidden">
@@ -104,7 +104,10 @@ export default function MemberDetail({ member, onClose }) {
 			</div>
 
 			<div className="p-4 border-t border-[#E8EEF2] flex gap-3">
-				<button className="focus-ring flex-1 h-10 rounded-lg bg-[#398EB3] text-white font-semibold text-[14px] hover:bg-[#2F7A9A] transition-colors">
+				<button
+					onClick={onEdit}
+					className="focus-ring flex-1 h-10 rounded-lg bg-[#398EB3] text-white font-semibold text-[14px] hover:bg-[#2F7A9A] transition-colors"
+				>
 					Edit
 				</button>
 				<button className="focus-ring flex-1 h-10 rounded-lg border border-[#E5E7EB] text-[#475569] font-semibold text-[14px] hover:bg-[#F1F5F9] transition-colors">

@@ -57,8 +57,31 @@ export default function ProtectedRoute({ children }) {
     return <Navigate to="/login" state={{ from: location }} replace />;
   }
 
+  if (!online) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-[#F7FAFC] p-6">
+        <div className="text-center max-w-sm">
+          <div className="w-16 h-16 mx-auto mb-5 rounded-full bg-[#FEE2E2] flex items-center justify-center">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#EF4444" strokeWidth="2">
+              <path d="M1 1l22 22M16.72 11.06A10.94 10.94 0 0119 12.55M5 12.55a10.94 10.94 0 015.17-2.39M10.71 5.05A16 16 0 0122.58 9M1.42 9a15.91 15.91 0 014.7-2.88M8.53 16.11a6 6 0 016.95 0M12 20h.01" strokeLinecap="round" />
+            </svg>
+          </div>
+          <h2 className="font-display font-bold text-[20px] text-[#0F172A] mb-2">
+            Offline
+          </h2>
+          <p className="text-[14px] text-[#64748B] mb-5">
+            Anda sudah logged in, tetapi fitur offline read-only sedang dalam pengembangan.
+            Silakan hubungkan ke internet untuk akses penuh.
+          </p>
+          <p className="text-[12px] text-[#94A3B8]">
+            Anda tetap bisa mengakses data lokal yang sudah tersimpan di perangkat.
+          </p>
+        </div>
+      </div>
+    );
+  }
+
   useEffect(() => {
-    if (!online) return;
     if (!isSessionValid()) return;
     const token = getAccessToken();
     if (!token) return;
@@ -66,7 +89,7 @@ export default function ProtectedRoute({ children }) {
     pullAllModules(token).catch((e) =>
       console.warn("[ProtectedRoute] Initial sync failed:", e.message)
     );
-  }, [online]);
+  }, []);
 
   useEffect(() => {
     if (!online && isAuthenticated) {
@@ -76,40 +99,5 @@ export default function ProtectedRoute({ children }) {
     }
   }, [online, isAuthenticated]);
 
-	if (!online) {
-		return (
-			<div className="min-h-screen flex items-center justify-center bg-[#F7FAFC] p-6">
-				<div className="text-center max-w-sm">
-					<div className="w-16 h-16 mx-auto mb-5 rounded-lg bg-[#FEE2E2] flex items-center justify-center">
-						<svg
-							width="28"
-							height="28"
-							viewBox="0 0 24 24"
-							fill="none"
-							stroke="#EF4444"
-							strokeWidth="2"
-						>
-							<path
-								d="M1 1l22 22M16.72 11.06A10.94 10.94 0 0119 12.55M5 12.55a10.94 10.94 0 015.17-2.39M10.71 5.05A16 16 0 0122.58 9M1.42 9a15.91 15.91 0 014.7-2.88M8.53 16.11a6 6 0 016.95 0M12 20h.01"
-								strokeLinecap="round"
-							/>
-						</svg>
-					</div>
-					<h2 className="font-display font-bold text-[20px] text-[#0F172A] mb-2">
-						Offline
-					</h2>
-					<p className="text-[14px] text-[#64748B] mb-5">
-						Anda sudah logged in, tetapi fitur offline read-only sedang dalam
-						pengembangan. Silakan hubungkan ke internet untuk akses penuh.
-					</p>
-					<p className="text-[12px] text-[#94A3B8]">
-						Anda tetap bisa mengakses data lokal yang sudah tersimpan di
-						perangkat.
-					</p>
-				</div>
-			</div>
-		);
-	}
-
-	return children;
+  return children;
 }

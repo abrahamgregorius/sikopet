@@ -38,7 +38,7 @@ export default function SavingsOverview({
 					Saldo Bersih
 				</p>
 				<p className="font-display font-extrabold text-[#398EB3] text-[26px] sm:text-[32px] tracking-tight">
-					Rp {netSimpanan.toLocaleString("id-ID")}
+					Rp {Math.max(0, netSimpanan).toLocaleString("id-ID")}
 				</p>
 				<div className="flex items-center gap-1.5 mt-2">
 					<span className="w-2 h-2 rounded-lg bg-[#398EB3]"></span>

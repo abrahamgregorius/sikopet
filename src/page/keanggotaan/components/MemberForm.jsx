@@ -2,14 +2,28 @@
 
 import { useState } from "react";
 
-export default function MemberForm({ onClose, onSubmit }) {
-	const [form, setForm] = useState({
-		nik: "",
-		name: "",
-		bornDate: "",
-		address: "",
-		phone: "",
-	});
+export default function MemberForm({ onClose, onSubmit, nextMemberNumber, member }) {
+	const isEdit = !!member;
+
+	const [form, setForm] = useState(
+		isEdit
+			? {
+					nik: member.nik || "",
+					name: member.name || "",
+					bornDate: member.bornDate || "",
+					address: member.address || "",
+					phone: member.phone || "",
+					memberNumber: member.memberNumber || "",
+			  }
+			: {
+					nik: "",
+					name: "",
+					bornDate: "",
+					address: "",
+					phone: "",
+					memberNumber: nextMemberNumber || "",
+			  }
+	);
 
 	const handleChange = (e) => {
 		const { name, value } = e.target;
@@ -32,7 +46,7 @@ export default function MemberForm({ onClose, onSubmit }) {
 			>
 				<div className="flex items-center justify-between px-6 py-5 border-b border-[#E8EEF2]">
 					<h2 id="form-title" className="font-display font-bold text-[18px] text-[#0F172A]">
-						Daftar Anggota Baru
+						{isEdit ? "Edit Anggota" : "Daftar Anggota Baru"}
 					</h2>
 					<button
 						onClick={onClose}
@@ -46,6 +60,20 @@ export default function MemberForm({ onClose, onSubmit }) {
 				</div>
 
 				<form onSubmit={handleSubmit} className="p-6 space-y-4">
+					<div>
+						<label htmlFor="memberNumber" className="block text-[13.5px] font-medium text-[#374151] mb-1.5">
+							Nomor Anggota
+						</label>
+						<input
+							id="memberNumber"
+							name="memberNumber"
+							type="text"
+							value={form.memberNumber}
+							readOnly
+							className="focus-ring w-full h-[48px] px-4 rounded-[12px] border border-[#E5E7EB] bg-[#F8FAFC] text-[15px] text-[#64748B] placeholder-[#9CA3AF] focus:border-[#398EB3] focus:outline-none transition-colors"
+						/>
+					</div>
+
 					<div>
 						<label htmlFor="nik" className="block text-[13.5px] font-medium text-[#374151] mb-1.5">
 							NIK <span className="text-[#EF4444]">*</span>
@@ -136,7 +164,7 @@ export default function MemberForm({ onClose, onSubmit }) {
 							type="submit"
 							className="focus-ring flex-1 h-12 rounded-[12px] bg-[#398EB3] text-white font-semibold text-[15px] shadow-glow hover:bg-[#2F7A9A] hover:-translate-y-0.5 active:scale-[0.98] transition-all"
 						>
-							Simpan
+							{isEdit ? "Perbarui" : "Simpan"}
 						</button>
 					</div>
 				</form>
