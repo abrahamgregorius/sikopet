@@ -245,7 +245,7 @@ export default function ModuleManager() {
 			</div>
 
 			{Object.keys(grouped).length === 0 ? (
-				<div className="flex flex-col items-center justify-center h-48 rounded-lg bg-[#F1F5F9] border border-[#D8E4EA]">
+				<div className="flex flex-col items-center justify-center h-48 rounded-lg bg-[#F1F5F9] border border-[#E5E7EB]">
 					<svg
 						className="w-12 h-12 text-[#94A3B8] mb-3"
 						viewBox="0 0 24 24"
@@ -287,7 +287,7 @@ export default function ModuleManager() {
 								return (
 									<div
 										key={mod.key}
-										className={`rounded-lg bg-white border border-[#D8E4EA] p-5 transition-all duration-200 hover:shadow-lift ${
+										className={`rounded-lg bg-white border border-[#E5E7EB] p-5 transition-all duration-200 ${
 											mod.comingSoon ? "opacity-70" : ""
 										}`}
 									>
@@ -369,7 +369,7 @@ export default function ModuleManager() {
 
 			{toast && (
 				<div
-					className={`fixed bottom-6 right-6 z-[100] px-5 py-3 rounded-lg shadow-lift flex items-center gap-3 animate-pop-in ${
+					className={`fixed bottom-6 right-6 z-[100] px-5 py-3 rounded-lg flex items-center gap-3 animate-pop-in ${
 						toast.type === "success"
 							? "bg-[#22C55E] text-white"
 							: "bg-[#EF4444] text-white"
@@ -412,7 +412,7 @@ export default function ModuleManager() {
 
 function StatCard({ label, value, color }) {
 	return (
-		<div className="rounded-lg bg-white border border-[#D8E4EA] p-4 shadow-soft">
+		<div className="rounded-lg bg-white border border-[#E5E7EB] p-4">
 			<p className="text-[12px] text-[#94A3B8] font-medium mb-1">{label}</p>
 			<p
 				className={`font-display font-extrabold text-[28px] ${color} tracking-tight`}

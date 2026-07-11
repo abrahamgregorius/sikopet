@@ -17,7 +17,7 @@ export default function Tabs({ tabs = [], defaultTab, className = "" }) {
 						onClick={() => setActive(tab.id)}
 						className={`focus-ring flex items-center gap-2 px-4 py-2.5 rounded-lg text-[14.5px] font-medium whitespace-nowrap transition-all duration-300 ${
 							active === tab.id
-								? "bg-white text-[#0F172A] shadow-soft"
+								? "bg-white text-[#0F172A]"
 								: "text-[#64748B] hover:text-[#334155] hover:bg-white/50"
 						}`}
 					>

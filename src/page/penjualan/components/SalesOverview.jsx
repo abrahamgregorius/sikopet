@@ -8,7 +8,7 @@ export default function SalesOverview({
 }) {
 	return (
 		<div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-			<div className="rounded-lg bg-white border border-[#D8E4EA] shadow-soft p-5">
+			<div className="rounded-lg bg-white border border-[#E5E7EB] p-5">
 				<p className="text-[12px] text-[#94A3B8] font-medium mb-2">
 					Total Penjualan
 				</p>
@@ -18,7 +18,7 @@ export default function SalesOverview({
 				<p className="text-[11px] text-[#94A3B8] mt-1">Transaksi berhasil</p>
 			</div>
 
-			<div className="rounded-lg bg-white border border-[#D8E4EA] shadow-soft p-5">
+			<div className="rounded-lg bg-white border border-[#E5E7EB] p-5">
 				<p className="text-[12px] text-[#94A3B8] font-medium mb-2">
 					Menunggu Pembayaran
 				</p>
@@ -28,7 +28,7 @@ export default function SalesOverview({
 				<p className="text-[11px] text-[#94A3B8] mt-1">Pending</p>
 			</div>
 
-			<div className="rounded-lg bg-white border border-[#D8E4EA] shadow-soft p-5">
+			<div className="rounded-lg bg-white border border-[#E5E7EB] p-5">
 				<p className="text-[12px] text-[#94A3B8] font-medium mb-2">
 					Jumlah Transaksi
 				</p>
@@ -38,7 +38,7 @@ export default function SalesOverview({
 				<p className="text-[11px] text-[#94A3B8] mt-1">Transaksi</p>
 			</div>
 
-			<div className="rounded-lg bg-[#0F172A] px-6 py-7 shadow-lift">
+			<div className="rounded-lg bg-[#0F172A] px-6 py-7">
 				<p className="text-[12px] text-white/60 font-medium mb-2">
 					Rata-rata Transaksi
 				</p>

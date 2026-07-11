@@ -7,7 +7,7 @@ export default function FinanceOverview({
 }) {
 	return (
 		<div className="grid sm:grid-cols-3 gap-4">
-			<div className="rounded-lg bg-white border border-[#D8E4EA] shadow-soft p-5">
+			<div className="rounded-lg bg-white border border-[#E5E7EB] p-5">
 				<div className="flex items-center gap-3 mb-3">
 					<span className="w-10 h-10 rounded-lg bg-[#DCFCE7] grid place-items-center">
 						<svg
@@ -31,7 +31,7 @@ export default function FinanceOverview({
 				<p className="text-[11px] text-[#94A3B8] mt-1">Bulan Juli 2026</p>
 			</div>
 
-			<div className="rounded-lg bg-white border border-[#D8E4EA] shadow-soft p-5">
+			<div className="rounded-lg bg-white border border-[#E5E7EB] p-5">
 				<div className="flex items-center gap-3 mb-3">
 					<span className="w-10 h-10 rounded-lg bg-[#FEE2E2] grid place-items-center">
 						<svg
@@ -55,7 +55,7 @@ export default function FinanceOverview({
 				<p className="text-[11px] text-[#94A3B8] mt-1">Bulan Juli 2026</p>
 			</div>
 
-			<div className="rounded-lg bg-[#0F172A] px-6 py-7 shadow-lift">
+			<div className="rounded-lg bg-[#0F172A] px-6 py-7">
 				<div className="flex items-center gap-3 mb-3">
 					<span className="w-10 h-10 rounded-lg bg-white/10 grid place-items-center">
 						<svg

@@ -1,15 +1,25 @@
 /** @format */
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { db } from "../../../database/db";
 
 export default function LoanApplicationForm({ onClose, onSubmit }) {
+	const [members, setMembers] = useState([]);
 	const [form, setForm] = useState({
-		member: "",
+		memberId: "",
 		principal: "",
-		rate: "1.2",
-		tenor: "12",
+		interestRate: "10",
+		tenorMonths: "12",
 		purpose: "",
 	});
+
+	useEffect(() => {
+		const loadMembers = async () => {
+			const data = await db.members.toArray();
+			setMembers(data);
+		};
+		loadMembers();
+	}, []);
 
 	const handleChange = (e) => {
 		const { name, value } = e.target;
@@ -18,19 +28,19 @@ export default function LoanApplicationForm({ onClose, onSubmit }) {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		if (!form.member || !form.principal) return;
+		if (!form.memberId || !form.principal) return;
 		onSubmit({
-			...form,
+			memberId: Number(form.memberId),
 			principal: Number(form.principal),
-			rate: Number(form.rate),
-			tenor: Number(form.tenor),
+			interestRate: Number(form.interestRate),
+			tenorMonths: Number(form.tenorMonths),
 		});
 	};
 
 	return (
 		<div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm">
 			<div
-				className="w-full max-w-md rounded-[24px] bg-white shadow-lift overflow-hidden"
+				className="w-full max-w-md rounded-[24px] bg-white overflow-hidden"
 				role="dialog"
 				aria-modal="true"
 			>
@@ -51,19 +61,24 @@ export default function LoanApplicationForm({ onClose, onSubmit }) {
 
 				<form onSubmit={handleSubmit} className="p-6 space-y-4">
 					<div>
-						<label htmlFor="member" className="block text-[13.5px] font-medium text-[#374151] mb-1.5">
+						<label htmlFor="memberId" className="block text-[13.5px] font-medium text-[#374151] mb-1.5">
 							Anggota <span className="text-[#EF4444]">*</span>
 						</label>
-						<input
-							id="member"
-							name="member"
-							type="text"
+						<select
+							id="memberId"
+							name="memberId"
 							required
-							placeholder="Nama anggota"
-							value={form.member}
+							value={form.memberId}
 							onChange={handleChange}
-							className="focus-ring w-full h-[48px] px-4 rounded-[12px] border border-[#E5E7EB] bg-white text-[15px] text-[#0F172A] placeholder-[#9CA3AF] focus:border-[#398EB3] focus:outline-none transition-colors"
-						/>
+							className="focus-ring w-full h-[48px] px-4 rounded-[12px] border border-[#E5E7EB] bg-white text-[15px] text-[#0F172A] focus:border-[#398EB3] focus:outline-none transition-colors"
+						>
+							<option value="">Pilih Anggota</option>
+							{members.map((m) => (
+								<option key={m.id} value={m.id}>
+									{m.name}
+								</option>
+							))}
+						</select>
 					</div>
 
 					<div>
@@ -85,49 +100,34 @@ export default function LoanApplicationForm({ onClose, onSubmit }) {
 
 					<div className="grid grid-cols-2 gap-3">
 						<div>
-							<label htmlFor="rate" className="block text-[13.5px] font-medium text-[#374151] mb-1.5">
+							<label htmlFor="interestRate" className="block text-[13.5px] font-medium text-[#374151] mb-1.5">
 								Bunga (%/bulan)
 							</label>
 							<input
-								id="rate"
-								name="rate"
+								id="interestRate"
+								name="interestRate"
 								type="number"
 								step="0.1"
 								min="0.1"
-								value={form.rate}
+								value={form.interestRate}
 								onChange={handleChange}
 								className="focus-ring w-full h-[48px] px-4 rounded-[12px] border border-[#E5E7EB] bg-white text-[15px] text-[#0F172A] focus:border-[#398EB3] focus:outline-none transition-colors"
 							/>
 						</div>
 						<div>
-							<label htmlFor="tenor" className="block text-[13.5px] font-medium text-[#374151] mb-1.5">
+							<label htmlFor="tenorMonths" className="block text-[13.5px] font-medium text-[#374151] mb-1.5">
 								Tenor (bulan)
 							</label>
 							<input
-								id="tenor"
-								name="tenor"
+								id="tenorMonths"
+								name="tenorMonths"
 								type="number"
 								min="1"
-								value={form.tenor}
+								value={form.tenorMonths}
 								onChange={handleChange}
 								className="focus-ring w-full h-[48px] px-4 rounded-[12px] border border-[#E5E7EB] bg-white text-[15px] text-[#0F172A] focus:border-[#398EB3] focus:outline-none transition-colors"
 							/>
 						</div>
-					</div>
-
-					<div>
-						<label htmlFor="purpose" className="block text-[13.5px] font-medium text-[#374151] mb-1.5">
-							Tujuan Pinjaman
-						</label>
-						<input
-							id="purpose"
-							name="purpose"
-							type="text"
-							placeholder="Contoh: Modal Usaha"
-							value={form.purpose}
-							onChange={handleChange}
-							className="focus-ring w-full h-[48px] px-4 rounded-[12px] border border-[#E5E7EB] bg-white text-[15px] text-[#0F172A] placeholder-[#9CA3AF] focus:border-[#398EB3] focus:outline-none transition-colors"
-						/>
 					</div>
 
 					<div className="flex gap-3 pt-2">
@@ -140,7 +140,7 @@ export default function LoanApplicationForm({ onClose, onSubmit }) {
 						</button>
 						<button
 							type="submit"
-							className="focus-ring flex-1 h-12 rounded-[12px] bg-[#398EB3] text-white font-semibold text-[15px] shadow-glow hover:bg-[#2F7A9A] hover:-translate-y-0.5 active:scale-[0.98] transition-all"
+							className="focus-ring flex-1 h-12 rounded-[12px] bg-[#398EB3] text-white font-semibold text-[15px] hover:bg-[#2F7A9A] hover:-translate-y-0.5 active:scale-[0.98] transition-all"
 						>
 							Ajukan
 						</button>

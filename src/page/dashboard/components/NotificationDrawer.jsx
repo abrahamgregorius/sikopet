@@ -98,9 +98,9 @@ export default function NotificationDrawer({ isOpen, onClose }) {
 				className={`overlay fixed inset-0 bg-[#0F172A]/30 z-50 ${isOpen ? "opacity-100 block" : "opacity-0 hidden"}`}
 			></div>
 			<div
-				className={`drawer-panel fixed top-0 right-0 h-full w-full max-w-[380px] bg-white z-[60] flex flex-col shadow-lift ${isOpen ? "translate-x-0" : "translate-x-full"}`}
+				className={`drawer-panel fixed top-0 right-0 h-full w-full max-w-[380px] bg-white z-[60] flex flex-col ${isOpen ? "translate-x-0" : "translate-x-full"}`}
 			>
-				<div className="flex items-center justify-between px-6 h-[72px] border-b border-[#D8E4EA] shrink-0">
+				<div className="flex items-center justify-between px-6 h-[72px] border-b border-[#E5E7EB] shrink-0">
 					<h3 className="font-display font-bold text-[#0F172A] text-[16px]">
 						Notifikasi
 					</h3>

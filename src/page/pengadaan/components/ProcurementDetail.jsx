@@ -9,7 +9,7 @@ export default function ProcurementDetail({
 	if (!procurement) return null;
 
 	return (
-		<div className="rounded-lg bg-white border border-[#D8E4EA] shadow-soft overflow-hidden">
+		<div className="rounded-lg bg-white border border-[#E5E7EB] overflow-hidden">
 			<div className="p-5 border-b border-[#E8EEF2] flex items-center justify-between">
 				<h3 className="font-display font-bold text-[16px] text-[#0F172A]">
 					Detail Pengadaan
@@ -88,7 +88,7 @@ export default function ProcurementDetail({
 							Rp {procurement.unitPrice.toLocaleString("id-ID")}
 						</span>
 					</div>
-					<div className="border-t border-[#D8E4EA] pt-3 flex justify-between text-[14px] font-semibold">
+					<div className="border-t border-[#E5E7EB] pt-3 flex justify-between text-[14px] font-semibold">
 						<span className="text-[#0F172A]">Total</span>
 						<span className="text-[#398EB3]">
 							Rp {procurement.total.toLocaleString("id-ID")}

@@ -10,7 +10,7 @@ export default function RightPanel() {
 	};
 
 	return (
-		<aside className="hidden xl:flex flex-col w-[300px] shrink-0 border-l border-[#D8E4EA] px-5 py-7 space-y-6 sticky top-[72px] h-[calc(100vh-72px)] overflow-y-auto">
+		<aside className="hidden xl:flex flex-col w-[300px] shrink-0 border-l border-[#E5E7EB] px-5 py-7 space-y-6 sticky top-[72px] h-[calc(100vh-72px)] overflow-y-auto">
 			<SyncMap />
 			<StoragePanel />
 			<HelpAccordion
@@ -23,7 +23,7 @@ export default function RightPanel() {
 
 function SyncMap() {
 	return (
-		<div className="rounded-lg bg-white border border-[#D8E4EA] p-5">
+		<div className="rounded-lg bg-white border border-[#E5E7EB] p-5">
 			<div className="flex items-center justify-between mb-3">
 				<h3 className="font-display font-bold text-[#0F172A] text-[14.5px]">
 					Peta Sinkronisasi
@@ -71,7 +71,7 @@ function SyncMap() {
 
 function StoragePanel() {
 	return (
-		<div className="rounded-lg bg-white border border-[#D8E4EA] p-5">
+		<div className="rounded-lg bg-white border border-[#E5E7EB] p-5">
 			<h3 className="font-display font-bold text-[#0F172A] text-[14.5px] mb-4">
 				Penyimpanan
 			</h3>
@@ -114,7 +114,7 @@ function HelpAccordion({ openAccordion, toggleAccordion }) {
 	];
 
 	return (
-		<div className="rounded-lg bg-white border border-[#D8E4EA] p-5">
+		<div className="rounded-lg bg-white border border-[#E5E7EB] p-5">
 			<h3 className="font-display font-bold text-[#0F172A] text-[14.5px] mb-4">
 				Bantuan Cepat
 			</h3>
@@ -122,7 +122,7 @@ function HelpAccordion({ openAccordion, toggleAccordion }) {
 				{items.map((item) => (
 					<div
 						key={item.id}
-						className={`acc-item border border-[#D8E4EA] rounded-lg overflow-hidden ${openAccordion === item.id ? "nested-open" : ""}`}
+						className={`acc-item border border-[#E5E7EB] rounded-lg overflow-hidden ${openAccordion === item.id ? "nested-open" : ""}`}
 					>
 						<button
 							onClick={() => toggleAccordion(item.id)}

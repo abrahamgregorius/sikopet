@@ -8,7 +8,7 @@ export default function LoanPortfolio({
 }) {
 	return (
 		<div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-			<div className="rounded-lg bg-white border border-[#D8E4EA] shadow-soft p-5">
+			<div className="rounded-lg bg-white border border-[#E5E7EB] p-5">
 				<p className="text-[12px] text-[#94A3B8] font-medium mb-2">
 					Total Outstanding
 				</p>
@@ -21,7 +21,7 @@ export default function LoanPortfolio({
 				</div>
 			</div>
 
-			<div className="rounded-lg bg-white border border-[#D8E4EA] shadow-soft p-5">
+			<div className="rounded-lg bg-white border border-[#E5E7EB] p-5">
 				<p className="text-[12px] text-[#94A3B8] font-medium mb-2">
 					Menunggu Persetujuan
 				</p>
@@ -34,7 +34,7 @@ export default function LoanPortfolio({
 				</div>
 			</div>
 
-			<div className="rounded-lg bg-white border border-[#D8E4EA] shadow-soft p-5">
+			<div className="rounded-lg bg-white border border-[#E5E7EB] p-5">
 				<p className="text-[12px] text-[#94A3B8] font-medium mb-2">
 					Pinjaman Aktif
 				</p>
@@ -47,7 +47,7 @@ export default function LoanPortfolio({
 				</div>
 			</div>
 
-			<div className="rounded-lg bg-white border border-[#D8E4EA] shadow-soft p-5">
+			<div className="rounded-lg bg-white border border-[#E5E7EB] p-5">
 				<p className="text-[12px] text-[#94A3B8] font-medium mb-2">Lunas</p>
 				<p className="font-display font-extrabold text-[#0F172A] text-[24px] sm:text-[28px] tracking-tight">
 					{completedCount}

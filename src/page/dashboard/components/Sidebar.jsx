@@ -111,7 +111,7 @@ export default function Sidebar({ collapsed, onToggleCollapse }) {
 		return (
 			<aside
 				id="sidebar"
-				className={`hidden lg:flex flex-col shrink-0 bg-white border-r border-[#D8E4EA] sticky top-0 h-screen z-40 transition-[width] duration-[320ms] ease-[cubic-bezier(.22,.61,.36,1)] ${collapsed ? "w-[84px]" : "w-64"}`}
+				className={`hidden lg:flex flex-col shrink-0 bg-white border-r border-[#E5E7EB] sticky top-0 h-screen z-40 transition-[width] duration-[320ms] ease-[cubic-bezier(.22,.61,.36,1)] ${collapsed ? "w-[84px]" : "w-64"}`}
 			>
 				<div className="h-[72px] flex items-center justify-center">
 					<div className="w-5 h-5 border-2 border-[#398eb3] border-t-transparent rounded-lg animate-spin" />
@@ -123,9 +123,9 @@ export default function Sidebar({ collapsed, onToggleCollapse }) {
 	return (
 		<aside
 			id="sidebar"
-			className={`hidden lg:flex flex-col shrink-0 bg-white border-r border-[#D8E4EA] sticky top-0 h-screen z-40 transition-[width] duration-[320ms] ease-[cubic-bezier(.22,.61,.36,1)] ${collapsed ? "w-[84px]" : "w-64"}`}
+			className={`hidden lg:flex flex-col shrink-0 bg-white border-r border-[#E5E7EB] sticky top-0 h-screen z-40 transition-[width] duration-[320ms] ease-[cubic-bezier(.22,.61,.36,1)] ${collapsed ? "w-[84px]" : "w-64"}`}
 		>
-			<div className="h-[72px] flex items-center gap-2.5 px-5 border-b border-[#D8E4EA] shrink-0">
+			<div className="h-[72px] flex items-center gap-2.5 px-5 border-b border-[#E5E7EB] shrink-0">
 				<Logo collapsed={collapsed} />
 			</div>
 
@@ -251,7 +251,7 @@ export default function Sidebar({ collapsed, onToggleCollapse }) {
 										)}
 										{item.nested && !collapsed && (
 											<div className="nested-panel pl-[42px]">
-												<ul className="space-y-0.5 py-1.5 border-l border-[#D8E4EA] ml-[3px]">
+												<ul className="space-y-0.5 py-1.5 border-l border-[#E5E7EB] ml-[3px]">
 													{item.nested.map((sub) => (
 														<li key={sub.key}>
 															<Link
@@ -273,7 +273,7 @@ export default function Sidebar({ collapsed, onToggleCollapse }) {
 				})}
 			</nav>
 
-			<div className="p-3.5 border-t border-[#D8E4EA] shrink-0">
+			<div className="p-3.5 border-t border-[#E5E7EB] shrink-0">
 				{!collapsed && (
 					<div className="flex items-center gap-2.5 rounded-lg bg-[#EAF6FB] px-3.5 py-3 mb-3">
 						<span className="relative w-2.5 h-2.5 shrink-0">

@@ -55,7 +55,7 @@ export default function MobileSidebar({ isOpen, onClose }) {
 			<aside
 				className={`drawer-panel fixed top-0 left-0 h-full w-72 bg-white z-50 lg:hidden flex flex-col ${isOpen ? "translate-x-0" : "-translate-x-full"}`}
 			>
-				<div className="h-[72px] flex items-center justify-between px-5 border-b border-[#D8E4EA]">
+				<div className="h-[72px] flex items-center justify-between px-5 border-b border-[#E5E7EB]">
 					<span className="font-display font-extrabold text-[18px]">
 						SIKOPET
 					</span>

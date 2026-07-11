@@ -1,14 +1,24 @@
 /** @format */
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { db } from "../../../database/db";
 
 export default function SavingsForm({ type, onClose, onSubmit }) {
+	const [members, setMembers] = useState([]);
 	const [form, setForm] = useState({
-		member: "",
+		memberId: "",
 		type,
 		amount: "",
 		description: type === "deposit" ? "Simpanan Wajib" : "Penarikan",
 	});
+
+	useEffect(() => {
+		const loadMembers = async () => {
+			const data = await db.members.toArray();
+			setMembers(data);
+		};
+		loadMembers();
+	}, []);
 
 	const handleChange = (e) => {
 		const { name, value } = e.target;
@@ -17,7 +27,7 @@ export default function SavingsForm({ type, onClose, onSubmit }) {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		if (!form.member || !form.amount) return;
+		if (!form.memberId || !form.amount) return;
 		onSubmit({
 			...form,
 			amount: Number(form.amount),
@@ -27,7 +37,7 @@ export default function SavingsForm({ type, onClose, onSubmit }) {
 	return (
 		<div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm">
 			<div
-				className="w-full max-w-md rounded-[24px] bg-white shadow-lift overflow-hidden"
+				className="w-full max-w-md rounded-[24px] bg-white overflow-hidden"
 				role="dialog"
 				aria-modal="true"
 			>
@@ -48,19 +58,24 @@ export default function SavingsForm({ type, onClose, onSubmit }) {
 
 				<form onSubmit={handleSubmit} className="p-6 space-y-4">
 					<div>
-						<label htmlFor="member" className="block text-[13.5px] font-medium text-[#374151] mb-1.5">
+						<label htmlFor="memberId" className="block text-[13.5px] font-medium text-[#374151] mb-1.5">
 							Anggota <span className="text-[#EF4444]">*</span>
 						</label>
-						<input
-							id="member"
-							name="member"
-							type="text"
+						<select
+							id="memberId"
+							name="memberId"
 							required
-							placeholder="Nama anggota"
-							value={form.member}
+							value={form.memberId}
 							onChange={handleChange}
-							className="focus-ring w-full h-[48px] px-4 rounded-[12px] border border-[#E5E7EB] bg-white text-[15px] text-[#0F172A] placeholder-[#9CA3AF] focus:border-[#398EB3] focus:outline-none transition-colors"
-						/>
+							className="focus-ring w-full h-[48px] px-4 rounded-[12px] border border-[#E5E7EB] bg-white text-[15px] text-[#0F172A] focus:border-[#398EB3] focus:outline-none transition-colors"
+						>
+							<option value="">Pilih Anggota</option>
+							{members.map((m) => (
+								<option key={m.id} value={m.id}>
+									{m.name}
+								</option>
+							))}
+						</select>
 					</div>
 
 					<div>
@@ -116,7 +131,7 @@ export default function SavingsForm({ type, onClose, onSubmit }) {
 						</button>
 						<button
 							type="submit"
-							className={`focus-ring flex-1 h-12 rounded-[12px] font-semibold text-[15px] shadow-glow hover:-translate-y-0.5 active:scale-[0.98] transition-all ${
+							className={`focus-ring flex-1 h-12 rounded-[12px] font-semibold text-[15px] hover:-translate-y-0.5 active:scale-[0.98] transition-all ${
 								type === "deposit"
 									? "bg-[#398EB3] text-white hover:bg-[#2F7A9A]"
 									: "bg-[#EF4444] text-white hover:bg-[#DC2626]"

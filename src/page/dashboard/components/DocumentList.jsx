@@ -27,7 +27,7 @@ export default function DocumentList() {
 	return (
 		<div
 			id="dokumen-panel"
-			className="lg:col-span-1 rounded-lg bg-white border border-[#D8E4EA] p-6"
+			className="lg:col-span-1 rounded-lg bg-white border border-[#E5E7EB] p-6"
 		>
 			<h3 className="font-display font-bold text-[#0F172A] text-[16px] mb-5">
 				Dokumen Terbaru

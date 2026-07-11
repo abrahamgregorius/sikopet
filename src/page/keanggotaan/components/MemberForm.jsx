@@ -39,7 +39,7 @@ export default function MemberForm({ onClose, onSubmit, nextMemberNumber, member
 	return (
 		<div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm">
 			<div
-				className="w-full max-w-lg rounded-[24px] bg-white shadow-lift overflow-hidden"
+				className="w-full max-w-lg rounded-[24px] bg-white overflow-hidden"
 				role="dialog"
 				aria-modal="true"
 				aria-labelledby="form-title"
@@ -162,7 +162,7 @@ export default function MemberForm({ onClose, onSubmit, nextMemberNumber, member
 						</button>
 						<button
 							type="submit"
-							className="focus-ring flex-1 h-12 rounded-[12px] bg-[#398EB3] text-white font-semibold text-[15px] shadow-glow hover:bg-[#2F7A9A] hover:-translate-y-0.5 active:scale-[0.98] transition-all"
+							className="focus-ring flex-1 h-12 rounded-[12px] bg-[#398EB3] text-white font-semibold text-[15px] hover:bg-[#2F7A9A] hover:-translate-y-0.5 active:scale-[0.98] transition-all"
 						>
 							{isEdit ? "Perbarui" : "Simpan"}
 						</button>

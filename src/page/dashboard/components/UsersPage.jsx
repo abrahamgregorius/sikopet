@@ -198,7 +198,7 @@ export default function UsersPage() {
 				</div>
 				<button
 					onClick={openCreateModal}
-					className="focus-ring inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-[#398eb3] text-white font-semibold text-[14px] hover:bg-[#2F7A9A] transition-colors shadow-glow"
+					className="focus-ring inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-[#398eb3] text-white font-semibold text-[14px] hover:bg-[#2F7A9A] transition-colors"
 				>
 					<svg
 						width="16"
@@ -248,7 +248,7 @@ export default function UsersPage() {
 				</select>
 			</div>
 
-			<div className="rounded-lg bg-white border border-[#D8E4EA] overflow-hidden">
+			<div className="rounded-lg bg-white border border-[#E5E7EB] overflow-hidden">
 				{loading ? (
 					<div className="flex items-center justify-center h-48">
 						<div className="w-8 h-8 border-2 border-[#398eb3] border-t-transparent rounded-lg animate-spin" />
@@ -400,7 +400,7 @@ export default function UsersPage() {
 						className="fixed inset-0 bg-[#0F172A]/40 z-[80]"
 					/>
 					<div className="fixed inset-0 z-[90] grid place-items-center px-4">
-						<div className="w-full max-w-[440px] bg-white rounded-lg shadow-lift p-6 sm:p-7">
+						<div className="w-full max-w-[440px] bg-white rounded-lg p-6 sm:p-7">
 							<div className="flex items-center justify-between mb-5">
 								<h3 className="font-display font-bold text-[18px] text-[#0F172A]">
 									{editingUser ? "Edit Karyawan" : "Karyawan Baru"}
@@ -504,13 +504,13 @@ export default function UsersPage() {
 									<button
 										type="button"
 										onClick={() => setIsModalOpen(false)}
-										className="focus-ring flex-1 h-[46px] rounded-lg border border-[#D8E4EA] font-semibold text-[14px] text-[#475569] hover:bg-[#F1F5F9] transition-colors"
+										className="focus-ring flex-1 h-[46px] rounded-lg border border-[#E5E7EB] font-semibold text-[14px] text-[#475569] hover:bg-[#F1F5F9] transition-colors"
 									>
 										Batal
 									</button>
 									<button
 										type="submit"
-										className="focus-ring flex-1 h-[46px] rounded-lg bg-[#398eb3] text-white font-semibold text-[14px] hover:bg-[#2F7A9A] transition-colors shadow-glow"
+										className="focus-ring flex-1 h-[46px] rounded-lg bg-[#398eb3] text-white font-semibold text-[14px] hover:bg-[#2F7A9A] transition-colors"
 									>
 										{editingUser ? "Simpan Perubahan" : "Buat Karyawan"}
 									</button>
@@ -523,7 +523,7 @@ export default function UsersPage() {
 
 			{toast && (
 				<div
-					className={`fixed bottom-6 right-6 z-[100] px-5 py-3 rounded-lg shadow-lift flex items-center gap-3 animate-pop-in ${
+					className={`fixed bottom-6 right-6 z-[100] px-5 py-3 rounded-lg flex items-center gap-3 animate-pop-in ${
 						toast.type === "success"
 							? "bg-[#22C55E] text-white"
 							: "bg-[#EF4444] text-white"

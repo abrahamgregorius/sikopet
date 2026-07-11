@@ -8,7 +8,7 @@ export default function CustomerStats({ customers }) {
 
 	return (
 		<div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-			<div className="rounded-lg bg-white border border-[#D8E4EA] shadow-soft p-5">
+			<div className="rounded-lg bg-white border border-[#E5E7EB] p-5">
 				<p className="text-[12px] text-[#94A3B8] font-medium mb-2">
 					Total Pelanggan
 				</p>
@@ -18,7 +18,7 @@ export default function CustomerStats({ customers }) {
 				<p className="text-[11px] text-[#94A3B8] mt-1">Pelanggan terdaftar</p>
 			</div>
 
-			<div className="rounded-lg bg-white border border-[#D8E4EA] shadow-soft p-5">
+			<div className="rounded-lg bg-white border border-[#E5E7EB] p-5">
 				<p className="text-[12px] text-[#94A3B8] font-medium mb-2">Aktif</p>
 				<p className="font-display font-extrabold text-[#22C55E] text-[28px] tracking-tight">
 					{active}
@@ -26,7 +26,7 @@ export default function CustomerStats({ customers }) {
 				<p className="text-[11px] text-[#94A3B8] mt-1">Pernah bertransaksi</p>
 			</div>
 
-			<div className="rounded-lg bg-white border border-[#D8E4EA] shadow-soft p-5">
+			<div className="rounded-lg bg-white border border-[#E5E7EB] p-5">
 				<p className="text-[12px] text-[#94A3B8] font-medium mb-2">
 					Total Transaksi
 				</p>
@@ -36,7 +36,7 @@ export default function CustomerStats({ customers }) {
 				<p className="text-[11px] text-[#94A3B8] mt-1">Kunjungan</p>
 			</div>
 
-			<div className="rounded-lg bg-[#0F172A] px-6 py-7 shadow-lift">
+			<div className="rounded-lg bg-[#0F172A] px-6 py-7">
 				<p className="text-[12px] text-white/60 font-medium mb-2">
 					Total Nilai
 				</p>

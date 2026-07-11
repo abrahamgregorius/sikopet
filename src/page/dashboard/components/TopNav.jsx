@@ -51,7 +51,7 @@ export default function TopNav({
 	};
 
 	return (
-		<header className="sticky top-0 z-30 bg-white/95 backdrop-blur-md border-b border-[#D8E4EA]">
+		<header className="sticky top-0 z-30 bg-white/95 backdrop-blur-md border-b border-[#E5E7EB]">
 			<div className="h-[72px] flex items-center gap-3 px-4 sm:px-6">
 				<button
 					onClick={onMobileMenuToggle}
@@ -184,7 +184,7 @@ export default function TopNav({
 						</button>
 
 						{isProfileOpen && (
-							<div className="pop-enter absolute right-0 top-[calc(100%+10px)] w-64 bg-white rounded-lg border border-[#D8E4EA] shadow-lift p-2 z-50">
+							<div className="pop-enter absolute right-0 top-[calc(100%+10px)] w-64 bg-white rounded-lg border border-[#E5E7EB] p-2 z-50">
 								<div className="px-3.5 py-3 border-b border-[#E8EEF2] mb-1.5">
 									<p className="text-[13.5px] font-semibold text-[#0F172A]">
 										{displayName}

@@ -41,7 +41,7 @@ export default function NotificationCenter() {
 
 	if (loading) {
 		return (
-			<div className="lg:col-span-1 rounded-lg bg-white border border-[#D8E4EA] p-6">
+			<div className="lg:col-span-1 rounded-lg bg-white border border-[#E5E7EB] p-6">
 				<h3 className="font-display font-bold text-[#0F172A] text-[16px] mb-5">
 					Pusat Notifikasi
 				</h3>
@@ -62,7 +62,7 @@ export default function NotificationCenter() {
 
 	if (notifications.length === 0) {
 		return (
-			<div className="lg:col-span-1 rounded-lg bg-white border border-[#D8E4EA] p-6">
+			<div className="lg:col-span-1 rounded-lg bg-white border border-[#E5E7EB] p-6">
 				<h3 className="font-display font-bold text-[#0F172A] text-[16px] mb-5">
 					Pusat Notifikasi
 				</h3>
@@ -72,7 +72,7 @@ export default function NotificationCenter() {
 	}
 
 	return (
-		<div className="lg:col-span-1 rounded-lg bg-white border border-[#D8E4EA] p-6">
+		<div className="lg:col-span-1 rounded-lg bg-white border border-[#E5E7EB] p-6">
 			<h3 className="font-display font-bold text-[#0F172A] text-[16px] mb-5">
 				Pusat Notifikasi
 			</h3>

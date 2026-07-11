@@ -7,7 +7,7 @@ export default function SavingsOverview({
 }) {
 	return (
 		<div className="grid sm:grid-cols-3 gap-4">
-			<div className="rounded-lg bg-[#0F172A] px-6 py-7 shadow-lift">
+			<div className="rounded-lg bg-[#0F172A] px-6 py-7">
 				<p className="text-[12px] text-white/60 font-medium mb-2">
 					Total Simpanan
 				</p>
@@ -20,7 +20,7 @@ export default function SavingsOverview({
 				</div>
 			</div>
 
-			<div className="rounded-lg bg-white border border-[#D8E4EA] shadow-soft p-5">
+			<div className="rounded-lg bg-white border border-[#E5E7EB] p-5">
 				<p className="text-[12px] text-[#94A3B8] font-medium mb-2">
 					Total Penarikan
 				</p>
@@ -33,7 +33,7 @@ export default function SavingsOverview({
 				</div>
 			</div>
 
-			<div className="rounded-lg bg-white border border-[#D8E4EA] shadow-soft p-5">
+			<div className="rounded-lg bg-white border border-[#E5E7EB] p-5">
 				<p className="text-[12px] text-[#94A3B8] font-medium mb-2">
 					Saldo Bersih
 				</p>

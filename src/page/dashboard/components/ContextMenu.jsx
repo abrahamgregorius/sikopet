@@ -38,7 +38,7 @@ export default function ContextMenu({ x, y, onClose }) {
 	return (
 		<div
 			style={{ top: y, left: x }}
-			className="pop-enter fixed w-44 bg-white rounded-lg border border-[#D8E4EA] shadow-lift p-1.5 z-[70]"
+			className="pop-enter fixed w-44 bg-white rounded-lg border border-[#E5E7EB] p-1.5 z-[70]"
 		>
 			{actions.map((action) =>
 				action.danger ? (

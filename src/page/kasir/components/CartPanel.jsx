@@ -34,7 +34,7 @@ export default function CartPanel({
 	onClear,
 }) {
 	return (
-		<div className="rounded-lg bg-white border border-[#D8E4EA] shadow-soft p-5 flex flex-col">
+		<div className="rounded-lg bg-white border border-[#E5E7EB] p-5 flex flex-col">
 			<div className="flex items-center justify-between mb-4">
 				<h3 className="font-display font-bold text-[16px] text-[#0F172A]">
 					Keranjang
@@ -85,7 +85,7 @@ export default function CartPanel({
 								<div className="flex items-center gap-1.5">
 									<button
 										onClick={() => onUpdateQty(item.id, item.qty - 1)}
-										className="focus-ring w-7 h-7 rounded-lg bg-white border border-[#D8E4EA] text-[#475569] hover:bg-[#F1F5F9] flex items-center justify-center text-[14px] font-bold transition-colors"
+										className="focus-ring w-7 h-7 rounded-lg bg-white border border-[#E5E7EB] text-[#475569] hover:bg-[#F1F5F9] flex items-center justify-center text-[14px] font-bold transition-colors"
 									>
 										-
 									</button>
@@ -94,7 +94,7 @@ export default function CartPanel({
 									</span>
 									<button
 										onClick={() => onUpdateQty(item.id, item.qty + 1)}
-										className="focus-ring w-7 h-7 rounded-lg bg-white border border-[#D8E4EA] text-[#475569] hover:bg-[#F1F5F9] flex items-center justify-center text-[14px] font-bold transition-colors"
+										className="focus-ring w-7 h-7 rounded-lg bg-white border border-[#E5E7EB] text-[#475569] hover:bg-[#F1F5F9] flex items-center justify-center text-[14px] font-bold transition-colors"
 									>
 										+
 									</button>
@@ -183,7 +183,7 @@ export default function CartPanel({
 
 						<button
 							onClick={onBayar}
-							className="focus-ring w-full h-12 rounded-lg bg-[#398EB3] text-white font-semibold text-[15px] shadow-glow hover:bg-[#2F7A9A] hover:-translate-y-0.5 active:scale-[0.98] transition-all"
+							className="focus-ring w-full h-12 rounded-lg bg-[#398EB3] text-white font-semibold text-[15px] hover:bg-[#2F7A9A] hover:-translate-y-0.5 active:scale-[0.98] transition-all"
 						>
 							Bayar Rp {grandTotal.toLocaleString("id-ID")}
 						</button>

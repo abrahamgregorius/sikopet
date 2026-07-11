@@ -6,7 +6,7 @@ export default function IncomeExpenseChart({ totalIncome, totalExpense }) {
 	const expenseWidth = (totalExpense / max) * 100;
 
 	return (
-		<div className="rounded-lg bg-white border border-[#D8E4EA] shadow-soft p-5">
+		<div className="rounded-lg bg-white border border-[#E5E7EB] p-5">
 			<h3 className="font-display font-bold text-[16px] text-[#0F172A] mb-5">
 				Pemasukan vs Pengeluaran
 			</h3>

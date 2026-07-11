@@ -78,7 +78,7 @@ export default function UserModal({ isOpen, onClose }) {
 				aria-labelledby="user-modal-title"
 			>
 				<div
-					className={`w-full max-w-[440px] bg-white rounded-lg shadow-lift p-6 sm:p-7 transition-transform duration-200 ${
+					className={`w-full max-w-[440px] bg-white rounded-lg p-6 sm:p-7 transition-transform duration-200 ${
 						isOpen ? "scale-100" : "scale-95"
 					}`}
 				>
@@ -225,14 +225,14 @@ export default function UserModal({ isOpen, onClose }) {
 							<button
 								type="button"
 								onClick={onClose}
-								className="focus-ring flex-1 h-[46px] rounded-lg border border-[#D8E4EA] font-semibold text-[14px] text-[#475569] hover:bg-[#F1F5F9] transition-colors duration-200"
+								className="focus-ring flex-1 h-[46px] rounded-lg border border-[#E5E7EB] font-semibold text-[14px] text-[#475569] hover:bg-[#F1F5F9] transition-colors duration-200"
 							>
 								Batal
 							</button>
 							<button
 								type="submit"
 								disabled={loading}
-								className="focus-ring flex-1 h-[46px] rounded-lg bg-[#398eb3] text-white font-semibold text-[14px] hover:bg-[#2F7A9A] transition-colors duration-200 disabled:opacity-60 disabled:cursor-not-allowed shadow-glow"
+								className="focus-ring flex-1 h-[46px] rounded-lg bg-[#398eb3] text-white font-semibold text-[14px] hover:bg-[#2F7A9A] transition-colors duration-200 disabled:opacity-60 disabled:cursor-not-allowed"
 							>
 								{loading ? "Menyimpan..." : "Simpan User"}
 							</button>

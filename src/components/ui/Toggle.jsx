@@ -26,7 +26,7 @@ export default function Toggle({
 				{...props}
 			>
 				<span
-					className={`pointer-events-none inline-block h-5 w-5 rounded-lg bg-white shadow-lg ring-0 transition-transform duration-300 ${
+					className={`pointer-events-none inline-block h-5 w-5 rounded-lg bg-white ring-0 transition-transform duration-300 ${
 						checked ? "translate-x-5" : "translate-x-0"
 					}`}
 				/>

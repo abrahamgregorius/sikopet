@@ -86,7 +86,7 @@ export default function MemberStats({ members }) {
 			{cards.map((card) => (
 				<div
 					key={card.label}
-					className="rounded-lg bg-white border border-[#D8E4EA] shadow-soft p-5"
+					className="rounded-lg bg-white border border-[#E5E7EB] p-5"
 				>
 					<div className="flex items-center justify-between mb-3">
 						<span

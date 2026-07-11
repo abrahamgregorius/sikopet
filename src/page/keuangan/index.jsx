@@ -1,102 +1,46 @@
 /** @format */
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ModuleLayout from "../modules/ModuleLayout";
 import FinanceOverview from "./components/FinanceOverview";
 import TransactionTable from "./components/TransactionTable";
 import IncomeExpenseChart from "./components/IncomeExpenseChart";
 import CategoryBreakdown from "./components/CategoryBreakdown";
-
-const MOCK_TRANSACTIONS = [
-	{
-		id: 1,
-		date: "2026-07-10",
-		description: "Penjualan Toko Sembako",
-		category: "income",
-		amount: 2750000,
-		method: "cash",
-	},
-	{
-		id: 2,
-		date: "2026-07-10",
-		description: "Setoran Simpanan Wajib - Rina",
-		category: "income",
-		amount: 500000,
-		method: "transfer",
-	},
-	{
-		id: 3,
-		date: "2026-07-09",
-		description: "Pembelian Stok Barang",
-		category: "expense",
-		amount: 1850000,
-		method: "transfer",
-	},
-	{
-		id: 4,
-		date: "2026-07-09",
-		description: "Gaji Karyawan",
-		category: "expense",
-		amount: 8500000,
-		method: "transfer",
-	},
-	{
-		id: 5,
-		date: "2026-07-08",
-		description: "Angsuran Pinjaman - Bambang",
-		category: "income",
-		amount: 950000,
-		method: "transfer",
-	},
-	{
-		id: 6,
-		date: "2026-07-08",
-		description: "Listrik & Internet",
-		category: "expense",
-		amount: 750000,
-		method: "transfer",
-	},
-	{
-		id: 7,
-		date: "2026-07-07",
-		description: "Bunga Simpanan Anggota",
-		category: "expense",
-		amount: 425000,
-		method: "transfer",
-	},
-	{
-		id: 8,
-		date: "2026-07-07",
-		description: "Penjualan Grosir",
-		category: "income",
-		amount: 4200000,
-		method: "transfer",
-	},
-	{
-		id: 9,
-		date: "2026-07-06",
-		description: "Transport & Logistik",
-		category: "expense",
-		amount: 1200000,
-		method: "cash",
-	},
-	{
-		id: 10,
-		date: "2026-07-06",
-		description: "Penarikan Simpanan - Made",
-		category: "expense",
-		amount: 200000,
-		method: "cash",
-	},
-];
+import { db } from "../../database/db";
 
 export default function KeuanganPage() {
-	const [transactions] = useState(MOCK_TRANSACTIONS);
+	const [transactions, setTransactions] = useState([]);
 	const [search, setSearch] = useState("");
 	const [categoryFilter, setCategoryFilter] = useState("all");
+	const [loading, setLoading] = useState(true);
+
+	const loadData = async () => {
+		setLoading(true);
+		try {
+			const data = await db.transactions
+				.where("type")
+				.anyOf(["income", "expense"])
+				.reverse()
+				.toArray();
+			const enrichedData = data.map((t) => ({
+				...t,
+				category: t.type,
+				date: t.date ? new Date(t.date).toLocaleDateString("id-ID") : "-",
+			}));
+			setTransactions(enrichedData);
+		} catch (err) {
+			console.error("[Keuangan] Failed to load data:", err);
+		} finally {
+			setLoading(false);
+		}
+	};
+
+	useEffect(() => {
+		loadData();
+	}, []);
 
 	const filtered = transactions.filter((t) => {
-		const matchSearch = t.description
+		const matchSearch = (t.description || "")
 			.toLowerCase()
 			.includes(search.toLowerCase());
 		const matchCat = categoryFilter === "all" || t.category === categoryFilter;
@@ -104,22 +48,22 @@ export default function KeuanganPage() {
 	});
 
 	const totalIncome = transactions
-		.filter((t) => t.category === "income")
-		.reduce((sum, t) => sum + t.amount, 0);
+		.filter((t) => t.type === "income")
+		.reduce((sum, t) => sum + (t.amount || 0), 0);
 	const totalExpense = transactions
-		.filter((t) => t.category === "expense")
-		.reduce((sum, t) => sum + t.amount, 0);
+		.filter((t) => t.type === "expense")
+		.reduce((sum, t) => sum + (t.amount || 0), 0);
 	const netBalance = totalIncome - totalExpense;
 
 	const incomeByCategory = {};
 	const expenseByCategory = {};
 	transactions.forEach((t) => {
-		if (t.category === "income") {
-			incomeByCategory[t.description.split(" ")[0]] =
-				(incomeByCategory[t.description.split(" ")[0]] || 0) + t.amount;
+		const amount = t.amount || 0;
+		const key = (t.description || t.type || "Other").split(" ")[0];
+		if (t.type === "income") {
+			incomeByCategory[key] = (incomeByCategory[key] || 0) + amount;
 		} else {
-			expenseByCategory[t.description.split(" ")[0]] =
-				(expenseByCategory[t.description.split(" ")[0]] || 0) + t.amount;
+			expenseByCategory[key] = (expenseByCategory[key] || 0) + amount;
 		}
 	});
 
@@ -136,7 +80,7 @@ export default function KeuanganPage() {
 						</p>
 					</div>
 					<div className="flex gap-3">
-						<button className="focus-ring inline-flex items-center gap-2 px-4 py-2.5 rounded-lg border border-[#D8E4EA] bg-white text-[#0F172A] font-semibold text-[14px] hover:bg-white hover:shadow-soft transition-all">
+						<button className="focus-ring inline-flex items-center gap-2 px-4 py-2.5 rounded-lg border border-[#E5E7EB] bg-white text-[#0F172A] font-semibold text-[14px] hover:bg-white transition-all">
 							<svg
 								width="15"
 								height="15"
@@ -180,6 +124,7 @@ export default function KeuanganPage() {
 					categoryFilter={categoryFilter}
 					onSearch={setSearch}
 					onFilter={setCategoryFilter}
+					loading={loading}
 				/>
 			</div>
 		</ModuleLayout>

@@ -60,7 +60,7 @@ export default function QuickActions({ onOpenTaskModal }) {
 				<button
 					key={action.label}
 					onClick={i === 2 ? onOpenTaskModal : undefined}
-					className="focus-ring group text-left rounded-lg bg-white border border-[#D8E4EA] p-5 hover:shadow-soft hover:-translate-y-0.5 transition-all duration-300"
+					className="focus-ring group text-left rounded-lg bg-white border border-[#E5E7EB] p-5 hover:-translate-y-0.5 transition-all duration-300"
 				>
 					<IconContainer
 						size="md"

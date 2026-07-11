@@ -19,11 +19,7 @@ export default function SharedStyles() {
                 border: 1px solid rgba(255, 255, 255, 0.5);
             }
 
-            .shadow-soft { box-shadow: 0 1px 2px rgba(15,23,42,0.04), 0 8px 24px -8px rgba(15,23,42,0.08); }
-            .shadow-lift { box-shadow: 0 4px 10px rgba(15,23,42,0.05), 0 20px 40px -16px rgba(15,23,42,0.16); }
-            .shadow-glow { box-shadow: 0 0 0 1px rgba(57,142,179,0.10), 0 12px 32px -8px rgba(57,142,179,0.28); }
-            .hover\\:shadow-lift:hover { box-shadow: 0 4px 10px rgba(15,23,42,0.05), 0 20px 40px -16px rgba(15,23,42,0.16); }
-            .hover\\:shadow-soft:hover { box-shadow: 0 1px 2px rgba(15,23,42,0.04), 0 8px 24px -8px rgba(15,23,42,0.08); }
+            .shadow-soft, .shadow-lift, .shadow-glow, .hover\:shadow-lift:hover, .hover\:shadow-soft:hover { box-shadow: none; }
             .focus-ring:focus-visible { outline: 2px solid #398eb3; outline-offset: 3px; border-radius: 8px; }
 
             .reveal {

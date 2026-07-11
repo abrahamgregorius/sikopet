@@ -58,7 +58,7 @@ export default function Login() {
 				<div className="blob absolute -top-20 -left-20 w-[340px] h-[340px] rounded-lg bg-[#67B2D4]/25 -z-10"></div>
 				<div className="blob absolute -bottom-16 -right-16 w-[300px] h-[300px] rounded-lg bg-[#4CC9B0]/20 -z-10"></div>
 
-				<div className="rounded-[24px] bg-white border border-[#D8E4EA] shadow-lift p-8 sm:p-10">
+				<div className="rounded-[24px] bg-white border border-[#E5E7EB] p-8 sm:p-10">
 					<div className="text-center mb-8">
 						<div className="inline-flex">
 							<Logo size="md" name="SIKOPET" href="/" />

@@ -45,9 +45,7 @@ export default function GenericModulePage() {
                 .glass { background: rgba(255,255,255,0.7); backdrop-filter: blur(14px) saturate(160%); -webkit-backdrop-filter: blur(14px) saturate(160%); }
                 .overlay { transition: opacity .25s ease; }
                 .drawer-panel { transition: transform .32s cubic-bezier(.22,.61,.36,1); }
-                .shadow-soft { box-shadow: 0 1px 2px rgba(15,23,42,0.04), 0 8px 24px -8px rgba(15,23,42,0.08); }
-                .shadow-lift { box-shadow: 0 4px 10px rgba(15,23,42,0.05), 0 20px 40px -16px rgba(15,23,42,0.16); }
-                .shadow-glow { box-shadow: 0 0 0 1px rgba(57,142,179,0.10), 0 12px 32px -8px rgba(57,142,179,0.28); }
+                .shadow-soft, .shadow-lift, .shadow-glow { box-shadow: none; }
                 #sidebar-scroll::-webkit-scrollbar { width: 5px; }
                 #sidebar-scroll::-webkit-scrollbar-thumb { background: #D8E4EA; border-radius: 10px; }
             `}</style>
@@ -74,7 +72,7 @@ export default function GenericModulePage() {
 
 					<main className="flex-1 min-w-0 px-4 sm:px-6 lg:px-8 py-7 space-y-6">
 						<Breadcrumb />
-						<div className="rounded-lg bg-white border border-[#D8E4EA] p-8 text-center">
+						<div className="rounded-lg bg-white border border-[#E5E7EB] p-8 text-center">
 							<div className="w-16 h-16 rounded-lg bg-[#EAF6FB] grid place-items-center mx-auto mb-4">
 								<svg
 									width="28"

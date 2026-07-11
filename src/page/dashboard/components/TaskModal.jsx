@@ -40,7 +40,7 @@ export default function TaskModal({ isOpen, onClose }) {
 				aria-labelledby="task-modal-title"
 			>
 				<div
-					className={`w-full max-w-[440px] bg-white rounded-lg shadow-lift p-6 sm:p-7 transition-transform ${isOpen ? "scale-100" : "scale-95"}`}
+					className={`w-full max-w-[440px] bg-white rounded-lg p-6 sm:p-7 transition-transform ${isOpen ? "scale-100" : "scale-95"}`}
 				>
 					<div className="flex items-center justify-between mb-5">
 						<h3
@@ -82,7 +82,7 @@ export default function TaskModal({ isOpen, onClose }) {
 								placeholder="cth. Tinjau laporan keuangan Q3"
 								value={title}
 								onChange={(e) => setTitle(e.target.value)}
-								className="focus-ring w-full px-3.5 py-2.5 rounded-lg border border-[#D8E4EA] text-[13.5px] focus:border-[#67B2D4] transition-colors"
+								className="focus-ring w-full px-3.5 py-2.5 rounded-lg border border-[#E5E7EB] text-[13.5px] focus:border-[#67B2D4] transition-colors"
 							/>
 						</div>
 						<div>
@@ -97,14 +97,14 @@ export default function TaskModal({ isOpen, onClose }) {
 								type="date"
 								value={dueDate}
 								onChange={(e) => setDueDate(e.target.value)}
-								className="focus-ring w-full px-3.5 py-2.5 rounded-lg border border-[#D8E4EA] text-[13.5px] focus:border-[#67B2D4] transition-colors"
+								className="focus-ring w-full px-3.5 py-2.5 rounded-lg border border-[#E5E7EB] text-[13.5px] focus:border-[#67B2D4] transition-colors"
 							/>
 						</div>
 						<div className="flex gap-3 pt-2">
 							<button
 								type="button"
 								onClick={onClose}
-								className="focus-ring flex-1 py-2.5 rounded-lg border border-[#D8E4EA] font-semibold text-[13.5px] text-[#475569] hover:bg-[#F1F5F9] transition-colors"
+								className="focus-ring flex-1 py-2.5 rounded-lg border border-[#E5E7EB] font-semibold text-[13.5px] text-[#475569] hover:bg-[#F1F5F9] transition-colors"
 							>
 								Batal
 							</button>

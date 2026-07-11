@@ -43,7 +43,7 @@ const events = [
 
 export default function MiniCalendar() {
 	return (
-		<div className="lg:col-span-1 rounded-lg bg-white border border-[#D8E4EA] p-6">
+		<div className="lg:col-span-1 rounded-lg bg-white border border-[#E5E7EB] p-6">
 			<div className="flex items-center justify-between mb-5">
 				<h3 className="font-display font-bold text-[#0F172A] text-[16px]">
 					Kalender

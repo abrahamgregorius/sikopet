@@ -33,7 +33,7 @@ export default function TransactionList({
 	onFilter,
 }) {
 	return (
-		<div className="rounded-lg bg-white border border-[#D8E4EA] shadow-soft overflow-hidden">
+		<div className="rounded-lg bg-white border border-[#E5E7EB] overflow-hidden">
 			<div className="p-5 border-b border-[#E8EEF2]">
 				<div className="flex flex-col sm:flex-row gap-3">
 					<div className="relative flex-1">

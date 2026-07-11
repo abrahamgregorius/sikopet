@@ -38,7 +38,7 @@ export default function TransactionTable({ onCtxMenu }) {
 		<section
 			id="transaksi"
 			aria-label="Transaksi terbaru"
-			className="reveal in rounded-lg bg-white border border-[#D8E4EA] overflow-hidden"
+			className="reveal in rounded-lg bg-white border border-[#E5E7EB] overflow-hidden"
 		>
 			<div className="p-6 pb-4">
 				<div className="flex flex-wrap items-center justify-between gap-3">
@@ -105,7 +105,7 @@ export default function TransactionTable({ onCtxMenu }) {
 				{filtered.length > 0 ? (
 					<table className="w-full text-left">
 						<thead>
-							<tr className="border-y border-[#D8E4EA] bg-[#F1F5F9]/60">
+							<tr className="border-y border-[#E5E7EB] bg-[#F1F5F9]/60">
 								<th
 									scope="col"
 									className="px-6 py-3 text-[11.5px] font-bold text-[#94A3B8] uppercase tracking-wide"
@@ -213,7 +213,7 @@ export default function TransactionTable({ onCtxMenu }) {
 			</div>
 
 			{filtered.length > 0 && (
-				<div className="flex flex-wrap items-center justify-between gap-3 px-6 py-4 border-t border-[#D8E4EA]">
+				<div className="flex flex-wrap items-center justify-between gap-3 px-6 py-4 border-t border-[#E5E7EB]">
 					<p className="text-[12.5px] text-[#94A3B8]">
 						Menampilkan {filtered.length} dari {transactions.length} transaksi
 					</p>

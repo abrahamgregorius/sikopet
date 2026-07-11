@@ -16,7 +16,7 @@ export default function ProductGrid({ products, onAdd }) {
 	});
 
 	return (
-		<div className="rounded-lg bg-white border border-[#D8E4EA] shadow-soft p-5">
+		<div className="rounded-lg bg-white border border-[#E5E7EB] p-5">
 			<div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-5">
 				<div className="relative flex-1">
 					<svg
@@ -61,7 +61,7 @@ export default function ProductGrid({ products, onAdd }) {
 					<button
 						key={product.id}
 						onClick={() => onAdd(product)}
-						className="focus-ring text-left p-3.5 rounded-lg border border-[#E5E7EB] hover:border-[#398EB3] hover:shadow-soft transition-all group"
+						className="focus-ring text-left p-3.5 rounded-lg border border-[#E5E7EB] hover:border-[#398EB3] transition-all group"
 					>
 						<div className="w-full h-16 rounded-lg bg-[#F1F5F9] mb-3 flex items-center justify-center">
 							<svg

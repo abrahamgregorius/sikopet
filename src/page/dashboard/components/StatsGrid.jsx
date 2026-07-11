@@ -164,7 +164,7 @@ export default function StatsGrid({ refreshTrigger, onRefresh }) {
 					<Card
 						key={stat.key}
 						variant="standard"
-						className="!p-5 hover:shadow-soft transition-shadow duration-300"
+						className="!p-5 transition-shadow duration-300"
 					>
 						<div className="flex items-start justify-between">
 							<span className="w-10 h-10 rounded-lg bg-[#EAF6FB] grid place-items-center">

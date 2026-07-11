@@ -54,7 +54,7 @@ export default function HeroHeader({ onOpenTaskModal }) {
 				<div className="flex flex-wrap gap-3">
 					<Button
 						onClick={onOpenTaskModal}
-						className="!bg-white !text-[#2F7698] !shadow-lift"
+						className="!bg-white !text-[#2F7698]"
 					>
 						<svg
 							width="16"

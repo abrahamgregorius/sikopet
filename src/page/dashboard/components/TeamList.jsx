@@ -44,7 +44,7 @@ export default function TeamList() {
 	return (
 		<div
 			id="tim-panel"
-			className="rounded-lg bg-white border border-[#D8E4EA] p-6"
+			className="rounded-lg bg-white border border-[#E5E7EB] p-6"
 		>
 			<div className="flex items-center justify-between mb-5">
 				<h3 className="font-display font-bold text-[#0F172A] text-[16px]">

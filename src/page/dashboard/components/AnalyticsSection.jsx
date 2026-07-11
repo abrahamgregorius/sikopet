@@ -33,7 +33,7 @@ export function AnalyticsSection() {
 			aria-label="Analitik"
 			className="reveal in grid lg:grid-cols-3 gap-5"
 		>
-			<div className="lg:col-span-2 rounded-lg bg-white border border-[#D8E4EA] p-6">
+			<div className="lg:col-span-2 rounded-lg bg-white border border-[#E5E7EB] p-6">
 				<div className="flex flex-wrap items-center justify-between gap-3 mb-1">
 					<div>
 						<h3 className="font-display font-bold text-[#0F172A] text-[16px]">
@@ -96,7 +96,7 @@ export function AnalyticsSection() {
 				</div>
 			</div>
 
-			<div className="rounded-lg bg-white border border-[#D8E4EA] p-6 flex flex-col">
+			<div className="rounded-lg bg-white border border-[#E5E7EB] p-6 flex flex-col">
 				<h3 className="font-display font-bold text-[#0F172A] text-[16px] mb-4">
 					Performa Target
 				</h3>
@@ -110,7 +110,7 @@ export function AnalyticsSection() {
 							role="tab"
 							aria-selected={activePerfTab === tab.id}
 							onClick={() => setActivePerfTab(tab.id)}
-							className={`focus-ring px-3.5 py-1.5 rounded-lg text-[12.5px] font-semibold transition-colors ${activePerfTab === tab.id ? "bg-white shadow-soft text-[#0F172A]" : "text-[#475569]"}`}
+							className={`focus-ring px-3.5 py-1.5 rounded-lg text-[12.5px] font-semibold transition-colors ${activePerfTab === tab.id ? "bg-white text-[#0F172A]" : "text-[#475569]"}`}
 						>
 							{tab.label}
 						</button>
@@ -140,12 +140,12 @@ export function ModuleUsage() {
 		{
 			label: "Laporan",
 			pct: 37,
-			color: "bg-[#F1F5F9] border border-[#D8E4EA]",
+			color: "bg-[#F1F5F9] border border-[#E5E7EB]",
 		},
 	];
 
 	return (
-		<div className="rounded-lg bg-white border border-[#D8E4EA] p-6">
+		<div className="rounded-lg bg-white border border-[#E5E7EB] p-6">
 			<h3 className="font-display font-bold text-[#0F172A] text-[16px] mb-5">
 				Penggunaan Modul
 			</h3>
@@ -181,7 +181,7 @@ export function ProgressOverview() {
 	];
 
 	return (
-		<div className="rounded-lg bg-white border border-[#D8E4EA] p-6">
+		<div className="rounded-lg bg-white border border-[#E5E7EB] p-6">
 			<h3 className="font-display font-bold text-[#0F172A] text-[16px] mb-5">
 				Ikhtisar Progres
 			</h3>

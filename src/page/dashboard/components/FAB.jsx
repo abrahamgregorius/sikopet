@@ -13,7 +13,7 @@ export default function FAB({
 			{isOpen && (
 				<div
 					id="fab-menu"
-					className="pop-enter absolute bottom-[calc(100%+12px)] right-0 w-56 bg-white rounded-lg border border-[#D8E4EA] shadow-lift p-2"
+					className="pop-enter absolute bottom-[calc(100%+12px)] right-0 w-56 bg-white rounded-lg border border-[#E5E7EB] p-2"
 				>
 					<button
 						onClick={onNewTransaction}
@@ -90,7 +90,7 @@ export default function FAB({
 			<button
 				id="fab-btn"
 				onClick={onToggle}
-				className="focus-ring w-14 h-14 rounded-lg bg-gradient-to-br from-[#398eb3] to-[#2F7698] text-white shadow-glow grid place-items-center hover:scale-105 transition-transform duration-300"
+				className="focus-ring w-14 h-14 rounded-lg bg-gradient-to-br from-[#398eb3] to-[#2F7698] text-white grid place-items-center hover:scale-105 transition-transform duration-300"
 				aria-label="Aksi cepat"
 				aria-haspopup="true"
 			>

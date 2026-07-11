@@ -8,7 +8,7 @@ export default function LoanDetail({ loan, onClose, onApprove }) {
 	const monthlyPayment = (loan.principal * (1 + loan.rate / 100)) / loan.tenor;
 
 	return (
-		<div className="rounded-lg bg-white border border-[#D8E4EA] shadow-soft overflow-hidden">
+		<div className="rounded-lg bg-white border border-[#E5E7EB] overflow-hidden">
 			<div className="p-5 border-b border-[#E8EEF2] flex items-center justify-between">
 				<h3 className="font-display font-bold text-[16px] text-[#0F172A]">
 					Detail Pinjaman

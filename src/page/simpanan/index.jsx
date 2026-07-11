@@ -1,109 +1,81 @@
 /** @format */
 
-import { useState } from "react";
-
+import { useState, useEffect } from "react";
 import ModuleLayout from "../modules/ModuleLayout";
 import SavingsByMember from "./components/SavingsByMember";
 import SavingsForm from "./components/SavingsForm";
 import SavingsOverview from "./components/SavingsOverview";
 import TransactionList from "./components/TransactionList";
-
-const MOCK_TRANSACTIONS = [
-	{
-		id: 1,
-		date: "2026-07-10",
-		member: "Rina Wulandari",
-		type: "deposit",
-		amount: 500000,
-		description: "Simpanan Wajib",
-	},
-	{
-		id: 2,
-		date: "2026-07-10",
-		member: "Bambang Sutrisno",
-		type: "deposit",
-		amount: 750000,
-		description: "Simpanan Sukarela",
-	},
-	{
-		id: 3,
-		date: "2026-07-09",
-		member: "Made Ayu Kartika",
-		type: "withdrawal",
-		amount: 200000,
-		description: "Penarikan",
-	},
-	{
-		id: 4,
-		date: "2026-07-09",
-		member: "Ahmad Hidayat",
-		type: "deposit",
-		amount: 300000,
-		description: "Simpanan Wajib",
-	},
-	{
-		id: 5,
-		date: "2026-07-08",
-		member: "Nur Hasanah",
-		type: "deposit",
-		amount: 250000,
-		description: "Simpanan Sukarela",
-	},
-	{
-		id: 6,
-		date: "2026-07-08",
-		member: "Dewi Lestari",
-		type: "withdrawal",
-		amount: 500000,
-		description: "Penarikan",
-	},
-	{
-		id: 7,
-		date: "2026-07-07",
-		member: "Rina Wulandari",
-		type: "deposit",
-		amount: 1000000,
-		description: "Simpanan Hari Raya",
-	},
-	{
-		id: 8,
-		date: "2026-07-07",
-		member: "Bambang Sutrisno",
-		type: "interest",
-		amount: 85000,
-		description: "Bunga Simpanan",
-	},
-];
+import { db } from "../../database/db";
 
 export default function SimpananPage() {
-	const [transactions, setTransactions] = useState(MOCK_TRANSACTIONS);
+	const [transactions, setTransactions] = useState([]);
 	const [showForm, setShowForm] = useState(false);
 	const [formType, setFormType] = useState("deposit");
 	const [search, setSearch] = useState("");
 	const [typeFilter, setTypeFilter] = useState("all");
+	const [loading, setLoading] = useState(true);
+
+	const loadData = async () => {
+		setLoading(true);
+		try {
+			const [savingsData, membersData] = await Promise.all([
+				db.savings.reverse().toArray(),
+				db.members.toArray(),
+			]);
+			const memberMap = {};
+			membersData.forEach((m) => {
+				memberMap[m.id] = m.name;
+			});
+			const enrichedData = savingsData.map((s) => ({
+				...s,
+				member: memberMap[s.memberId] || "Unknown",
+				date: s.createdAt
+					? new Date(s.createdAt).toLocaleDateString("id-ID")
+					: "-",
+			}));
+			setTransactions(enrichedData);
+		} catch (err) {
+			console.error("[Simpanan] Failed to load data:", err);
+		} finally {
+			setLoading(false);
+		}
+	};
+
+	useEffect(() => {
+		loadData();
+	}, []);
 
 	const filtered = transactions.filter((t) => {
-		const matchSearch = t.member.toLowerCase().includes(search.toLowerCase());
+		const matchSearch = (t.member || "")
+			.toLowerCase()
+			.includes(search.toLowerCase());
 		const matchType = typeFilter === "all" || t.type === typeFilter;
 		return matchSearch && matchType;
 	});
 
 	const totalSimpanan = transactions
 		.filter((t) => t.type === "deposit" || t.type === "interest")
-		.reduce((sum, t) => sum + t.amount, 0);
+		.reduce((sum, t) => sum + (t.amount || 0), 0);
 	const totalPenarikan = transactions
 		.filter((t) => t.type === "withdrawal")
-		.reduce((sum, t) => sum + t.amount, 0);
+		.reduce((sum, t) => sum + (t.amount || 0), 0);
 	const netSimpanan = totalSimpanan - totalPenarikan;
 
-	const handleAddTransaction = (data) => {
-		const newTx = {
-			id: transactions.length + 1,
-			date: new Date().toISOString().split("T")[0],
-			...data,
-		};
-		setTransactions((prev) => [newTx, ...prev]);
-		setShowForm(false);
+	const handleAddTransaction = async (data) => {
+		try {
+			await db.savings.add({
+				memberId: data.memberId,
+				type: formType,
+				amount: data.amount,
+				description: data.description || "",
+				createdAt: new Date().toISOString(),
+			});
+			await loadData();
+			setShowForm(false);
+		} catch (err) {
+			console.error("[Simpanan] Failed to add transaction:", err);
+		}
 	};
 
 	return (
@@ -124,7 +96,7 @@ export default function SimpananPage() {
 								setFormType("deposit");
 								setShowForm(true);
 							}}
-							className="focus-ring inline-flex items-center gap-2 px-4 py-2.5 rounded-lg border border-[#D8E4EA] bg-white text-[#0F172A] font-semibold text-[14px] hover:bg-white hover:shadow-soft transition-all"
+							className="focus-ring inline-flex items-center gap-2 px-4 py-2.5 rounded-lg border border-[#E5E7EB] bg-white text-[#0F172A] font-semibold text-[14px] hover:bg-white transition-all"
 						>
 							<svg
 								width="15"
@@ -143,7 +115,7 @@ export default function SimpananPage() {
 								setFormType("withdrawal");
 								setShowForm(true);
 							}}
-							className="focus-ring inline-flex items-center gap-2 px-4 py-2.5 rounded-lg border border-[#D8E4EA] bg-white text-[#0F172A] font-semibold text-[14px] hover:bg-white hover:shadow-soft transition-all"
+							className="focus-ring inline-flex items-center gap-2 px-4 py-2.5 rounded-lg border border-[#E5E7EB] bg-white text-[#0F172A] font-semibold text-[14px] hover:bg-white transition-all"
 						>
 							<svg
 								width="15"
@@ -173,6 +145,7 @@ export default function SimpananPage() {
 						typeFilter={typeFilter}
 						onSearch={setSearch}
 						onFilter={setTypeFilter}
+						loading={loading}
 					/>
 
 					<SavingsByMember transactions={transactions} />

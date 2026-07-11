@@ -135,7 +135,7 @@ export default function PengadaanPage() {
 					</div>
 					<button
 						onClick={() => setShowForm(true)}
-						className="focus-ring inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-[#398EB3] text-white font-semibold text-[14.5px] shadow-glow hover:bg-[#2F7A9A] hover:-translate-y-0.5 transition-all"
+						className="focus-ring inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-[#398EB3] text-white font-semibold text-[14.5px] hover:bg-[#2F7A9A] hover:-translate-y-0.5 transition-all" 
 					>
 						<svg
 							width="16"
@@ -182,7 +182,7 @@ export default function PengadaanPage() {
 							onReceive={handleReceive}
 						/>
 					) : (
-						<div className="rounded-lg bg-white border border-[#D8E4EA] shadow-soft p-8 flex flex-col items-center justify-center text-center">
+						<div className="rounded-lg bg-white border border-[#E5E7EB] p-8 flex flex-col items-center justify-center text-center">
 							<div className="w-14 h-14 rounded-lg bg-[#F1F5F9] grid place-items-center mb-4">
 								<svg
 									width="24"

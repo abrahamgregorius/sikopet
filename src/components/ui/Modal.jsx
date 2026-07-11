@@ -38,7 +38,7 @@ export default function Modal({
 				role="dialog"
 				aria-modal="true"
 				aria-label={title}
-				className={`relative w-full max-w-lg rounded-[24px] bg-white border border-[#D8E4EA] shadow-lift p-8 ${className}`}
+				className={`relative w-full max-w-lg rounded-[24px] bg-white border-[#E5E7EB] border p-8 ${className}`}
 			>
 				<div className="flex items-center justify-between mb-6">
 					{title && (

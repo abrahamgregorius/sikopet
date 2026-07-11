@@ -7,7 +7,7 @@ export default function ActivityTimeline() {
 
 	if (loading) {
 		return (
-			<div className="rounded-lg bg-white border border-[#D8E4EA] p-6">
+			<div className="rounded-lg bg-white border border-[#E5E7EB] p-6">
 				<h3 className="font-display font-bold text-[#0F172A] text-[16px] mb-5">
 					Aktivitas Terbaru
 				</h3>
@@ -28,7 +28,7 @@ export default function ActivityTimeline() {
 
 	if (activityLogs.length === 0) {
 		return (
-			<div className="rounded-lg bg-white border border-[#D8E4EA] p-6">
+			<div className="rounded-lg bg-white border border-[#E5E7EB] p-6">
 				<h3 className="font-display font-bold text-[#0F172A] text-[16px] mb-5">
 					Aktivitas Terbaru
 				</h3>
@@ -40,11 +40,11 @@ export default function ActivityTimeline() {
 	}
 
 	return (
-		<div className="rounded-lg bg-white border border-[#D8E4EA] p-6">
+		<div className="rounded-lg bg-white border border-[#E5E7EB] p-6">
 			<h3 className="font-display font-bold text-[#0F172A] text-[16px] mb-5">
 				Aktivitas Terbaru
 			</h3>
-			<ol className="relative border-l border-[#D8E4EA] ml-2 space-y-6">
+			<ol className="relative border-l border-[#E5E7EB] ml-2 space-y-6">
 				{activityLogs.map((act) => (
 					<li key={act.id} className="pl-5 relative">
 						<span

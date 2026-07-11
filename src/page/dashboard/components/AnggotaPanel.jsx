@@ -35,7 +35,7 @@ export default function AnggotaPanel() {
 	return (
 		<section
 			id="anggota-panel"
-			className="reveal in rounded-lg bg-gradient-to-br from-[#EAF6FB] to-white border border-[#D8E4EA] p-6 sm:p-7"
+			className="reveal in rounded-lg bg-gradient-to-br from-[#EAF6FB] to-white border border-[#E5E7EB] p-6 sm:p-7"
 		>
 			<div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
 				<div>

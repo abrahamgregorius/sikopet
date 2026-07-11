@@ -6,7 +6,7 @@ export default function TransactionSummary({
 	avgTransaction,
 }) {
 	return (
-		<div className="rounded-lg bg-[#0F172A] px-5 py-5 shadow-lift">
+		<div className="rounded-lg bg-[#0F172A] px-5 py-5">
 			<h3 className="font-display font-bold text-white text-[14px] mb-4">
 				Ringkasan Hari Ini
 			</h3>

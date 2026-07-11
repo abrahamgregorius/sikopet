@@ -25,7 +25,7 @@ export default function CustomerForm({ onClose, onSubmit }) {
 
 	return (
 		<div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm">
-			<div className="w-full max-w-md rounded-[24px] bg-white shadow-lift overflow-hidden" role="dialog" aria-modal="true">
+			<div className="w-full max-w-md rounded-[24px] bg-white overflow-hidden" role="dialog" aria-modal="true">
 				<div className="flex items-center justify-between px-6 py-5 border-b border-[#E8EEF2]">
 					<h2 className="font-display font-bold text-[18px] text-[#0F172A]">Tambah Pelanggan Baru</h2>
 					<button onClick={onClose} className="focus-ring p-1.5 rounded-lg text-[#94A3B8] hover:bg-[#F1F5F9] transition-colors" aria-label="Tutup">
@@ -125,7 +125,7 @@ export default function CustomerForm({ onClose, onSubmit }) {
 						<button type="button" onClick={onClose} className="focus-ring flex-1 h-12 rounded-[12px] border border-[#E5E7EB] text-[#475569] font-semibold text-[15px] hover:bg-[#F1F5F9] transition-colors">
 							Batal
 						</button>
-						<button type="submit" className="focus-ring flex-1 h-12 rounded-[12px] bg-[#398EB3] text-white font-semibold text-[15px] shadow-glow hover:bg-[#2F7A9A] hover:-translate-y-0.5 active:scale-[0.98] transition-all">
+						<button type="submit" className="focus-ring flex-1 h-12 rounded-[12px] bg-[#398EB3] text-white font-semibold text-[15px] hover:bg-[#2F7A9A] hover:-translate-y-0.5 active:scale-[0.98] transition-all">
 							Simpan
 						</button>
 					</div>
