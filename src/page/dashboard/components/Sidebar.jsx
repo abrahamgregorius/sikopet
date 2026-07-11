@@ -30,34 +30,8 @@ export default function Sidebar({ collapsed, onToggleCollapse }) {
 	useEffect(() => {
 		loadSidebarModules();
 		const handleModulesUpdated = () => loadSidebarModules();
-		window.addEventListener("modules-updated", handleModulesUpdated);
-		return () =>
-			window.removeEventListener("modules-updated", handleModulesUpdated);
-	}, []);
-
-	useEffect(() => {
-		const handleOnline = () => setOnline(true);
-		const handleOffline = () => setOnline(false);
-		window.addEventListener('online', handleOnline);
-		window.addEventListener('offline', handleOffline);
-		return () => {
-			window.removeEventListener('online', handleOnline);
-			window.removeEventListener('offline', handleOffline);
-		};
-	}, []);
-
-	useEffect(() => {
-		let mounted = true;
-		async function loadLastSync() {
-			const ts = await getLastGlobalSync();
-			if (mounted) setLastSync(ts);
-		}
-		loadLastSync();
-		const interval = setInterval(loadLastSync, 30000);
-		return () => {
-			mounted = false;
-			clearInterval(interval);
-		};
+		window.addEventListener('modules-updated', handleModulesUpdated);
+		return () => window.removeEventListener('modules-updated', handleModulesUpdated);
 	}, []);
 
 	useEffect(() => {
