@@ -22,7 +22,7 @@ export default function Logo({
 			{...props}
 		>
 			<span
-				className={`relative ${s.box} rounded-xl bg-gradient-to-br from-[#398eb3] to-[#4CC9B0] grid place-items-center shadow-soft`}
+				className={`relative ${s.box} rounded-lg bg-gradient-to-br from-[#398eb3] to-[#4CC9B0] grid place-items-center shadow-soft`}
 			>
 				<svg
 					width={s.svg}

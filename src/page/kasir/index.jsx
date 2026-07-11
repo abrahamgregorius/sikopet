@@ -8,16 +8,64 @@ import TransactionSummary from "./components/TransactionSummary";
 import RecentTransactions from "./components/RecentTransactions";
 
 const MOCK_PRODUCTS = [
-	{ id: 1, name: "Beras Premium 5kg", price: 75000, stock: 120, category: "Sembako" },
-	{ id: 2, name: "Minyak Goreng 1L", price: 18500, stock: 85, category: "Sembako" },
-	{ id: 3, name: "Gula Pasir 1kg", price: 15000, stock: 200, category: "Sembako" },
-	{ id: 4, name: "Telur Ayam 1kg", price: 28000, stock: 60, category: "Sembako" },
+	{
+		id: 1,
+		name: "Beras Premium 5kg",
+		price: 75000,
+		stock: 120,
+		category: "Sembako",
+	},
+	{
+		id: 2,
+		name: "Minyak Goreng 1L",
+		price: 18500,
+		stock: 85,
+		category: "Sembako",
+	},
+	{
+		id: 3,
+		name: "Gula Pasir 1kg",
+		price: 15000,
+		stock: 200,
+		category: "Sembako",
+	},
+	{
+		id: 4,
+		name: "Telur Ayam 1kg",
+		price: 28000,
+		stock: 60,
+		category: "Sembako",
+	},
 	{ id: 5, name: "Mie Instan", price: 3500, stock: 500, category: "Sembako" },
 	{ id: 6, name: "Kopi Sachet", price: 2500, stock: 300, category: "Minuman" },
-	{ id: 7, name: "Teh Celup 25s", price: 8000, stock: 150, category: "Minuman" },
-	{ id: 8, name: "Sabun Mandi 100g", price: 5500, stock: 200, category: "Toiletries" },
-	{ id: 9, name: "Shampo Botol 170ml", price: 12000, stock: 75, category: "Toiletries" },
-	{ id: 10, name: "Pasta Gigi 150g", price: 9500, stock: 120, category: "Toiletries" },
+	{
+		id: 7,
+		name: "Teh Celup 25s",
+		price: 8000,
+		stock: 150,
+		category: "Minuman",
+	},
+	{
+		id: 8,
+		name: "Sabun Mandi 100g",
+		price: 5500,
+		stock: 200,
+		category: "Toiletries",
+	},
+	{
+		id: 9,
+		name: "Shampo Botol 170ml",
+		price: 12000,
+		stock: 75,
+		category: "Toiletries",
+	},
+	{
+		id: 10,
+		name: "Pasta Gigi 150g",
+		price: 9500,
+		stock: 120,
+		category: "Toiletries",
+	},
 	{ id: 11, name: "Gas LPG 3kg", price: 28000, stock: 40, category: "Lainnya" },
 	{ id: 12, name: "Korek Api", price: 3000, stock: 400, category: "Lainnya" },
 ];
@@ -32,7 +80,7 @@ export default function KasirPage() {
 			const existing = prev.find((item) => item.id === product.id);
 			if (existing) {
 				return prev.map((item) =>
-					item.id === product.id ? { ...item, qty: item.qty + 1 } : item
+					item.id === product.id ? { ...item, qty: item.qty + 1 } : item,
 				);
 			}
 			return [...prev, { ...product, qty: 1 }];
@@ -44,7 +92,7 @@ export default function KasirPage() {
 			setCart((prev) => prev.filter((item) => item.id !== id));
 		} else {
 			setCart((prev) =>
-				prev.map((item) => (item.id === id ? { ...item, qty } : item))
+				prev.map((item) => (item.id === id ? { ...item, qty } : item)),
 			);
 		}
 	};
@@ -62,7 +110,7 @@ export default function KasirPage() {
 	const handleBayar = () => {
 		if (cart.length === 0) return;
 		alert(
-			`Pembayaran berhasil!\nMetode: ${paymentMethod}\nTotal: Rp ${grandTotal.toLocaleString("id-ID")}`
+			`Pembayaran berhasil!\nMetode: ${paymentMethod}\nTotal: Rp ${grandTotal.toLocaleString("id-ID")}`,
 		);
 		setCart([]);
 		setDiscount(0);
@@ -86,8 +134,8 @@ export default function KasirPage() {
 						</p>
 					</div>
 					<div className="flex items-center gap-3">
-						<span className="inline-flex items-center gap-1.5 text-[12px] font-semibold text-[#22C55E] bg-[#22C55E]/10 px-2.5 py-1 rounded-full">
-							<span className="w-1.5 h-1.5 rounded-full bg-[#22C55E]"></span>
+						<span className="inline-flex items-center gap-1.5 text-[12px] font-semibold text-[#22C55E] bg-[#22C55E]/10 px-2.5 py-1 rounded-lg">
+							<span className="w-1.5 h-1.5 rounded-lg bg-[#22C55E]"></span>
 							Offline OK
 						</span>
 					</div>

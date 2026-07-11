@@ -1,11 +1,11 @@
 /** @format */
 
 const variants = {
-	text: "h-4 rounded-full",
-	heading: "h-7 rounded-full",
-	avatar: "rounded-full",
-	rect: "rounded-2xl",
-	circle: "rounded-full",
+	text: "h-4 rounded-lg",
+	heading: "h-7 rounded-lg",
+	avatar: "rounded-lg",
+	rect: "rounded-lg",
+	circle: "rounded-lg",
 };
 
 export default function Skeleton({

@@ -1,10 +1,6 @@
 /** @format */
 
-export default function ProgressBar({
-	value = 0,
-	label,
-	className = "",
-}) {
+export default function ProgressBar({ value = 0, label, className = "" }) {
 	const clamped = Math.min(100, Math.max(0, value));
 
 	return (
@@ -14,9 +10,9 @@ export default function ProgressBar({
 					{label}
 				</p>
 			)}
-			<div className="w-full h-2.5 rounded-full bg-[#D8E4EA] overflow-hidden">
+			<div className="w-full h-2.5 rounded-lg bg-[#D8E4EA] overflow-hidden">
 				<div
-					className="h-full rounded-full bg-gradient-to-r from-[#398EB3] to-[#4CC9B0] transition-all duration-500"
+					className="h-full rounded-lg bg-gradient-to-r from-[#398EB3] to-[#4CC9B0] transition-all duration-500"
 					style={{ width: `${clamped}%` }}
 				/>
 			</div>

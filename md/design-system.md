@@ -172,20 +172,20 @@ Tight grid gap:        gap-3 or gap-3.5
 
 ## 6. Border Radius
 
-| Component           | Radius       | Tailwind                           |
-| ------------------- | ------------ | ---------------------------------- |
-| Card (standard)     | 16px         | `rounded-2xl`                      |
-| Card (large)        | 28px         | `rounded-[1.75rem]`                |
-| Card (hero)         | 36px         | `rounded-[2.25rem]`                |
-| Modal / Auth card   | 24px         | `rounded-[24px]`                   |
-| Button              | 12px or full | `rounded-[12px]` or `rounded-full` |
-| Input               | 12px         | `rounded-[12px]`                   |
-| Badge / Pill        | full         | `rounded-full`                     |
-| Table container     | 16px         | `rounded-2xl`                      |
-| Dropdown            | 16px         | `rounded-2xl`                      |
-| Icon container (sm) | 8px          | `rounded-lg`                       |
-| Icon container (md) | 12px         | `rounded-xl`                       |
-| Icon container (lg) | 16px         | `rounded-2xl`                      |
+| Component           | Radius       | Tailwind                         |
+| ------------------- | ------------ | -------------------------------- |
+| Card (standard)     | 16px         | `rounded-lg`                     |
+| Card (large)        | 28px         | `rounded-[1.75rem]`              |
+| Card (hero)         | 36px         | `rounded-[2.25rem]`              |
+| Modal / Auth card   | 24px         | `rounded-[24px]`                 |
+| Button              | 12px or full | `rounded-[12px]` or `rounded-lg` |
+| Input               | 12px         | `rounded-[12px]`                 |
+| Badge / Pill        | full         | `rounded-lg`                     |
+| Table container     | 16px         | `rounded-lg`                     |
+| Dropdown            | 16px         | `rounded-lg`                     |
+| Icon container (sm) | 8px          | `rounded-lg`                     |
+| Icon container (md) | 12px         | `rounded-lg`                     |
+| Icon container (lg) | 16px         | `rounded-lg`                     |
 
 ---
 
@@ -301,7 +301,7 @@ Section max-width:   max-w-[1280px] (full), max-w-[820px] (FAQ), max-w-[620px] (
 #### Primary Button
 
 ```
-px-6 py-3.5 rounded-full bg-[#398eb3] text-white font-semibold text-[15px]
+px-6 py-3.5 rounded-lg bg-[#398eb3] text-white font-semibold text-[15px]
 shadow-glow hover:bg-[#2F7698] hover:-translate-y-0.5
 transition-all duration-300
 ```
@@ -311,7 +311,7 @@ Variant (icon + text): add `inline-flex items-center gap-2` and a group-hover ar
 #### Secondary Button
 
 ```
-px-6 py-3.5 rounded-full border border-[#D8E4EA] bg-white/70 text-[#0F172A]
+px-6 py-3.5 rounded-lg border border-[#D8E4EA] bg-white/70 text-[#0F172A]
 font-semibold text-[15px] hover:bg-white hover:shadow-soft
 transition-all duration-300
 ```
@@ -326,7 +326,7 @@ hover:text-[#0F172A] transition-colors
 #### Dark CTA (Navbar)
 
 ```
-px-5 py-2.5 rounded-full bg-[#0F172A] text-white text-[14.5px] font-semibold
+px-5 py-2.5 rounded-lg bg-[#0F172A] text-white text-[14.5px] font-semibold
 shadow-soft hover:shadow-lift hover:-translate-y-0.5
 transition-all duration-300
 ```
@@ -365,13 +365,13 @@ block text-[13.5px] font-medium text-[#374151] mb-1.5
 #### Standard Card
 
 ```
-rounded-2xl bg-white border border-[#D8E4EA] p-6 shadow-soft
+rounded-lg bg-white border border-[#D8E4EA] p-6 shadow-soft
 ```
 
 #### Feature Card (with hover)
 
 ```
-rounded-2xl bg-white border border-[#D8E4EA] p-6
+rounded-lg bg-white border border-[#D8E4EA] p-6
 hover:shadow-lift hover:-translate-y-1 transition-all duration-300
 ```
 
@@ -384,7 +384,7 @@ rounded-[2.25rem] bg-white shadow-lift border border-[#D8E4EA] p-6 sm:p-8
 #### Nested Card (inside feature section)
 
 ```
-rounded-2xl bg-white border border-[#D8E4EA] shadow-soft p-5
+rounded-lg bg-white border border-[#D8E4EA] shadow-soft p-5
 ```
 
 #### Section Container Card
@@ -402,7 +402,7 @@ rounded-[1.75rem] bg-[#0F172A] px-6 sm:px-10 py-9 sm:py-11 shadow-lift
 #### Glass Card (floating)
 
 ```
-glass-card rounded-2xl shadow-lift px-4 py-3.5
+glass-card rounded-lg shadow-lift px-4 py-3.5
 ```
 
 #### Auth Card (Login)
@@ -417,27 +417,27 @@ rounded-[24px] bg-white border border-[#D8E4EA] shadow-lift p-8 sm:p-10
 
 ```
 inline-flex items-center gap-1.5 text-[12px] font-semibold
-text-[#22C55E] bg-[#22C55E]/10 px-2.5 py-1 rounded-full
+text-[#22C55E] bg-[#22C55E]/10 px-2.5 py-1 rounded-lg
 ```
 
-With dot: `w-1.5 h-1.5 rounded-full bg-[#22C55E]`
+With dot: `w-1.5 h-1.5 rounded-lg bg-[#22C55E]`
 
 #### Info
 
 ```
-text-[11px] font-semibold text-[#2F7698] bg-[#EAF6FB] px-2 py-0.5 rounded-full
+text-[11px] font-semibold text-[#2F7698] bg-[#EAF6FB] px-2 py-0.5 rounded-lg
 ```
 
 #### Neutral / Muted
 
 ```
-text-[11px] font-semibold text-[#94A3B8] bg-[#F1F5F9] px-2 py-0.5 rounded-full
+text-[11px] font-semibold text-[#94A3B8] bg-[#F1F5F9] px-2 py-0.5 rounded-lg
 ```
 
 #### Warning
 
 ```
-text-[11px] font-semibold text-[#F59E0B] bg-[#F59E0B]/10 px-2 py-0.5 rounded-full
+text-[11px] font-semibold text-[#F59E0B] bg-[#F59E0B]/10 px-2 py-0.5 rounded-lg
 ```
 
 ### 10.5 KPI / Stat Cards
@@ -455,7 +455,7 @@ Stat label: `text-[13px] text-white/60 font-medium mt-1`
 #### Light KPI Card
 
 ```
-rounded-2xl bg-white border border-[#D8E4EA] p-5 shadow-soft
+rounded-lg bg-white border border-[#D8E4EA] p-5 shadow-soft
 ```
 
 KPI label: `text-[12px] text-[#94A3B8] font-medium`
@@ -494,19 +494,19 @@ px-3 py-2 rounded-lg text-[#475569] text-[13px] font-medium
 #### Small (32px)
 
 ```
-w-8 h-8 rounded-full bg-[color]/15 grid place-items-center
+w-8 h-8 rounded-lg bg-[color]/15 grid place-items-center
 ```
 
 #### Medium (40px)
 
 ```
-w-10 h-10 rounded-xl bg-[#EAF6FB] grid place-items-center
+w-10 h-10 rounded-lg bg-[#EAF6FB] grid place-items-center
 ```
 
 #### Large (48px)
 
 ```
-w-12 h-12 rounded-2xl bg-[#EAF6FB] grid place-items-center
+w-12 h-12 rounded-lg bg-[#EAF6FB] grid place-items-center
 ```
 
 SVG icon inside: `width="18" height="18"` (small), `width="22" height="22"` (large), stroke `#398eb3`, strokeWidth `1.8`
@@ -516,14 +516,14 @@ SVG icon inside: `width="18" height="18"` (small), `width="22" height="22"` (lar
 #### Logo Icon
 
 ```
-w-9 h-9 rounded-xl bg-gradient-to-br from-[#398eb3] to-[#4CC9B0]
+w-9 h-9 rounded-lg bg-gradient-to-br from-[#398eb3] to-[#4CC9B0]
 grid place-items-center shadow-soft
 ```
 
 #### Avatar (small, stacked)
 
 ```
-w-9 h-9 rounded-full bg-[color] border-2 border-white
+w-9 h-9 rounded-lg bg-[color] border-2 border-white
 ```
 
 ### 10.9 Checklist / Feature List Items
@@ -560,8 +560,8 @@ flex justify-between text-[13.5px] py-1.5 border-b border-[#E8EEF2]
 
 ### 10.12 Progress Bar
 
-Track: `w-full h-2.5 rounded-full bg-[#D8E4EA] overflow-hidden`
-Fill: `h-full rounded-full bg-gradient-to-r from-[#398eb3] to-[#4CC9B0]`
+Track: `w-full h-2.5 rounded-lg bg-[#D8E4EA] overflow-hidden`
+Fill: `h-full rounded-lg bg-gradient-to-r from-[#398eb3] to-[#4CC9B0]`
 
 ### 10.13 Browser Mockup (Dashboard Preview)
 
@@ -569,7 +569,7 @@ Fill: `h-full rounded-full bg-gradient-to-r from-[#398eb3] to-[#4CC9B0]`
 rounded-[2.25rem] bg-white border border-[#D8E4EA] shadow-lift p-3 sm:p-4
 ```
 
-Window dots: `w-2.5 h-2.5 rounded-full bg-[#EF4444]/70` (red), `#F59E0B` (yellow), `#22C55E` (green)
+Window dots: `w-2.5 h-2.5 rounded-lg bg-[#EF4444]/70` (red), `#F59E0B` (yellow), `#22C55E` (green)
 
 URL bar: `text-[12px] text-[#94A3B8] font-medium`
 
@@ -584,7 +584,7 @@ Or softer: `border-t border-[#E8EEF2]`
 ### 10.15 Blob Decorations
 
 ```
-blob absolute -top-24 -left-24 w-[420px] h-[420px] rounded-full bg-[#67B2D4]/30 -z-10
+blob absolute -top-24 -left-24 w-[420px] h-[420px] rounded-lg bg-[#67B2D4]/30 -z-10
 ```
 
 Class: `.blob { filter: blur(70px); }`

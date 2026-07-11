@@ -33,7 +33,7 @@ export function AnalyticsSection() {
 			aria-label="Analitik"
 			className="reveal in grid lg:grid-cols-3 gap-5"
 		>
-			<div className="lg:col-span-2 rounded-3xl bg-white border border-[#D8E4EA] p-6">
+			<div className="lg:col-span-2 rounded-lg bg-white border border-[#D8E4EA] p-6">
 				<div className="flex flex-wrap items-center justify-between gap-3 mb-1">
 					<div>
 						<h3 className="font-display font-bold text-[#0F172A] text-[16px]">
@@ -96,13 +96,13 @@ export function AnalyticsSection() {
 				</div>
 			</div>
 
-			<div className="rounded-3xl bg-white border border-[#D8E4EA] p-6 flex flex-col">
+			<div className="rounded-lg bg-white border border-[#D8E4EA] p-6 flex flex-col">
 				<h3 className="font-display font-bold text-[#0F172A] text-[16px] mb-4">
 					Performa Target
 				</h3>
 				<div
 					role="tablist"
-					className="inline-flex bg-[#F1F5F9] rounded-full p-1 mb-5 self-start"
+					className="inline-flex bg-[#F1F5F9] rounded-lg p-1 mb-5 self-start"
 				>
 					{perfTabs.map((tab) => (
 						<button
@@ -110,7 +110,7 @@ export function AnalyticsSection() {
 							role="tab"
 							aria-selected={activePerfTab === tab.id}
 							onClick={() => setActivePerfTab(tab.id)}
-							className={`focus-ring px-3.5 py-1.5 rounded-full text-[12.5px] font-semibold transition-colors ${activePerfTab === tab.id ? "bg-white shadow-soft text-[#0F172A]" : "text-[#475569]"}`}
+							className={`focus-ring px-3.5 py-1.5 rounded-lg text-[12.5px] font-semibold transition-colors ${activePerfTab === tab.id ? "bg-white shadow-soft text-[#0F172A]" : "text-[#475569]"}`}
 						>
 							{tab.label}
 						</button>
@@ -145,7 +145,7 @@ export function ModuleUsage() {
 	];
 
 	return (
-		<div className="rounded-3xl bg-white border border-[#D8E4EA] p-6">
+		<div className="rounded-lg bg-white border border-[#D8E4EA] p-6">
 			<h3 className="font-display font-bold text-[#0F172A] text-[16px] mb-5">
 				Penggunaan Modul
 			</h3>
@@ -181,7 +181,7 @@ export function ProgressOverview() {
 	];
 
 	return (
-		<div className="rounded-3xl bg-white border border-[#D8E4EA] p-6">
+		<div className="rounded-lg bg-white border border-[#D8E4EA] p-6">
 			<h3 className="font-display font-bold text-[#0F172A] text-[16px] mb-5">
 				Ikhtisar Progres
 			</h3>
@@ -192,9 +192,9 @@ export function ProgressOverview() {
 							<span className="font-medium text-[#475569]">{item.label}</span>
 							<span className="font-semibold text-[#0F172A]">{item.pct}%</span>
 						</div>
-						<div className="h-2 rounded-full bg-[#F1F5F9] overflow-hidden">
+						<div className="h-2 rounded-lg bg-[#F1F5F9] overflow-hidden">
 							<div
-								className={`h-full rounded-full ${item.color}`}
+								className={`h-full rounded-lg ${item.color}`}
 								style={{ width: `${item.pct}%` }}
 							></div>
 						</div>

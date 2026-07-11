@@ -7,10 +7,10 @@ import { Link } from "react-router-dom";
 import {
 	CheckList,
 	Logo,
+	NumberStat,
 	SectionHeader,
 	SharedStyles,
 	SkipLink,
-	NumberStat,
 } from "../components/Home";
 
 const faqs = [
@@ -138,7 +138,7 @@ export default function KOPETApp() {
 							</Link>
 							<Link
 								to="/login"
-								className="focus-ring px-5 py-2.5 rounded-full bg-[#0F172A] text-white text-[14.5px] font-semibold shadow-soft hover:shadow-lift hover:-translate-y-0.5 transition-all duration-300"
+								className="focus-ring px-5 py-2.5 rounded-lg bg-[#0F172A] text-white text-[14.5px] font-semibold shadow-soft hover:shadow-lift hover:-translate-y-0.5 transition-all duration-300"
 							>
 								Coba Gratis
 							</Link>
@@ -219,13 +219,13 @@ export default function KOPETApp() {
 						<div className="flex gap-3 mt-5">
 							<Link
 								to="/login"
-								className="focus-ring flex-1 text-center px-4 py-2.5 rounded-full border border-[#D8E4EA] text-[14.5px] font-semibold text-[#0F172A]"
+								className="focus-ring flex-1 text-center px-4 py-2.5 rounded-lg border border-[#D8E4EA] text-[14.5px] font-semibold text-[#0F172A]"
 							>
 								Masuk
 							</Link>
 							<Link
 								to="/login"
-								className="focus-ring flex-1 text-center px-4 py-2.5 rounded-full bg-[#0F172A] text-white text-[14.5px] font-semibold"
+								className="focus-ring flex-1 text-center px-4 py-2.5 rounded-lg bg-[#0F172A] text-white text-[14.5px] font-semibold"
 							>
 								Coba Gratis
 							</Link>
@@ -238,8 +238,8 @@ export default function KOPETApp() {
 				{}
 				<section className="relative overflow-hidden pt-[150px] pb-20 lg:pt-[176px] lg:pb-28">
 					<div className="absolute inset-0 -z-10 bg-gradient-to-b from-[#EAF6FB] via-[#F7FAFC] to-[#F7FAFC]"></div>
-					<div className="blob absolute -top-24 -left-24 w-[420px] h-[420px] rounded-full bg-[#67B2D4]/30 -z-10"></div>
-					<div className="blob absolute top-40 -right-32 w-[460px] h-[460px] rounded-full bg-[#4CC9B0]/20 -z-10"></div>
+					<div className="blob absolute -top-24 -left-24 w-[420px] h-[420px] rounded-lg bg-[#67B2D4]/30 -z-10"></div>
+					<div className="blob absolute top-40 -right-32 w-[460px] h-[460px] rounded-lg bg-[#4CC9B0]/20 -z-10"></div>
 
 					<div className="max-w-[1280px] mx-auto px-6 lg:px-10 grid lg:grid-cols-[1.05fr_0.95fr] gap-16 items-center">
 						<div className="reveal">
@@ -278,7 +278,7 @@ export default function KOPETApp() {
 							<div className="flex flex-wrap gap-3.5 mt-9">
 								<Link
 									to="/login"
-									className="focus-ring group inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-[#398eb3] text-white font-semibold text-[15px] shadow-glow hover:bg-[#2F7698] hover:-translate-y-0.5 transition-all duration-300"
+									className="focus-ring group inline-flex items-center gap-2 px-6 py-3.5 rounded-lg bg-[#398eb3] text-white font-semibold text-[15px] shadow-glow hover:bg-[#2F7698] hover:-translate-y-0.5 transition-all duration-300"
 								>
 									Mulai Uji Coba Gratis
 									<svg
@@ -299,7 +299,7 @@ export default function KOPETApp() {
 								</Link>
 								<a
 									href="#dasbor"
-									className="focus-ring inline-flex items-center gap-2 px-6 py-3.5 rounded-full border border-[#D8E4EA] bg-white/70 text-[#0F172A] font-semibold text-[15px] hover:bg-white hover:shadow-soft transition-all duration-300"
+									className="focus-ring inline-flex items-center gap-2 px-6 py-3.5 rounded-lg border border-[#D8E4EA] bg-white/70 text-[#0F172A] font-semibold text-[15px] hover:bg-white hover:shadow-soft transition-all duration-300"
 								>
 									<svg width="16" height="16" viewBox="0 0 24 24" fill="none">
 										<path d="M8 5v14l11-7z" fill="currentColor" />
@@ -310,10 +310,10 @@ export default function KOPETApp() {
 
 							<div className="flex items-center gap-4 mt-10">
 								<div className="flex -space-x-3">
-									<span className="w-9 h-9 rounded-full bg-[#67B2D4] border-2 border-white"></span>
-									<span className="w-9 h-9 rounded-full bg-[#4CC9B0] border-2 border-white"></span>
-									<span className="w-9 h-9 rounded-full bg-[#2F7698] border-2 border-white"></span>
-									<span className="w-9 h-9 rounded-full bg-[#0F172A] border-2 border-white grid place-items-center text-[10px] text-white font-bold">
+									<span className="w-9 h-9 rounded-lg bg-[#67B2D4] border-2 border-white"></span>
+									<span className="w-9 h-9 rounded-lg bg-[#4CC9B0] border-2 border-white"></span>
+									<span className="w-9 h-9 rounded-lg bg-[#2F7698] border-2 border-white"></span>
+									<span className="w-9 h-9 rounded-lg bg-[#0F172A] border-2 border-white grid place-items-center text-[10px] text-white font-bold">
 										1K+
 									</span>
 								</div>
@@ -336,8 +336,8 @@ export default function KOPETApp() {
 											Monitoring Blankspot KDP
 										</p>
 									</div>
-									<span className="inline-flex items-center gap-1.5 text-[12px] font-semibold text-[#22C55E] bg-[#22C55E]/10 px-2.5 py-1 rounded-full">
-										<span className="w-1.5 h-1.5 rounded-full bg-[#22C55E]"></span>
+									<span className="inline-flex items-center gap-1.5 text-[12px] font-semibold text-[#22C55E] bg-[#22C55E]/10 px-2.5 py-1 rounded-lg">
+										<span className="w-1.5 h-1.5 rounded-lg bg-[#22C55E]"></span>
 										Tersambung
 									</span>
 								</div>
@@ -421,7 +421,7 @@ export default function KOPETApp() {
 								</svg>
 
 								<div className="grid grid-cols-2 gap-3 mt-5">
-									<div className="rounded-2xl bg-[#F1F5F9] px-4 py-3">
+									<div className="rounded-lg bg-[#F1F5F9] px-4 py-3">
 										<p className="text-[11.5px] text-[#94A3B8] font-medium">
 											Koperasi Blankspot Terlayani
 										</p>
@@ -429,7 +429,7 @@ export default function KOPETApp() {
 											216 KDP
 										</p>
 									</div>
-									<div className="rounded-2xl bg-[#F1F5F9] px-4 py-3">
+									<div className="rounded-lg bg-[#F1F5F9] px-4 py-3">
 										<p className="text-[11.5px] text-[#94A3B8] font-medium">
 											Sinkronisasi Offline
 										</p>
@@ -440,9 +440,9 @@ export default function KOPETApp() {
 								</div>
 							</div>
 
-							<div className="float-y absolute -left-6 -bottom-8 sm:-left-10 glass-card rounded-2xl shadow-lift px-4 py-3.5 hidden sm:block">
+							<div className="float-y absolute -left-6 -bottom-8 sm:-left-10 glass-card rounded-lg shadow-lift px-4 py-3.5 hidden sm:block">
 								<div className="flex items-center gap-2.5">
-									<span className="w-8 h-8 rounded-full bg-[#4CC9B0]/15 grid place-items-center">
+									<span className="w-8 h-8 rounded-lg bg-[#4CC9B0]/15 grid place-items-center">
 										<svg
 											width="15"
 											height="15"
@@ -469,9 +469,9 @@ export default function KOPETApp() {
 								</div>
 							</div>
 
-							<div className="float-y rev slow absolute -right-4 top-10 sm:-right-8 glass-card rounded-2xl shadow-lift px-4 py-3.5 hidden sm:block">
+							<div className="float-y rev slow absolute -right-4 top-10 sm:-right-8 glass-card rounded-lg shadow-lift px-4 py-3.5 hidden sm:block">
 								<div className="flex items-center gap-2.5">
-									<span className="w-8 h-8 rounded-full bg-[#EAF6FB] grid place-items-center">
+									<span className="w-8 h-8 rounded-lg bg-[#EAF6FB] grid place-items-center">
 										<svg
 											width="15"
 											height="15"
@@ -557,12 +557,12 @@ export default function KOPETApp() {
 					{/* Feature 1 */}
 					<div className="reveal grid lg:grid-cols-2 gap-10 lg:gap-16 items-center py-10 lg:py-14">
 						<div className="order-2 lg:order-1 rounded-[1.75rem] bg-[#F1F5F9] border border-[#D8E4EA] p-6 lg:p-8">
-							<div className="rounded-2xl bg-white border border-[#D8E4EA] shadow-soft p-5">
+							<div className="rounded-lg bg-white border border-[#D8E4EA] shadow-soft p-5">
 								<div className="flex items-center justify-between mb-4">
 									<p className="font-display font-bold text-[#0F172A] text-[14.5px]">
 										Toko Sembako — POS
 									</p>
-									<span className="text-[11px] font-semibold text-[#22C55E] bg-[#22C55E]/10 px-2 py-0.5 rounded-full">
+									<span className="text-[11px] font-semibold text-[#22C55E] bg-[#22C55E]/10 px-2 py-0.5 rounded-lg">
 										Offline OK
 									</span>
 								</div>
@@ -598,7 +598,7 @@ export default function KOPETApp() {
 						</div>
 
 						<div className="order-1 lg:order-2">
-							<span className="w-12 h-12 rounded-2xl bg-[#EAF6FB] grid place-items-center mb-5">
+							<span className="w-12 h-12 rounded-lg bg-[#EAF6FB] grid place-items-center mb-5">
 								<svg
 									width="22"
 									height="22"
@@ -636,7 +636,7 @@ export default function KOPETApp() {
 					{/* Feature 2 */}
 					<div className="reveal grid lg:grid-cols-2 gap-10 lg:gap-16 items-center py-10 lg:py-14">
 						<div>
-							<span className="w-12 h-12 rounded-2xl bg-[#EAF6FB] grid place-items-center mb-5">
+							<span className="w-12 h-12 rounded-lg bg-[#EAF6FB] grid place-items-center mb-5">
 								<svg
 									width="22"
 									height="22"
@@ -671,13 +671,13 @@ export default function KOPETApp() {
 						</div>
 
 						<div className="rounded-[1.75rem] bg-[#F1F5F9] border border-[#D8E4EA] p-6 lg:p-8">
-							<div className="rounded-2xl bg-white border border-[#D8E4EA] shadow-soft p-5">
+							<div className="rounded-lg bg-white border border-[#D8E4EA] shadow-soft p-5">
 								<p className="font-display font-bold text-[#0F172A] text-[14.5px] mb-3">
 									Pinjaman Siti Rahayu
 								</p>
-								<div className="w-full h-2.5 rounded-full bg-[#D8E4EA] overflow-hidden mb-2">
+								<div className="w-full h-2.5 rounded-lg bg-[#D8E4EA] overflow-hidden mb-2">
 									<div
-										className="h-full rounded-full bg-gradient-to-r from-[#398eb3] to-[#4CC9B0]"
+										className="h-full rounded-lg bg-gradient-to-r from-[#398eb3] to-[#4CC9B0]"
 										style={{ width: "68%" }}
 									></div>
 								</div>
@@ -686,17 +686,17 @@ export default function KOPETApp() {
 									<span>68%</span>
 								</div>
 								<div className="grid grid-cols-3 gap-2 mt-4">
-									<div className="rounded-xl bg-[#F1F5F9] px-2.5 py-2 text-center">
+									<div className="rounded-lg bg-[#F1F5F9] px-2.5 py-2 text-center">
 										<p className="text-[10px] text-[#94A3B8]">Tenor</p>
 										<p className="text-[13px] font-bold text-[#0F172A]">
 											12 bln
 										</p>
 									</div>
-									<div className="rounded-xl bg-[#F1F5F9] px-2.5 py-2 text-center">
+									<div className="rounded-lg bg-[#F1F5F9] px-2.5 py-2 text-center">
 										<p className="text-[10px] text-[#94A3B8]">Bunga</p>
 										<p className="text-[13px] font-bold text-[#0F172A]">1.2%</p>
 									</div>
-									<div className="rounded-xl bg-[#F1F5F9] px-2.5 py-2 text-center">
+									<div className="rounded-lg bg-[#F1F5F9] px-2.5 py-2 text-center">
 										<p className="text-[10px] text-[#94A3B8]">Sisa</p>
 										<p className="text-[13px] font-bold text-[#0F172A]">
 											4 bln
@@ -710,12 +710,12 @@ export default function KOPETApp() {
 					{/* Feature 3 */}
 					<div className="reveal grid lg:grid-cols-2 gap-10 lg:gap-16 items-center py-10 lg:py-14">
 						<div className="order-2 lg:order-1 rounded-[1.75rem] bg-[#F1F5F9] border border-[#D8E4EA] p-6 lg:p-8">
-							<div className="rounded-2xl bg-white border border-[#D8E4EA] shadow-soft p-5">
+							<div className="rounded-lg bg-white border border-[#D8E4EA] shadow-soft p-5">
 								<div className="flex justify-between items-center mb-4">
 									<p className="font-display font-bold text-[#0F172A] text-[14.5px]">
 										Stok Gudang
 									</p>
-									<span className="text-[11px] font-semibold text-[#2F7698] bg-[#EAF6FB] px-2 py-0.5 rounded-full">
+									<span className="text-[11px] font-semibold text-[#2F7698] bg-[#EAF6FB] px-2 py-0.5 rounded-lg">
 										Real-time
 									</span>
 								</div>
@@ -749,7 +749,7 @@ export default function KOPETApp() {
 						</div>
 
 						<div className="order-1 lg:order-2">
-							<span className="w-12 h-12 rounded-2xl bg-[#EAF6FB] grid place-items-center mb-5">
+							<span className="w-12 h-12 rounded-lg bg-[#EAF6FB] grid place-items-center mb-5">
 								<svg
 									width="22"
 									height="22"
@@ -786,7 +786,7 @@ export default function KOPETApp() {
 					{/* Feature 4 */}
 					<div className="reveal grid lg:grid-cols-2 gap-10 lg:gap-16 items-center py-10 lg:py-14">
 						<div>
-							<span className="w-12 h-12 rounded-2xl bg-[#EAF6FB] grid place-items-center mb-5">
+							<span className="w-12 h-12 rounded-lg bg-[#EAF6FB] grid place-items-center mb-5">
 								<svg
 									width="22"
 									height="22"
@@ -822,13 +822,13 @@ export default function KOPETApp() {
 						</div>
 
 						<div className="rounded-[1.75rem] bg-[#F1F5F9] border border-[#D8E4EA] p-6 lg:p-8">
-							<div className="rounded-2xl bg-white border border-[#D8E4EA] shadow-soft p-5">
+							<div className="rounded-lg bg-white border border-[#D8E4EA] shadow-soft p-5">
 								<p className="font-display font-bold text-[#0F172A] text-[14.5px] mb-3">
 									Jadwal Pengiriman Hari Ini
 								</p>
 								<div className="space-y-2.5">
-									<div className="flex items-center gap-3 rounded-xl bg-[#F1F5F9] px-3 py-2.5">
-										<span className="w-8 h-8 rounded-full bg-[#4CC9B0] grid place-items-center text-white text-[11px] font-bold shrink-0">
+									<div className="flex items-center gap-3 rounded-lg bg-[#F1F5F9] px-3 py-2.5">
+										<span className="w-8 h-8 rounded-lg bg-[#4CC9B0] grid place-items-center text-white text-[11px] font-bold shrink-0">
 											1
 										</span>
 										<div className="flex-1">
@@ -839,12 +839,12 @@ export default function KOPETApp() {
 												08:00 — B 1234 CD
 											</p>
 										</div>
-										<span className="text-[11px] font-semibold text-[#22C55E] bg-[#22C55E]/10 px-2 py-0.5 rounded-full">
+										<span className="text-[11px] font-semibold text-[#22C55E] bg-[#22C55E]/10 px-2 py-0.5 rounded-lg">
 											Selesai
 										</span>
 									</div>
-									<div className="flex items-center gap-3 rounded-xl bg-[#F1F5F9] px-3 py-2.5">
-										<span className="w-8 h-8 rounded-full bg-[#398eb3] grid place-items-center text-white text-[11px] font-bold shrink-0">
+									<div className="flex items-center gap-3 rounded-lg bg-[#F1F5F9] px-3 py-2.5">
+										<span className="w-8 h-8 rounded-lg bg-[#398eb3] grid place-items-center text-white text-[11px] font-bold shrink-0">
 											2
 										</span>
 										<div className="flex-1">
@@ -855,12 +855,12 @@ export default function KOPETApp() {
 												11:00 — B 5678 EF
 											</p>
 										</div>
-										<span className="text-[11px] font-semibold text-[#F59E0B] bg-[#F59E0B]/10 px-2 py-0.5 rounded-full">
+										<span className="text-[11px] font-semibold text-[#F59E0B] bg-[#F59E0B]/10 px-2 py-0.5 rounded-lg">
 											Dalam Perjalanan
 										</span>
 									</div>
-									<div className="flex items-center gap-3 rounded-xl bg-[#F1F5F9] px-3 py-2.5">
-										<span className="w-8 h-8 rounded-full bg-[#67B2D4] grid place-items-center text-white text-[11px] font-bold shrink-0">
+									<div className="flex items-center gap-3 rounded-lg bg-[#F1F5F9] px-3 py-2.5">
+										<span className="w-8 h-8 rounded-lg bg-[#67B2D4] grid place-items-center text-white text-[11px] font-bold shrink-0">
 											3
 										</span>
 										<div className="flex-1">
@@ -871,7 +871,7 @@ export default function KOPETApp() {
 												14:00 — B 9012 GH
 											</p>
 										</div>
-										<span className="text-[11px] font-semibold text-[#94A3B8] bg-[#F1F5F9] px-2 py-0.5 rounded-full">
+										<span className="text-[11px] font-semibold text-[#94A3B8] bg-[#F1F5F9] px-2 py-0.5 rounded-lg">
 											Terjadwal
 										</span>
 									</div>
@@ -882,8 +882,8 @@ export default function KOPETApp() {
 
 					{}
 					<div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-8">
-						<div className="reveal rounded-2xl bg-white border border-[#D8E4EA] p-6 hover:shadow-lift hover:-translate-y-1 transition-all duration-300">
-							<span className="w-10 h-10 rounded-xl bg-[#EAF6FB] grid place-items-center mb-4">
+						<div className="reveal rounded-lg bg-white border border-[#D8E4EA] p-6 hover:shadow-lift hover:-translate-y-1 transition-all duration-300">
+							<span className="w-10 h-10 rounded-lg bg-[#EAF6FB] grid place-items-center mb-4">
 								<svg
 									width="18"
 									height="18"
@@ -907,8 +907,8 @@ export default function KOPETApp() {
 								satu platform — pengganti SIMKOPDES.
 							</p>
 						</div>
-						<div className="reveal reveal-delay-1 rounded-2xl bg-white border border-[#D8E4EA] p-6 hover:shadow-lift hover:-translate-y-1 transition-all duration-300">
-							<span className="w-10 h-10 rounded-xl bg-[#EAF6FB] grid place-items-center mb-4">
+						<div className="reveal reveal-delay-1 rounded-lg bg-white border border-[#D8E4EA] p-6 hover:shadow-lift hover:-translate-y-1 transition-all duration-300">
+							<span className="w-10 h-10 rounded-lg bg-[#EAF6FB] grid place-items-center mb-4">
 								<svg
 									width="18"
 									height="18"
@@ -932,8 +932,8 @@ export default function KOPETApp() {
 								idempotency key & resolusi konflik.
 							</p>
 						</div>
-						<div className="reveal reveal-delay-2 rounded-2xl bg-white border border-[#D8E4EA] p-6 hover:shadow-lift hover:-translate-y-1 transition-all duration-300">
-							<span className="w-10 h-10 rounded-xl bg-[#EAF6FB] grid place-items-center mb-4">
+						<div className="reveal reveal-delay-2 rounded-lg bg-white border border-[#D8E4EA] p-6 hover:shadow-lift hover:-translate-y-1 transition-all duration-300">
+							<span className="w-10 h-10 rounded-lg bg-[#EAF6FB] grid place-items-center mb-4">
 								<svg
 									width="18"
 									height="18"
@@ -957,8 +957,8 @@ export default function KOPETApp() {
 								Dinas/Kementerian — sesuai peran masing-masing.
 							</p>
 						</div>
-						<div className="reveal reveal-delay-3 rounded-2xl bg-white border border-[#D8E4EA] p-6 hover:shadow-lift hover:-translate-y-1 transition-all duration-300">
-							<span className="w-10 h-10 rounded-xl bg-[#EAF6FB] grid place-items-center mb-4">
+						<div className="reveal reveal-delay-3 rounded-lg bg-white border border-[#D8E4EA] p-6 hover:shadow-lift hover:-translate-y-1 transition-all duration-300">
+							<span className="w-10 h-10 rounded-lg bg-[#EAF6FB] grid place-items-center mb-4">
 								<svg
 									width="18"
 									height="18"
@@ -1003,9 +1003,9 @@ export default function KOPETApp() {
 							<div className="rounded-[2.25rem] bg-white border border-[#D8E4EA] shadow-lift p-3 sm:p-4">
 								<div className="rounded-[1.75rem] bg-[#F1F5F9] overflow-hidden">
 									<div className="flex items-center gap-1.5 px-5 py-3.5 border-b border-[#D8E4EA] bg-white">
-										<span className="w-2.5 h-2.5 rounded-full bg-[#EF4444]/70"></span>
-										<span className="w-2.5 h-2.5 rounded-full bg-[#F59E0B]/70"></span>
-										<span className="w-2.5 h-2.5 rounded-full bg-[#22C55E]/70"></span>
+										<span className="w-2.5 h-2.5 rounded-lg bg-[#EF4444]/70"></span>
+										<span className="w-2.5 h-2.5 rounded-lg bg-[#F59E0B]/70"></span>
+										<span className="w-2.5 h-2.5 rounded-lg bg-[#22C55E]/70"></span>
 										<span className="ml-4 text-[12px] text-[#94A3B8] font-medium">
 											app.sikopet.id/dasbor
 										</span>
@@ -1032,7 +1032,7 @@ export default function KOPETApp() {
 											</div>
 										</div>
 										<div className="p-5 sm:p-7 grid sm:grid-cols-2 gap-4">
-											<div className="rounded-2xl bg-white border border-[#D8E4EA] p-5 shadow-soft">
+											<div className="rounded-lg bg-white border border-[#D8E4EA] p-5 shadow-soft">
 												<p className="text-[12px] text-[#94A3B8] font-medium">
 													Total Anggota
 												</p>
@@ -1043,7 +1043,7 @@ export default function KOPETApp() {
 													+48 minggu ini
 												</p>
 											</div>
-											<div className="rounded-2xl bg-white border border-[#D8E4EA] p-5 shadow-soft">
+											<div className="rounded-lg bg-white border border-[#D8E4EA] p-5 shadow-soft">
 												<p className="text-[12px] text-[#94A3B8] font-medium">
 													Pengajuan Pending
 												</p>
@@ -1054,7 +1054,7 @@ export default function KOPETApp() {
 													Butuh approval BA
 												</p>
 											</div>
-											<div className="rounded-2xl bg-white border border-[#D8E4EA] p-5 shadow-soft">
+											<div className="rounded-lg bg-white border border-[#D8E4EA] p-5 shadow-soft">
 												<p className="text-[12px] text-[#94A3B8] font-medium">
 													Item Pending Sync
 												</p>
@@ -1065,7 +1065,7 @@ export default function KOPETApp() {
 													Butuh koneksi stabil
 												</p>
 											</div>
-											<div className="rounded-2xl bg-white border border-[#D8E4EA] p-5 shadow-soft">
+											<div className="rounded-lg bg-white border border-[#D8E4EA] p-5 shadow-soft">
 												<p className="text-[12px] text-[#94A3B8] font-medium">
 													Status Sinkronisasi
 												</p>
@@ -1080,7 +1080,7 @@ export default function KOPETApp() {
 									</div>
 								</div>
 							</div>
-							<div className="float-y absolute -left-6 sm:-left-12 top-16 glass-card rounded-2xl shadow-lift px-4 py-3 hidden md:block">
+							<div className="float-y absolute -left-6 sm:-left-12 top-16 glass-card rounded-lg shadow-lift px-4 py-3 hidden md:block">
 								<p className="text-[11px] text-[#94A3B8] font-medium">
 									Anggota Baru
 								</p>
@@ -1091,7 +1091,7 @@ export default function KOPETApp() {
 									</span>
 								</p>
 							</div>
-							<div className="float-y rev slow absolute -right-6 sm:-right-10 bottom-16 glass-card rounded-2xl shadow-lift px-4 py-3 hidden md:block">
+							<div className="float-y rev slow absolute -right-6 sm:-right-10 bottom-16 glass-card rounded-lg shadow-lift px-4 py-3 hidden md:block">
 								<p className="text-[11px] text-[#94A3B8] font-medium">
 									Audit Terjadwal
 								</p>
@@ -1164,9 +1164,9 @@ export default function KOPETApp() {
 						</div>
 
 						<div className="reveal reveal-delay-2 rounded-[2.25rem] bg-[#0F172A] p-8 sm:p-10 relative overflow-hidden">
-							<div className="blob absolute -top-10 -right-10 w-64 h-64 rounded-full bg-[#398eb3]/30"></div>
+							<div className="blob absolute -top-10 -right-10 w-64 h-64 rounded-lg bg-[#398eb3]/30"></div>
 							<div className="relative grid gap-4">
-								<div className="glass-card rounded-2xl px-5 py-4 flex items-center justify-between !bg-white/10 !border-white/15">
+								<div className="glass-card rounded-lg px-5 py-4 flex items-center justify-between !bg-white/10 !border-white/15">
 									<div className="flex items-center gap-3">
 										<svg
 											width="18"
@@ -1203,7 +1203,7 @@ export default function KOPETApp() {
 									</svg>
 								</div>
 
-								<div className="glass-card rounded-2xl px-5 py-4 !bg-white/10 !border-white/15">
+								<div className="glass-card rounded-lg px-5 py-4 !bg-white/10 !border-white/15">
 									<div className="flex items-center gap-3 mb-1">
 										<svg
 											width="18"
@@ -1243,7 +1243,7 @@ export default function KOPETApp() {
 									</svg>
 								</div>
 
-								<div className="glass-card rounded-2xl px-5 py-4 !bg-white/10 !border-white/15">
+								<div className="glass-card rounded-lg px-5 py-4 !bg-white/10 !border-white/15">
 									<div className="flex items-center gap-3 mb-1">
 										<svg
 											width="18"
@@ -1283,7 +1283,7 @@ export default function KOPETApp() {
 									</svg>
 								</div>
 
-								<div className="rounded-2xl px-5 py-4 bg-gradient-to-r from-[#398eb3] to-[#4CC9B0] flex items-center gap-3">
+								<div className="rounded-lg px-5 py-4 bg-gradient-to-r from-[#398eb3] to-[#4CC9B0] flex items-center gap-3">
 									<svg
 										width="18"
 										height="18"
@@ -1372,10 +1372,10 @@ export default function KOPETApp() {
 							].map((role, i) => (
 								<div
 									key={i}
-									className={`reveal reveal-delay-${i % 4} rounded-2xl bg-white border border-[#D8E4EA] p-5 text-center hover:-translate-y-1 hover:shadow-soft transition-all duration-300`}
+									className={`reveal reveal-delay-${i % 4} rounded-lg bg-white border border-[#D8E4EA] p-5 text-center hover:-translate-y-1 hover:shadow-soft transition-all duration-300`}
 								>
 									<span
-										className={`w-14 h-14 mx-auto rounded-full bg-gradient-to-br ${role.g} grid place-items-center ${role.tc || "text-white"} font-display font-bold text-[16px]`}
+										className={`w-14 h-14 mx-auto rounded-lg bg-gradient-to-br ${role.g} grid place-items-center ${role.tc || "text-white"} font-display font-bold text-[16px]`}
 									>
 										{role.l}
 									</span>
@@ -1475,7 +1475,7 @@ export default function KOPETApp() {
 									fokus melayani anggota.
 								</p>
 								<footer className="flex items-center gap-3 mt-6">
-									<span className="w-10 h-10 rounded-full bg-[#67B2D4]"></span>
+									<span className="w-10 h-10 rounded-lg bg-[#67B2D4]"></span>
 									<div>
 										<p className="font-semibold text-[#0F172A] text-[14px]">
 											Rina Wulandari
@@ -1503,7 +1503,7 @@ export default function KOPETApp() {
 									tidak pernah hilang.
 								</p>
 								<footer className="flex items-center gap-3 mt-6">
-									<span className="w-10 h-10 rounded-full bg-[#4CC9B0]"></span>
+									<span className="w-10 h-10 rounded-lg bg-[#4CC9B0]"></span>
 									<div>
 										<p className="font-semibold text-[#0F172A] text-[14px]">
 											Bambang Sutrisno
@@ -1531,7 +1531,7 @@ export default function KOPETApp() {
 									cepat.
 								</p>
 								<footer className="flex items-center gap-3 mt-6">
-									<span className="w-10 h-10 rounded-full bg-[#2F7698]"></span>
+									<span className="w-10 h-10 rounded-lg bg-[#2F7698]"></span>
 									<div>
 										<p className="font-semibold text-[#0F172A] text-[14px]">
 											Made Ayu Kartika
@@ -1562,7 +1562,7 @@ export default function KOPETApp() {
 						{faqs.map((faq, idx) => (
 							<div
 								key={idx}
-								className={`faq-item reveal rounded-2xl border border-[#D8E4EA] bg-white overflow-hidden ${openFaqIndex === idx ? "open" : ""}`}
+								className={`faq-item reveal rounded-lg border border-[#D8E4EA] bg-white overflow-hidden ${openFaqIndex === idx ? "open" : ""}`}
 							>
 								<button
 									onClick={() => toggleFaq(idx)}
@@ -1604,8 +1604,8 @@ export default function KOPETApp() {
 					className="max-w-[1280px] mx-auto px-6 lg:px-10 pb-24 lg:pb-32"
 				>
 					<div className="reveal relative rounded-[2.25rem] overflow-hidden bg-gradient-to-br from-[#398eb3] via-[#2F7698] to-[#0F172A] px-6 sm:px-14 py-16 sm:py-20 text-center">
-						<div className="blob absolute -top-20 -left-10 w-72 h-72 rounded-full bg-white/10"></div>
-						<div className="blob absolute -bottom-24 -right-10 w-80 h-80 rounded-full bg-[#4CC9B0]/20"></div>
+						<div className="blob absolute -top-20 -left-10 w-72 h-72 rounded-lg bg-white/10"></div>
+						<div className="blob absolute -bottom-24 -right-10 w-80 h-80 rounded-lg bg-[#4CC9B0]/20"></div>
 						<div className="relative max-w-[640px] mx-auto">
 							<h2 className="font-display font-extrabold text-white text-[30px] sm:text-[40px] tracking-tight leading-tight">
 								Siap bawa Koperasi Desa Anda ke era digital?
@@ -1617,13 +1617,13 @@ export default function KOPETApp() {
 							<div className="flex flex-wrap justify-center gap-3.5 mt-9">
 								<a
 									href="#"
-									className="focus-ring px-7 py-3.5 rounded-full bg-white text-[#2F7698] font-semibold text-[15px] shadow-lift hover:-translate-y-0.5 hover:shadow-xl transition-all duration-300"
+									className="focus-ring px-7 py-3.5 rounded-lg bg-white text-[#2F7698] font-semibold text-[15px] shadow-lift hover:-translate-y-0.5 hover:shadow-xl transition-all duration-300"
 								>
 									Mulai Uji Coba Gratis
 								</a>
 								<a
 									href="#"
-									className="focus-ring px-7 py-3.5 rounded-full border border-white/30 text-white font-semibold text-[15px] hover:bg-white/10 transition-all duration-300"
+									className="focus-ring px-7 py-3.5 rounded-lg border border-white/30 text-white font-semibold text-[15px] hover:bg-white/10 transition-all duration-300"
 								>
 									Jadwalkan Demo
 								</a>
@@ -1807,7 +1807,7 @@ export default function KOPETApp() {
 							<a
 								href="#"
 								aria-label="Instagram"
-								className="focus-ring w-9 h-9 rounded-full bg-[#F1F5F9] grid place-items-center hover:bg-[#EAF6FB] transition-colors"
+								className="focus-ring w-9 h-9 rounded-lg bg-[#F1F5F9] grid place-items-center hover:bg-[#EAF6FB] transition-colors"
 							>
 								<svg
 									width="15"
@@ -1825,7 +1825,7 @@ export default function KOPETApp() {
 							<a
 								href="#"
 								aria-label="LinkedIn"
-								className="focus-ring w-9 h-9 rounded-full bg-[#F1F5F9] grid place-items-center hover:bg-[#EAF6FB] transition-colors"
+								className="focus-ring w-9 h-9 rounded-lg bg-[#F1F5F9] grid place-items-center hover:bg-[#EAF6FB] transition-colors"
 							>
 								<svg
 									width="15"
@@ -1845,7 +1845,7 @@ export default function KOPETApp() {
 							<a
 								href="#"
 								aria-label="YouTube"
-								className="focus-ring w-9 h-9 rounded-full bg-[#F1F5F9] grid place-items-center hover:bg-[#EAF6FB] transition-colors"
+								className="focus-ring w-9 h-9 rounded-lg bg-[#F1F5F9] grid place-items-center hover:bg-[#EAF6FB] transition-colors"
 							>
 								<svg
 									width="15"

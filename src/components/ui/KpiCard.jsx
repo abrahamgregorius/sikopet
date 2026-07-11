@@ -17,7 +17,7 @@ export default function KpiCard({
 
 	return (
 		<div
-			className={`rounded-2xl bg-white border border-[#D8E4EA] p-5 shadow-soft ${className}`}
+			className={`rounded-lg bg-white border border-[#D8E4EA] p-5 shadow-soft ${className}`}
 			{...props}
 		>
 			{icon && <div className="mb-3">{icon}</div>}
