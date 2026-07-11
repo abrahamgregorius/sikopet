@@ -52,7 +52,7 @@ export default function WarehouseOverview({
 				<p className="text-[11px] text-[#94A3B8] mt-1">Unit keseluruhan</p>
 			</div>
 
-			<div className="rounded-[1.75rem] bg-[#0F172A] px-6 py-7 shadow-lift">
+			<div className="rounded-lg bg-[#0F172A] px-6 py-7 shadow-lift">
 				<div className="flex items-center gap-3 mb-3">
 					<span className="w-10 h-10 rounded-lg bg-white/10 grid place-items-center">
 						<svg
