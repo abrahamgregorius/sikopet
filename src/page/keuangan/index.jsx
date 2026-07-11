@@ -24,6 +24,7 @@ export default function KeuanganPage() {
 				.toArray();
 			const enrichedData = data.map((t) => ({
 				...t,
+				amount: t.totalAmount || 0,
 				category: t.type,
 				date: t.date ? new Date(t.date).toLocaleDateString("id-ID") : "-",
 			}));

@@ -3,10 +3,16 @@
 export default function LoanDetail({ loan, onClose, onApprove }) {
 	if (!loan) return null;
 
-	const remaining = loan.principal - loan.paid;
-	const progress = (loan.paid / loan.principal) * 100;
-	const monthlyPayment = (loan.principal * (1 + loan.rate / 100)) / loan.tenor;
+	const remaining = (loan.principal || 0) - (loan.paidAmount || loan.paid || 0);
+	const progress = loan.principal
+		? ((loan.paidAmount || loan.paid || 0) / loan.principal) * 100
+		: 0;
 
+	const monthlyPayment = loan.tenor
+		? ((loan.principal || 0) *
+				(1 + (loan.rate || loan.interestRate || 0) / 100)) /
+			(loan.tenor || 1)
+		: 0;
 	return (
 		<div className="rounded-lg bg-white border border-[#E5E7EB] overflow-hidden">
 			<div className="p-5 border-b border-[#E8EEF2] flex items-center justify-between">

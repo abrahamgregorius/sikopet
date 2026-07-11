@@ -1,124 +1,87 @@
 /** @format */
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ModuleLayout from "../modules/ModuleLayout";
 import ProcurementOverview from "./components/ProcurementOverview";
 import ProcurementList from "./components/ProcurementList";
 import ProcurementDetail from "./components/ProcurementDetail";
 import ProcurementForm from "./components/ProcurementForm";
-
-const MOCK_PROCUREMENTS = [
-	{
-		id: 1,
-		date: "2026-07-10",
-		supplier: "PT Sumber Makmur",
-		product: "Beras Premium 5kg",
-		quantity: 100,
-		unitPrice: 68000,
-		total: 6800000,
-		status: "pending",
-		method: "transfer",
-	},
-	{
-		id: 2,
-		date: "2026-07-09",
-		supplier: "CV Tiga Dara",
-		product: "Minyak Goreng 1L",
-		quantity: 200,
-		unitPrice: 16500,
-		total: 3300000,
-		status: "approved",
-		method: "transfer",
-	},
-	{
-		id: 3,
-		date: "2026-07-08",
-		supplier: "PT Berkah Tani",
-		product: "Pupuk Organik 25kg",
-		quantity: 50,
-		unitPrice: 125000,
-		total: 6250000,
-		status: "received",
-		method: "cash",
-	},
-	{
-		id: 4,
-		date: "2026-07-07",
-		supplier: "UD Saujana",
-		product: "Gula Pasir 50kg",
-		quantity: 80,
-		unitPrice: 13500,
-		total: 1080000,
-		status: "pending",
-		method: "transfer",
-	},
-	{
-		id: 5,
-		date: "2026-07-06",
-		supplier: "PT Sumber Makmur",
-		product: "Telur Ayam 1kg",
-		quantity: 150,
-		unitPrice: 26000,
-		total: 3900000,
-		status: "received",
-		method: "transfer",
-	},
-	{
-		id: 6,
-		date: "2026-07-05",
-		supplier: "CV Tiga Dara",
-		product: "Mie Instan",
-		quantity: 500,
-		unitPrice: 3200,
-		total: 1600000,
-		status: "rejected",
-		method: "cash",
-	},
-];
+import { db } from "../../database/db";
 
 export default function PengadaanPage() {
-	const [procurements, setProcurements] = useState(MOCK_PROCUREMENTS);
+	const [procurements, setProcurements] = useState([]);
 	const [selectedProcurement, setSelectedProcurement] = useState(null);
 	const [showForm, setShowForm] = useState(false);
 	const [statusFilter, setStatusFilter] = useState("all");
 	const [search, setSearch] = useState("");
+	const [loading, setLoading] = useState(true);
+
+	const loadData = async () => {
+		setLoading(true);
+		try {
+			const data = await db.procurements.reverse().toArray();
+			setProcurements(data);
+		} catch (err) {
+			console.error("[Pengadaan] Failed to load data:", err);
+		} finally {
+			setLoading(false);
+		}
+	};
+
+	useEffect(() => {
+		loadData();
+	}, []);
 
 	const filtered = procurements.filter((p) => {
 		const matchSearch =
-			p.supplier.toLowerCase().includes(search.toLowerCase()) ||
-			p.product.toLowerCase().includes(search.toLowerCase());
+			(p.supplier || "").toLowerCase().includes(search.toLowerCase()) ||
+			(p.product || "").toLowerCase().includes(search.toLowerCase());
 		const matchStatus = statusFilter === "all" || p.status === statusFilter;
 		return matchSearch && matchStatus;
 	});
 
 	const totalPengajuan = procurements
 		.filter((p) => p.status === "pending")
-		.reduce((sum, p) => sum + p.total, 0);
+		.reduce((sum, p) => sum + (p.total || 0), 0);
 	const totalApproved = procurements
 		.filter((p) => p.status === "approved")
-		.reduce((sum, p) => sum + p.total, 0);
+		.reduce((sum, p) => sum + (p.total || 0), 0);
 	const totalReceived = procurements
 		.filter((p) => p.status === "received")
-		.reduce((sum, p) => sum + p.total, 0);
+		.reduce((sum, p) => sum + (p.total || 0), 0);
 
-	const handleAdd = (data) => {
-		const newItem = { id: procurements.length + 1, ...data, status: "pending" };
-		setProcurements((prev) => [newItem, ...prev]);
-		setShowForm(false);
+	const handleAdd = async (data) => {
+		try {
+			await db.procurements.add({
+				...data,
+				status: "pending",
+				date: new Date().toISOString().split("T")[0],
+			});
+			await loadData();
+			setShowForm(false);
+		} catch (err) {
+			console.error("[Pengadaan] Failed to add procurement:", err);
+		}
 	};
 
-	const handleApprove = (id) => {
-		setProcurements((prev) =>
-			prev.map((p) => (p.id === id ? { ...p, status: "approved" } : p)),
-		);
-		setSelectedProcurement(null);
+	const handleApprove = async (id) => {
+		try {
+			await db.procurements.update(id, { status: "approved" });
+			await loadData();
+			setSelectedProcurement(null);
+		} catch (err) {
+			console.error("[Pengadaan] Failed to approve:", err);
+		}
 	};
 
-	const handleReceive = (id) => {
-		setProcurements((prev) =>
-			prev.map((p) => (p.id === id ? { ...p, status: "received" } : p)),
-		);
-		setSelectedProcurement(null);
+	const handleReceive = async (id) => {
+		try {
+			await db.procurements.update(id, { status: "received" });
+			await loadData();
+			setSelectedProcurement(null);
+		} catch (err) {
+			console.error("[Pengadaan] Failed to receive:", err);
+		}
 	};
 
 	return (
@@ -135,7 +98,7 @@ export default function PengadaanPage() {
 					</div>
 					<button
 						onClick={() => setShowForm(true)}
-						className="focus-ring inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-[#398EB3] text-white font-semibold text-[14.5px] hover:bg-[#2F7A9A] hover:-translate-y-0.5 transition-all" 
+						className="focus-ring inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-[#398EB3] text-white font-semibold text-[14.5px] hover:bg-[#2F7A9A] hover:-translate-y-0.5 transition-all"
 					>
 						<svg
 							width="16"
@@ -172,6 +135,7 @@ export default function PengadaanPage() {
 						onFilter={setStatusFilter}
 						onSelect={setSelectedProcurement}
 						selectedId={selectedProcurement?.id}
+						loading={loading}
 					/>
 
 					{selectedProcurement ? (

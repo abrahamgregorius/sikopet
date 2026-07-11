@@ -89,6 +89,7 @@ export default function InventoryPage() {
 		const invMap = getInventoryMap();
 		let filtered = products.map((prod) => ({
 			...prod,
+			price: prod.salePrice || 0,
 			stock: invMap[prod.id]?.stock || 0,
 			minimumStock: invMap[prod.id]?.minimumStock || 0,
 			location: invMap[prod.id]?.location || "-",
@@ -348,7 +349,13 @@ export default function InventoryPage() {
 				<select
 					value={filterCategory}
 					onChange={(e) => setFilterCategory(e.target.value)}
-					className="focus-ring h-[44px] px-4 rounded-[12px] border border-[#E5E7EB] bg-white text-[14px] text-[#0F172A] transition-colors"
+					className="focus-ring h-[44px] px-4 rounded-[12px] border border-[#E5E7EB] bg-white text-[14px] text-[#0F172A] transition-colors appearance-none cursor-pointer"
+					style={{
+						backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236B7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E")`,
+						backgroundRepeat: "no-repeat",
+						backgroundPosition: "right 14px center",
+						paddingRight: "36px",
+					}}
 				>
 					<option value="all">Semua Kategori</option>
 					{CATEGORY_OPTIONS.map((cat) => (
@@ -360,7 +367,13 @@ export default function InventoryPage() {
 				<select
 					value={filterStock}
 					onChange={(e) => setFilterStock(e.target.value)}
-					className="focus-ring h-[44px] px-4 rounded-[12px] border border-[#E5E7EB] bg-white text-[14px] text-[#0F172A] transition-colors"
+					className="focus-ring h-[44px] px-4 rounded-[12px] border border-[#E5E7EB] bg-white text-[14px] text-[#0F172A] transition-colors appearance-none cursor-pointer"
+					style={{
+						backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236B7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E")`,
+						backgroundRepeat: "no-repeat",
+						backgroundPosition: "right 14px center",
+						paddingRight: "36px",
+					}}
 				>
 					<option value="all">Semua Stock</option>
 					<option value="low">Stock Rendah</option>

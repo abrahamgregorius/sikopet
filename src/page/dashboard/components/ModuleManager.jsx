@@ -216,7 +216,13 @@ export default function ModuleManager() {
 				<select
 					value={filterCategory}
 					onChange={(e) => setFilterCategory(e.target.value)}
-					className="focus-ring h-[44px] px-4 rounded-[12px] border border-[#E5E7EB] bg-white text-[14px] text-[#0F172A] transition-colors"
+					className="focus-ring h-[44px] px-4 rounded-[12px] border border-[#E5E7EB] bg-white text-[14px] text-[#0F172A] transition-colors appearance-none cursor-pointer"
+					style={{
+						backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236B7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E")`,
+						backgroundRepeat: "no-repeat",
+						backgroundPosition: "right 14px center",
+						paddingRight: "36px",
+					}}
 				>
 					<option value="all">Semua Kategori</option>
 					<option value="utama">Utama</option>
@@ -227,7 +233,13 @@ export default function ModuleManager() {
 				<select
 					value={filterStatus}
 					onChange={(e) => setFilterStatus(e.target.value)}
-					className="focus-ring h-[44px] px-4 rounded-[12px] border border-[#E5E7EB] bg-white text-[14px] text-[#0F172A] transition-colors"
+					className="focus-ring h-[44px] px-4 rounded-[12px] border border-[#E5E7EB] bg-white text-[14px] text-[#0F172A] transition-colors appearance-none cursor-pointer"
+					style={{
+						backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236B7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E")`,
+						backgroundRepeat: "no-repeat",
+						backgroundPosition: "right 14px center",
+						paddingRight: "36px",
+					}}
 				>
 					<option value="all">Semua Status</option>
 					<option value="enabled">Aktif</option>
@@ -237,7 +249,13 @@ export default function ModuleManager() {
 				<select
 					value={sortBy}
 					onChange={(e) => setSortBy(e.target.value)}
-					className="focus-ring h-[44px] px-4 rounded-[12px] border border-[#E5E7EB] bg-white text-[14px] text-[#0F172A] transition-colors"
+					className="focus-ring h-[44px] px-4 rounded-[12px] border border-[#E5E7EB] bg-white text-[14px] text-[#0F172A] transition-colors appearance-none cursor-pointer"
+					style={{
+						backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236B7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E")`,
+						backgroundRepeat: "no-repeat",
+						backgroundPosition: "right 14px center",
+						paddingRight: "36px",
+					}}
 				>
 					<option value="category">Sortir: Kategori</option>
 					<option value="alphabetical">Sortir: A-Z</option>

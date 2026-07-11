@@ -1,9 +1,12 @@
 /** @format */
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { db } from "../../../database/db";
 
 export default function ProcurementForm({ onClose, onSubmit }) {
+	const [suppliers, setSuppliers] = useState([]);
 	const [form, setForm] = useState({
+		supplierId: "",
 		supplier: "",
 		product: "",
 		quantity: "",
@@ -11,20 +14,36 @@ export default function ProcurementForm({ onClose, onSubmit }) {
 		method: "transfer",
 	});
 
+	useEffect(() => {
+		const loadSuppliers = async () => {
+			const data = await db.suppliers.toArray();
+			setSuppliers(data);
+		};
+		loadSuppliers();
+	}, []);
+
 	const handleChange = (e) => {
 		const { name, value } = e.target;
-		setForm((prev) => ({ ...prev, [name]: value }));
+		if (name === "supplierId") {
+			const selected = suppliers.find((s) => s.id === Number(value));
+			setForm((prev) => ({
+				...prev,
+				supplierId: value,
+				supplier: selected?.name || "",
+			}));
+		} else {
+			setForm((prev) => ({ ...prev, [name]: value }));
+		}
 	};
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		if (!form.supplier || !form.product || !form.quantity || !form.unitPrice) return;
+		if (!form.supplierId || !form.product || !form.quantity || !form.unitPrice) return;
 		onSubmit({
 			...form,
 			quantity: Number(form.quantity),
 			unitPrice: Number(form.unitPrice),
 			total: Number(form.quantity) * Number(form.unitPrice),
-			date: new Date().toISOString().split("T")[0],
 		});
 	};
 
@@ -42,19 +61,30 @@ export default function ProcurementForm({ onClose, onSubmit }) {
 
 				<form onSubmit={handleSubmit} className="p-6 space-y-4">
 					<div>
-						<label htmlFor="supplier" className="block text-[13.5px] font-medium text-[#374151] mb-1.5">
+						<label htmlFor="supplierId" className="block text-[13.5px] font-medium text-[#374151] mb-1.5">
 							Pemasok <span className="text-[#EF4444]">*</span>
 						</label>
-						<input
-							id="supplier"
-							name="supplier"
-							type="text"
+						<select
+							id="supplierId"
+							name="supplierId"
 							required
-							placeholder="Nama pemasok"
-							value={form.supplier}
+							value={form.supplierId}
 							onChange={handleChange}
-							className="focus-ring w-full h-[48px] px-4 rounded-[12px] border border-[#E5E7EB] bg-white text-[15px] text-[#0F172A] placeholder-[#9CA3AF] focus:border-[#398EB3] focus:outline-none transition-colors"
-						/>
+							className="focus-ring w-full h-[48px] px-4 rounded-[12px] border border-[#E5E7EB] bg-white text-[15px] text-[#0F172A] focus:border-[#398EB3] focus:outline-none transition-colors appearance-none cursor-pointer"
+							style={{
+								backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236B7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E")`,
+								backgroundRepeat: "no-repeat",
+								backgroundPosition: "right 16px center",
+								paddingRight: "40px",
+							}}
+						>
+							<option value="">Pilih Pemasok</option>
+							{suppliers.map((s) => (
+								<option key={s.id} value={s.id}>
+									{s.name}
+								</option>
+							))}
+						</select>
 					</div>
 
 					<div>
@@ -115,7 +145,13 @@ export default function ProcurementForm({ onClose, onSubmit }) {
 							name="method"
 							value={form.method}
 							onChange={handleChange}
-							className="focus-ring w-full h-[48px] px-4 rounded-[12px] border border-[#E5E7EB] bg-white text-[15px] text-[#0F172A] focus:border-[#398EB3] focus:outline-none transition-colors"
+							className="focus-ring w-full h-[48px] px-4 rounded-[12px] border border-[#E5E7EB] bg-white text-[15px] text-[#0F172A] focus:border-[#398EB3] focus:outline-none transition-colors appearance-none cursor-pointer"
+							style={{
+								backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236B7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E")`,
+								backgroundRepeat: "no-repeat",
+								backgroundPosition: "right 16px center",
+								paddingRight: "40px",
+							}}
 						>
 							<option value="transfer">Transfer</option>
 							<option value="cash">Tunai</option>

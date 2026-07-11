@@ -1,117 +1,60 @@
 /** @format */
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ModuleLayout from "../modules/ModuleLayout";
 import WarehouseOverview from "./components/WarehouseOverview";
 import InventoryList from "./components/InventoryList";
 import InventoryDetail from "./components/InventoryDetail";
 import StockForm from "./components/StockForm";
-
-const MOCK_INVENTORY = [
-	{
-		id: 1,
-		code: "BRG-001",
-		name: "Beras Premium 5kg",
-		category: "Sembako",
-		stock: 120,
-		minStock: 50,
-		unit: "pack",
-		lastRestock: "2026-07-05",
-		location: "Gudang A-1",
-	},
-	{
-		id: 2,
-		code: "BRG-002",
-		name: "Minyak Goreng 1L",
-		category: "Sembako",
-		stock: 85,
-		minStock: 30,
-		unit: "botol",
-		lastRestock: "2026-07-03",
-		location: "Gudang A-2",
-	},
-	{
-		id: 3,
-		code: "BRG-003",
-		name: "Gula Pasir 1kg",
-		category: "Sembako",
-		stock: 200,
-		minStock: 40,
-		unit: "kg",
-		lastRestock: "2026-07-01",
-		location: "Gudang A-1",
-	},
-	{
-		id: 4,
-		code: "BRG-004",
-		name: "Telur Ayam 1kg",
-		category: "Sembako",
-		stock: 45,
-		minStock: 60,
-		unit: "kg",
-		lastRestock: "2026-07-08",
-		location: "Gudang B-1",
-	},
-	{
-		id: 5,
-		code: "BRG-005",
-		name: "Mie Instan",
-		category: "Sembako",
-		stock: 500,
-		minStock: 100,
-		unit: "pcs",
-		lastRestock: "2026-06-28",
-		location: "Gudang C-1",
-	},
-	{
-		id: 6,
-		code: "BRG-006",
-		name: "Kopi Sachet",
-		category: "Minuman",
-		stock: 300,
-		minStock: 80,
-		unit: "pcs",
-		lastRestock: "2026-07-02",
-		location: "Gudang B-2",
-	},
-	{
-		id: 7,
-		code: "BRG-007",
-		name: "Teh Celup 25s",
-		category: "Minuman",
-		stock: 150,
-		minStock: 50,
-		unit: "box",
-		lastRestock: "2026-07-04",
-		location: "Gudang B-2",
-	},
-	{
-		id: 8,
-		code: "BRG-008",
-		name: "Sabun Mandi 100g",
-		category: "Toiletries",
-		stock: 200,
-		minStock: 60,
-		unit: "pcs",
-		lastRestock: "2026-06-25",
-		location: "Gudang C-2",
-	},
-];
+import { db } from "../../database/db";
 
 export default function GudangPage() {
-	const [inventory, setInventory] = useState(MOCK_INVENTORY);
+	const [inventory, setInventory] = useState([]);
+	const [products, setProducts] = useState([]);
 	const [selectedItem, setSelectedItem] = useState(null);
 	const [showForm, setShowForm] = useState(false);
 	const [categoryFilter, setCategoryFilter] = useState("all");
 	const [search, setSearch] = useState("");
 	const [stockAlert, setStockAlert] = useState("all");
+	const [loading, setLoading] = useState(true);
+
+	const loadData = async () => {
+		setLoading(true);
+		try {
+			const [productsData, inventoryData] = await Promise.all([
+				db.products.toArray(),
+				db.inventory.toArray(),
+			]);
+			const enrichedInventory = inventoryData.map((inv) => {
+				const product = productsData.find((p) => p.id === inv.productId);
+				return {
+					...inv,
+					name: product?.name || "Unknown",
+					category: product?.category || "Lainnya",
+					code: `BRG-${String(inv.id || 0).padStart(3, "0")}`,
+					minStock: inv.minimumStock || 0,
+					unit: product?.unit || "pcs",
+				};
+			});
+			setProducts(productsData);
+			setInventory(enrichedInventory);
+		} catch (err) {
+			console.error("[Gudang] Failed to load data:", err);
+		} finally {
+			setLoading(false);
+		}
+	};
+
+	useEffect(() => {
+		loadData();
+	}, []);
 
 	const categories = [...new Set(inventory.map((i) => i.category))];
 
 	const filtered = inventory.filter((i) => {
 		const matchSearch =
-			i.name.toLowerCase().includes(search.toLowerCase()) ||
-			i.code.toLowerCase().includes(search.toLowerCase());
+			(i.name || "").toLowerCase().includes(search.toLowerCase()) ||
+			(i.code || "").toLowerCase().includes(search.toLowerCase());
 		const matchCategory =
 			categoryFilter === "all" || i.category === categoryFilter;
 		const matchAlert =
@@ -123,21 +66,52 @@ export default function GudangPage() {
 
 	const lowStockCount = inventory.filter((i) => i.stock < i.minStock).length;
 	const totalItems = inventory.length;
-	const totalStock = inventory.reduce((sum, i) => sum + i.stock, 0);
+	const totalStock = inventory.reduce((sum, i) => sum + (i.stock || 0), 0);
 
-	const handleRestock = (id, qty) => {
-		setInventory((prev) =>
-			prev.map((i) =>
-				i.id === id
-					? {
-							...i,
-							stock: i.stock + qty,
-							lastRestock: new Date().toISOString().split("T")[0],
-						}
-					: i,
-			),
-		);
-		setSelectedItem(null);
+	const handleRestock = async (id, qty) => {
+		try {
+			const item = inventory.find((i) => i.id === id);
+			if (!item) return;
+			await db.inventory.update(id, {
+				stock: (item.stock || 0) + qty,
+				updatedAt: new Date().toISOString(),
+			});
+			await loadData();
+			setSelectedItem(null);
+		} catch (err) {
+			console.error("[Gudang] Failed to restock:", err);
+		}
+	};
+
+	const handleAddItem = async (data) => {
+		try {
+			let product = products.find((p) => p.name === data.name);
+			let productId;
+
+			if (!product) {
+				productId = await db.products.add({
+					name: data.name,
+					category: data.category || "Lainnya",
+					unit: data.unit || "pcs",
+					createdAt: new Date().toISOString(),
+				});
+			} else {
+				productId = product.id;
+			}
+
+			await db.inventory.add({
+				productId,
+				stock: data.stock || 0,
+				minimumStock: data.minStock || 0,
+				location: data.location || "-",
+				updatedAt: new Date().toISOString(),
+			});
+
+			await loadData();
+			setShowForm(false);
+		} catch (err) {
+			console.error("[Gudang] Failed to add item:", err);
+		}
 	};
 
 	return (
@@ -154,7 +128,7 @@ export default function GudangPage() {
 					</div>
 					<button
 						onClick={() => setShowForm(true)}
-						className="focus-ring inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-[#398EB3] text-white font-semibold text-[14.5px] hover:bg-[#2F7A9A] hover:-translate-y-0.5 transition-all" 
+						className="focus-ring inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-[#398EB3] text-white font-semibold text-[14.5px] hover:bg-[#2F7A9A] hover:-translate-y-0.5 transition-all"
 					>
 						<svg
 							width="16"
@@ -188,6 +162,7 @@ export default function GudangPage() {
 						onStockAlert={setStockAlert}
 						onSelect={setSelectedItem}
 						selectedId={selectedItem?.id}
+						loading={loading}
 					/>
 
 					{selectedItem ? (
@@ -222,15 +197,7 @@ export default function GudangPage() {
 			{showForm && (
 				<StockForm
 					onClose={() => setShowForm(false)}
-					onSubmit={(data) => {
-						const newItem = {
-							id: inventory.length + 1,
-							...data,
-							code: `BRG-${String(inventory.length + 1).padStart(3, "0")}`,
-						};
-						setInventory((prev) => [newItem, ...prev]);
-						setShowForm(false);
-					}}
+					onSubmit={handleAddItem}
 				/>
 			)}
 		</ModuleLayout>

@@ -29,6 +29,9 @@ export default function PinjamanPage() {
 			const enrichedData = loansData.map((l) => ({
 				...l,
 				member: memberMap[l.memberId] || "Unknown",
+				paid: l.paidAmount || 0,
+				rate: l.interestRate || 0,
+				tenor: l.tenorMonths || 0,
 			}));
 			setLoans(enrichedData);
 		} catch (err) {

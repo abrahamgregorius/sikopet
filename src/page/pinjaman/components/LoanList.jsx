@@ -5,6 +5,7 @@ const STATUS_CONFIG = {
 	pending: { label: "Menunggu", color: "text-[#F59E0B] bg-[#F59E0B]/10" },
 	completed: { label: "Lunas", color: "text-[#94A3B8] bg-[#F1F5F9]" },
 	rejected: { label: "Ditolak", color: "text-[#EF4444] bg-[#EF4444]/10" },
+	overdue: { label: "Terlambat", color: "text-[#EF4444] bg-[#EF4444]/10" },
 };
 
 const FILTERS = [
