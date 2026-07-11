@@ -1,7 +1,7 @@
 /** @format */
 
 import { useState, useEffect } from "react";
-import ModuleLayout from "../modules/ModuleLayout";
+import DashboardLayout from "../../components/ui/DashboardLayout";
 import FinanceOverview from "./components/FinanceOverview";
 import TransactionTable from "./components/TransactionTable";
 import IncomeExpenseChart from "./components/IncomeExpenseChart";
@@ -69,7 +69,7 @@ export default function KeuanganPage() {
 	});
 
 	return (
-		<ModuleLayout>
+		<DashboardLayout>
 			<div className="space-y-6">
 				<div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
 					<div>
@@ -128,6 +128,6 @@ export default function KeuanganPage() {
 					loading={loading}
 				/>
 			</div>
-		</ModuleLayout>
+		</DashboardLayout>
 	);
 }

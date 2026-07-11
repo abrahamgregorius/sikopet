@@ -1,7 +1,7 @@
 /** @format */
 
 import { useState } from "react";
-import ModuleLayout from "../modules/ModuleLayout";
+import DashboardLayout from "../../components/ui/DashboardLayout";
 import SupplierStats from "./components/SupplierStats";
 import SupplierList from "./components/SupplierList";
 import SupplierDetail from "./components/SupplierDetail";
@@ -120,7 +120,7 @@ export default function PemasokPage() {
 	};
 
 	return (
-		<ModuleLayout>
+		<DashboardLayout>
 			<div className="space-y-6">
 				<div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
 					<div>
@@ -196,6 +196,6 @@ export default function PemasokPage() {
 			{showForm && (
 				<SupplierForm onClose={() => setShowForm(false)} onSubmit={handleAdd} />
 			)}
-		</ModuleLayout>
+		</DashboardLayout>
 	);
 }

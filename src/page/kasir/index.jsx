@@ -1,7 +1,7 @@
 /** @format */
 
 import { useState, useEffect } from "react";
-import ModuleLayout from "../modules/ModuleLayout";
+import DashboardLayout from "../../components/ui/DashboardLayout";
 import ProductGrid from "./components/ProductGrid";
 import CartPanel from "./components/CartPanel";
 import TransactionSummary from "./components/TransactionSummary";
@@ -120,7 +120,7 @@ export default function KasirPage() {
 	};
 
 	return (
-		<ModuleLayout>
+		<DashboardLayout>
 			<div className="space-y-6">
 				<div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
 					<div>
@@ -171,6 +171,6 @@ export default function KasirPage() {
 					</div>
 				</div>
 			</div>
-		</ModuleLayout>
+		</DashboardLayout>
 	);
 }

@@ -8,7 +8,11 @@ import TopNav from "./components/TopNav";
 import HeroHeader from "./components/HeroHeader";
 import QuickActions from "./components/QuickActions";
 import StatsGrid from "./components/StatsGrid";
-import { AnalyticsSection, ModuleUsage, ProgressOverview } from "./components/AnalyticsSection";
+import {
+	AnalyticsSection,
+	ModuleUsage,
+	ProgressOverview,
+} from "./components/AnalyticsSection";
 import TransactionTable from "./components/TransactionTable";
 import ActivityTimeline from "./components/ActivityTimeline";
 import TaskList from "./components/TaskList";
@@ -24,6 +28,21 @@ import TaskModal from "./components/TaskModal";
 import NotificationDrawer from "./components/NotificationDrawer";
 import UserModal from "./components/UserModal";
 import Breadcrumb from "./components/Breadcrumb";
+import BIExecutiveSummary from "./components/BIExecutiveSummary";
+import BISimpanPinjam from "./components/BISimpanPinjam";
+import BIInventori from "./components/BIInventori";
+import BIPenjualan from "./components/BIPenjualan";
+import BIPengadaan from "./components/BIPengadaan";
+import BIKeuangan from "./components/BIKeuangan";
+
+const BI_TABS = [
+	{ id: "executive", label: "Eksekutif" },
+	{ id: "simpanpinjam", label: "Simpan Pinjam" },
+	{ id: "inventori", label: "Inventori" },
+	{ id: "penjualan", label: "Penjualan" },
+	{ id: "pengadaan", label: "Pengadaan" },
+	{ id: "keuangan", label: "Keuangan" },
+];
 
 export default function Dashboard() {
 	const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
@@ -35,54 +54,69 @@ export default function Dashboard() {
 	const [isUserModalOpen, setIsUserModalOpen] = useState(false);
 	const [refreshTrigger, setRefreshTrigger] = useState(0);
 	const [ctxMenu, setCtxMenu] = useState({ isOpen: false, x: 0, y: 0 });
+	const [biTab, setBiTab] = useState("executive");
+	const [viewMode, setViewMode] = useState("overview");
 
 	const profileMenuRef = useRef(null);
 	const fabMenuRef = useRef(null);
 
 	useEffect(() => {
-		const io = new IntersectionObserver((entries) => {
-			entries.forEach(e => {
-				if (e.isIntersecting) {
-					e.target.classList.add('in');
-					io.unobserve(e.target);
-				}
-			});
-		}, { threshold: 0.1 });
-		document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+		const io = new IntersectionObserver(
+			(entries) => {
+				entries.forEach((e) => {
+					if (e.isIntersecting) {
+						e.target.classList.add("in");
+						io.unobserve(e.target);
+					}
+				});
+			},
+			{ threshold: 0.1 },
+		);
+		document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
 		return () => io.disconnect();
 	}, []);
 
 	useEffect(() => {
 		const handleClickOutside = (event) => {
-			if (profileMenuRef.current && !profileMenuRef.current.contains(event.target) && !event.target.closest('#profile-btn')) {
+			if (
+				profileMenuRef.current &&
+				!profileMenuRef.current.contains(event.target) &&
+				!event.target.closest("#profile-btn")
+			) {
 				setIsProfileMenuOpen(false);
 			}
-			if (fabMenuRef.current && !fabMenuRef.current.contains(event.target) && !event.target.closest('#fab-btn')) {
+			if (
+				fabMenuRef.current &&
+				!fabMenuRef.current.contains(event.target) &&
+				!event.target.closest("#fab-btn")
+			) {
 				setIsFabMenuOpen(false);
 			}
 		};
 
-		document.addEventListener('mousedown', handleClickOutside);
-		return () => document.removeEventListener('mousedown', handleClickOutside);
+		document.addEventListener("mousedown", handleClickOutside);
+		return () => document.removeEventListener("mousedown", handleClickOutside);
 	}, []);
 
 	useEffect(() => {
 		const handleKeyDown = (e) => {
-			if (e.key === 'Escape') {
+			if (e.key === "Escape") {
 				setIsTaskModalOpen(false);
 				setIsNotifOpen(false);
 				setIsMobileSidebarOpen(false);
 			}
 		};
-		document.addEventListener('keydown', handleKeyDown);
-		return () => document.removeEventListener('keydown', handleKeyDown);
+		document.addEventListener("keydown", handleKeyDown);
+		return () => document.removeEventListener("keydown", handleKeyDown);
 	}, []);
 
 	const handleRefreshStats = (e) => {
-		const svg = e.currentTarget.querySelector('svg');
-		svg.style.animation = 'spin .6s linear';
-		setRefreshTrigger(prev => prev + 1);
-		setTimeout(() => { svg.style.animation = ''; }, 650);
+		const svg = e.currentTarget.querySelector("svg");
+		svg.style.animation = "spin .6s linear";
+		setRefreshTrigger((prev) => prev + 1);
+		setTimeout(() => {
+			svg.style.animation = "";
+		}, 650);
 	};
 
 	const handleCtxMenuClick = (e) => {
@@ -91,7 +125,7 @@ export default function Dashboard() {
 		setCtxMenu({
 			isOpen: true,
 			y: rect.bottom + window.scrollY + 6,
-			x: rect.right - 176 + window.scrollX
+			x: rect.right - 176 + window.scrollX,
 		});
 	};
 
@@ -139,11 +173,22 @@ export default function Dashboard() {
 				.shadow-soft, .shadow-lift, .shadow-glow { box-shadow: none; }
 			`}</style>
 
-			<a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[200] focus:bg-white focus:px-4 focus:py-2 focus:rounded-lg">Lompat ke konten</a>
+			<a
+				href="#main-content"
+				className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[200] focus:bg-white focus:px-4 focus:py-2 focus:rounded-lg"
+			>
+				Lompat ke konten
+			</a>
 
 			<div className="flex min-h-screen">
-				<Sidebar collapsed={isSidebarCollapsed} onToggleCollapse={() => setIsSidebarCollapsed(!isSidebarCollapsed)} />
-				<MobileSidebar isOpen={isMobileSidebarOpen} onClose={() => setIsMobileSidebarOpen(false)} />
+				<Sidebar
+					collapsed={isSidebarCollapsed}
+					onToggleCollapse={() => setIsSidebarCollapsed(!isSidebarCollapsed)}
+				/>
+				<MobileSidebar
+					isOpen={isMobileSidebarOpen}
+					onClose={() => setIsMobileSidebarOpen(false)}
+				/>
 
 				<div id="app-shell" className="flex-1 min-w-0 flex flex-col">
 					<TopNav
@@ -156,11 +201,76 @@ export default function Dashboard() {
 					/>
 
 					<div className="flex-1 flex">
-						<main id="main-content" className="flex-1 min-w-0 px-4 sm:px-6 lg:px-8 py-7 space-y-7">
+						<main
+							id="main-content"
+							className="flex-1 min-w-0 px-4 sm:px-6 lg:px-8 py-7 space-y-7"
+						>
 							<Breadcrumb />
-							<HeroHeader onOpenTaskModal={() => setIsTaskModalOpen(true)} />
+							<div className="flex items-center justify-between gap-4 flex-wrap">
+								<HeroHeader onOpenTaskModal={() => setIsTaskModalOpen(true)} />
+								<div className="flex items-center gap-2 bg-[#F1F5F9] rounded-xl p-1">
+									<button
+										onClick={() => setViewMode("overview")}
+										className={`px-4 py-2 rounded-lg text-[13px] font-semibold transition-all ${
+											viewMode === "overview"
+												? "bg-white text-[#0F172A] shadow-sm"
+												: "text-[#475569] hover:text-[#0F172A]"
+										}`}
+									>
+										Overview
+									</button>
+									<button
+										onClick={() => setViewMode("bi")}
+										className={`px-4 py-2 rounded-lg text-[13px] font-semibold transition-all ${
+											viewMode === "bi"
+												? "bg-white text-[#0F172A] shadow-sm"
+												: "text-[#475569] hover:text-[#0F172A]"
+										}`}
+									>
+										BI Dashboard
+									</button>
+								</div>
+							</div>
+
+							{viewMode === "bi" && (
+								<>
+									<div
+										role="tablist"
+										className="flex items-center gap-1 bg-[#F1F5F9] rounded-xl p-1 overflow-x-auto"
+									>
+										{BI_TABS.map((tab) => (
+											<button
+												key={tab.id}
+												role="tab"
+												aria-selected={biTab === tab.id}
+												onClick={() => setBiTab(tab.id)}
+												className={`px-4 py-2 rounded-lg text-[13px] font-semibold transition-all whitespace-nowrap ${
+													biTab === tab.id
+														? "bg-white text-[#398eb3] shadow-sm"
+														: "text-[#475569] hover:text-[#0F172A]"
+												}`}
+											>
+												{tab.label}
+											</button>
+										))}
+									</div>
+
+									{biTab === "executive" && <BIExecutiveSummary />}
+									{biTab === "simpanpinjam" && <BISimpanPinjam />}
+									{biTab === "inventori" && <BIInventori />}
+									{biTab === "penjualan" && <BIPenjualan />}
+									{biTab === "pengadaan" && <BIPengadaan />}
+									{biTab === "keuangan" && <BIKeuangan />}
+								</>
+							)}
+
+							{viewMode === "overview" && (
+								<>
 							<QuickActions onOpenTaskModal={() => setIsTaskModalOpen(true)} />
-							<StatsGrid refreshTrigger={refreshTrigger} onRefresh={handleRefreshStats} />
+							<StatsGrid
+								refreshTrigger={refreshTrigger}
+								onRefresh={handleRefreshStats}
+							/>
 							<AnalyticsSection />
 							<section className="reveal in grid lg:grid-cols-2 gap-5">
 								<ModuleUsage />
@@ -178,9 +288,11 @@ export default function Dashboard() {
 								<NotificationCenter />
 							</section>
 							<AnggotaPanel />
+								</>
+							)}
 						</main>
 
-						<RightPanel />
+						{/*<RightPanel />*/}
 					</div>
 				</div>
 			</div>
@@ -189,20 +301,39 @@ export default function Dashboard() {
 				isOpen={isFabMenuOpen}
 				onToggle={() => setIsFabMenuOpen(!isFabMenuOpen)}
 				onNewTransaction={() => setIsFabMenuOpen(false)}
-				onNewTask={() => { setIsFabMenuOpen(false); setIsTaskModalOpen(true); }}
+				onNewTask={() => {
+					setIsFabMenuOpen(false);
+					setIsTaskModalOpen(true);
+				}}
 				onNewMember={() => setIsFabMenuOpen(false)}
-				onNewUser={() => { setIsFabMenuOpen(false); setIsUserModalOpen(true); }}
+				onNewUser={() => {
+					setIsFabMenuOpen(false);
+					setIsUserModalOpen(true);
+				}}
 			/>
 
-			<NotificationDrawer isOpen={isNotifOpen} onClose={() => setIsNotifOpen(false)} />
+			<NotificationDrawer
+				isOpen={isNotifOpen}
+				onClose={() => setIsNotifOpen(false)}
+			/>
 
 			{ctxMenu.isOpen && (
-				<ContextMenu x={ctxMenu.x} y={ctxMenu.y} onClose={() => setCtxMenu(prev => ({ ...prev, isOpen: false }))} />
+				<ContextMenu
+					x={ctxMenu.x}
+					y={ctxMenu.y}
+					onClose={() => setCtxMenu((prev) => ({ ...prev, isOpen: false }))}
+				/>
 			)}
 
-			<TaskModal isOpen={isTaskModalOpen} onClose={() => setIsTaskModalOpen(false)} />
+			<TaskModal
+				isOpen={isTaskModalOpen}
+				onClose={() => setIsTaskModalOpen(false)}
+			/>
 
-			<UserModal isOpen={isUserModalOpen} onClose={() => setIsUserModalOpen(false)} />
+			<UserModal
+				isOpen={isUserModalOpen}
+				onClose={() => setIsUserModalOpen(false)}
+			/>
 		</div>
 	);
 }

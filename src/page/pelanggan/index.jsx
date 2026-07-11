@@ -1,7 +1,7 @@
 /** @format */
 
 import { useState } from "react";
-import ModuleLayout from "../modules/ModuleLayout";
+import DashboardLayout from "../../components/ui/DashboardLayout";
 import CustomerStats from "./components/CustomerStats";
 import CustomerList from "./components/CustomerList";
 import CustomerDetail from "./components/CustomerDetail";
@@ -120,7 +120,7 @@ export default function PelangganPage() {
 	};
 
 	return (
-		<ModuleLayout>
+		<DashboardLayout>
 			<div className="space-y-6">
 				<div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
 					<div>
@@ -194,6 +194,6 @@ export default function PelangganPage() {
 			{showForm && (
 				<CustomerForm onClose={() => setShowForm(false)} onSubmit={handleAdd} />
 			)}
-		</ModuleLayout>
+		</DashboardLayout>
 	);
 }

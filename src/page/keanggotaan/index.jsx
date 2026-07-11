@@ -5,7 +5,7 @@ import { useLiveQuery } from "dexie-react-hooks";
 import { db } from "../../database/index.js";
 import { pushToOutbox } from "../../lib/syncService";
 import { useAuth } from "../../contexts/AuthContext";
-import ModuleLayout from "../modules/ModuleLayout";
+import DashboardLayout from "../../components/ui/DashboardLayout";
 import MemberList from "./components/MemberList";
 import MemberStats from "./components/MemberStats";
 import MemberForm from "./components/MemberForm";
@@ -94,7 +94,7 @@ export default function KeanggotaanPage() {
 	};
 
 	return (
-		<ModuleLayout>
+		<DashboardLayout>
 			<div className="space-y-6">
 				<div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
 					<div>
@@ -178,6 +178,6 @@ export default function KeanggotaanPage() {
 					member={editingMember}
 				/>
 			)}
-		</ModuleLayout>
+		</DashboardLayout>
 	);
 }

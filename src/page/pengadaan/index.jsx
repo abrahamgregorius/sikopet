@@ -1,7 +1,7 @@
 /** @format */
 
 import { useState, useEffect } from "react";
-import ModuleLayout from "../modules/ModuleLayout";
+import DashboardLayout from "../../components/ui/DashboardLayout";
 import ProcurementOverview from "./components/ProcurementOverview";
 import ProcurementList from "./components/ProcurementList";
 import ProcurementDetail from "./components/ProcurementDetail";
@@ -85,7 +85,7 @@ export default function PengadaanPage() {
 	};
 
 	return (
-		<ModuleLayout>
+		<DashboardLayout>
 			<div className="space-y-6">
 				<div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
 					<div>
@@ -175,6 +175,6 @@ export default function PengadaanPage() {
 					onSubmit={handleAdd}
 				/>
 			)}
-		</ModuleLayout>
+		</DashboardLayout>
 	);
 }

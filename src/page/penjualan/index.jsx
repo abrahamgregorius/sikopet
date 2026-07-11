@@ -1,7 +1,7 @@
 /** @format */
 
 import { useState } from "react";
-import ModuleLayout from "../modules/ModuleLayout";
+import DashboardLayout from "../../components/ui/DashboardLayout";
 import SalesOverview from "./components/SalesOverview";
 import SalesList from "./components/SalesList";
 import SalesDetail from "./components/SalesDetail";
@@ -118,7 +118,7 @@ export default function PenjualanPage() {
 	};
 
 	return (
-		<ModuleLayout>
+		<DashboardLayout>
 			<div className="space-y-6">
 				<div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
 					<div>
@@ -198,6 +198,6 @@ export default function PenjualanPage() {
 			{showForm && (
 				<SalesForm onClose={() => setShowForm(false)} onSubmit={handleAdd} />
 			)}
-		</ModuleLayout>
+		</DashboardLayout>
 	);
 }

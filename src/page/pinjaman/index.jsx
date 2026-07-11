@@ -1,7 +1,7 @@
 /** @format */
 
 import { useState, useEffect } from "react";
-import ModuleLayout from "../modules/ModuleLayout";
+import DashboardLayout from "../../components/ui/DashboardLayout";
 import LoanPortfolio from "./components/LoanPortfolio";
 import LoanList from "./components/LoanList";
 import LoanDetail from "./components/LoanDetail";
@@ -91,7 +91,7 @@ export default function PinjamanPage() {
 	};
 
 	return (
-		<ModuleLayout>
+		<DashboardLayout>
 			<div className="space-y-6">
 				<div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
 					<div>
@@ -171,6 +171,6 @@ export default function PinjamanPage() {
 					onSubmit={handleAddLoan}
 				/>
 			)}
-		</ModuleLayout>
+		</DashboardLayout>
 	);
 }

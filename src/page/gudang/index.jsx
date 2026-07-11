@@ -1,7 +1,7 @@
 /** @format */
 
 import { useState, useEffect } from "react";
-import ModuleLayout from "../modules/ModuleLayout";
+import DashboardLayout from "../../components/ui/DashboardLayout";
 import WarehouseOverview from "./components/WarehouseOverview";
 import InventoryList from "./components/InventoryList";
 import InventoryDetail from "./components/InventoryDetail";
@@ -115,7 +115,7 @@ export default function GudangPage() {
 	};
 
 	return (
-		<ModuleLayout>
+		<DashboardLayout>
 			<div className="space-y-6">
 				<div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
 					<div>
@@ -200,6 +200,6 @@ export default function GudangPage() {
 					onSubmit={handleAddItem}
 				/>
 			)}
-		</ModuleLayout>
+		</DashboardLayout>
 	);
 }

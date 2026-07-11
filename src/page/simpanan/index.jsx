@@ -1,7 +1,7 @@
 /** @format */
 
 import { useState, useEffect } from "react";
-import ModuleLayout from "../modules/ModuleLayout";
+import DashboardLayout from "../../components/ui/DashboardLayout";
 import SavingsByMember from "./components/SavingsByMember";
 import SavingsForm from "./components/SavingsForm";
 import SavingsOverview from "./components/SavingsOverview";
@@ -79,7 +79,7 @@ export default function SimpananPage() {
 	};
 
 	return (
-		<ModuleLayout>
+		<DashboardLayout>
 			<div className="space-y-6">
 				<div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
 					<div>
@@ -159,6 +159,6 @@ export default function SimpananPage() {
 					onSubmit={handleAddTransaction}
 				/>
 			)}
-		</ModuleLayout>
+		</DashboardLayout>
 	);
 }
