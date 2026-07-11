@@ -17,6 +17,7 @@ import { isOnline, waitForOnline } from "./offline";
 
 const ENTITY_HANDLERS = {};
 const LAST_SYNC_PREFIX = "lastSync_";
+const LAST_GLOBAL_SYNC = "lastGlobalSync";
 
 export function registerEntityHandler(entityType, handler) {
   ENTITY_HANDLERS[entityType] = handler;
@@ -194,6 +195,14 @@ async function getLastSyncTime(entityType) {
 
 async function setLastSyncTime(entityType, time) {
   await setSetting(LAST_SYNC_PREFIX + entityType, time);
+}
+
+export async function getLastGlobalSync() {
+  return await getSetting(LAST_GLOBAL_SYNC);
+}
+
+export async function setLastGlobalSync(time = new Date().toISOString()) {
+  await setSetting(LAST_GLOBAL_SYNC, time);
 }
 
 export async function pullIncremental(token) {
@@ -796,6 +805,7 @@ export function startAutoSync(intervalMs = 30000) {
         console.log(`[Sync] Outbox: ${pushed} pushed, ${failed} failed`);
       }
       await pullIncremental(token);
+      await setLastGlobalSync();
     } catch (e) {
       console.warn("[Sync] AutoSync error:", e.message);
     }
@@ -817,6 +827,7 @@ export async function fullSync() {
 
   const { pushed, failed } = await syncOutbox();
   const { pulled } = await pullAllModules(token);
+  await setLastGlobalSync();
   return { success: failed === 0, pushed, pulled, failed };
 }
 

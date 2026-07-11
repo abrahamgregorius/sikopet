@@ -40,7 +40,6 @@ class SikopetDatabase extends Dexie {
                 settings: "++id, &key",
                 tasks: "++id, status, dueDate, createdAt, cloudId, syncedAt",
                 modules: "++id, &key, category, enabled, order",
-                tasks: "++id, status, dueDate, createdAt",
             })
             .upgrade((tx) => {
                 return tx
@@ -50,10 +49,6 @@ class SikopetDatabase extends Dexie {
                         if (mod.enabled === undefined) mod.enabled = true;
                     });
             });
-
-        this.version(3).stores({
-            tasks: "++id, status, dueDate, createdAt",
-        });
 
         this.version(SCHEMA_VER)
             .stores({
