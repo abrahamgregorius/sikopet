@@ -6,9 +6,15 @@ const FILTERS = [
 	{ id: "expense", label: "Pengeluaran" },
 ];
 
-export default function TransactionTable({ transactions, search, categoryFilter, onSearch, onFilter }) {
+export default function TransactionTable({
+	transactions,
+	search,
+	categoryFilter,
+	onSearch,
+	onFilter,
+}) {
 	return (
-		<div className="rounded-2xl bg-white border border-[#D8E4EA] shadow-soft overflow-hidden">
+		<div className="rounded-lg bg-white border border-[#D8E4EA] shadow-soft overflow-hidden">
 			<div className="p-5 border-b border-[#E8EEF2]">
 				<div className="flex flex-col sm:flex-row gap-3">
 					<div className="relative flex-1">
@@ -29,7 +35,7 @@ export default function TransactionTable({ transactions, search, categoryFilter,
 							placeholder="Cari transaksi..."
 							value={search}
 							onChange={(e) => onSearch(e.target.value)}
-							className="focus-ring w-full h-[40px] pl-9 pr-4 rounded-xl border border-[#E5E7EB] bg-white text-[14px] text-[#0F172A] placeholder-[#9CA3AF] focus:border-[#398EB3] focus:outline-none transition-colors"
+							className="focus-ring w-full h-[40px] pl-9 pr-4 rounded-lg border border-[#E5E7EB] bg-white text-[14px] text-[#0F172A] placeholder-[#9CA3AF] focus:border-[#398EB3] focus:outline-none transition-colors"
 						/>
 					</div>
 					<div className="flex gap-2">
@@ -37,7 +43,7 @@ export default function TransactionTable({ transactions, search, categoryFilter,
 							<button
 								key={f.id}
 								onClick={() => onFilter(f.id)}
-								className={`shrink-0 focus-ring px-3 py-2 rounded-xl text-[13px] font-semibold transition-all ${
+								className={`shrink-0 focus-ring px-3 py-2 rounded-lg text-[13px] font-semibold transition-all ${
 									categoryFilter === f.id
 										? "bg-[#398EB3] text-white"
 										: "bg-[#F1F5F9] text-[#475569] hover:bg-[#E5E7EB]"
@@ -84,11 +90,13 @@ export default function TransactionTable({ transactions, search, categoryFilter,
 									{tx.description}
 								</td>
 								<td className="px-5 py-3.5">
-									<span className={`inline-flex items-center gap-1.5 text-[11px] font-semibold px-2.5 py-1 rounded-full ${
-										tx.category === "income"
-											? "text-[#22C55E] bg-[#22C55E]/10"
-											: "text-[#EF4444] bg-[#EF4444]/10"
-									}`}>
+									<span
+										className={`inline-flex items-center gap-1.5 text-[11px] font-semibold px-2.5 py-1 rounded-lg ${
+											tx.category === "income"
+												? "text-[#22C55E] bg-[#22C55E]/10"
+												: "text-[#EF4444] bg-[#EF4444]/10"
+										}`}
+									>
 										{tx.category === "income" ? "Pemasukan" : "Pengeluaran"}
 									</span>
 								</td>
@@ -96,8 +104,11 @@ export default function TransactionTable({ transactions, search, categoryFilter,
 									{tx.method}
 								</td>
 								<td className="px-5 py-3.5 text-right">
-									<span className={`text-[14px] font-semibold ${tx.category === "income" ? "text-[#22C55E]" : "text-[#EF4444]"}`}>
-										{tx.category === "income" ? "+" : "-"}Rp {tx.amount.toLocaleString("id-ID")}
+									<span
+										className={`text-[14px] font-semibold ${tx.category === "income" ? "text-[#22C55E]" : "text-[#EF4444]"}`}
+									>
+										{tx.category === "income" ? "+" : "-"}Rp{" "}
+										{tx.amount.toLocaleString("id-ID")}
 									</span>
 								</td>
 							</tr>

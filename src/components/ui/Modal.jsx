@@ -2,11 +2,19 @@
 
 import { useEffect } from "react";
 
-export default function Modal({ open, onClose, title, children, className = "" }) {
+export default function Modal({
+	open,
+	onClose,
+	title,
+	children,
+	className = "",
+}) {
 	useEffect(() => {
 		if (open) {
 			document.body.style.overflow = "hidden";
-			return () => { document.body.style.overflow = ""; };
+			return () => {
+				document.body.style.overflow = "";
+			};
 		}
 	}, [open]);
 
@@ -41,10 +49,18 @@ export default function Modal({ open, onClose, title, children, className = "" }
 					<button
 						type="button"
 						onClick={onClose}
-						className="focus-ring ml-auto p-2 rounded-xl text-[#94A3B8] hover:text-[#475569] hover:bg-[#F1F5F9] transition-colors"
+						className="focus-ring ml-auto p-2 rounded-lg text-[#94A3B8] hover:text-[#475569] hover:bg-[#F1F5F9] transition-colors"
 						aria-label="Tutup"
 					>
-						<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+						<svg
+							width="20"
+							height="20"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							strokeWidth="2"
+							strokeLinecap="round"
+						>
 							<path d="M18 6L6 18M6 6l12 12" />
 						</svg>
 					</button>

@@ -7,13 +7,20 @@ const sizes = {
 	xl: "w-14 h-14 text-[16px]",
 };
 
-export function Avatar({ size = "md", color, initials, src, className = "", ...props }) {
+export function Avatar({
+	size = "md",
+	color,
+	initials,
+	src,
+	className = "",
+	...props
+}) {
 	if (src) {
 		return (
 			<img
 				src={src}
 				alt=""
-				className={`${sizes[size]} rounded-full object-cover border-2 border-white ${className}`}
+				className={`${sizes[size]} rounded-lg object-cover border-2 border-white ${className}`}
 				{...props}
 			/>
 		);
@@ -21,7 +28,7 @@ export function Avatar({ size = "md", color, initials, src, className = "", ...p
 
 	return (
 		<span
-			className={`${sizes[size]} rounded-full ${
+			className={`${sizes[size]} rounded-lg ${
 				color || "bg-[#67B2D4]"
 			} border-2 border-white grid place-items-center text-white font-bold ${className}`}
 			{...props}
@@ -41,7 +48,7 @@ export function AvatarGroup({ avatars = [], max = 4, className = "" }) {
 				<Avatar key={i} size="md" {...avatar} />
 			))}
 			{remaining > 0 && (
-				<span className="w-9 h-9 rounded-full bg-[#0F172A] border-2 border-white grid place-items-center text-[10px] text-white font-bold">
+				<span className="w-9 h-9 rounded-lg bg-[#0F172A] border-2 border-white grid place-items-center text-[10px] text-white font-bold">
 					{remaining}+
 				</span>
 			)}

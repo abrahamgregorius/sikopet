@@ -13,21 +13,31 @@ export default function RightPanel() {
 		<aside className="hidden xl:flex flex-col w-[300px] shrink-0 border-l border-[#D8E4EA] px-5 py-7 space-y-6 sticky top-[72px] h-[calc(100vh-72px)] overflow-y-auto">
 			<SyncMap />
 			<StoragePanel />
-			<HelpAccordion openAccordion={openAccordion} toggleAccordion={toggleAccordion} />
+			<HelpAccordion
+				openAccordion={openAccordion}
+				toggleAccordion={toggleAccordion}
+			/>
 		</aside>
 	);
 }
 
 function SyncMap() {
 	return (
-		<div className="rounded-3xl bg-white border border-[#D8E4EA] p-5">
+		<div className="rounded-lg bg-white border border-[#D8E4EA] p-5">
 			<div className="flex items-center justify-between mb-3">
-				<h3 className="font-display font-bold text-[#0F172A] text-[14.5px]">Peta Sinkronisasi</h3>
-				<span className="inline-flex items-center gap-1.5 text-[11px] font-semibold text-[#22C55E] bg-[#22C55E]/10 px-2 py-0.5 rounded-full">
-					<span className="w-1.5 h-1.5 rounded-full bg-[#22C55E]"></span>Aktif
+				<h3 className="font-display font-bold text-[#0F172A] text-[14.5px]">
+					Peta Sinkronisasi
+				</h3>
+				<span className="inline-flex items-center gap-1.5 text-[11px] font-semibold text-[#22C55E] bg-[#22C55E]/10 px-2 py-0.5 rounded-lg">
+					<span className="w-1.5 h-1.5 rounded-lg bg-[#22C55E]"></span>Aktif
 				</span>
 			</div>
-			<svg viewBox="0 0 240 150" className="w-full h-auto" role="img" aria-label="Peta status sinkronisasi provinsi">
+			<svg
+				viewBox="0 0 240 150"
+				className="w-full h-auto"
+				role="img"
+				aria-label="Peta status sinkronisasi provinsi"
+			>
 				<g opacity="0.15" fill="#398eb3">
 					<ellipse cx="35" cy="80" rx="24" ry="9" />
 					<ellipse cx="85" cy="92" rx="34" ry="11" />
@@ -46,11 +56,11 @@ function SyncMap() {
 				<circle cx="213" cy="78" r="6" fill="#4CC9B0" />
 			</svg>
 			<div className="grid grid-cols-2 gap-2.5 mt-3">
-				<div className="rounded-xl bg-[#F1F5F9] px-3 py-2">
+				<div className="rounded-lg bg-[#F1F5F9] px-3 py-2">
 					<p className="text-[10.5px] text-[#94A3B8]">Provinsi Aktif</p>
 					<p className="text-[14px] font-bold text-[#0F172A]">34</p>
 				</div>
-				<div className="rounded-xl bg-[#F1F5F9] px-3 py-2">
+				<div className="rounded-lg bg-[#F1F5F9] px-3 py-2">
 					<p className="text-[10.5px] text-[#94A3B8]">Sedang Sync</p>
 					<p className="text-[14px] font-bold text-[#0F172A]">6</p>
 				</div>
@@ -61,17 +71,26 @@ function SyncMap() {
 
 function StoragePanel() {
 	return (
-		<div className="rounded-3xl bg-white border border-[#D8E4EA] p-5">
-			<h3 className="font-display font-bold text-[#0F172A] text-[14.5px] mb-4">Penyimpanan</h3>
+		<div className="rounded-lg bg-white border border-[#D8E4EA] p-5">
+			<h3 className="font-display font-bold text-[#0F172A] text-[14.5px] mb-4">
+				Penyimpanan
+			</h3>
 			<div className="flex items-center gap-4">
-				<div className="ring w-16 h-16 shrink-0 grid place-items-center" style={{ '--p': 64, '--ring-color': '#4CC9B0' }}>
+				<div
+					className="ring w-16 h-16 shrink-0 grid place-items-center"
+					style={{ "--p": 64, "--ring-color": "#4CC9B0" }}
+				>
 					<div className="ring-inner w-11 h-11 grid place-items-center">
 						<span className="text-[12px] font-bold text-[#0F172A]">64%</span>
 					</div>
 				</div>
 				<div>
-					<p className="text-[13px] font-semibold text-[#0F172A]">32 GB / 50 GB</p>
-					<p className="text-[11.5px] text-[#94A3B8] mt-0.5">Dokumen & lampiran</p>
+					<p className="text-[13px] font-semibold text-[#0F172A]">
+						32 GB / 50 GB
+					</p>
+					<p className="text-[11.5px] text-[#94A3B8] mt-0.5">
+						Dokumen & lampiran
+					</p>
 				</div>
 			</div>
 		</div>
@@ -80,19 +99,52 @@ function StoragePanel() {
 
 function HelpAccordion({ openAccordion, toggleAccordion }) {
 	const items = [
-		{ id: 'sync', title: 'Cara sinkron manual?', content: 'Tekan ikon sinkron di pojok kanan bawah aplikasi kasir untuk memaksa sinkronisasi segera.' },
-		{ id: 'reset', title: 'Reset kata sandi anggota tim', content: 'Buka Pengaturan Akun → Anggota Tim, lalu pilih "Kirim tautan reset" pada pengguna terkait.' },
+		{
+			id: "sync",
+			title: "Cara sinkron manual?",
+			content:
+				"Tekan ikon sinkron di pojok kanan bawah aplikasi kasir untuk memaksa sinkronisasi segera.",
+		},
+		{
+			id: "reset",
+			title: "Reset kata sandi anggota tim",
+			content:
+				'Buka Pengaturan Akun → Anggota Tim, lalu pilih "Kirim tautan reset" pada pengguna terkait.',
+		},
 	];
 
 	return (
-		<div className="rounded-3xl bg-white border border-[#D8E4EA] p-5">
-			<h3 className="font-display font-bold text-[#0F172A] text-[14.5px] mb-4">Bantuan Cepat</h3>
+		<div className="rounded-lg bg-white border border-[#D8E4EA] p-5">
+			<h3 className="font-display font-bold text-[#0F172A] text-[14.5px] mb-4">
+				Bantuan Cepat
+			</h3>
 			<div className="space-y-2" id="help-accordion">
 				{items.map((item) => (
-					<div key={item.id} className={`acc-item border border-[#D8E4EA] rounded-xl overflow-hidden ${openAccordion === item.id ? 'nested-open' : ''}`}>
-						<button onClick={() => toggleAccordion(item.id)} className="acc-trigger w-full flex items-center justify-between px-3.5 py-2.5 text-left focus-ring" aria-expanded={openAccordion === item.id}>
-							<span className="text-[12.5px] font-semibold text-[#0F172A]">{item.title}</span>
-							<svg className="chev-nested w-3.5 h-3.5 text-[#94A3B8] shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2"><path d="M6 9l6 6 6-6" strokeLinecap="round" strokeLinejoin="round" /></svg>
+					<div
+						key={item.id}
+						className={`acc-item border border-[#D8E4EA] rounded-lg overflow-hidden ${openAccordion === item.id ? "nested-open" : ""}`}
+					>
+						<button
+							onClick={() => toggleAccordion(item.id)}
+							className="acc-trigger w-full flex items-center justify-between px-3.5 py-2.5 text-left focus-ring"
+							aria-expanded={openAccordion === item.id}
+						>
+							<span className="text-[12.5px] font-semibold text-[#0F172A]">
+								{item.title}
+							</span>
+							<svg
+								className="chev-nested w-3.5 h-3.5 text-[#94A3B8] shrink-0"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								strokeWidth="2.2"
+							>
+								<path
+									d="M6 9l6 6 6-6"
+									strokeLinecap="round"
+									strokeLinejoin="round"
+								/>
+							</svg>
 						</button>
 						<div className="nested-panel px-3.5">
 							<p className="text-[12px] text-[#475569] pb-3">{item.content}</p>

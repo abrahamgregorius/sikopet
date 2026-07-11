@@ -1,9 +1,21 @@
 /** @format */
 
 const PAYMENT_METHODS = [
-	{ id: "cash", label: "Tunai", icon: "M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z" },
-	{ id: "qris", label: "QRIS", icon: "M3 3h7v7H3zM14 3h7v7h-7zM14 14h7v7h-7zM3 14h7v7H3z" },
-	{ id: "transfer", label: "Transfer", icon: "M12 2a10 10 0 100 20 10 10 0 000-20zM12 6v6l4 2" },
+	{
+		id: "cash",
+		label: "Tunai",
+		icon: "M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z",
+	},
+	{
+		id: "qris",
+		label: "QRIS",
+		icon: "M3 3h7v7H3zM14 3h7v7h-7zM14 14h7v7h-7zM3 14h7v7H3z",
+	},
+	{
+		id: "transfer",
+		label: "Transfer",
+		icon: "M12 2a10 10 0 100 20 10 10 0 000-20zM12 6v6l4 2",
+	},
 ];
 
 export default function CartPanel({
@@ -22,7 +34,7 @@ export default function CartPanel({
 	onClear,
 }) {
 	return (
-		<div className="rounded-2xl bg-white border border-[#D8E4EA] shadow-soft p-5 flex flex-col">
+		<div className="rounded-lg bg-white border border-[#D8E4EA] shadow-soft p-5 flex flex-col">
 			<div className="flex items-center justify-between mb-4">
 				<h3 className="font-display font-bold text-[16px] text-[#0F172A]">
 					Keranjang
@@ -60,7 +72,7 @@ export default function CartPanel({
 						{cart.map((item) => (
 							<div
 								key={item.id}
-								className="flex items-center gap-3 p-2.5 rounded-xl bg-[#F1F5F9]"
+								className="flex items-center gap-3 p-2.5 rounded-lg bg-[#F1F5F9]"
 							>
 								<div className="flex-1 min-w-0">
 									<p className="text-[13px] font-semibold text-[#0F172A] truncate">
@@ -91,7 +103,14 @@ export default function CartPanel({
 										className="focus-ring ml-1 text-[#EF4444] hover:text-[#DC2626] transition-colors"
 										aria-label="Hapus item"
 									>
-										<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+										<svg
+											width="14"
+											height="14"
+											viewBox="0 0 24 24"
+											fill="none"
+											stroke="currentColor"
+											strokeWidth="2"
+										>
 											<path d="M18 6L6 18M6 6l12 12" strokeLinecap="round" />
 										</svg>
 									</button>
@@ -150,7 +169,7 @@ export default function CartPanel({
 									<button
 										key={m.id}
 										onClick={() => onSetPayment(m.id)}
-										className={`focus-ring py-2 rounded-xl text-[12px] font-semibold border transition-all ${
+										className={`focus-ring py-2 rounded-lg text-[12px] font-semibold border transition-all ${
 											paymentMethod === m.id
 												? "bg-[#398EB3] text-white border-[#398EB3]"
 												: "bg-white text-[#475569] border-[#E5E7EB] hover:border-[#398EB3]"
@@ -164,7 +183,7 @@ export default function CartPanel({
 
 						<button
 							onClick={onBayar}
-							className="focus-ring w-full h-12 rounded-xl bg-[#398EB3] text-white font-semibold text-[15px] shadow-glow hover:bg-[#2F7A9A] hover:-translate-y-0.5 active:scale-[0.98] transition-all"
+							className="focus-ring w-full h-12 rounded-lg bg-[#398EB3] text-white font-semibold text-[15px] shadow-glow hover:bg-[#2F7A9A] hover:-translate-y-0.5 active:scale-[0.98] transition-all"
 						>
 							Bayar Rp {grandTotal.toLocaleString("id-ID")}
 						</button>

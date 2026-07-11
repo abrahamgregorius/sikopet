@@ -8,12 +8,72 @@ import ProcurementDetail from "./components/ProcurementDetail";
 import ProcurementForm from "./components/ProcurementForm";
 
 const MOCK_PROCUREMENTS = [
-	{ id: 1, date: "2026-07-10", supplier: "PT Sumber Makmur", product: "Beras Premium 5kg", quantity: 100, unitPrice: 68000, total: 6800000, status: "pending", method: "transfer" },
-	{ id: 2, date: "2026-07-09", supplier: "CV Tiga Dara", product: "Minyak Goreng 1L", quantity: 200, unitPrice: 16500, total: 3300000, status: "approved", method: "transfer" },
-	{ id: 3, date: "2026-07-08", supplier: "PT Berkah Tani", product: "Pupuk Organik 25kg", quantity: 50, unitPrice: 125000, total: 6250000, status: "received", method: "cash" },
-	{ id: 4, date: "2026-07-07", supplier: "UD Saujana", product: "Gula Pasir 50kg", quantity: 80, unitPrice: 13500, total: 1080000, status: "pending", method: "transfer" },
-	{ id: 5, date: "2026-07-06", supplier: "PT Sumber Makmur", product: "Telur Ayam 1kg", quantity: 150, unitPrice: 26000, total: 3900000, status: "received", method: "transfer" },
-	{ id: 6, date: "2026-07-05", supplier: "CV Tiga Dara", product: "Mie Instan", quantity: 500, unitPrice: 3200, total: 1600000, status: "rejected", method: "cash" },
+	{
+		id: 1,
+		date: "2026-07-10",
+		supplier: "PT Sumber Makmur",
+		product: "Beras Premium 5kg",
+		quantity: 100,
+		unitPrice: 68000,
+		total: 6800000,
+		status: "pending",
+		method: "transfer",
+	},
+	{
+		id: 2,
+		date: "2026-07-09",
+		supplier: "CV Tiga Dara",
+		product: "Minyak Goreng 1L",
+		quantity: 200,
+		unitPrice: 16500,
+		total: 3300000,
+		status: "approved",
+		method: "transfer",
+	},
+	{
+		id: 3,
+		date: "2026-07-08",
+		supplier: "PT Berkah Tani",
+		product: "Pupuk Organik 25kg",
+		quantity: 50,
+		unitPrice: 125000,
+		total: 6250000,
+		status: "received",
+		method: "cash",
+	},
+	{
+		id: 4,
+		date: "2026-07-07",
+		supplier: "UD Saujana",
+		product: "Gula Pasir 50kg",
+		quantity: 80,
+		unitPrice: 13500,
+		total: 1080000,
+		status: "pending",
+		method: "transfer",
+	},
+	{
+		id: 5,
+		date: "2026-07-06",
+		supplier: "PT Sumber Makmur",
+		product: "Telur Ayam 1kg",
+		quantity: 150,
+		unitPrice: 26000,
+		total: 3900000,
+		status: "received",
+		method: "transfer",
+	},
+	{
+		id: 6,
+		date: "2026-07-05",
+		supplier: "CV Tiga Dara",
+		product: "Mie Instan",
+		quantity: 500,
+		unitPrice: 3200,
+		total: 1600000,
+		status: "rejected",
+		method: "cash",
+	},
 ];
 
 export default function PengadaanPage() {
@@ -31,9 +91,15 @@ export default function PengadaanPage() {
 		return matchSearch && matchStatus;
 	});
 
-	const totalPengajuan = procurements.filter((p) => p.status === "pending").reduce((sum, p) => sum + p.total, 0);
-	const totalApproved = procurements.filter((p) => p.status === "approved").reduce((sum, p) => sum + p.total, 0);
-	const totalReceived = procurements.filter((p) => p.status === "received").reduce((sum, p) => sum + p.total, 0);
+	const totalPengajuan = procurements
+		.filter((p) => p.status === "pending")
+		.reduce((sum, p) => sum + p.total, 0);
+	const totalApproved = procurements
+		.filter((p) => p.status === "approved")
+		.reduce((sum, p) => sum + p.total, 0);
+	const totalReceived = procurements
+		.filter((p) => p.status === "received")
+		.reduce((sum, p) => sum + p.total, 0);
 
 	const handleAdd = (data) => {
 		const newItem = { id: procurements.length + 1, ...data, status: "pending" };
@@ -42,12 +108,16 @@ export default function PengadaanPage() {
 	};
 
 	const handleApprove = (id) => {
-		setProcurements((prev) => prev.map((p) => p.id === id ? { ...p, status: "approved" } : p));
+		setProcurements((prev) =>
+			prev.map((p) => (p.id === id ? { ...p, status: "approved" } : p)),
+		);
 		setSelectedProcurement(null);
 	};
 
 	const handleReceive = (id) => {
-		setProcurements((prev) => prev.map((p) => p.id === id ? { ...p, status: "received" } : p));
+		setProcurements((prev) =>
+			prev.map((p) => (p.id === id ? { ...p, status: "received" } : p)),
+		);
 		setSelectedProcurement(null);
 	};
 
@@ -65,9 +135,16 @@ export default function PengadaanPage() {
 					</div>
 					<button
 						onClick={() => setShowForm(true)}
-						className="focus-ring inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#398EB3] text-white font-semibold text-[14.5px] shadow-glow hover:bg-[#2F7A9A] hover:-translate-y-0.5 transition-all"
+						className="focus-ring inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-[#398EB3] text-white font-semibold text-[14.5px] shadow-glow hover:bg-[#2F7A9A] hover:-translate-y-0.5 transition-all"
 					>
-						<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+						<svg
+							width="16"
+							height="16"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							strokeWidth="2"
+						>
 							<path d="M12 5v14M5 12h14" strokeLinecap="round" />
 						</svg>
 						Pengajuan Baru
@@ -78,8 +155,12 @@ export default function PengadaanPage() {
 					totalPengajuan={totalPengajuan}
 					totalApproved={totalApproved}
 					totalReceived={totalReceived}
-					pendingCount={procurements.filter((p) => p.status === "pending").length}
-					approvedCount={procurements.filter((p) => p.status === "approved").length}
+					pendingCount={
+						procurements.filter((p) => p.status === "pending").length
+					}
+					approvedCount={
+						procurements.filter((p) => p.status === "approved").length
+					}
 				/>
 
 				<div className="grid lg:grid-cols-[1fr_360px] gap-6">
@@ -101,22 +182,34 @@ export default function PengadaanPage() {
 							onReceive={handleReceive}
 						/>
 					) : (
-						<div className="rounded-2xl bg-white border border-[#D8E4EA] shadow-soft p-8 flex flex-col items-center justify-center text-center">
-							<div className="w-14 h-14 rounded-full bg-[#F1F5F9] grid place-items-center mb-4">
-								<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" strokeWidth="1.8">
+						<div className="rounded-lg bg-white border border-[#D8E4EA] shadow-soft p-8 flex flex-col items-center justify-center text-center">
+							<div className="w-14 h-14 rounded-lg bg-[#F1F5F9] grid place-items-center mb-4">
+								<svg
+									width="24"
+									height="24"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="#94A3B8"
+									strokeWidth="1.8"
+								>
 									<path d="M1 3h15v13H1zM16 8h4l3 3v5h-7V8z" />
 									<circle cx="5.5" cy="18.5" r="2.5" />
 									<circle cx="18.5" cy="18.5" r="2.5" />
 								</svg>
 							</div>
-							<p className="text-[14px] text-[#94A3B8]">Pilih pengadaan untuk melihat detail</p>
+							<p className="text-[14px] text-[#94A3B8]">
+								Pilih pengadaan untuk melihat detail
+							</p>
 						</div>
 					)}
 				</div>
 			</div>
 
 			{showForm && (
-				<ProcurementForm onClose={() => setShowForm(false)} onSubmit={handleAdd} />
+				<ProcurementForm
+					onClose={() => setShowForm(false)}
+					onSubmit={handleAdd}
+				/>
 			)}
 		</ModuleLayout>
 	);

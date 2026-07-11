@@ -20,7 +20,7 @@ export default function SavingsByMember({ transactions }) {
 		.slice(0, 8);
 
 	return (
-		<div className="rounded-2xl bg-white border border-[#D8E4EA] shadow-soft p-5">
+		<div className="rounded-lg bg-white border border-[#D8E4EA] shadow-soft p-5">
 			<h3 className="font-display font-bold text-[16px] text-[#0F172A] mb-4">
 				Simpanan per Anggota
 			</h3>
@@ -39,9 +39,9 @@ export default function SavingsByMember({ transactions }) {
 									Rp {(item.balance / 1000).toFixed(0)}K
 								</span>
 							</div>
-							<div className="h-1.5 rounded-full bg-[#F1F5F9] overflow-hidden">
+							<div className="h-1.5 rounded-lg bg-[#F1F5F9] overflow-hidden">
 								<div
-									className="h-full rounded-full bg-gradient-to-r from-[#398eb3] to-[#4CC9B0]"
+									className="h-full rounded-lg bg-gradient-to-r from-[#398eb3] to-[#4CC9B0]"
 									style={{
 										width: `${Math.min((item.balance / sorted[0].balance) * 100, 100)}%`,
 									}}

@@ -8,14 +8,32 @@ const FILTERS = [
 ];
 
 const TYPE_STYLES = {
-	deposit: { label: "Setoran", color: "text-[#22C55E] bg-[#22C55E]/10", prefix: "+" },
-	withdrawal: { label: "Penarikan", color: "text-[#EF4444] bg-[#EF4444]/10", prefix: "-" },
-	interest: { label: "Bunga", color: "text-[#398EB3] bg-[#EAF6FB]", prefix: "+" },
+	deposit: {
+		label: "Setoran",
+		color: "text-[#22C55E] bg-[#22C55E]/10",
+		prefix: "+",
+	},
+	withdrawal: {
+		label: "Penarikan",
+		color: "text-[#EF4444] bg-[#EF4444]/10",
+		prefix: "-",
+	},
+	interest: {
+		label: "Bunga",
+		color: "text-[#398EB3] bg-[#EAF6FB]",
+		prefix: "+",
+	},
 };
 
-export default function TransactionList({ transactions, search, typeFilter, onSearch, onFilter }) {
+export default function TransactionList({
+	transactions,
+	search,
+	typeFilter,
+	onSearch,
+	onFilter,
+}) {
 	return (
-		<div className="rounded-2xl bg-white border border-[#D8E4EA] shadow-soft overflow-hidden">
+		<div className="rounded-lg bg-white border border-[#D8E4EA] shadow-soft overflow-hidden">
 			<div className="p-5 border-b border-[#E8EEF2]">
 				<div className="flex flex-col sm:flex-row gap-3">
 					<div className="relative flex-1">
@@ -36,7 +54,7 @@ export default function TransactionList({ transactions, search, typeFilter, onSe
 							placeholder="Cari nama anggota..."
 							value={search}
 							onChange={(e) => onSearch(e.target.value)}
-							className="focus-ring w-full h-[40px] pl-9 pr-4 rounded-xl border border-[#E5E7EB] bg-white text-[14px] text-[#0F172A] placeholder-[#9CA3AF] focus:border-[#398EB3] focus:outline-none transition-colors"
+							className="focus-ring w-full h-[40px] pl-9 pr-4 rounded-lg border border-[#E5E7EB] bg-white text-[14px] text-[#0F172A] placeholder-[#9CA3AF] focus:border-[#398EB3] focus:outline-none transition-colors"
 						/>
 					</div>
 					<div className="flex gap-2 flex-wrap">
@@ -44,7 +62,7 @@ export default function TransactionList({ transactions, search, typeFilter, onSe
 							<button
 								key={f.id}
 								onClick={() => onFilter(f.id)}
-								className={`shrink-0 focus-ring px-3 py-2 rounded-xl text-[13px] font-semibold transition-all ${
+								className={`shrink-0 focus-ring px-3 py-2 rounded-lg text-[13px] font-semibold transition-all ${
 									typeFilter === f.id
 										? "bg-[#398EB3] text-white"
 										: "bg-[#F1F5F9] text-[#475569] hover:bg-[#E5E7EB]"
@@ -91,7 +109,7 @@ export default function TransactionList({ transactions, search, typeFilter, onSe
 									</td>
 									<td className="px-5 py-3.5">
 										<div className="flex items-center gap-2.5">
-											<span className="w-7 h-7 rounded-full bg-[#EAF6FB] grid place-items-center text-[#398EB3] font-bold text-[11px]">
+											<span className="w-7 h-7 rounded-lg bg-[#EAF6FB] grid place-items-center text-[#398EB3] font-bold text-[11px]">
 												{tx.member.charAt(0)}
 											</span>
 											<span className="text-[13.5px] font-medium text-[#0F172A]">
@@ -103,12 +121,16 @@ export default function TransactionList({ transactions, search, typeFilter, onSe
 										{tx.description}
 									</td>
 									<td className="px-5 py-3.5">
-										<span className={`inline-flex items-center gap-1.5 text-[11px] font-semibold px-2.5 py-1 rounded-full ${style.color}`}>
+										<span
+											className={`inline-flex items-center gap-1.5 text-[11px] font-semibold px-2.5 py-1 rounded-lg ${style.color}`}
+										>
 											{style.label}
 										</span>
 									</td>
 									<td className="px-5 py-3.5 text-right">
-										<span className={`text-[14px] font-semibold ${tx.type === "withdrawal" ? "text-[#EF4444]" : "text-[#22C55E]"}`}>
+										<span
+											className={`text-[14px] font-semibold ${tx.type === "withdrawal" ? "text-[#EF4444]" : "text-[#22C55E]"}`}
+										>
 											{style.prefix}Rp {tx.amount.toLocaleString("id-ID")}
 										</span>
 									</td>

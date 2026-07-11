@@ -14,7 +14,7 @@ export default function EmptyState({
 			{...props}
 		>
 			{icon && (
-				<div className="w-14 h-14 rounded-2xl bg-[#F1F5F9] grid place-items-center text-[#94A3B8] mb-5">
+				<div className="w-14 h-14 rounded-lg bg-[#F1F5F9] grid place-items-center text-[#94A3B8] mb-5">
 					{icon}
 				</div>
 			)}

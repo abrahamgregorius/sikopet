@@ -14,16 +14,22 @@ const FILTERS = [
 	{ id: "completed", label: "Lunas" },
 ];
 
-export default function LoanList({ loans, statusFilter, onFilter, onSelect, selectedId }) {
+export default function LoanList({
+	loans,
+	statusFilter,
+	onFilter,
+	onSelect,
+	selectedId,
+}) {
 	return (
-		<div className="rounded-2xl bg-white border border-[#D8E4EA] shadow-soft overflow-hidden">
+		<div className="rounded-lg bg-white border border-[#D8E4EA] shadow-soft overflow-hidden">
 			<div className="p-5 border-b border-[#E8EEF2]">
 				<div className="flex gap-2 flex-wrap">
 					{FILTERS.map((f) => (
 						<button
 							key={f.id}
 							onClick={() => onFilter(f.id)}
-							className={`shrink-0 focus-ring px-3 py-2 rounded-xl text-[13px] font-semibold transition-all ${
+							className={`shrink-0 focus-ring px-3 py-2 rounded-lg text-[13px] font-semibold transition-all ${
 								statusFilter === f.id
 									? "bg-[#398EB3] text-white"
 									: "bg-[#F1F5F9] text-[#475569] hover:bg-[#E5E7EB]"
@@ -70,7 +76,7 @@ export default function LoanList({ loans, statusFilter, onFilter, onSelect, sele
 								>
 									<td className="px-5 py-3.5">
 										<div className="flex items-center gap-2.5">
-											<span className="w-8 h-8 rounded-full bg-[#EAF6FB] grid place-items-center text-[#398EB3] font-bold text-[12px]">
+											<span className="w-8 h-8 rounded-lg bg-[#EAF6FB] grid place-items-center text-[#398EB3] font-bold text-[12px]">
 												{loan.member.charAt(0)}
 											</span>
 											<span className="text-[14px] font-medium text-[#0F172A]">
@@ -83,9 +89,9 @@ export default function LoanList({ loans, statusFilter, onFilter, onSelect, sele
 											Rp {loan.principal.toLocaleString("id-ID")}
 										</p>
 										{loan.status === "active" && (
-											<div className="mt-1.5 w-24 h-1.5 rounded-full bg-[#F1F5F9] overflow-hidden">
+											<div className="mt-1.5 w-24 h-1.5 rounded-lg bg-[#F1F5F9] overflow-hidden">
 												<div
-													className="h-full rounded-full bg-gradient-to-r from-[#398eb3] to-[#4CC9B0]"
+													className="h-full rounded-lg bg-gradient-to-r from-[#398eb3] to-[#4CC9B0]"
 													style={{ width: `${progress}%` }}
 												></div>
 											</div>
@@ -98,7 +104,9 @@ export default function LoanList({ loans, statusFilter, onFilter, onSelect, sele
 										{loan.tenor} bln
 									</td>
 									<td className="px-5 py-3.5">
-										<span className={`inline-flex items-center gap-1.5 text-[11px] font-semibold px-2.5 py-1 rounded-full ${status.color}`}>
+										<span
+											className={`inline-flex items-center gap-1.5 text-[11px] font-semibold px-2.5 py-1 rounded-lg ${status.color}`}
+										>
 											{status.label}
 										</span>
 									</td>

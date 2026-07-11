@@ -10,7 +10,7 @@ const RECENT_TRANSACTIONS = [
 
 export default function RecentTransactions() {
 	return (
-		<div className="rounded-2xl bg-white border border-[#D8E4EA] shadow-soft p-5">
+		<div className="rounded-lg bg-white border border-[#D8E4EA] shadow-soft p-5">
 			<div className="flex items-center justify-between mb-4">
 				<h3 className="font-display font-bold text-[16px] text-[#0F172A]">
 					Transaksi Terakhir
@@ -27,8 +27,15 @@ export default function RecentTransactions() {
 						className="flex items-center justify-between py-2.5 border-b border-[#E8EEF2] last:border-0"
 					>
 						<div className="flex items-center gap-3">
-							<div className="w-9 h-9 rounded-xl bg-[#EAF6FB] grid place-items-center">
-								<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#398EB3" strokeWidth="2">
+							<div className="w-9 h-9 rounded-lg bg-[#EAF6FB] grid place-items-center">
+								<svg
+									width="16"
+									height="16"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="#398EB3"
+									strokeWidth="2"
+								>
 									<rect x="2" y="5" width="20" height="14" rx="2" />
 									<path d="M2 10h20" />
 								</svg>
@@ -46,7 +53,7 @@ export default function RecentTransactions() {
 							<p className="text-[13px] font-semibold text-[#0F172A]">
 								Rp {tx.total.toLocaleString("id-ID")}
 							</p>
-							<span className="text-[10px] font-semibold text-[#22C55E] bg-[#22C55E]/10 px-1.5 py-0.5 rounded-full">
+							<span className="text-[10px] font-semibold text-[#22C55E] bg-[#22C55E]/10 px-1.5 py-0.5 rounded-lg">
 								{tx.status}
 							</span>
 						</div>

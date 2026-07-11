@@ -124,7 +124,7 @@ export default function SimpananPage() {
 								setFormType("deposit");
 								setShowForm(true);
 							}}
-							className="focus-ring inline-flex items-center gap-2 px-4 py-2.5 rounded-full border border-[#D8E4EA] bg-white text-[#0F172A] font-semibold text-[14px] hover:bg-white hover:shadow-soft transition-all"
+							className="focus-ring inline-flex items-center gap-2 px-4 py-2.5 rounded-lg border border-[#D8E4EA] bg-white text-[#0F172A] font-semibold text-[14px] hover:bg-white hover:shadow-soft transition-all"
 						>
 							<svg
 								width="15"
@@ -143,7 +143,7 @@ export default function SimpananPage() {
 								setFormType("withdrawal");
 								setShowForm(true);
 							}}
-							className="focus-ring inline-flex items-center gap-2 px-4 py-2.5 rounded-full border border-[#D8E4EA] bg-white text-[#0F172A] font-semibold text-[14px] hover:bg-white hover:shadow-soft transition-all"
+							className="focus-ring inline-flex items-center gap-2 px-4 py-2.5 rounded-lg border border-[#D8E4EA] bg-white text-[#0F172A] font-semibold text-[14px] hover:bg-white hover:shadow-soft transition-all"
 						>
 							<svg
 								width="15"

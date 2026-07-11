@@ -23,7 +23,7 @@ export default function MemberList({
 	selectedId,
 }) {
 	return (
-		<div className="rounded-2xl bg-white border border-[#D8E4EA] shadow-soft overflow-hidden">
+		<div className="rounded-lg bg-white border border-[#D8E4EA] shadow-soft overflow-hidden">
 			<div className="p-5 border-b border-[#E8EEF2]">
 				<div className="flex flex-col sm:flex-row gap-3">
 					<div className="relative flex-1">
@@ -44,7 +44,7 @@ export default function MemberList({
 							placeholder="Cari nama, NIK, atau telepon..."
 							value={search}
 							onChange={(e) => onSearch(e.target.value)}
-							className="focus-ring w-full h-[40px] pl-9 pr-4 rounded-xl border border-[#E5E7EB] bg-white text-[14px] text-[#0F172A] placeholder-[#9CA3AF] focus:border-[#398EB3] focus:outline-none transition-colors"
+							className="focus-ring w-full h-[40px] pl-9 pr-4 rounded-lg border border-[#E5E7EB] bg-white text-[14px] text-[#0F172A] placeholder-[#9CA3AF] focus:border-[#398EB3] focus:outline-none transition-colors"
 						/>
 					</div>
 					<div className="flex gap-2">
@@ -52,7 +52,7 @@ export default function MemberList({
 							<button
 								key={f.id}
 								onClick={() => onFilter(f.id)}
-								className={`shrink-0 focus-ring px-3 py-2 rounded-xl text-[13px] font-semibold transition-all ${
+								className={`shrink-0 focus-ring px-3 py-2 rounded-lg text-[13px] font-semibold transition-all ${
 									statusFilter === f.id
 										? "bg-[#398EB3] text-white"
 										: "bg-[#F1F5F9] text-[#475569] hover:bg-[#E5E7EB]"
@@ -99,7 +99,7 @@ export default function MemberList({
 								>
 									<td className="px-5 py-3.5">
 										<div className="flex items-center gap-3">
-											<span className="w-9 h-9 rounded-full bg-[#EAF6FB] grid place-items-center text-[#398EB3] font-bold text-[13px]">
+											<span className="w-9 h-9 rounded-lg bg-[#EAF6FB] grid place-items-center text-[#398EB3] font-bold text-[13px]">
 												{member.name.charAt(0)}
 											</span>
 											<div>
@@ -122,8 +122,12 @@ export default function MemberList({
 										{member.joinDate}
 									</td>
 									<td className="px-5 py-3.5">
-										<span className={`inline-flex items-center gap-1.5 text-[11px] font-semibold px-2.5 py-1 rounded-full ${status.color}`}>
-											<span className={`w-1.5 h-1.5 rounded-full ${member.status === "active" ? "bg-[#22C55E]" : member.status === "pending" ? "bg-[#F59E0B]" : "bg-[#94A3B8]"}`}></span>
+										<span
+											className={`inline-flex items-center gap-1.5 text-[11px] font-semibold px-2.5 py-1 rounded-lg ${status.color}`}
+										>
+											<span
+												className={`w-1.5 h-1.5 rounded-lg ${member.status === "active" ? "bg-[#22C55E]" : member.status === "pending" ? "bg-[#F59E0B]" : "bg-[#94A3B8]"}`}
+											></span>
 											{status.label}
 										</span>
 									</td>

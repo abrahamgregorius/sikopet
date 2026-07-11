@@ -1,9 +1,9 @@
 /** @format */
 
 const sizes = {
-	sm: "w-8 h-8 rounded-full",
-	md: "w-10 h-10 rounded-xl",
-	lg: "w-12 h-12 rounded-2xl",
+	sm: "w-8 h-8 rounded-lg",
+	md: "w-10 h-10 rounded-lg",
+	lg: "w-12 h-12 rounded-lg",
 };
 
 const backgrounds = {
