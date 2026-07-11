@@ -1,5 +1,7 @@
 /** @format */
 
+import { Badge } from "../../../components/ui";
+
 const ALERT_FILTERS = [
 	{ id: "all", label: "Semua" },
 	{ id: "low", label: "Stok Rendah" },
@@ -132,15 +134,9 @@ export default function InventoryList({
 									</td>
 									<td className="px-5 py-3.5">
 										{isLow ? (
-											<span className="inline-flex items-center gap-1.5 text-[11px] font-semibold px-2.5 py-1 rounded-lg text-[#EF4444] bg-[#FEE2E2]">
-												<span className="w-1.5 h-1.5 rounded-lg bg-[#EF4444]"></span>
-												Rendah
-											</span>
+											<Badge variant="danger">Rendah</Badge>
 										) : (
-											<span className="inline-flex items-center gap-1.5 text-[11px] font-semibold px-2.5 py-1 rounded-lg text-[#22C55E] bg-[#DCFCE7]">
-												<span className="w-1.5 h-1.5 rounded-lg bg-[#22C55E]"></span>
-												Normal
-											</span>
+											<Badge variant="success">Normal</Badge>
 										)}
 									</td>
 								</tr>

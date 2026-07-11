@@ -12,6 +12,7 @@ import {
 	SharedStyles,
 	SkipLink,
 } from "../components/Home";
+import { Badge } from "../components/ui";
 
 const faqs = [
 	{
@@ -871,9 +872,9 @@ export default function KOPETApp() {
 												14:00 — B 9012 GH
 											</p>
 										</div>
-										<span className="text-[11px] font-semibold text-[#94A3B8] bg-[#F1F5F9] px-2 py-0.5 rounded-lg">
+										<Badge variant="neutral">
 											Terjadwal
-										</span>
+										</Badge>
 									</div>
 								</div>
 							</div>

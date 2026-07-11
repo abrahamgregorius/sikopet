@@ -1,6 +1,7 @@
 /** @format */
 
 import { useState } from "react";
+import { Badge } from "../../../components/ui";
 
 export default function RightPanel() {
 	const [openAccordion, setOpenAccordion] = useState(null);
@@ -28,9 +29,7 @@ function SyncMap() {
 				<h3 className="font-display font-bold text-[#0F172A] text-[14.5px]">
 					Peta Sinkronisasi
 				</h3>
-				<span className="inline-flex items-center gap-1.5 text-[11px] font-semibold text-[#22C55E] bg-[#22C55E]/10 px-2 py-0.5 rounded-lg">
-					<span className="w-1.5 h-1.5 rounded-lg bg-[#22C55E]"></span>Aktif
-				</span>
+				<Badge variant="success">Aktif</Badge>
 			</div>
 			<svg
 				viewBox="0 0 240 150"

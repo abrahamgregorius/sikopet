@@ -1,5 +1,7 @@
 /** @format */
 
+import { Badge } from "../../../components/ui";
+
 export default function CustomerDetail({ customer, onClose }) {
 	if (!customer) return null;
 
@@ -36,15 +38,13 @@ export default function CustomerDetail({ customer, onClose }) {
 						<p className="font-display font-bold text-[18px] text-[#0F172A]">
 							{customer.name}
 						</p>
-						<span
-							className={`inline-flex items-center gap-1.5 text-[11px] font-semibold px-2.5 py-1 rounded-lg mt-1 ${customer.status === "active" ? "text-[#22C55E] bg-[#DCFCE7]" : customer.status === "pending" ? "text-[#F59E0B] bg-[#FEF3C7]" : "text-[#94A3B8] bg-[#F1F5F9]"}`}
-						>
+						<Badge variant={customer.status === "active" ? "success" : customer.status === "pending" ? "warning" : "neutral"}>
 							{customer.status === "active"
 								? "Aktif"
 								: customer.status === "pending"
 									? "Menunggu"
 									: "Tidak Aktif"}
-						</span>
+						</Badge>
 					</div>
 				</div>
 

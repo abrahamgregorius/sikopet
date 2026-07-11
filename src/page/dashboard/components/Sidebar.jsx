@@ -274,7 +274,7 @@ export default function Sidebar({ collapsed, onToggleCollapse }) {
 			</nav>
 
 			<div className="p-3.5 border-t border-[#E5E7EB] shrink-0">
-				{!collapsed && (
+				{/*{!collapsed && (
 					<div className="flex items-center gap-2.5 rounded-lg bg-[#EAF6FB] px-3.5 py-3 mb-3">
 						<span className="relative w-2.5 h-2.5 shrink-0">
 							<span
@@ -295,7 +295,7 @@ export default function Sidebar({ collapsed, onToggleCollapse }) {
 							</p>
 						</div>
 					</div>
-				)}
+				)}*/}
 				<button
 					onClick={onToggleCollapse}
 					data-tip={collapsed ? "Perluas sidebar" : "Ciutkan sidebar"}

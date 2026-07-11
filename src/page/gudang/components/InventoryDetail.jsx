@@ -1,6 +1,7 @@
 /** @format */
 
 import { useState } from "react";
+import { Badge } from "../../../components/ui";
 
 export default function InventoryDetail({ item, onClose, onRestock }) {
 	const [restockQty, setRestockQty] = useState("");
@@ -67,9 +68,7 @@ export default function InventoryDetail({ item, onClose, onRestock }) {
 					<div className="flex justify-between items-center mb-3">
 						<span className="text-[12px] text-[#94A3B8]">Stok Saat Ini</span>
 						{isLow && (
-							<span className="text-[11px] font-semibold text-[#EF4444] bg-[#FEE2E2] px-2 py-0.5 rounded-lg">
-								Stok Rendah
-							</span>
+							<Badge variant="danger">Stok Rendah</Badge>
 						)}
 					</div>
 					<p
