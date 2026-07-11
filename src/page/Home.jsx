@@ -504,7 +504,7 @@ export default function KOPETApp() {
 					aria-label="Statistik penggunaan sikopet"
 				>
 					<div className="max-w-[1280px] mx-auto px-6 lg:px-10">
-						<div className="reveal rounded-[1.75rem] bg-[#0F172A] px-6 sm:px-10 py-9 sm:py-11 grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6 shadow-lift">
+						<div className="reveal rounded-lg bg-[#0F172A] px-6 sm:px-10 py-9 sm:py-11 grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6 shadow-lift">
 							<div className="text-center lg:text-left lg:border-r lg:border-white/10 lg:pr-6">
 								<p className="font-display font-extrabold text-white text-[30px] sm:text-[36px] tracking-tight">
 									<NumberStat end={8494} suffix="" />
@@ -556,7 +556,7 @@ export default function KOPETApp() {
 
 					{/* Feature 1 */}
 					<div className="reveal grid lg:grid-cols-2 gap-10 lg:gap-16 items-center py-10 lg:py-14">
-						<div className="order-2 lg:order-1 rounded-[1.75rem] bg-[#F1F5F9] border border-[#D8E4EA] p-6 lg:p-8">
+						<div className="order-2 lg:order-1 rounded-lg bg-[#F1F5F9] border border-[#D8E4EA] p-6 lg:p-8">
 							<div className="rounded-lg bg-white border border-[#D8E4EA] shadow-soft p-5">
 								<div className="flex items-center justify-between mb-4">
 									<p className="font-display font-bold text-[#0F172A] text-[14.5px]">
@@ -670,7 +670,7 @@ export default function KOPETApp() {
 							/>
 						</div>
 
-						<div className="rounded-[1.75rem] bg-[#F1F5F9] border border-[#D8E4EA] p-6 lg:p-8">
+						<div className="rounded-lg bg-[#F1F5F9] border border-[#D8E4EA] p-6 lg:p-8">
 							<div className="rounded-lg bg-white border border-[#D8E4EA] shadow-soft p-5">
 								<p className="font-display font-bold text-[#0F172A] text-[14.5px] mb-3">
 									Pinjaman Siti Rahayu
@@ -709,7 +709,7 @@ export default function KOPETApp() {
 
 					{/* Feature 3 */}
 					<div className="reveal grid lg:grid-cols-2 gap-10 lg:gap-16 items-center py-10 lg:py-14">
-						<div className="order-2 lg:order-1 rounded-[1.75rem] bg-[#F1F5F9] border border-[#D8E4EA] p-6 lg:p-8">
+						<div className="order-2 lg:order-1 rounded-lg bg-[#F1F5F9] border border-[#D8E4EA] p-6 lg:p-8">
 							<div className="rounded-lg bg-white border border-[#D8E4EA] shadow-soft p-5">
 								<div className="flex justify-between items-center mb-4">
 									<p className="font-display font-bold text-[#0F172A] text-[14.5px]">
@@ -821,7 +821,7 @@ export default function KOPETApp() {
 							/>
 						</div>
 
-						<div className="rounded-[1.75rem] bg-[#F1F5F9] border border-[#D8E4EA] p-6 lg:p-8">
+						<div className="rounded-lg bg-[#F1F5F9] border border-[#D8E4EA] p-6 lg:p-8">
 							<div className="rounded-lg bg-white border border-[#D8E4EA] shadow-soft p-5">
 								<p className="font-display font-bold text-[#0F172A] text-[14.5px] mb-3">
 									Jadwal Pengiriman Hari Ini
@@ -1001,7 +1001,7 @@ export default function KOPETApp() {
 
 						<div className="reveal relative max-w-[980px] mx-auto">
 							<div className="rounded-[2.25rem] bg-white border border-[#D8E4EA] shadow-lift p-3 sm:p-4">
-								<div className="rounded-[1.75rem] bg-[#F1F5F9] overflow-hidden">
+								<div className="rounded-lg bg-[#F1F5F9] overflow-hidden">
 									<div className="flex items-center gap-1.5 px-5 py-3.5 border-b border-[#D8E4EA] bg-white">
 										<span className="w-2.5 h-2.5 rounded-lg bg-[#EF4444]/70"></span>
 										<span className="w-2.5 h-2.5 rounded-lg bg-[#F59E0B]/70"></span>
@@ -1421,7 +1421,7 @@ export default function KOPETApp() {
 						].map((item, i) => (
 							<div
 								key={i}
-								className={`reveal reveal-delay-${i} rounded-[1.75rem] border border-[#D8E4EA] overflow-hidden`}
+								className={`reveal reveal-delay-${i} rounded-lg border border-[#D8E4EA] overflow-hidden`}
 							>
 								<div className="p-6 bg-[#F1F5F9]">
 									<p className="text-[11px] font-bold text-[#94A3B8] uppercase tracking-wide mb-2">
@@ -1459,7 +1459,7 @@ export default function KOPETApp() {
 						</div>
 
 						<div className="grid lg:grid-cols-3 gap-6">
-							<blockquote className="reveal glass-card rounded-[1.75rem] p-7 shadow-soft">
+							<blockquote className="reveal glass-card rounded-lg p-7 shadow-soft">
 								<svg
 									width="26"
 									height="20"
@@ -1487,7 +1487,7 @@ export default function KOPETApp() {
 								</footer>
 							</blockquote>
 
-							<blockquote className="reveal reveal-delay-1 glass-card rounded-[1.75rem] p-7 shadow-soft lg:mt-8">
+							<blockquote className="reveal reveal-delay-1 glass-card rounded-lg p-7 shadow-soft lg:mt-8">
 								<svg
 									width="26"
 									height="20"
@@ -1515,7 +1515,7 @@ export default function KOPETApp() {
 								</footer>
 							</blockquote>
 
-							<blockquote className="reveal reveal-delay-2 glass-card rounded-[1.75rem] p-7 shadow-soft">
+							<blockquote className="reveal reveal-delay-2 glass-card rounded-lg p-7 shadow-soft">
 								<svg
 									width="26"
 									height="20"

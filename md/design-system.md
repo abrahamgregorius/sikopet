@@ -175,7 +175,7 @@ Tight grid gap:        gap-3 or gap-3.5
 | Component           | Radius       | Tailwind                         |
 | ------------------- | ------------ | -------------------------------- |
 | Card (standard)     | 16px         | `rounded-lg`                     |
-| Card (large)        | 28px         | `rounded-[1.75rem]`              |
+| Card (large)        | 28px         | `rounded-lg`                     |
 | Card (hero)         | 36px         | `rounded-[2.25rem]`              |
 | Modal / Auth card   | 24px         | `rounded-[24px]`                 |
 | Button              | 12px or full | `rounded-[12px]` or `rounded-lg` |
@@ -390,13 +390,13 @@ rounded-lg bg-white border border-[#D8E4EA] shadow-soft p-5
 #### Section Container Card
 
 ```
-rounded-[1.75rem] bg-[#F1F5F9] border border-[#D8E4EA] p-6 lg:p-8
+rounded-lg bg-[#F1F5F9] border border-[#D8E4EA] p-6 lg:p-8
 ```
 
 #### Dark Card
 
 ```
-rounded-[1.75rem] bg-[#0F172A] px-6 sm:px-10 py-9 sm:py-11 shadow-lift
+rounded-lg bg-[#0F172A] px-6 sm:px-10 py-9 sm:py-11 shadow-lift
 ```
 
 #### Glass Card (floating)
@@ -445,7 +445,7 @@ text-[11px] font-semibold text-[#F59E0B] bg-[#F59E0B]/10 px-2 py-0.5 rounded-lg
 #### Dark Stats Bar
 
 ```
-rounded-[1.75rem] bg-[#0F172A] px-6 sm:px-10 py-9 sm:py-11
+rounded-lg bg-[#0F172A] px-6 sm:px-10 py-9 sm:py-11
 grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6 shadow-lift
 ```
 

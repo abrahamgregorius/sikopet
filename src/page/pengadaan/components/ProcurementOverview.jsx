@@ -39,7 +39,7 @@ export default function ProcurementOverview({
 				<p className="text-[11px] text-[#94A3B8] mt-1">Barang masuk gudang</p>
 			</div>
 
-			<div className="rounded-[1.75rem] bg-[#0F172A] px-6 py-7 shadow-lift">
+			<div className="rounded-lg bg-[#0F172A] px-6 py-7 shadow-lift">
 				<p className="text-[12px] text-white/60 font-medium mb-2">
 					Total Nilai
 				</p>

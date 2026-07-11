@@ -7,7 +7,7 @@ export default function SavingsOverview({
 }) {
 	return (
 		<div className="grid sm:grid-cols-3 gap-4">
-			<div className="rounded-[1.75rem] bg-[#0F172A] px-6 py-7 shadow-lift">
+			<div className="rounded-lg bg-[#0F172A] px-6 py-7 shadow-lift">
 				<p className="text-[12px] text-white/60 font-medium mb-2">
 					Total Simpanan
 				</p>
