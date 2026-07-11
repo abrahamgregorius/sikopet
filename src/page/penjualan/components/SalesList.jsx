@@ -19,6 +19,7 @@ export default function SalesList({
 	onFilter,
 	onSelect,
 	selectedId,
+	loading,
 }) {
 	return (
 		<div className="rounded-lg bg-white border border-[#E5E7EB] overflow-hidden">
@@ -85,45 +86,57 @@ export default function SalesList({
 						</tr>
 					</thead>
 					<tbody>
-						{sales.map((s) => {
-							const status = STATUS_CONFIG[s.status];
-							return (
-								<tr
-									key={s.id}
-									onClick={() => onSelect(s)}
-									className={`border-b border-[#E8EEF2] last:border-0 cursor-pointer transition-colors hover:bg-[#F7FAFC] ${selectedId === s.id ? "bg-[#EAF6FB]" : ""}`}
-								>
-									<td className="px-5 py-3.5 text-[13px] font-mono text-[#398EB3] font-medium">
-										{s.invoice}
-									</td>
-									<td className="px-5 py-3.5 text-[13.5px] text-[#475569]">
-										{s.date}
-									</td>
-									<td className="px-5 py-3.5 text-[14px] font-medium text-[#0F172A]">
-										{s.customer}
-									</td>
-									<td className="px-5 py-3.5 text-right text-[14px] font-semibold text-[#0F172A]">
-										Rp {s.total.toLocaleString("id-ID")}
-									</td>
-									<td className="px-5 py-3.5">
-										<span
-											className={`inline-flex items-center gap-1.5 text-[11px] font-semibold px-2.5 py-1 rounded-lg ${status.color}`}
-										>
-											{status.label}
-										</span>
-									</td>
+						{loading ? (
+							Array(3).fill(0).map((_, i) => (
+								<tr key={i} className="border-b border-[#E8EEF2] opacity-50 pointer-events-none">
+									<td className="px-5 py-3.5"><div className="h-4 bg-[#F1F5F9] rounded w-20 animate-pulse"></div></td>
+									<td className="px-5 py-3.5"><div className="h-4 bg-[#F1F5F9] rounded w-16 animate-pulse"></div></td>
+									<td className="px-5 py-3.5"><div className="h-4 bg-[#F1F5F9] rounded w-24 animate-pulse"></div></td>
+									<td className="px-5 py-3.5"><div className="h-4 bg-[#F1F5F9] rounded w-20 animate-pulse"></div></td>
+									<td className="px-5 py-3.5"><div className="h-5 bg-[#F1F5F9] rounded w-16 animate-pulse"></div></td>
 								</tr>
-							);
-						})}
+							))
+						) : sales.length === 0 ? (
+							<tr>
+								<td colSpan="5" className="px-5 py-12 text-center text-[14px] text-[#94A3B8]">
+									Tidak ada data penjualan
+								</td>
+							</tr>
+						) : (
+							sales.map((s) => {
+								const status = STATUS_CONFIG[s.status] || STATUS_CONFIG.pending;
+								return (
+									<tr
+										key={s.id}
+										onClick={() => onSelect(s)}
+										className={`border-b border-[#E8EEF2] last:border-0 cursor-pointer transition-colors hover:bg-[#F7FAFC] ${selectedId === s.id ? "bg-[#EAF6FB]" : ""}`}
+									>
+										<td className="px-5 py-3.5 text-[13px] font-mono text-[#398EB3] font-medium">
+											{s.invoice || "-"}
+										</td>
+										<td className="px-5 py-3.5 text-[13px] text-[#475569]">
+											{s.date || "-"}
+										</td>
+										<td className="px-5 py-3.5 text-[14px] font-medium text-[#0F172A]">
+											{s.customer || "-"}
+										</td>
+										<td className="px-5 py-3.5 text-right text-[14px] font-semibold text-[#0F172A]">
+											Rp {(s.total || 0).toLocaleString("id-ID")}
+										</td>
+										<td className="px-5 py-3.5">
+											<span
+												className={`inline-flex items-center gap-1.5 text-[11px] font-semibold px-2.5 py-1 rounded-lg ${status.color}`}
+											>
+												{status.label}
+											</span>
+										</td>
+									</tr>
+								);
+							})
+						)}
 					</tbody>
 				</table>
 			</div>
-
-			{sales.length === 0 && (
-				<div className="text-center py-12 text-[#94A3B8]">
-					<p className="text-[14px]">Tidak ada data penjualan</p>
-				</div>
-			)}
 		</div>
 	);
 }

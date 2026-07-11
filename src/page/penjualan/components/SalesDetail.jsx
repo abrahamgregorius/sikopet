@@ -32,7 +32,7 @@ export default function SalesDetail({ sale, onClose }) {
 					<div>
 						<p className="text-[13px] text-[#94A3B8]">Invoice</p>
 						<p className="text-[15px] font-bold text-[#398EB3] font-mono">
-							{sale.invoice}
+							{sale.invoice || "-"}
 						</p>
 					</div>
 					<span
@@ -58,31 +58,31 @@ export default function SalesDetail({ sale, onClose }) {
 					</div>
 					<div>
 						<p className="text-[14px] font-semibold text-[#0F172A]">
-							{sale.customer}
+							{sale.customer || "-"}
 						</p>
 						<p className="text-[12px] text-[#94A3B8]">
-							{sale.date} · {sale.payment}
+							{sale.date || "-"} · {(sale.payment || "-")}
 						</p>
 					</div>
 				</div>
 
 				<div className="rounded-lg bg-[#F1F5F9] p-4 space-y-2.5">
 					<div className="flex justify-between text-[13px]">
-						<span className="text-[#94A3B8]">Subtotal ({sale.items} item)</span>
+						<span className="text-[#94A3B8]">Subtotal ({sale.items || 0} item)</span>
 						<span className="font-medium text-[#0F172A]">
-							Rp {sale.subtotal.toLocaleString("id-ID")}
+							Rp {(sale.subtotal || 0).toLocaleString("id-ID")}
 						</span>
 					</div>
 					<div className="flex justify-between text-[13px]">
 						<span className="text-[#94A3B8]">Pajak 11%</span>
 						<span className="font-medium text-[#0F172A]">
-							Rp {sale.tax.toLocaleString("id-ID")}
+							Rp {(sale.tax || 0).toLocaleString("id-ID")}
 						</span>
 					</div>
 					<div className="border-t border-[#E5E7EB] pt-2.5 flex justify-between text-[14px] font-bold">
 						<span className="text-[#0F172A]">Total</span>
 						<span className="text-[#398EB3]">
-							Rp {sale.total.toLocaleString("id-ID")}
+							Rp {(sale.total || 0).toLocaleString("id-ID")}
 						</span>
 					</div>
 				</div>
@@ -90,7 +90,7 @@ export default function SalesDetail({ sale, onClose }) {
 				<div className="rounded-lg bg-[#F1F5F9] p-3.5">
 					<p className="text-[11px] text-[#94A3B8]">Metode Pembayaran</p>
 					<p className="text-[14px] font-bold text-[#0F172A] mt-0.5 capitalize">
-						{sale.payment}
+						{(sale.payment || "-")}
 					</p>
 				</div>
 			</div>

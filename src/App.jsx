@@ -22,6 +22,7 @@ import PenjualanPage from "./page/penjualan";
 import GudangPage from "./page/gudang";
 import PemasokPage from "./page/pemasok";
 import PelangganPage from "./page/pelanggan";
+import Analitik from "./page/analitik";
 
 const publicRoutes = [
 	{
@@ -40,6 +41,7 @@ const publicRoutes = [
 
 const protectedRoutes = [
 	{ path: "/dashboard", element: <Dashboard /> },
+	{ path: "/dashboard/analitik", element: <Analitik /> },
 	{ path: "/dashboard/modules", element: <ModuleManagerPage /> },
 	{ path: "/dashboard/keanggotaan", element: <KeanggotaanPage /> },
 	{ path: "/dashboard/simpanan", element: <SimpananPage /> },

@@ -7,6 +7,7 @@ import SavingsForm from "./components/SavingsForm";
 import SavingsOverview from "./components/SavingsOverview";
 import TransactionList from "./components/TransactionList";
 import { db } from "../../database/db";
+import { exportSavingsToCSV, exportSavingsToExcel } from "../../lib/exportUtils";
 
 export default function SimpananPage() {
 	const [transactions, setTransactions] = useState([]);
@@ -91,6 +92,35 @@ export default function SimpananPage() {
 						</p>
 					</div>
 					<div className="flex gap-3">
+						<div className="relative group">
+							<button
+								className="focus-ring inline-flex items-center gap-2 px-4 py-2.5 rounded-lg border border-[#E5E7EB] bg-white text-[#475569] font-semibold text-[14px] hover:bg-[#F1F5F9] transition-colors"
+							>
+								<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+									<path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3" strokeLinecap="round" />
+								</svg>
+								Export
+								<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+									<path d="M6 9l6 6 6-6" strokeLinecap="round" />
+								</svg>
+							</button>
+							<div className="absolute right-0 top-full mt-1 w-40 rounded-lg border border-[#E5E7EB] bg-white shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50">
+								<button
+									onClick={() => exportSavingsToCSV(transactions)}
+									disabled={transactions.length === 0}
+									className="w-full text-left px-4 py-2.5 text-[13px] text-[#374151] hover:bg-[#F1F5F9] transition-colors first:rounded-t-lg last:rounded-b-lg disabled:opacity-50 disabled:cursor-not-allowed"
+								>
+									Export as CSV
+								</button>
+								<button
+									onClick={() => exportSavingsToExcel(transactions)}
+									disabled={transactions.length === 0}
+									className="w-full text-left px-4 py-2.5 text-[13px] text-[#374151] hover:bg-[#F1F5F9] transition-colors first:rounded-t-lg last:rounded-b-lg disabled:opacity-50 disabled:cursor-not-allowed"
+								>
+									Export as Excel
+								</button>
+							</div>
+						</div>
 						<button
 							onClick={() => {
 								setFormType("deposit");
