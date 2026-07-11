@@ -7,6 +7,7 @@ import App from "./App.jsx";
 import { BrowserRouter } from "react-router-dom";
 import { db, seedDatabase } from "./database/index.js";
 import { AuthProvider } from "./contexts/AuthContext.jsx";
+import Dexie from "dexie";
 
 async function initApp() {
   try {

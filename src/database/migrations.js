@@ -1,4 +1,4 @@
-import { db } from './db.js';
+import { db } from "./db.js";
 
 /**
  * Migration utilities for future schema changes.
@@ -18,11 +18,13 @@ import { db } from './db.js';
  */
 
 export async function runMigrations() {
-  // Placeholder for future migrations
-  // Called during app initialization if needed
-  console.log('[Migrations] No migrations to run.');
+    // Placeholder for future migrations
+    // Called during app initialization if needed
+    console.log("[Migrations] No migrations to run.");
 }
 
 export function createIndex(tableName, indexName, keyPath) {
-  console.warn(`[Migrations] Index creation deferred until Dexie supports dynamic indexes.`);
+    console.warn(
+        `[Migrations] Index creation deferred until Dexie supports dynamic indexes.`,
+    );
 }

@@ -24,7 +24,23 @@ class SikopetDatabase extends Dexie {
 
         this.version(2)
             .stores({
+                users: "++id, email, name, role, cooperativeId, cloudId, syncedAt",
+                cooperatives: "++id, name, cloudId, syncedAt",
+                members:
+                    "++id, &memberNumber, &cloudId, name, cooperativeId, syncedAt",
+                savings: "++id, &cloudId, memberId, type, createdAt, syncedAt",
+                loans: "++id, &cloudId, memberId, status, dueDate, syncedAt",
+                products: "++id, &cloudId, name, category, syncedAt",
+                inventory: "++id, productId, cloudId, syncedAt",
+                transactions: "++id, &cloudId, type, createdAt, syncedAt",
+                notifications: "++id, cloudId, read, createdAt, syncedAt",
+                activityLogs: "++id, action, entity, entityId, createdAt",
+                syncQueue:
+                    "++id, &clientId, entityType, operationType, status, createdAt",
+                settings: "++id, &key",
+                tasks: "++id, status, dueDate, createdAt, cloudId, syncedAt",
                 modules: "++id, &key, category, enabled, order",
+                tasks: "++id, status, dueDate, createdAt",
             })
             .upgrade((tx) => {
                 return tx
@@ -44,14 +60,12 @@ class SikopetDatabase extends Dexie {
                 users: "++id, email, name, role, cooperativeId, cloudId, syncedAt",
                 cooperatives: "++id, name, cloudId, syncedAt",
                 members:
-                    "++id, &memberNumber, &cloudId, name, cooperativeId, cloudId, syncedAt",
-                savings:
-                    "++id, &cloudId, memberId, type, createdAt, cloudId, syncedAt",
-                loans: "++id, &cloudId, memberId, status, dueDate, cloudId, syncedAt",
-                products: "++id, &cloudId, name, category, cloudId, syncedAt",
+                    "++id, &memberNumber, &cloudId, name, cooperativeId, syncedAt",
+                savings: "++id, &cloudId, memberId, type, createdAt, syncedAt",
+                loans: "++id, &cloudId, memberId, status, dueDate, syncedAt",
+                products: "++id, &cloudId, name, category, syncedAt",
                 inventory: "++id, productId, cloudId, syncedAt",
-                transactions:
-                    "++id, &cloudId, type, createdAt, cloudId, syncedAt",
+                transactions: "++id, &cloudId, type, createdAt, syncedAt",
                 notifications: "++id, cloudId, read, createdAt, syncedAt",
                 activityLogs: "++id, action, entity, entityId, createdAt",
                 syncQueue:
