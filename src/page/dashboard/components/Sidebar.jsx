@@ -7,6 +7,7 @@ import {
 	SIDEBAR_ICONS,
 	getCategoryLabel,
 } from "../../../modules/index.js";
+import Logo from "../../../components/Home/Logo.jsx";
 
 const CATEGORY_ORDER = ["utama", "operasional", "tim", "lainnya"];
 
@@ -84,31 +85,7 @@ export default function Sidebar({ collapsed, onToggleCollapse }) {
 			className={`hidden lg:flex flex-col shrink-0 bg-white border-r border-[#D8E4EA] sticky top-0 h-screen z-40 transition-[width] duration-[320ms] ease-[cubic-bezier(.22,.61,.36,1)] ${collapsed ? "w-[84px]" : "w-64"}`}
 		>
 			<div className="h-[72px] flex items-center gap-2.5 px-5 border-b border-[#D8E4EA] shrink-0">
-				<span className="w-9 h-9 rounded-lg bg-gradient-to-br from-[#398eb3] to-[#4CC9B0] grid place-items-center shrink-0">
-					<svg
-						width="18"
-						height="18"
-						viewBox="0 0 24 24"
-						fill="none"
-						aria-hidden="true"
-					>
-						<circle cx="5" cy="12" r="2.2" fill="white" />
-						<circle cx="12" cy="6" r="2.2" fill="white" fillOpacity="0.85" />
-						<circle cx="19" cy="12" r="2.2" fill="white" />
-						<circle cx="12" cy="18" r="2.2" fill="white" fillOpacity="0.85" />
-						<path
-							d="M5 12L12 6M12 6L19 12M19 12L12 18M12 18L5 12"
-							stroke="white"
-							strokeWidth="1.3"
-							strokeOpacity="0.6"
-						/>
-					</svg>
-				</span>
-				{!collapsed && (
-					<span className="font-display font-extrabold text-[18px] tracking-tight">
-						SIKOPET
-					</span>
-				)}
+				<Logo collapsed={collapsed} />
 			</div>
 
 			<nav
